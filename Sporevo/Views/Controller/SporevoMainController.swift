@@ -12,6 +12,10 @@ class SporevoMainController: UIViewController {
         setupHeader()
         setupTableView()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = true
+    }
+    
     // MARK: - setupMethod
     private func setupTableView() {
         tableView = UITableView()
@@ -76,8 +80,22 @@ extension SporevoMainController: UITableViewDataSource {
 extension SporevoMainController:SeachCellDelegate {
     func searchCell(_ cell: SearchCell) {
         print(#function)
-        let options = SearchOptions(rawValue: tableView.indexPath(for: cell)?.section ?? 0)
-        print(options)
+        guard let options = SearchOptions(rawValue: tableView.indexPath(for: cell)?.section ?? 0) else { return }
+        switch options {
+        case .place:
+            print("place")
+            navigationController?.pushViewController(SearchListController(), animated: true)
+        case .institution:
+            print("")
+        case .competition:
+            print("competition")
+        case .price:
+            print("price")
+        case .tag:
+            print("tag")
+
     }
+  }
+    
 }
 
