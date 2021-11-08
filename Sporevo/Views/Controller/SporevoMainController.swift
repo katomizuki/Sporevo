@@ -2,13 +2,7 @@ import UIKit
 
 class SporevoMainController: UIViewController {
     // MARK: - Properties
-    private lazy var tableView:UITableView = {
-        let tableView = UITableView()
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(SearchCell.self, forCellReuseIdentifier: SearchCell.id)
-        return tableView
-    }()
+    private var tableView:UITableView!
 //    private let scrollView:UIScrollView
     private let headerView = MainHeaderView(image: UIImage(named: "バドミントン"))
     // MARK: - Lifecycle
@@ -20,40 +14,47 @@ class SporevoMainController: UIViewController {
     }
     // MARK: - setupMethod
     private func setupTableView() {
+        tableView = UITableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(SearchCell.self, forCellReuseIdentifier: SearchCell.id)
         view.addSubview(tableView)
         tableView.anchor(top:headerView.bottomAnchor,
-                         bottom: view.safeAreaLayoutGuide.bottomAnchor,
+                         bottom: view.bottomAnchor,
                          left: view.leftAnchor,
                          right: view.rightAnchor,
-                         paddingTop: 30,
-                         paddingBottom: 0,
-                         paddingRight: 0,
-                         paddingLeft: 0)
+                         paddingTop: 80,
+                         paddingRight: 20,
+                         paddingLeft: 20)
         tableView.rowHeight = 60
-        tableView.isScrollEnabled = false
+        tableView.isScrollEnabled = true
+        tableView.frame = CGRect(x: 0,
+                                 y: 0,
+                                 width: view.frame.width - 40,
+                                 height: view.frame.height - headerView.frame.width)
     }
     private func setupHeader() {
         view.addSubview(headerView)
-        headerView.anchor(top:view.safeAreaLayoutGuide.topAnchor,
+        headerView.anchor(top:view.topAnchor,
                           left: view.leftAnchor,
                           right: view.rightAnchor,
                           paddingTop: 0,
-                          paddingLeft: 0,
-                          height: 130)
+                          paddingLeft: 0)
     }
-
-
+    func didTapSearchPlusButton(_ cell:UITableViewCell) {
+        print(#function)
+    }
 }
 // MARK: - UITableViewDelegate
 extension SporevoMainController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(#function)
-    }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return SearchOptions(rawValue: section)?.description
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 12
+    }
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
     }
     
 }
@@ -67,7 +68,16 @@ extension SporevoMainController: UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchCell.id, for: indexPath) as? SearchCell else { fatalError("can't make SeachCell Error") }
+        cell.delegate = self
         return cell
+    }
+}
+// MARK: - SearchCellDelegate
+extension SporevoMainController:SeachCellDelegate {
+    func searchCell(_ cell: SearchCell) {
+        print(#function)
+        let options = SearchOptions(rawValue: tableView.indexPath(for: cell)?.section ?? 0)
+        print(options)
     }
 }
 

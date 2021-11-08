@@ -2,7 +2,7 @@
 import Foundation
 import UIKit
 
-class MainHeaderView:UIImageView {
+class MainHeaderView: UIImageView {
     // MARK: - Propertis
     private let titleView:UIView = {
        let subTitleLabel = UILabel()
@@ -41,7 +41,7 @@ class MainHeaderView:UIImageView {
         super.init(image: image)
         addSubview(titleView)
         contentMode = .scaleAspectFill
-        titleView.anchor(bottom:bottomAnchor,
+        titleView.anchor(bottom: bottomAnchor,
                          paddingBottom: 10,
                          centerX:centerXAnchor,
                          width: 250,
