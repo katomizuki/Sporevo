@@ -1,5 +1,7 @@
 import UIKit
-
+protocol SporevoMainControllerDelegate: AnyObject {
+    func handleMenuToggle(forMenuOptions menuOptions: MenuOptions?)
+}
 class SporevoMainController: UIViewController {
     // MARK: - Properties
     private var tableView:UITableView!
@@ -15,6 +17,7 @@ class SporevoMainController: UIViewController {
         return button
     }()
     private let headerView = MainHeaderView(image: UIImage(named: "バドミントン"))
+    weak var delegate: SporevoMainControllerDelegate?
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +78,7 @@ class SporevoMainController: UIViewController {
     }
     @objc private func didTapLeftBarButton() {
         print(#function)
+        delegate?.handleMenuToggle(forMenuOptions: nil)
     }
     @objc private func didTapSearchButton() {
         print(#function)

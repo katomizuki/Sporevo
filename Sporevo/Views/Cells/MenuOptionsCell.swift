@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 class MenuOptionsCell:UITableViewCell {
-    
+    static let id = "MenuOptionsCell"
     var iconImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit

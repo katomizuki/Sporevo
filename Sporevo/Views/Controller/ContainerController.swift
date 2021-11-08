@@ -9,6 +9,7 @@ class ContainerController:UIViewController {
     // MARK: - Initialize
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupMainController()
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -23,12 +24,52 @@ class ContainerController:UIViewController {
     private func setupMainController() {
         let main = SporevoMainController()
         centerController = UINavigationController(rootViewController: main)
-        view.addSubview(menuController.view)
+        main.delegate = self
+        // CenterControllerのViewをsubViewに追加
+        view.addSubview(centerController.view)
+        //　子ビューとしてcenterControllerを追加
         addChild(centerController)
+        // 親ビューにしっかり教えてあげる。
         centerController.didMove(toParent: self)
     }
-    private func animatePanel(expanded: Bool ,menuOptions: MenuOptions) {
-        
+    private func setupMenuController() {
+        if menuController == nil {
+            menuController = MenuController()
+            menuController.delegate = self
+            view.insertSubview(menuController.view, at: 0)
+            addChild(menuController)
+            menuController.didMove(toParent: menuController)
+        }
     }
-    
+    private func animatePanel(expand:Bool,menuOptions:MenuOptions?) {
+            if expand {
+                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
+                    self.centerController.view.frame.origin.x = self.centerController.view.frame.width - 200
+                }, completion: nil)
+            } else {
+                
+                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut, animations: {
+                    self.centerController.view.frame.origin.x = 0
+                }) { _ in
+                    guard let menuOptions = menuOptions else {
+                        return
+                    }
+                    self.didSelectMenuOption(menuOption: menuOptions)
+                }
+            }
+        }
+    private func didSelectMenuOption(menuOption: MenuOptions) {
+        print(#function)
+        }
+}
+// MARK: - SporevoMainControllerDelegate
+extension ContainerController: SporevoMainControllerDelegate {
+    func handleMenuToggle(forMenuOptions menuOptions: MenuOptions?) {
+        print(#function)
+        if !isExpanded {
+            setupMenuController()
+        }
+        isExpanded = !isExpanded
+        animatePanel(expand: isExpanded, menuOptions: menuOptions)
+    }
 }

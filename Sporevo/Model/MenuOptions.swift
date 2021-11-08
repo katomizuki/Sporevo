@@ -11,7 +11,7 @@ enum MenuOptions:Int,CaseIterable {
         case .profile: return "ユーザー"
         case .search: return "条件検索"
         case .settings: return "設定"
-        case .info: return "問い合わせ
+        case .info: return "問い合わせ"
         }
     }
     var icon: UIImage? {
