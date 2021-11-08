@@ -6,7 +6,6 @@ class SearchListController: UIViewController {
     private let tagData = Constans.tagData
     private let institutionData = Constans.institutionData
     private let competionData = Constans.competitionData
-//    private let price = Constans.pr
     private var isExpanded = false
     private var toJudegeTableViewKeyword:SearchOptions
     private var sections:[(title:String,detail: [String],extended:Bool)] = []
@@ -37,8 +36,17 @@ class SearchListController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     private func setupSectionValue() {
-        let details = Constans.cityData
-        sections.append((title:"東京都" , detail: details, extended: true))
+        if toJudegeTableViewKeyword == .place {
+            let details = Constans.cityData
+            sections.append((title:"東京都" , detail: details, extended: false))
+        } else  {
+            for i in 0..<Constans.priceData.count {
+                let details = Constans.priceData[i]
+                let title = Constans.timeData[i]
+                sections.append((title: title, detail: details, extended: false))
+            }
+        }
+       
     }
     
     private func setupTableView() {
@@ -97,10 +105,13 @@ extension SearchListController: UITableViewDataSource {
         case .institution: return institutionData.count
         default: return sections[section].extended ? sections[section].detail.count : 0
         }
-//        return sections[section].extended ? sections[section].detail.count : 0
     }
     func numberOfSections(in tableView: UITableView) -> Int {
-        return sections.count
+            if toJudegeTableViewKeyword == .price || toJudegeTableViewKeyword == .place {
+                return sections.count
+            } else {
+                return 1
+            }
     }
 }
 

@@ -3,49 +3,65 @@ import UIKit
 class SporevoMainController: UIViewController {
     // MARK: - Properties
     private var tableView:UITableView!
-//    private let scrollView:UIScrollView
+//    private var scrollView:UIScrollView!
+    private lazy var searchButton:UIButton = {
+        let button = UIButton(type: .system)
+        button.addTarget(self, action: #selector(didTapSearchButton), for: .touchUpInside)
+        button.setTitle("検索", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
+        button.backgroundColor = .green
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 15
+        button.layer.masksToBounds = true
+        return button
+    }()
     private let headerView = MainHeaderView(image: UIImage(named: "バドミントン"))
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        setupHeader()
-        setupTableView()
+        setupUI()
     }
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = true
     }
     
     // MARK: - setupMethod
-    private func setupTableView() {
+    private func setupUI() {
+        let screenWidth = Int( UIScreen.main.bounds.size.width)
+        let screenHeight = Int(UIScreen.main.bounds.size.height)
+        let scrollView = UIScrollView()
+        scrollView.backgroundColor = .white
+        scrollView.frame = self.view.frame
+        scrollView.contentSize = CGSize(width: screenWidth, height: 1000)
+        view.addSubview(scrollView)
         tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(SearchCell.self, forCellReuseIdentifier: SearchCell.id)
-        view.addSubview(tableView)
+        scrollView.addSubview(tableView)
+        scrollView.addSubview(headerView)
         tableView.anchor(top:headerView.bottomAnchor,
-                         bottom: view.bottomAnchor,
                          left: view.leftAnchor,
                          right: view.rightAnchor,
                          paddingTop: 80,
                          paddingRight: 20,
-                         paddingLeft: 20)
+                         paddingLeft: 20,height: 500)
         tableView.rowHeight = 60
-        tableView.isScrollEnabled = true
-        tableView.frame = CGRect(x: 0,
-                                 y: 0,
-                                 width: view.frame.width - 40,
-                                 height: view.frame.height - headerView.frame.width)
-    }
-    private func setupHeader() {
-        view.addSubview(headerView)
-        headerView.anchor(top:view.topAnchor,
+        tableView.isScrollEnabled = false
+        headerView.anchor(top:scrollView.topAnchor,
                           left: view.leftAnchor,
                           right: view.rightAnchor,
                           paddingTop: 0,
                           paddingLeft: 0)
+        scrollView.addSubview(searchButton)
+        searchButton.anchor(top:tableView.bottomAnchor,
+                            paddingTop: 20,
+                            centerX: view.centerXAnchor,
+                            width: 60,
+                            height: 40)
     }
-    func didTapSearchPlusButton(_ cell:UITableViewCell) {
+    @objc private func didTapSearchButton() {
         print(#function)
     }
 }
@@ -92,7 +108,6 @@ extension SporevoMainController:SeachCellDelegate {
             navigationController?.pushViewController(SearchListController(toJudegeTableViewKeyword: .price), animated: true)
         case .tag:
             navigationController?.pushViewController(SearchListController(toJudegeTableViewKeyword: .tag), animated: true)
-
     }
   }
     
