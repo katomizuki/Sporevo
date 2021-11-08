@@ -3,7 +3,6 @@ import UIKit
 class SporevoMainController: UIViewController {
     // MARK: - Properties
     private var tableView:UITableView!
-//    private var scrollView:UIScrollView!
     private lazy var searchButton:UIButton = {
         let button = UIButton(type: .system)
         button.addTarget(self, action: #selector(didTapSearchButton), for: .touchUpInside)
@@ -19,22 +18,30 @@ class SporevoMainController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .darkGray
         setupUI()
+        setupNav()
     }
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.isHidden = true
+        navigationController?.navigationBar.isHidden = false
+    }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     // MARK: - setupMethod
     private func setupUI() {
         let screenWidth = Int( UIScreen.main.bounds.size.width)
-        let screenHeight = Int(UIScreen.main.bounds.size.height)
         let scrollView = UIScrollView()
+        scrollView.delegate = self
         scrollView.backgroundColor = .white
         scrollView.frame = self.view.frame
         scrollView.contentSize = CGSize(width: screenWidth, height: 1000)
         view.addSubview(scrollView)
+        scrollView.anchor(top:view.safeAreaLayoutGuide.topAnchor,
+                          bottom: view.bottomAnchor,
+                          left: view.leftAnchor,
+                          right: view.rightAnchor)
         tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
@@ -60,6 +67,14 @@ class SporevoMainController: UIViewController {
                             centerX: view.centerXAnchor,
                             width: 60,
                             height: 40)
+    }
+    private func setupNav() {
+        navigationController?.navigationBar.barTintColor = .darkGray
+              let image = UIImage(systemName: "person.fill")?.withRenderingMode(.alwaysOriginal)
+              navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(didTapLeftBarButton))
+    }
+    @objc private func didTapLeftBarButton() {
+        print(#function)
     }
     @objc private func didTapSearchButton() {
         print(#function)
@@ -111,5 +126,11 @@ extension SporevoMainController:SeachCellDelegate {
     }
   }
     
+}
+extension SporevoMainController:UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print(#function)
+        navigationController?.navigationBar.isHidden = false
+    }
 }
 
