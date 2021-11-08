@@ -3,8 +3,12 @@ import UIKit
 
 class SearchListController: UIViewController {
     private let cityData = Constans.cityData
+    private let tagData = Constans.tagData
+    private let institutionData = Constans.institutionData
+    private let competionData = Constans.competitionData
+//    private let price = Constans.pr
     private var isExpanded = false
-    private var toJudegeTableViewKeyword:String
+    private var toJudegeTableViewKeyword:SearchOptions
     private var sections:[(title:String,detail: [String],extended:Bool)] = []
     private lazy var tableView:UITableView = {
         let tableView = UITableView()
@@ -24,7 +28,7 @@ class SearchListController: UIViewController {
         navigationController?.navigationBar.backgroundColor = .clear
         navigationController?.navigationBar.isHidden = false
     }
-    init(toJudegeTableViewKeyword: String) {
+    init(toJudegeTableViewKeyword: SearchOptions) {
         self.toJudegeTableViewKeyword = toJudegeTableViewKeyword
         super.init(nibName: nil, bundle: nil)
     }
@@ -52,6 +56,7 @@ extension SearchListController: UITableViewDelegate {
         print(#function)
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if toJudegeTableViewKeyword == .price || toJudegeTableViewKeyword == .place {
         var header = tableView.dequeueReusableHeaderFooterView(withIdentifier: CustomHeaderFooterView.id) as? CustomHeaderFooterView
         if header == nil {
             header = CustomHeaderFooterView(reuseIdentifier: CustomHeaderFooterView.id)
@@ -60,6 +65,9 @@ extension SearchListController: UITableViewDelegate {
         header?.textLabel?.text = sections[section].title
         header?.section = section
         return header
+        } else { return nil
+            
+        }
     }
     @objc private func tapHeader(sender:UITapGestureRecognizer) {
         print(#function)
@@ -73,11 +81,23 @@ extension SearchListController: UITableViewDelegate {
 extension SearchListController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId",for: indexPath)
-        cell.textLabel?.text = sections[indexPath.section].detail[indexPath.row]
+        switch toJudegeTableViewKeyword {
+        case .institution: cell.textLabel?.text = institutionData[indexPath.row]
+        case .competition: cell.textLabel?.text = competionData[indexPath.row]
+        case .tag: cell.textLabel?.text = tagData[indexPath.row]
+        default:
+            cell.textLabel?.text = sections[indexPath.section].detail[indexPath.row]
+        }
         return cell
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sections[section].extended ? sections[section].detail.count : 0
+        switch toJudegeTableViewKeyword {
+        case .tag: return tagData.count
+        case .competition: return competionData.count
+        case .institution: return institutionData.count
+        default: return sections[section].extended ? sections[section].detail.count : 0
+        }
+//        return sections[section].extended ? sections[section].detail.count : 0
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count

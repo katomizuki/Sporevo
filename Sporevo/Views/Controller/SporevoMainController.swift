@@ -83,16 +83,15 @@ extension SporevoMainController:SeachCellDelegate {
         guard let options = SearchOptions(rawValue: tableView.indexPath(for: cell)?.section ?? 0) else { return }
         switch options {
         case .place:
-            print("place")
-            navigationController?.pushViewController(SearchListController(), animated: true)
+            navigationController?.pushViewController(SearchListController(toJudegeTableViewKeyword: .place), animated: true)
         case .institution:
-            print("")
+            navigationController?.pushViewController(SearchListController(toJudegeTableViewKeyword: .institution), animated: true)
         case .competition:
-            print("competition")
+            navigationController?.pushViewController(SearchListController(toJudegeTableViewKeyword: .competition), animated: true)
         case .price:
-            print("price")
+            navigationController?.pushViewController(SearchListController(toJudegeTableViewKeyword: .price), animated: true)
         case .tag:
-            print("tag")
+            navigationController?.pushViewController(SearchListController(toJudegeTableViewKeyword: .tag), animated: true)
 
     }
   }
