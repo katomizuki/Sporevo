@@ -70,7 +70,7 @@ class SporevoMainController: UIViewController {
     }
     private func setupNav() {
         navigationController?.navigationBar.barTintColor = .darkGray
-              let image = UIImage(systemName: "person.fill")?.withRenderingMode(.alwaysOriginal)
+              let image = UIImage(systemName: "line.horizontal.3")?.withRenderingMode(.alwaysOriginal)
               navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(didTapLeftBarButton))
     }
     @objc private func didTapLeftBarButton() {

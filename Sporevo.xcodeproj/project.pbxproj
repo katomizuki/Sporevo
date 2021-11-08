@@ -18,6 +18,10 @@
 		D32B13C227392BCC0039CC06 /* SearchListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13C127392BCC0039CC06 /* SearchListController.swift */; };
 		D32B13C4273931EB0039CC06 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13C3273931EB0039CC06 /* Constants.swift */; };
 		D32B13C6273944840039CC06 /* CustomSearchSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13C5273944840039CC06 /* CustomSearchSectionHeader.swift */; };
+		D32B13C8273960720039CC06 /* ContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13C7273960720039CC06 /* ContainerController.swift */; };
+		D32B13CA273961CD0039CC06 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13C9273961CD0039CC06 /* MenuController.swift */; };
+		D32B13CC273964000039CC06 /* MenuOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13CB273964000039CC06 /* MenuOptions.swift */; };
+		D32B13CE273965120039CC06 /* MenuOptionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13CD273965120039CC06 /* MenuOptionsCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +38,10 @@
 		D32B13C127392BCC0039CC06 /* SearchListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListController.swift; sourceTree = "<group>"; };
 		D32B13C3273931EB0039CC06 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D32B13C5273944840039CC06 /* CustomSearchSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchSectionHeader.swift; sourceTree = "<group>"; };
+		D32B13C7273960720039CC06 /* ContainerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerController.swift; sourceTree = "<group>"; };
+		D32B13C9273961CD0039CC06 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
+		D32B13CB273964000039CC06 /* MenuOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptions.swift; sourceTree = "<group>"; };
+		D32B13CD273965120039CC06 /* MenuOptionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionsCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				D32B13B8273902670039CC06 /* SearchOptions.swift */,
+				D32B13CB273964000039CC06 /* MenuOptions.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -116,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				D32B13BD2739038A0039CC06 /* SearchCell.swift */,
+				D32B13CD273965120039CC06 /* MenuOptionsCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -125,6 +135,8 @@
 			children = (
 				D32B137D2738D8430039CC06 /* SporevoMainController.swift */,
 				D32B13C127392BCC0039CC06 /* SearchListController.swift */,
+				D32B13C7273960720039CC06 /* ContainerController.swift */,
+				D32B13C9273961CD0039CC06 /* MenuController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -211,11 +223,15 @@
 				D32B13BE2739038A0039CC06 /* SearchCell.swift in Sources */,
 				D32B13C0273904370039CC06 /* MainHeaderView.swift in Sources */,
 				D32B13C227392BCC0039CC06 /* SearchListController.swift in Sources */,
+				D32B13CA273961CD0039CC06 /* MenuController.swift in Sources */,
 				D32B137E2738D8430039CC06 /* SporevoMainController.swift in Sources */,
 				D32B137A2738D8430039CC06 /* AppDelegate.swift in Sources */,
 				D32B13B7273901230039CC06 /* Anchor-Extension.swift in Sources */,
 				D32B137C2738D8430039CC06 /* SceneDelegate.swift in Sources */,
+				D32B13CE273965120039CC06 /* MenuOptionsCell.swift in Sources */,
 				D32B13C4273931EB0039CC06 /* Constants.swift in Sources */,
+				D32B13CC273964000039CC06 /* MenuOptions.swift in Sources */,
+				D32B13C8273960720039CC06 /* ContainerController.swift in Sources */,
 				D32B13C6273944840039CC06 /* CustomSearchSectionHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
