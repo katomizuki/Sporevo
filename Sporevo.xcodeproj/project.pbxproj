@@ -9,20 +9,16 @@
 /* Begin PBXBuildFile section */
 		D32B137A2738D8430039CC06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13792738D8430039CC06 /* AppDelegate.swift */; };
 		D32B137C2738D8430039CC06 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B137B2738D8430039CC06 /* SceneDelegate.swift */; };
-		D32B137E2738D8430039CC06 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B137D2738D8430039CC06 /* ViewController.swift */; };
-		D32B13812738D8430039CC06 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D32B137F2738D8430039CC06 /* Main.storyboard */; };
+		D32B137E2738D8430039CC06 /* SporevoMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B137D2738D8430039CC06 /* SporevoMainController.swift */; };
 		D32B13832738D8450039CC06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D32B13822738D8450039CC06 /* Assets.xcassets */; };
-		D32B13862738D8450039CC06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D32B13842738D8450039CC06 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D32B13762738D8430039CC06 /* Sporevo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sporevo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D32B13792738D8430039CC06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D32B137B2738D8430039CC06 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D32B137D2738D8430039CC06 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D32B13802738D8430039CC06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D32B137D2738D8430039CC06 /* SporevoMainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SporevoMainController.swift; sourceTree = "<group>"; };
 		D32B13822738D8450039CC06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D32B13852738D8450039CC06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D32B13872738D8450039CC06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -58,13 +54,43 @@
 			children = (
 				D32B13792738D8430039CC06 /* AppDelegate.swift */,
 				D32B137B2738D8430039CC06 /* SceneDelegate.swift */,
-				D32B137D2738D8430039CC06 /* ViewController.swift */,
-				D32B137F2738D8430039CC06 /* Main.storyboard */,
 				D32B13822738D8450039CC06 /* Assets.xcassets */,
-				D32B13842738D8450039CC06 /* LaunchScreen.storyboard */,
+				D32B13B52738FF1F0039CC06 /*  ViewModel */,
+				D32B13B42738FF1B0039CC06 /* Model */,
+				D32B13B32738FF170039CC06 /* Views */,
+				D32B13B22738FF110039CC06 /* Extensiton */,
 				D32B13872738D8450039CC06 /* Info.plist */,
 			);
 			path = Sporevo;
+			sourceTree = "<group>";
+		};
+		D32B13B22738FF110039CC06 /* Extensiton */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensiton;
+			sourceTree = "<group>";
+		};
+		D32B13B32738FF170039CC06 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D32B137D2738D8430039CC06 /* SporevoMainController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D32B13B42738FF1B0039CC06 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D32B13B52738FF1F0039CC06 /*  ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = " ViewModel";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,9 +151,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D32B13862738D8450039CC06 /* LaunchScreen.storyboard in Resources */,
 				D32B13832738D8450039CC06 /* Assets.xcassets in Resources */,
-				D32B13812738D8430039CC06 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,32 +162,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D32B137E2738D8430039CC06 /* ViewController.swift in Sources */,
+				D32B137E2738D8430039CC06 /* SporevoMainController.swift in Sources */,
 				D32B137A2738D8430039CC06 /* AppDelegate.swift in Sources */,
 				D32B137C2738D8430039CC06 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		D32B137F2738D8430039CC06 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D32B13802738D8430039CC06 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		D32B13842738D8450039CC06 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D32B13852738D8450039CC06 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		D32B13882738D8450039CC06 /* Debug */ = {
@@ -294,7 +299,6 @@
 				INFOPLIST_FILE = Sporevo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -322,7 +326,6 @@
 				INFOPLIST_FILE = Sporevo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
