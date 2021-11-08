@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
  
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
-        window?.rootViewController = SporevoMainController()
+        window?.rootViewController = UINavigationController(rootViewController: SporevoMainController())
         window?.makeKeyAndVisible()
     }
 

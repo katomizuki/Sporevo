@@ -6,26 +6,40 @@ class SporevoMainController: UIViewController {
         let tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellId")
+        tableView.register(SearchCell.self, forCellReuseIdentifier: SearchCell.id)
         return tableView
     }()
+//    private let scrollView:UIScrollView
+    private let headerView = MainHeaderView(image: UIImage(named: "バドミントン"))
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        setupHeader()
         setupTableView()
     }
     // MARK: - setupMethod
     private func setupTableView() {
         view.addSubview(tableView)
-        tableView.anchor(top:view.safeAreaLayoutGuide.topAnchor,
+        tableView.anchor(top:headerView.bottomAnchor,
                          bottom: view.safeAreaLayoutGuide.bottomAnchor,
                          left: view.leftAnchor,
                          right: view.rightAnchor,
-                         paddingTop: 0,
+                         paddingTop: 30,
                          paddingBottom: 0,
                          paddingRight: 0,
                          paddingLeft: 0)
+        tableView.rowHeight = 60
+        tableView.isScrollEnabled = false
+    }
+    private func setupHeader() {
+        view.addSubview(headerView)
+        headerView.anchor(top:view.safeAreaLayoutGuide.topAnchor,
+                          left: view.leftAnchor,
+                          right: view.rightAnchor,
+                          paddingTop: 0,
+                          paddingLeft: 0,
+                          height: 130)
     }
 
 
@@ -35,6 +49,13 @@ extension SporevoMainController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function)
     }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return SearchOptions(rawValue: section)?.description
+    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 12
+    }
+    
 }
 // MARK: - UITableViewDataSource
 extension SporevoMainController: UITableViewDataSource {
@@ -45,8 +66,7 @@ extension SporevoMainController: UITableViewDataSource {
         return 1
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
-        cell.backgroundColor = .cyan
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchCell.id, for: indexPath) as? SearchCell else { fatalError("can't make SeachCell Error") }
         return cell
     }
 }
