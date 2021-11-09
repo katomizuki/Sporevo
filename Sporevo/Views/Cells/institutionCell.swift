@@ -3,7 +3,7 @@ import UIKit
 
 class InstitutionCell: UICollectionViewCell {
     static let id = "InstitutionCell"
-    private let tagData = Constants
+    private let tagData = Constants.tagData
     private let institutionNameLabel:UILabel = {
         let label = UILabel()
         label.text = " 新国立競技場 - "
@@ -33,7 +33,7 @@ class InstitutionCell: UICollectionViewCell {
         iv.image = UIImage(systemName: "person.fill")?.withRenderingMode(.alwaysTemplate)
         iv.tintColor = .darkGray
         label.addSubview(iv)
-        iv.anchor(right:label.leftAnchor,paddingRight: 3,centerY: label.centerYAnchor,width: 20,height: 20)
+        iv.anchor(top:label.topAnchor,right:label.leftAnchor,paddingTop: 5,paddingRight: 3,width: 20,height: 20)
         label.text = "卓球 バドミントン バレーボール バスケットボール ダンス 剣道／なぎなた 空手／少林寺拳法／合気道"
         label.textColor = .darkGray
         label.numberOfLines = 0
@@ -53,7 +53,6 @@ class InstitutionCell: UICollectionViewCell {
                   paddingRight: 3,
                   width: 20,
                   height: 20)
-        stackView.backgroundColor = .blue
         return stackView
     }()
    
@@ -63,6 +62,14 @@ class InstitutionCell: UICollectionViewCell {
         addSubview(institutionNameLabel)
         addSubview(addressLabel)
         addSubview(competitionLabel)
+        for tag in tagData {
+            print(tag)
+            let label = makeTagLabel(text: tag)
+            stackView.addArrangedSubview(label)
+        }
+        stackView.distribution = .fill
+        stackView.spacing = 5
+        
         addSubview(stackView)
         institutionNameLabel.anchor(top:topAnchor,
                                     left: leftAnchor,
@@ -75,19 +82,31 @@ class InstitutionCell: UICollectionViewCell {
                             paddingLeft: 25)
         competitionLabel.anchor(top: addressLabel.bottomAnchor,
                             left: institutionNameLabel.leftAnchor,
-                            right: rightAnchor,
-                            paddingTop: 15,
+                            right: rightAnchor,paddingTop: 5,
                             paddingRight: 0,
                             paddingLeft: 25)
         stackView.anchor(top:competitionLabel.bottomAnchor,bottom:bottomAnchor,
                          left: institutionNameLabel.leftAnchor,
                          right: rightAnchor,
-                         paddingTop: 15,
-                         paddingBottom: 10,
-                         paddingRight: 5,
+                         paddingTop: 15,paddingBottom: 80,
+                         paddingRight: 10,
                          paddingLeft: 25)
     }
     required init?(coder: NSCoder) {
         fatalError()
+    }
+    private func makeTagLabel(text: String) -> UILabel {
+        let label = UILabel()
+        label.text = text
+        label.font = .boldSystemFont(ofSize: 12)
+        label.textColor = .white
+        label.numberOfLines = 0
+        label.sizeToFit()
+        label.backgroundColor = .blue
+        label.backgroundColor = .systemMint
+        label.layer.masksToBounds = true
+        label.layer.cornerRadius = 10
+        label.textAlignment = .center
+        return label
     }
 }

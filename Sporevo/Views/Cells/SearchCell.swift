@@ -13,7 +13,7 @@ class SearchCell:UITableViewCell {
         let imageview = UIImageView()
         button.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
         button.setImage(image, for: .normal)
-        button.tintColor = .green
+        button.tintColor = .systemMint
         button.contentMode = .scaleToFill
         button.isUserInteractionEnabled = true
         button.isEnabled = true

@@ -10,7 +10,7 @@ class SporevoMainController: UIViewController {
         button.addTarget(self, action: #selector(didTapSearchButton), for: .touchUpInside)
         button.setTitle("検索", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
-        button.backgroundColor = .green
+        button.backgroundColor = .systemMint
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 15
         button.layer.masksToBounds = true
@@ -150,6 +150,8 @@ extension SporevoMainController:SeachCellDelegate {
 extension SporevoMainController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(#function)
+        let controller = InstitutionDetailController()
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
 // MARK: - UICollectionViewDatasource
@@ -168,7 +170,7 @@ extension SporevoMainController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: collectionView.frame.width, height: 250)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 50
+        return 20
     }
 }
 
