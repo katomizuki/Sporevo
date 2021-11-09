@@ -25,6 +25,7 @@
 		D32B13D0273A0E490039CC06 /* institutionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13CF273A0E480039CC06 /* institutionCell.swift */; };
 		D32B13D2273A25E00039CC06 /* InstitutionDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13D1273A25E00039CC06 /* InstitutionDetailController.swift */; };
 		D32B13D6273A2FB70039CC06 /* InstitutionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13D5273A2FB70039CC06 /* InstitutionHeader.swift */; };
+		D32B13D8273A30FA0039CC06 /* CompetionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13D7273A30FA0039CC06 /* CompetionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		D32B13CF273A0E480039CC06 /* institutionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = institutionCell.swift; sourceTree = "<group>"; };
 		D32B13D1273A25E00039CC06 /* InstitutionDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstitutionDetailController.swift; sourceTree = "<group>"; };
 		D32B13D5273A2FB70039CC06 /* InstitutionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstitutionHeader.swift; sourceTree = "<group>"; };
+		D32B13D7273A30FA0039CC06 /* CompetionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 				D32B13BF273904370039CC06 /* MainHeaderView.swift */,
 				D32B13C5273944840039CC06 /* CustomSearchSectionHeader.swift */,
 				D32B13D5273A2FB70039CC06 /* InstitutionHeader.swift */,
+				D32B13D7273A30FA0039CC06 /* CompetionView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 				D32B13C0273904370039CC06 /* MainHeaderView.swift in Sources */,
 				D32B13C227392BCC0039CC06 /* SearchListController.swift in Sources */,
 				D32B13CA273961CD0039CC06 /* MenuController.swift in Sources */,
+				D32B13D8273A30FA0039CC06 /* CompetionView.swift in Sources */,
 				D32B137E2738D8430039CC06 /* SporevoMainController.swift in Sources */,
 				D32B137A2738D8430039CC06 /* AppDelegate.swift in Sources */,
 				D32B13D2273A25E00039CC06 /* InstitutionDetailController.swift in Sources */,
