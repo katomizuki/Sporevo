@@ -21,6 +21,7 @@ class InstitutionDetailController: UIViewController {
     private let usageInfoHeader:InsitutionHeader = InsitutionHeader(title: "利用情報")
     private let insitutionHeader:InsitutionHeader = InsitutionHeader(title: "施設情報")
     private let accessHeader:InsitutionHeader = InsitutionHeader(title: "アクセス")
+    private let tagData = Constants.tagData
     private let lastInfoLabel:UILabel = {
         let label = UILabel()
         label.text = "情報のご提供をお待ちしております!"
@@ -28,15 +29,24 @@ class InstitutionDetailController: UIViewController {
         label.textColor = .darkGray
         return label
     }()
-    private let stackView = UIStackView()
+    private let stackView:UIStackView = {
+    let stackView = UIStackView()
+        stackView.spacing = 5
+    return stackView
+    }()
     private let tempView = UIView()
     private let googleMapView = UIView()
     private let textView:UITextView = {
         let textView = UITextView()
-        textView.text = "SpoRevoはスポーツを愛する人みんなで作るサイトです。/n施設情報をご提供いただける方は、以下のフォームからご入力ください。/n (Googleフォームの画面に遷移します。)"
-        textView.backgroundColor = .darkGray
+        textView.text = "SpoRevoはスポーツを愛する人みんなで作るサイトです。\n施設情報をご提供いただける方は、以下のフォームからご入力ください。\n (Googleフォームの画面に遷移します。)"
+        textView.textColor = .darkGray
+        textView.font = .systemFont(ofSize: 18, weight: .semibold)
         return textView
     }()
+    lazy var infoButton = creatButton(buttonTitle:"この施設の情報や写真を提供します。\nこの施設も掲載してください")
+    lazy var  missButton = creatButton(buttonTitle:"この施設の情報が間違っています。\n削除をお願い致します")
+    lazy var  requireButton = creatButton(buttonTitle:"サイトに関するご意見・ご要望")
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .darkGray
@@ -45,7 +55,7 @@ class InstitutionDetailController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
     }
-    
+    // MARK: - SetupMethod
     private func setupUI() {
         print(#function)
         googleMapView.backgroundColor = .darkGray
@@ -62,39 +72,32 @@ class InstitutionDetailController: UIViewController {
         let cusutomView = ComepetionView(title: "柔道", image: UIImage(systemName: "person.fill")!)
         let cusutomView2 = ComepetionView(title: "空手/少林寺拳法/合気道", image: UIImage(systemName: "person.fill")!)
         let competionStackView = UIStackView(arrangedSubviews: [cusutomView,cusutomView2])
-        competionStackView.axis = .vertical
-        competionStackView.distribution = .fillEqually
-        competionStackView.spacing = 5
+        settingsStackView(competionStackView)
         let usageStackView = UIStackView()
         Constants.usageData.forEach {
             let label = createLabel(text: $0)
             usageStackView.addArrangedSubview(label)
         }
-        usageStackView.distribution = .fillEqually
-        usageStackView.axis = .vertical
-        usageStackView.spacing = 15
+        settingsStackView(usageStackView)
         let facilityStackView = UIStackView()
         Constants.facilityData.forEach {
             let label = createLabel(text: $0)
             facilityStackView.addArrangedSubview(label)
         }
-        facilityStackView.distribution = .fillEqually
-        facilityStackView.axis = .vertical
-        facilityStackView.spacing = 15
+        settingsStackView(facilityStackView)
+        for tag in tagData {
+            let label = TagLabel(content: tag)
+            stackView.addArrangedSubview(label)
+        }
         let addressLabel = createLabel(text: "所在地:")
         let addressDetailLabel = createLabel(text: "東京都中央区1-9-2")
         let accessLabel = createLabel(text: "アクセス:")
         let accessDetailLabel = createLabel(text: "東京メトロ有楽町線「月島駅」徒歩1分")
         let parkingLabel = createLabel(text: "駐車場:")
         let addressStackView = UIStackView(arrangedSubviews: [addressLabel,addressDetailLabel])
-        addressStackView.distribution = .fillEqually
-        addressStackView.axis = .vertical
-        addressStackView.spacing = 5
+        settingsStackView(addressStackView)
         let accessStackView = UIStackView(arrangedSubviews: [accessLabel,accessDetailLabel])
-        accessStackView.axis = .vertical
-        accessStackView.spacing = 5
-        accessStackView.distribution = .fillEqually
-        stackView.backgroundColor = .blue
+        settingsStackView(accessStackView)
         tempView.backgroundColor = .darkGray
         
         scrollView.addSubview(usageStackView)
@@ -122,11 +125,11 @@ class InstitutionDetailController: UIViewController {
         titleLabel.anchor(top:searchLabel.bottomAnchor,
                           paddingTop: 15,
                           centerX: view.centerXAnchor)
-        stackView.anchor(top: titleLabel.bottomAnchor,
-                         paddingTop: 10,
+        stackView.anchor(top: titleLabel.bottomAnchor,left:view.leftAnchor,right: view.rightAnchor,
+                         paddingTop: 10,paddingRight:10, paddingLeft: 10,
                          centerX: view.centerXAnchor,
                          width: view.frame.width,
-                         height: 50)
+                         height: 35)
         tempView.anchor(top: stackView.bottomAnchor,
                         left:view.leftAnchor,
                         right:view.rightAnchor,
@@ -187,14 +190,57 @@ class InstitutionDetailController: UIViewController {
         lastInfoLabel.anchor(top: parkingLabel.bottomAnchor,
                              paddingTop: 20,
                              centerX: view.centerXAnchor)
-        textView.anchor(top: lastInfoLabel.bottomAnchor,paddingTop: 10,centerX: view.centerXAnchor,height: 200)
-        
-        
+        textView.anchor(top: lastInfoLabel.bottomAnchor,
+                        left:view.leftAnchor,
+                        right: view.rightAnchor,
+                        paddingTop: 10,
+                        paddingRight: 15,
+                        paddingLeft: 15,
+                        centerX: view.centerXAnchor,
+                        height: 150)
+      
+        infoButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+        missButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+        requireButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+        infoButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
+        let buttonStack = UIStackView(arrangedSubviews: [infoButton,missButton,requireButton])
+        buttonStack.axis = .vertical
+        buttonStack.distribution = .fillEqually
+        buttonStack.spacing = 10
+        scrollView.addSubview(buttonStack)
+        buttonStack.anchor(top:textView.bottomAnchor,
+                           left: view.leftAnchor,
+                           right: view.rightAnchor,
+                           paddingTop: 10,
+                           paddingRight:15,
+                           paddingLeft: 15)
     }
     private func createLabel(text: String) ->UILabel {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16, weight: .bold)
         label.text = "  \(text)"
         return label
+    }
+    private func creatButton(buttonTitle:String) -> UIButton {
+        let button = UIButton(type: .system)
+        button.layer.cornerRadius = 15
+        button.layer.masksToBounds = true
+        button.setTitle(buttonTitle, for: .normal)
+        button.setTitleColor(.systemOrange, for: .normal)
+        button.layer.borderColor = UIColor.systemOrange.cgColor
+        button.layer.borderWidth = 2
+        return button
+    }
+    @objc private func didTapButton(sender:UIButton) {
+        switch sender {
+        case infoButton:print("info")
+        case missButton:print("miss")
+        default:print("other")
+        }
+    }
+    private func settingsStackView(_ stackview:UIStackView) {
+        stackview.axis = .vertical
+        stackview.distribution = .fillEqually
+        stackview.spacing = 15
     }
 }

@@ -64,7 +64,7 @@ class InstitutionCell: UICollectionViewCell {
         addSubview(competitionLabel)
         for tag in tagData {
             print(tag)
-            let label = makeTagLabel(text: tag)
+            let label = TagLabel(content: tag)
             stackView.addArrangedSubview(label)
         }
         stackView.distribution = .fill
@@ -94,19 +94,5 @@ class InstitutionCell: UICollectionViewCell {
     }
     required init?(coder: NSCoder) {
         fatalError()
-    }
-    private func makeTagLabel(text: String) -> UILabel {
-        let label = UILabel()
-        label.text = text
-        label.font = .boldSystemFont(ofSize: 12)
-        label.textColor = .white
-        label.numberOfLines = 0
-        label.sizeToFit()
-        label.backgroundColor = .blue
-        label.backgroundColor = .systemMint
-        label.layer.masksToBounds = true
-        label.layer.cornerRadius = 10
-        label.textAlignment = .center
-        return label
     }
 }
