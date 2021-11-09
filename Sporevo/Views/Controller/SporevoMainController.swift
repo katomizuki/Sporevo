@@ -20,7 +20,7 @@ class SporevoMainController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 200)
         let colletionView = UICollectionView(frame: frame, collectionViewLayout: layout)
-        colletionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        colletionView.register(InstitutionCell.self, forCellWithReuseIdentifier: InstitutionCell.id)
         colletionView.delegate = self
         colletionView.dataSource = self
         return colletionView
@@ -79,14 +79,13 @@ class SporevoMainController: UIViewController {
                             centerX: view.centerXAnchor,
                             width: 60,
                             height: 40)
-        collectionView.backgroundColor = .blue
         scrollView.addSubview(collectionView)
         collectionView.anchor(top:searchButton.bottomAnchor,
                               left: view.leftAnchor,
                               right: view.rightAnchor,
                               paddingTop: 10,
-                              paddingRight: 0,
-                              paddingLeft: 0,height: 1200)
+                              paddingRight: 20,
+                              paddingLeft: 20,height: 1200)
     }
     private func setupNav() {
         navigationController?.navigationBar.barTintColor = .darkGray
@@ -156,8 +155,7 @@ extension SporevoMainController: UICollectionViewDelegate {
 // MARK: - UICollectionViewDatasource
 extension SporevoMainController:UICollectionViewDataSource {
      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        cell.backgroundColor = .systemPink
+         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InstitutionCell.id, for: indexPath) as? InstitutionCell else { fatalError("can't make InstitutionCell") }
         return cell
     }
      func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
