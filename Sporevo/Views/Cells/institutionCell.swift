@@ -38,6 +38,7 @@ class InstitutionCell: UICollectionViewCell {
         label.numberOfLines = 0
         label.sizeToFit()
         label.font = .systemFont(ofSize: 16)
+//        tag.fill
         return label
     }()
    

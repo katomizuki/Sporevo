@@ -5,14 +5,15 @@ class MenuOptionsCell:UITableViewCell {
     var iconImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
-        iv.backgroundColor = .blue
         iv.clipsToBounds = true
+        iv.tintColor = .white
         return iv
     }()
     var desciptionLabel:UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 18)
         label.text = "text"
+        label.textColor = .white
         return label
     }()
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

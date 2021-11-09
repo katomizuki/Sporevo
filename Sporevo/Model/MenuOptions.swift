@@ -16,10 +16,10 @@ enum MenuOptions:Int,CaseIterable {
     }
     var icon: UIImage? {
         switch self {
-        case .profile: return UIImage(systemName: "perfon.fill")
-        case .search: return UIImage(systemName: "perfon.fill")
-        case .settings: return UIImage(systemName: "perfon.fill")
-        case .info: return UIImage(systemName: "perfon.fill")
+        case .profile: return UIImage(systemName: "person.fill")?.withRenderingMode(.alwaysTemplate)
+        case .search: return UIImage(systemName: "magnifyingglass")?.withRenderingMode(.alwaysTemplate)
+        case .settings: return UIImage(systemName: "gearshape.fill")?.withRenderingMode(.alwaysTemplate)
+        case .info: return UIImage(systemName: "info.circle.fill")?.withRenderingMode(.alwaysTemplate)
         }
     }
 }
