@@ -45,7 +45,6 @@ class SporevoMainController: UIViewController {
     private func setupUI() {
         let screenWidth = Int( UIScreen.main.bounds.size.width)
         let scrollView = UIScrollView()
-        scrollView.delegate = self
         scrollView.backgroundColor = .white
         scrollView.frame = self.view.frame
         scrollView.contentSize = CGSize(width: screenWidth, height: 2100)
