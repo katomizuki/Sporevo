@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Constans {
+struct Constants {
     static let cityData = ["千代田区","墨田区","港区","新宿区","文京区","中央区","品川区","目黒区"]
     static let tagData = ["屋内施設","駐車場","誰でも利用可","利用登録なし","宿泊施設","観覧席有り"]
     static let institutionData = ["野球場","ゴルフ場","体育館","テニスコート","プール","フットサルコート"]

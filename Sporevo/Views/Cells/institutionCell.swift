@@ -3,6 +3,7 @@ import UIKit
 
 class InstitutionCell: UICollectionViewCell {
     static let id = "InstitutionCell"
+    private let tagData = Constants
     private let institutionNameLabel:UILabel = {
         let label = UILabel()
         label.text = " 新国立競技場 - "
@@ -38,8 +39,22 @@ class InstitutionCell: UICollectionViewCell {
         label.numberOfLines = 0
         label.sizeToFit()
         label.font = .systemFont(ofSize: 16)
-//        tag.fill
         return label
+    }()
+    private let stackView:UIStackView = {
+        let stackView = UIStackView()
+        let iv = UIImageView()
+        iv.image = UIImage(systemName: "tag.fill")?.withRenderingMode(.alwaysTemplate)
+        iv.tintColor = .darkGray
+        stackView.addSubview(iv)
+        iv.anchor(top:stackView.topAnchor,
+                  right: stackView.leftAnchor,
+                  paddingTop: 5,
+                  paddingRight: 3,
+                  width: 20,
+                  height: 20)
+        stackView.backgroundColor = .blue
+        return stackView
     }()
    
     override init(frame: CGRect) {
@@ -48,6 +63,7 @@ class InstitutionCell: UICollectionViewCell {
         addSubview(institutionNameLabel)
         addSubview(addressLabel)
         addSubview(competitionLabel)
+        addSubview(stackView)
         institutionNameLabel.anchor(top:topAnchor,
                                     left: leftAnchor,
                                     right: rightAnchor)
@@ -63,6 +79,13 @@ class InstitutionCell: UICollectionViewCell {
                             paddingTop: 15,
                             paddingRight: 0,
                             paddingLeft: 25)
+        stackView.anchor(top:competitionLabel.bottomAnchor,bottom:bottomAnchor,
+                         left: institutionNameLabel.leftAnchor,
+                         right: rightAnchor,
+                         paddingTop: 15,
+                         paddingBottom: 10,
+                         paddingRight: 5,
+                         paddingLeft: 25)
     }
     required init?(coder: NSCoder) {
         fatalError()

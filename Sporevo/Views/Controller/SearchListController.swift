@@ -2,10 +2,10 @@ import Foundation
 import UIKit
 
 class SearchListController: UIViewController {
-    private let cityData = Constans.cityData
-    private let tagData = Constans.tagData
-    private let institutionData = Constans.institutionData
-    private let competionData = Constans.competitionData
+    private let cityData = Constants.cityData
+    private let tagData = Constants.tagData
+    private let institutionData = Constants.institutionData
+    private let competionData = Constants.competitionData
     private var isExpanded = false
     private var toJudegeTableViewKeyword:SearchOptions
     private var sections:[(title:String,detail: [String],extended:Bool)] = []
@@ -37,12 +37,12 @@ class SearchListController: UIViewController {
     }
     private func setupSectionValue() {
         if toJudegeTableViewKeyword == .place {
-            let details = Constans.cityData
+            let details = Constants.cityData
             sections.append((title:"東京都" , detail: details, extended: false))
         } else  {
-            for i in 0..<Constans.priceData.count {
-                let details = Constans.priceData[i]
-                let title = Constans.timeData[i]
+            for i in 0..<Constants.priceData.count {
+                let details = Constants.priceData[i]
+                let title = Constants.timeData[i]
                 sections.append((title: title, detail: details, extended: false))
             }
         }
