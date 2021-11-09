@@ -16,6 +16,15 @@ class SporevoMainController: UIViewController {
         button.layer.masksToBounds = true
         return button
     }()
+    private lazy var collectionView:UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 200)
+        let colletionView = UICollectionView(frame: frame, collectionViewLayout: layout)
+        colletionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        colletionView.delegate = self
+        colletionView.dataSource = self
+        return colletionView
+    }()
     private let headerView = MainHeaderView(image: UIImage(named: "バドミントン"))
     weak var delegate: SporevoMainControllerDelegate?
     // MARK: - Lifecycle
@@ -39,7 +48,7 @@ class SporevoMainController: UIViewController {
         scrollView.delegate = self
         scrollView.backgroundColor = .white
         scrollView.frame = self.view.frame
-        scrollView.contentSize = CGSize(width: screenWidth, height: 1000)
+        scrollView.contentSize = CGSize(width: screenWidth, height: 2100)
         view.addSubview(scrollView)
         scrollView.anchor(top:view.safeAreaLayoutGuide.topAnchor,
                           bottom: view.bottomAnchor,
@@ -70,6 +79,14 @@ class SporevoMainController: UIViewController {
                             centerX: view.centerXAnchor,
                             width: 60,
                             height: 40)
+        collectionView.backgroundColor = .blue
+        scrollView.addSubview(collectionView)
+        collectionView.anchor(top:searchButton.bottomAnchor,
+                              left: view.leftAnchor,
+                              right: view.rightAnchor,
+                              paddingTop: 10,
+                              paddingRight: 0,
+                              paddingLeft: 0,height: 1200)
     }
     private func setupNav() {
         navigationController?.navigationBar.barTintColor = .darkGray
@@ -129,12 +146,31 @@ extension SporevoMainController:SeachCellDelegate {
             navigationController?.pushViewController(SearchListController(toJudegeTableViewKeyword: .tag), animated: true)
     }
   }
-    
 }
-extension SporevoMainController:UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+// MARK: - UICollectionViewDelegate
+extension SporevoMainController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(#function)
-        navigationController?.navigationBar.isHidden = false
+    }
+}
+// MARK: - UICollectionViewDatasource
+extension SporevoMainController:UICollectionViewDataSource {
+     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        cell.backgroundColor = .systemPink
+        return cell
+    }
+     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+}
+// MARK: -
+extension SporevoMainController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: 250)
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 50
     }
 }
 
