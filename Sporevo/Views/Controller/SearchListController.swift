@@ -9,11 +9,16 @@ class SearchListController: UIViewController {
     private var isExpanded = false
     private var toJudegeTableViewKeyword:SearchOptions
     private var sections:[(title:String,detail: [String],extended:Bool)] = []
+    private var selectedCity = [String]()
+    private var selectedTag = [String]()
+    private var selectedInstion = [String]()
+    private var selectedCompetion = [String]()
+    private var selectedPrice = [String]()
     private lazy var tableView:UITableView = {
         let tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellId")
+        tableView.register(SearchListCell.self, forCellReuseIdentifier: SearchListCell.id)
         return tableView
     }()
     override func viewDidLoad() {
@@ -56,12 +61,28 @@ class SearchListController: UIViewController {
                          bottom: view.safeAreaLayoutGuide.bottomAnchor,
                          left: view.leftAnchor,
                          right: view.rightAnchor,paddingTop: 50)
+        tableView.allowsMultipleSelection = true
     }
 }
 // MARK: - UITableViewDelegate
 extension SearchListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function)
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.accessoryType = .checkmark
+        switch toJudegeTableViewKeyword {
+        case .place:
+                selectedCity.append(sections[indexPath.section].detail[indexPath.row])
+        case .tag:
+                selectedTag.append(tagData[indexPath.row])
+        case .competition:
+                selectedCompetion.append(competionData[indexPath.row])
+        case .price:
+                selectedPrice.append(sections[indexPath.section].detail[indexPath.row])
+        case .institution:
+                selectedInstion.append(institutionData[indexPath.row])
+        }
+        cell?.backgroundColor = .clear
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if toJudegeTableViewKeyword == .price || toJudegeTableViewKeyword == .place {
@@ -73,9 +94,7 @@ extension SearchListController: UITableViewDelegate {
         header?.textLabel?.text = sections[section].title
         header?.section = section
         return header
-        } else { return nil
-            
-        }
+        } else { return nil }
     }
     @objc private func tapHeader(sender:UITapGestureRecognizer) {
         print(#function)
@@ -84,11 +103,29 @@ extension SearchListController: UITableViewDelegate {
         sections[header.section].extended = !extended
         tableView.reloadSections(IndexSet(integer: header.section), with: .none)
     }
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.accessoryType = .none
+        switch toJudegeTableViewKeyword {
+        case .place:
+            selectedCity.remove(value: sections[indexPath.section].detail[indexPath.row])
+        case .institution:
+            selectedInstion.remove(value: institutionData[indexPath.row])
+        case .competition:
+            selectedCompetion.remove(value: competionData[indexPath.row])
+        case .price:
+            selectedPrice.remove(value: sections[indexPath.section].detail[indexPath.row])
+        case .tag:
+            selectedTag.remove(value: tagData[indexPath.row])
+        }
+    }
 }
 // MARK: - UITableViewDataSource
 extension SearchListController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId",for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchListCell.id,for: indexPath) as? SearchListCell else { fatalError("can't make SearchListCell Error") }
+        cell.accessoryType = cell.accessoryType == .none ? .none : .checkmark
+//        cell.backgroundColor = .clear
         switch toJudegeTableViewKeyword {
         case .institution: cell.textLabel?.text = institutionData[indexPath.row]
         case .competition: cell.textLabel?.text = competionData[indexPath.row]

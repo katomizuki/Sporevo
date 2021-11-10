@@ -1,7 +1,8 @@
 import Foundation
 import UIKit
+import GoogleMaps
 
-class InstitutionDetailController: UIViewController {
+class InstitutionDetailController: UIViewController,GMSMapViewDelegate {
     private let searchLabel:UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16)
@@ -34,8 +35,11 @@ class InstitutionDetailController: UIViewController {
         stackView.spacing = 5
     return stackView
     }()
-    private let tempView = UIView()
-    private let googleMapView = UIView()
+    private lazy var tempView: GMSPanoramaView = {
+        let view = GMSPanoramaView()
+        return view
+    }()
+    private let googleMapView = GMSMapView()
     private let textView:UITextView = {
         let textView = UITextView()
         textView.text = "SpoRevoはスポーツを愛する人みんなで作るサイトです。\n施設情報をご提供いただける方は、以下のフォームからご入力ください。\n (Googleフォームの画面に遷移します。)"
@@ -47,6 +51,13 @@ class InstitutionDetailController: UIViewController {
     lazy var  missButton = creatButton(buttonTitle:"この施設の情報が間違っています。\n削除をお願い致します")
     lazy var  requireButton = creatButton(buttonTitle:"サイトに関するご意見・ご要望")
     // MARK: - Lifecycle
+    override func loadView() {
+        super.loadView()
+        let panoView = GMSPanoramaView(frame: .zero)
+          self.view = panoView
+
+          panoView.moveNearCoordinate(CLLocationCoordinate2D(latitude: -33.732, longitude: 150.312))
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .darkGray
@@ -98,7 +109,6 @@ class InstitutionDetailController: UIViewController {
         settingsStackView(addressStackView)
         let accessStackView = UIStackView(arrangedSubviews: [accessLabel,accessDetailLabel])
         settingsStackView(accessStackView)
-        tempView.backgroundColor = .darkGray
         
         scrollView.addSubview(usageStackView)
         scrollView.addSubview(searchLabel)
@@ -242,5 +252,10 @@ class InstitutionDetailController: UIViewController {
         stackview.axis = .vertical
         stackview.distribution = .fillEqually
         stackview.spacing = 15
+    }
+}
+extension InstitutionDetailController :GMSPanoramaViewDelegate {
+    func panoramaView(_ view: GMSPanoramaView, error: Error, onMoveToPanoramaID panoramaID: String) {
+        print(error.localizedDescription,"😄")
     }
 }
