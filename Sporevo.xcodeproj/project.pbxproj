@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D312C2212742228100DF7E83 /* DetailSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D312C2202742228100DF7E83 /* DetailSearchController.swift */; };
 		D32B137A2738D8430039CC06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13792738D8430039CC06 /* AppDelegate.swift */; };
 		D32B137C2738D8430039CC06 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B137B2738D8430039CC06 /* SceneDelegate.swift */; };
 		D32B137E2738D8430039CC06 /* SporevoMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B137D2738D8430039CC06 /* SporevoMainController.swift */; };
@@ -34,6 +35,7 @@
 /* Begin PBXFileReference section */
 		2C93011280A86064B55CC333 /* Pods-Sporevo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sporevo.release.xcconfig"; path = "Target Support Files/Pods-Sporevo/Pods-Sporevo.release.xcconfig"; sourceTree = "<group>"; };
 		BC4DD863CB20520031AB2ADC /* Pods-Sporevo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sporevo.debug.xcconfig"; path = "Target Support Files/Pods-Sporevo/Pods-Sporevo.debug.xcconfig"; sourceTree = "<group>"; };
+		D312C2202742228100DF7E83 /* DetailSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSearchController.swift; sourceTree = "<group>"; };
 		D32B13762738D8430039CC06 /* Sporevo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sporevo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D32B13792738D8430039CC06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D32B137B2738D8430039CC06 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,7 +80,6 @@
 				BC4DD863CB20520031AB2ADC /* Pods-Sporevo.debug.xcconfig */,
 				2C93011280A86064B55CC333 /* Pods-Sporevo.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -177,6 +178,7 @@
 				D32B13C7273960720039CC06 /* ContainerController.swift */,
 				D32B13C9273961CD0039CC06 /* MenuController.swift */,
 				D32B13D1273A25E00039CC06 /* InstitutionDetailController.swift */,
+				D312C2202742228100DF7E83 /* DetailSearchController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -312,6 +314,7 @@
 				D32B13BE2739038A0039CC06 /* SearchCell.swift in Sources */,
 				D32B13C0273904370039CC06 /* MainHeaderView.swift in Sources */,
 				D32B13C227392BCC0039CC06 /* SearchListController.swift in Sources */,
+				D312C2212742228100DF7E83 /* DetailSearchController.swift in Sources */,
 				D32B13DE273A62460039CC06 /* SeachListCell.swift in Sources */,
 				D32B13CA273961CD0039CC06 /* MenuController.swift in Sources */,
 				D32B13D8273A30FA0039CC06 /* CompetionView.swift in Sources */,
