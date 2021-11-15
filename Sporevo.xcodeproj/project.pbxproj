@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D312C2212742228100DF7E83 /* DetailSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D312C2202742228100DF7E83 /* DetailSearchController.swift */; };
+		D312C2242742363C00DF7E83 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D312C2232742363C00DF7E83 /* Alamofire */; };
 		D32B137A2738D8430039CC06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13792738D8430039CC06 /* AppDelegate.swift */; };
 		D32B137C2738D8430039CC06 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B137B2738D8430039CC06 /* SceneDelegate.swift */; };
 		D32B137E2738D8430039CC06 /* SporevoMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B137D2738D8430039CC06 /* SporevoMainController.swift */; };
@@ -68,6 +69,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D41426E844A0C8504FD6E0B7 /* Pods_Sporevo.framework in Frameworks */,
+				D312C2242742363C00DF7E83 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,6 +215,9 @@
 			dependencies = (
 			);
 			name = Sporevo;
+			packageProductDependencies = (
+				D312C2232742363C00DF7E83 /* Alamofire */,
+			);
 			productName = Sporevo;
 			productReference = D32B13762738D8430039CC06 /* Sporevo.app */;
 			productType = "com.apple.product-type.application";
@@ -241,6 +246,9 @@
 				Base,
 			);
 			mainGroup = D32B136D2738D8430039CC06;
+			packageReferences = (
+				D312C2222742363C00DF7E83 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = D32B13772738D8430039CC06 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -529,6 +537,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D312C2222742363C00DF7E83 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D312C2232742363C00DF7E83 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D312C2222742363C00DF7E83 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D32B136E2738D8430039CC06 /* Project object */;
 }

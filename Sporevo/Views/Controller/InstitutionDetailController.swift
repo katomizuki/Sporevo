@@ -64,6 +64,7 @@ class InstitutionDetailController: UIViewController,GMSMapViewDelegate {
     }
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
+        
     }
     // MARK: - SetupMethod
     private func setupUI() {
@@ -255,6 +256,6 @@ class InstitutionDetailController: UIViewController,GMSMapViewDelegate {
 }
 extension InstitutionDetailController :GMSPanoramaViewDelegate {
     func panoramaView(_ view: GMSPanoramaView, error: Error, onMoveToPanoramaID panoramaID: String) {
-        print(error.localizedDescription,"😄")
+        print(error.localizedDescription)
     }
 }

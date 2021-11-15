@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 class TagLabel: UILabel {
     private var content:String
+    private let padding:UIEdgeInsets = .zero
      init(content: String) {
          self.content = content
          super.init(frame: .zero)
@@ -22,6 +23,12 @@ class TagLabel: UILabel {
          layer.masksToBounds = true
          layer.cornerRadius = 10
          textAlignment = .center
+    }
+    override var intrinsicContentSize: CGSize {
+        var intrinsticContentSize = super.intrinsicContentSize
+        intrinsticContentSize.height += padding.top + padding.bottom
+        intrinsticContentSize.width += padding.left + padding.right
+        return intrinsticContentSize
     }
     
     required init?(coder: NSCoder) {
