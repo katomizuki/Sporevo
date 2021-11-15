@@ -1,11 +1,14 @@
 import Foundation
 import UIKit
+protocol ContainerControllerDelegate:AnyObject {
+    func didTapMenuButton(_ options: MenuOptions)
+}
 class ContainerController:UIViewController {
-    
     // MARK: - Properties
     var centerController:UIViewController!
     var menuController:MenuController!
     var isExpanded = false
+    weak var delegate:ContainerControllerDelegate?
     // MARK: - Initialize
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +23,7 @@ class ContainerController:UIViewController {
     override var prefersStatusBarHidden: Bool {
         return isExpanded
     }
-    
+    // MARK: - setupMethod
     private func setupMainController() {
         let main = SporevoMainController()
         centerController = UINavigationController(rootViewController: main)
@@ -60,7 +63,11 @@ class ContainerController:UIViewController {
         }
     private func didSelectMenuOption(menuOption: MenuOptions) {
         print(#function)
-        }
+        let controller = SearchDetailController()
+        let nav = UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true, completion: nil)
+    }
 }
 // MARK: - SporevoMainControllerDelegate
 extension ContainerController: SporevoMainControllerDelegate {

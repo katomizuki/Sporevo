@@ -96,7 +96,7 @@ extension SporevoMainController:UICollectionViewDataSource {
         return 10
     }
 }
-// MARK: -
+// MARK: - UICollectionViewDelegateFlowLayout
 extension SporevoMainController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: 250)
