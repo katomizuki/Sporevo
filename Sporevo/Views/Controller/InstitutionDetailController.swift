@@ -54,8 +54,7 @@ class InstitutionDetailController: UIViewController,GMSMapViewDelegate {
     override func loadView() {
         super.loadView()
         let panoView = GMSPanoramaView(frame: .zero)
-          self.view = panoView
-
+          self.tempView = panoView
           panoView.moveNearCoordinate(CLLocationCoordinate2D(latitude: -33.732, longitude: 150.312))
     }
     override func viewDidLoad() {
