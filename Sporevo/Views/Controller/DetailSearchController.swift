@@ -15,9 +15,13 @@ class SearchDetailController:UIViewController {
         button.layer.masksToBounds = true
         return button
     }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+       setupUI()
+    }
+    private func setupUI() {
+        print(#function)
+        view.backgroundColor = .systemBackground
         tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
@@ -26,17 +30,25 @@ class SearchDetailController:UIViewController {
         tableView.anchor(top:view.safeAreaLayoutGuide.topAnchor,
                          left: view.leftAnchor,
                          right: view.rightAnchor,
-                         paddingTop: 80,
+                         paddingTop: 20,
                          paddingRight: 20,
                          paddingLeft: 20,height: 500)
         tableView.rowHeight = 60
         tableView.isScrollEnabled = false
         view.addSubview(searchButton)
         searchButton.anchor(top:tableView.bottomAnchor,
-                            paddingTop: 20,
+                            bottom: view.safeAreaLayoutGuide.bottomAnchor,
+                            paddingTop: 20,paddingBottom: 40,
                             centerX: view.centerXAnchor,
                             width: 60,
                             height: 40)
+        let leftButton = UIBarButtonItem(title: "もどる", style: .done, target: self, action: #selector(didTapDismissButton))
+        navigationItem.leftBarButtonItem = leftButton
+        leftButton.tintColor = .systemMint
+    }
+    @objc private func didTapDismissButton() {
+        print(#function)
+        dismiss(animated: true, completion: nil)
     }
 }
 // MARK: - SearchCellDelegate
@@ -44,6 +56,7 @@ extension SearchDetailController:SeachCellDelegate {
     func searchCell(_ cell: SearchCell) {
         print(#function)
         guard let options = SearchOptions(rawValue: tableView.indexPath(for: cell)?.section ?? 0) else { return }
+        print(options)
         switch options {
         case .place:
             navigationController?.pushViewController(SearchListController(toJudegeTableViewKeyword: .place), animated: true)
@@ -86,4 +99,5 @@ extension SearchDetailController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false
     }
+    
 }

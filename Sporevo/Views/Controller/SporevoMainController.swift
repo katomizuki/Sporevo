@@ -70,14 +70,14 @@ class SporevoMainController: UIViewController {
         print(#function)
         delegate?.handleMenuToggle(forMenuOptions: nil)
     }
-   
     @objc private func didTapSearchDetailButton() {
         print(#function)
+        let controller = SearchDetailController()
+        let nav = UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true, completion: nil)
     }
 }
-
-
-
 // MARK: - UICollectionViewDelegate
 extension SporevoMainController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
