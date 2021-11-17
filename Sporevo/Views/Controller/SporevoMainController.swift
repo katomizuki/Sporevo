@@ -1,4 +1,5 @@
 import UIKit
+import Alamofire
 protocol SporevoMainControllerDelegate: AnyObject {
     func handleMenuToggle(forMenuOptions menuOptions: MenuOptions?)
 }
@@ -21,6 +22,7 @@ class SporevoMainController: UIViewController {
         view.backgroundColor = .darkGray
         setupUI()
         setupNav()
+        setupAPI()
     }
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
@@ -64,6 +66,17 @@ class SporevoMainController: UIViewController {
               navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(didTapLeftBarButton))
         let searchImage = UIImage(systemName: "magnifyingglass")?.withRenderingMode(.alwaysOriginal)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: searchImage, style: .done, target: self, action: #selector(didTapSearchDetailButton))
+    }
+    private func setupAPI() {
+        let authData = "LIcCke0gTSNAloR7ptYq".data(using: String.Encoding.utf8)!
+        let authBase64 = authData.base64EncodedString()
+        let header:HTTPHeaders = ["Authorization":authBase64,
+                                  "Content-Type": "application/json"]
+        
+        AF.request("https://spofac-staging.herokuapp.com/prefectures", method: .get, headers: header).validate(statusCode: 200...400).responseString { response in
+            print(response.result,response.data)
+        }
+
         
     }
     @objc private func didTapLeftBarButton() {
@@ -106,3 +119,7 @@ extension SporevoMainController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+struct Prefer:Decodable {
+    var id:String
+    var name:String
+}
