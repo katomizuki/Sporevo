@@ -2,6 +2,7 @@ import UIKit
 import Alamofire
 protocol SporevoMainControllerDelegate: AnyObject {
     func handleMenuToggle(forMenuOptions menuOptions: MenuOptions?)
+    func handleSegmentController(selectedIndex :Int)
 }
 class SporevoMainController: UIViewController {
     // MARK: - Properties
@@ -16,6 +17,7 @@ class SporevoMainController: UIViewController {
     }()
     private lazy var segmentController :UISegmentedControl = {
         let segment = UISegmentedControl(items: ["地図で探す","一覧"])
+        segment.selectedSegmentIndex = 0
         segment.addTarget(self, action: #selector(didChangeSegmentController), for: .valueChanged)
         return segment
     }()
@@ -27,7 +29,7 @@ class SporevoMainController: UIViewController {
         view.backgroundColor = .darkGray
         setupUI()
         setupNav()
-        setupAPI()
+//        setupAPI()
     }
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
@@ -80,7 +82,6 @@ class SporevoMainController: UIViewController {
                                   "Content-Type": "application/json"]
         
         AF.request("https://spofac-staging.herokuapp.com/prefectures", method: .get, headers: header).validate(statusCode: 200...400).responseString { response in
-            print(response.result,response.data)
         }
 
         
@@ -97,7 +98,8 @@ class SporevoMainController: UIViewController {
         present(nav, animated: true, completion: nil)
     }
     @objc private func didChangeSegmentController(sender: UISegmentedControl) {
-        
+        let selectedIndex = sender.selectedSegmentIndex
+        self.delegate?.handleSegmentController(selectedIndex: selectedIndex)
     }
 }
 // MARK: - UICollectionViewDelegate

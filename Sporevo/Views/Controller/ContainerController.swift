@@ -8,11 +8,13 @@ class ContainerController:UIViewController {
     var centerController:UIViewController!
     var menuController:MenuController!
     var isExpanded = false
+    var scrollView:UIScrollView!
     weak var delegate:ContainerControllerDelegate?
     // MARK: - Initialize
     override func viewDidLoad() {
         super.viewDidLoad()
         setupMainController()
+        setupMenuController()
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -25,21 +27,38 @@ class ContainerController:UIViewController {
     }
     // MARK: - setupMethod
     private func setupMainController() {
+        let screenWidth = Int(UIScreen.main.bounds.size.width)
+        scrollView = UIScrollView()
+        scrollView.backgroundColor = .white
+        scrollView.frame = self.view.frame
+        scrollView.contentSize = CGSize(width: CGFloat(screenWidth) * 2.0,
+                                        height: view.frame.height)
+        view.addSubview(scrollView)
+        scrollView.anchor(top:view.safeAreaLayoutGuide.topAnchor,
+                          bottom: view.bottomAnchor,
+                          left: view.leftAnchor,
+                          right: view.rightAnchor)
         let main = SporevoMainController()
         centerController = UINavigationController(rootViewController: main)
         main.delegate = self
         // CenterControllerのViewをsubViewに追加
-        view.addSubview(centerController.view)
+        scrollView.addSubview(centerController.view)
         //　子ビューとしてcenterControllerを追加
         addChild(centerController)
         // 親ビューにしっかり教えてあげる。
         centerController.didMove(toParent: self)
+        let mapVC = SeachMapController()
+        mapVC.view.frame = CGRect(x: view.frame.size.width, y: 0,
+                                  width: scrollView.frame.width, height: view.frame.size.height)
+        scrollView.addSubview(mapVC.view)
+        addChild(mapVC)
+        mapVC.didMove(toParent: mapVC)
     }
     private func setupMenuController() {
         if menuController == nil {
             menuController = MenuController()
             menuController.delegate = self
-            view.insertSubview(menuController.view, at: 0)
+            scrollView.insertSubview(menuController.view, at: 0)
             addChild(menuController)
             menuController.didMove(toParent: menuController)
         }
@@ -64,13 +83,17 @@ class ContainerController:UIViewController {
     private func didSelectMenuOption(menuOption: MenuOptions) {
         print(#function)
         let controller = SearchDetailController()
-        let nav = UINavigationController(rootViewController: controller)
-        nav.modalPresentationStyle = .fullScreen
-        present(nav, animated: true, completion: nil)
+        present(controller, animated: true, completion: nil)
     }
 }
 // MARK: - SporevoMainControllerDelegate
 extension ContainerController: SporevoMainControllerDelegate {
+    func handleSegmentController(selectedIndex: Int) {
+        let controller = SeachMapController()
+        controller.modalPresentationStyle = .fullScreen
+        present(controller, animated: false, completion: nil)
+    }
+    
     func handleMenuToggle(forMenuOptions menuOptions: MenuOptions?) {
         print(#function)
         if !isExpanded {
@@ -78,5 +101,12 @@ extension ContainerController: SporevoMainControllerDelegate {
         }
         isExpanded = !isExpanded
         animatePanel(expand: isExpanded, menuOptions: menuOptions)
+    }
+}
+
+class SeachMapController:UIViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .blue
     }
 }
