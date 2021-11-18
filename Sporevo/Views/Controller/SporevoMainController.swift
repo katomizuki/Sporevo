@@ -14,6 +14,11 @@ class SporevoMainController: UIViewController {
         colletionView.dataSource = self
         return colletionView
     }()
+    private lazy var segmentController :UISegmentedControl = {
+        let segment = UISegmentedControl(items: ["地図で探す","一覧"])
+        segment.addTarget(self, action: #selector(didChangeSegmentController), for: .valueChanged)
+        return segment
+    }()
     private let headerView = MainHeaderView(image: UIImage(named: "バドミントン"))
     weak var delegate: SporevoMainControllerDelegate?
     // MARK: - Lifecycle
@@ -66,6 +71,7 @@ class SporevoMainController: UIViewController {
               navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(didTapLeftBarButton))
         let searchImage = UIImage(systemName: "magnifyingglass")?.withRenderingMode(.alwaysOriginal)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: searchImage, style: .done, target: self, action: #selector(didTapSearchDetailButton))
+        navigationItem.titleView = segmentController
     }
     private func setupAPI() {
         let authData = "LIcCke0gTSNAloR7ptYq".data(using: String.Encoding.utf8)!
@@ -89,6 +95,9 @@ class SporevoMainController: UIViewController {
         let nav = UINavigationController(rootViewController: controller)
         nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true, completion: nil)
+    }
+    @objc private func didChangeSegmentController(sender: UISegmentedControl) {
+        
     }
 }
 // MARK: - UICollectionViewDelegate
