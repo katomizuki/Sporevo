@@ -47,12 +47,14 @@ class ContainerController:UIViewController {
         addChild(centerController)
         // 親ビューにしっかり教えてあげる。
         centerController.didMove(toParent: self)
-        let mapVC = SeachMapController()
+        let map = SearchMapController()
+        let mapVC = UINavigationController(rootViewController: SearchMapController())
         mapVC.view.frame = CGRect(x: view.frame.size.width, y: 0,
                                   width: scrollView.frame.width, height: view.frame.size.height)
         scrollView.addSubview(mapVC.view)
+        map.delegate = self
         addChild(mapVC)
-        mapVC.didMove(toParent: mapVC)
+        mapVC.didMove(toParent: self)
     }
     private func setupMenuController() {
         if menuController == nil {
@@ -89,9 +91,11 @@ class ContainerController:UIViewController {
 // MARK: - SporevoMainControllerDelegate
 extension ContainerController: SporevoMainControllerDelegate {
     func handleSegmentController(selectedIndex: Int) {
-        let controller = SeachMapController()
-        controller.modalPresentationStyle = .fullScreen
-        present(controller, animated: false, completion: nil)
+        if selectedIndex == 0 {
+            
+        } else {
+            scrollView.setContentOffset(CGPoint(x: view.frame.width, y: 0), animated: true)
+        }
     }
     
     func handleMenuToggle(forMenuOptions menuOptions: MenuOptions?) {
@@ -103,10 +107,14 @@ extension ContainerController: SporevoMainControllerDelegate {
         animatePanel(expand: isExpanded, menuOptions: menuOptions)
     }
 }
-
-class SeachMapController:UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .blue
+// MARK: - SearchMapControllerDelegate
+extension ContainerController: SearchMapControllerDelegate {
+    func didTapSegmentController(index: Int) {
+        print(#function)
+        if index == 0 {
+            scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+        }
     }
+    
+    
 }
