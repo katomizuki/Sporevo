@@ -65,7 +65,8 @@ class ContainerController:UIViewController {
         }
     private func didSelectMenuOption(menuOption: MenuOptions) {
         print(#function)
-        let controller = SearchDetailController()
+        let controller = UINavigationController(rootViewController: SearchDetailController())
+        controller.modalPresentationStyle = .fullScreen
         present(controller, animated: true, completion: nil)
     }
 }
@@ -81,14 +82,4 @@ extension ContainerController: SporevoMainControllerDelegate {
         animatePanel(expand: isExpanded, menuOptions: menuOptions)
     }
 }
-// MARK: - SearchMapControllerDelegate
-extension ContainerController: SearchMapControllerDelegate {
-    func didTapSegmentController(index: Int) {
-        print(#function)
-        if index == 0 {
-//            scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-        }
-    }
-    
-    
-}
+

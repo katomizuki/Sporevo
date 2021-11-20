@@ -1,9 +1,7 @@
 import Foundation
 import UIKit
 import MapKit
-protocol SearchMapControllerDelegate:AnyObject {
-    func didTapSegmentController(index:Int)
-}
+
 class SearchMapController:UIViewController {
    
     private lazy var navBar:UINavigationBar = {
@@ -13,7 +11,6 @@ class SearchMapController:UIViewController {
         return navBar
     }()
     let mapView = MKMapView()
-    weak var delegate:SearchMapControllerDelegate?
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNabBar()

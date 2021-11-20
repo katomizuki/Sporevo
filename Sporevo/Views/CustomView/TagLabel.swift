@@ -1,9 +1,3 @@
-//
-//  TagLabel.swift
-//  Sporevo
-//
-//  Created by ミズキ on 2021/11/09.
-//
 
 import Foundation
 import UIKit
@@ -13,7 +7,7 @@ class TagLabel: UILabel {
      init(content: String) {
          self.content = content
          super.init(frame: .zero)
-         text = content
+         text = " \(content) "
          font = .boldSystemFont(ofSize: 12)
          textColor = .white
          numberOfLines = 0
