@@ -31,6 +31,7 @@
 		D32B13DC273A51C00039CC06 /* TagLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13DB273A51C00039CC06 /* TagLabel.swift */; };
 		D32B13DE273A62460039CC06 /* SeachListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13DD273A62460039CC06 /* SeachListCell.swift */; };
 		D33D95A82745E114001FBC48 /* SearchMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33D95A72745E114001FBC48 /* SearchMapController.swift */; };
+		D3B72CA42749278A00253933 /* ListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B72CA32749278A00253933 /* ListController.swift */; };
 		D41426E844A0C8504FD6E0B7 /* Pods_Sporevo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E227DC3926AF3003077FE3F2 /* Pods_Sporevo.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,7 @@
 		D32B13DB273A51C00039CC06 /* TagLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagLabel.swift; sourceTree = "<group>"; };
 		D32B13DD273A62460039CC06 /* SeachListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeachListCell.swift; sourceTree = "<group>"; };
 		D33D95A72745E114001FBC48 /* SearchMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMapController.swift; sourceTree = "<group>"; };
+		D3B72CA32749278A00253933 /* ListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListController.swift; sourceTree = "<group>"; };
 		E227DC3926AF3003077FE3F2 /* Pods_Sporevo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sporevo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -184,6 +186,7 @@
 				D32B13D1273A25E00039CC06 /* InstitutionDetailController.swift */,
 				D312C2202742228100DF7E83 /* DetailSearchController.swift */,
 				D33D95A72745E114001FBC48 /* SearchMapController.swift */,
+				D3B72CA32749278A00253933 /* ListController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 				D32B13C4273931EB0039CC06 /* Constants.swift in Sources */,
 				D32B13D0273A0E490039CC06 /* institutionCell.swift in Sources */,
 				D32B13CC273964000039CC06 /* MenuOptions.swift in Sources */,
+				D3B72CA42749278A00253933 /* ListController.swift in Sources */,
 				D32B13C8273960720039CC06 /* ContainerController.swift in Sources */,
 				D32B13C6273944840039CC06 /* CustomSearchSectionHeader.swift in Sources */,
 			);

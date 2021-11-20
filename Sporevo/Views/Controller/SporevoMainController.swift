@@ -2,34 +2,30 @@ import UIKit
 import Alamofire
 protocol SporevoMainControllerDelegate: AnyObject {
     func handleMenuToggle(forMenuOptions menuOptions: MenuOptions?)
-    func handleSegmentController(selectedIndex :Int)
 }
 class SporevoMainController: UIViewController {
     // MARK: - Properties
-    private lazy var collectionView:UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 200)
-        let colletionView = UICollectionView(frame: frame, collectionViewLayout: layout)
-        colletionView.register(InstitutionCell.self, forCellWithReuseIdentifier: InstitutionCell.id)
-        colletionView.delegate = self
-        colletionView.dataSource = self
-        return colletionView
-    }()
+    
     private lazy var segmentController :UISegmentedControl = {
         let segment = UISegmentedControl(items: ["地図で探す","一覧"])
         segment.selectedSegmentIndex = 0
         segment.addTarget(self, action: #selector(didChangeSegmentController), for: .valueChanged)
         return segment
     }()
-    private let headerView = MainHeaderView(image: UIImage(named: "バドミントン"))
+    private let scrollView:UIScrollView = {
+        let scrollView = UIScrollView()
+        return scrollView
+    }()
     weak var delegate: SporevoMainControllerDelegate?
+    private let firstVC = SearchMapController()
+    private let secondVC = ListController()
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .darkGray
-        setupUI()
+        scrollView.contentSize = CGSize(width: view.frame.size.width * 2, height: 0)
+        view.addSubview(scrollView)
         setupNav()
-//        setupAPI()
     }
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
@@ -37,35 +33,27 @@ class SporevoMainController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        //ここで完全にViewのframeが決定されるから
+        scrollView.frame = view.bounds
+        addChildVC()
+    }
     
-    // MARK: - setupMethod
-    private func setupUI() {
-        let screenWidth = Int( UIScreen.main.bounds.size.width)
-        let scrollView = UIScrollView()
-        scrollView.backgroundColor = .white
-        scrollView.frame = self.view.frame
-        scrollView.contentSize = CGSize(width: screenWidth, height: 2100)
-        view.addSubview(scrollView)
-        scrollView.anchor(top:view.safeAreaLayoutGuide.topAnchor,
-                          bottom: view.bottomAnchor,
-                          left: view.leftAnchor,
-                          right: view.rightAnchor)
-        scrollView.addSubview(headerView)
-
-      
-        headerView.anchor(top:scrollView.topAnchor,
-                          left: view.leftAnchor,
-                          right: view.rightAnchor,
-                          paddingTop: 0,
-                          paddingLeft: 0)
-
-        scrollView.addSubview(collectionView)
-        collectionView.anchor(top:headerView.bottomAnchor,
-                              left: view.leftAnchor,
-                              right: view.rightAnchor,
-                              paddingTop: 80,
-                              paddingRight: 20,
-                              paddingLeft: 20,height: 1200)
+    private func addChildVC() {
+        addChild(firstVC)
+        addChild(secondVC)
+        scrollView.addSubview(firstVC.view)
+        scrollView.addSubview(secondVC.view)
+        firstVC.view.frame = CGRect(x: 0,
+                                    y: 0,
+                                    width: scrollView.frame.width,
+                                    height: scrollView.frame.height)
+        secondVC.view.frame = CGRect(x: scrollView.frame.size.width, y: 0,
+                                     width: scrollView.frame.size.width,
+                                     height: scrollView.frame.size.height)
+        firstVC.didMove(toParent: self)
+        secondVC.didMove(toParent: self)
     }
     private func setupNav() {
         navigationController?.navigationBar.barTintColor = .darkGray
@@ -75,17 +63,7 @@ class SporevoMainController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: searchImage, style: .done, target: self, action: #selector(didTapSearchDetailButton))
         navigationItem.titleView = segmentController
     }
-    private func setupAPI() {
-        let authData = "LIcCke0gTSNAloR7ptYq".data(using: String.Encoding.utf8)!
-        let authBase64 = authData.base64EncodedString()
-        let header:HTTPHeaders = ["Authorization":authBase64,
-                                  "Content-Type": "application/json"]
-        
-        AF.request("https://spofac-staging.herokuapp.com/prefectures", method: .get, headers: header).validate(statusCode: 200...400).responseString { response in
-        }
-
-        
-    }
+    
     @objc private func didTapLeftBarButton() {
         print(#function)
         delegate?.handleMenuToggle(forMenuOptions: nil)
@@ -99,38 +77,11 @@ class SporevoMainController: UIViewController {
     }
     @objc private func didChangeSegmentController(sender: UISegmentedControl) {
         let selectedIndex = sender.selectedSegmentIndex
-        self.delegate?.handleSegmentController(selectedIndex: selectedIndex)
-    }
-}
-// MARK: - UICollectionViewDelegate
-extension SporevoMainController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(#function)
-        let controller = InstitutionDetailController()
-        navigationController?.pushViewController(controller, animated: true)
-    }
-}
-// MARK: - UICollectionViewDatasource
-extension SporevoMainController:UICollectionViewDataSource {
-     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InstitutionCell.id, for: indexPath) as? InstitutionCell else { fatalError("can't make InstitutionCell") }
-        return cell
-    }
-     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
-    }
-}
-// MARK: - UICollectionViewDelegateFlowLayout
-extension SporevoMainController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 250)
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 20
+        if selectedIndex == 0 {
+            scrollView.setContentOffset(.zero, animated: true)
+        } else {
+            scrollView.setContentOffset(CGPoint(x: view.frame.size.width, y: 0), animated: true)
+        }
     }
 }
 
-struct Prefer:Decodable {
-    var id:String
-    var name:String
-}

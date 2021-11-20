@@ -8,7 +8,6 @@ class ContainerController:UIViewController {
     var centerController:UIViewController!
     var menuController:MenuController!
     var isExpanded = false
-    var scrollView:UIScrollView!
     weak var delegate:ContainerControllerDelegate?
     // MARK: - Initialize
     override func viewDidLoad() {
@@ -27,40 +26,22 @@ class ContainerController:UIViewController {
     }
     // MARK: - setupMethod
     private func setupMainController() {
-        let screenWidth = Int(UIScreen.main.bounds.size.width)
-        scrollView = UIScrollView()
-        scrollView.backgroundColor = .white
-        scrollView.frame = self.view.frame
-        scrollView.contentSize = CGSize(width: CGFloat(screenWidth) * 2.0,
-                                        height: view.frame.height)
-        view.addSubview(scrollView)
-        scrollView.anchor(top:view.safeAreaLayoutGuide.topAnchor,
-                          bottom: view.bottomAnchor,
-                          left: view.leftAnchor,
-                          right: view.rightAnchor)
+
         let main = SporevoMainController()
         centerController = UINavigationController(rootViewController: main)
         main.delegate = self
         // CenterControllerのViewをsubViewに追加
-        scrollView.addSubview(centerController.view)
+        view.addSubview(centerController.view)
         //　子ビューとしてcenterControllerを追加
         addChild(centerController)
         // 親ビューにしっかり教えてあげる。
         centerController.didMove(toParent: self)
-        let map = SearchMapController()
-        let mapVC = UINavigationController(rootViewController: SearchMapController())
-        mapVC.view.frame = CGRect(x: view.frame.size.width, y: 0,
-                                  width: scrollView.frame.width, height: view.frame.size.height)
-        scrollView.addSubview(mapVC.view)
-        map.delegate = self
-        addChild(mapVC)
-        mapVC.didMove(toParent: self)
     }
     private func setupMenuController() {
         if menuController == nil {
             menuController = MenuController()
             menuController.delegate = self
-            scrollView.insertSubview(menuController.view, at: 0)
+            view.insertSubview(menuController.view, at: 0)
             addChild(menuController)
             menuController.didMove(toParent: menuController)
         }
@@ -90,13 +71,6 @@ class ContainerController:UIViewController {
 }
 // MARK: - SporevoMainControllerDelegate
 extension ContainerController: SporevoMainControllerDelegate {
-    func handleSegmentController(selectedIndex: Int) {
-        if selectedIndex == 0 {
-            
-        } else {
-            scrollView.setContentOffset(CGPoint(x: view.frame.width, y: 0), animated: true)
-        }
-    }
     
     func handleMenuToggle(forMenuOptions menuOptions: MenuOptions?) {
         print(#function)
@@ -112,7 +86,7 @@ extension ContainerController: SearchMapControllerDelegate {
     func didTapSegmentController(index: Int) {
         print(#function)
         if index == 0 {
-            scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+//            scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         }
     }
     
