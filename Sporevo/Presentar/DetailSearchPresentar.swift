@@ -2,12 +2,14 @@ import Foundation
 
 protocol DetailSearchInputs {
     func viewdidLoad()
+    func city(row:Int)->City
+    var numberOfCell:Int { get }
 }
 protocol DetailSearchOutputs:AnyObject {
-    
+    func reload()
 }
 
-struct DetailSearchPresentar:DetailSearchInputs {
+final class DetailSearchPresentar:DetailSearchInputs {
     // MARK: - Properties
     private weak var outputs:DetailSearchOutputs?
     private var cities = [City]()
@@ -21,8 +23,35 @@ struct DetailSearchPresentar:DetailSearchInputs {
         self.option = option
         self.apiID = apiID
     }
-    func viewdidLoad() {
-        
+    var numberOfCell: Int {
+        if option == .place {
+            return cities.count
+        } else if option == .price {
+            return 1
+        }
+        return 0
     }
     
+    func viewdidLoad() {
+        guard let apiID = apiID else {
+            return
+        }
+        if option == .place {
+            cityInputs.fetchCities(id: apiID) { result in
+                switch result {
+                case .success(let cities):
+                    self.cities = cities
+                    print(cities.count)
+                    self.outputs?.reload()
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        } else if option == .price {
+            
+        }
+    }
+    func city(row: Int) -> City {
+        return cities[row]
+    }
 }

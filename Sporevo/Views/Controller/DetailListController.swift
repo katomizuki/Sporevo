@@ -13,7 +13,6 @@ class DetailListController:UIViewController {
     private var option:SearchOptions
     private var apiID:Int?
     private var presentar:DetailSearchInputs!
-    
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +21,7 @@ class DetailListController:UIViewController {
                          left: view.leftAnchor,right: view.rightAnchor)
         presentar.viewdidLoad()
     }
+    // MARK: - Initialize
     init(option:SearchOptions,apiID:Int) {
         self.option = option
         self.apiID = apiID
@@ -42,13 +42,30 @@ extension DetailListController: UITableViewDelegate {
 // MARK: - UITableViewDataSource
 extension DetailListController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return presentar.numberOfCell
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchListCell.id, for: indexPath) as? SearchListCell else { fatalError("can't make SearchListCell") }
+        cell.textLabel?.text = getMessage(row: indexPath.row)
         return cell
     }
 }
+// MARK: - DetailSearchOutputs
 extension DetailListController:DetailSearchOutputs {
-    
+    func reload() {
+        tableView.reloadData()
+    }
+}
+// MARK: - HelperMethod
+extension DetailListController {
+    private func getMessage(row:Int)->String {
+        var message = String()
+        if option == .place {
+            let model = presentar.city(row: row)
+            message = model.name
+        } else if option == .price {
+            
+        }
+        return message
+    }
 }
