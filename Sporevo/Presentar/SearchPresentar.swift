@@ -11,6 +11,7 @@ protocol SearchListInputs {
     func facility(row:Int)->Facility
     func sport(row:Int)-> Sport
     func tag(row: Int)->Tag
+    func moneyUnit(row:Int)->MoneyUnits
 }
 protocol SearchListOutputs:AnyObject {
     func reload()
@@ -29,17 +30,20 @@ final class SearchListPresentar:SearchListInputs,PresentarType {
     private var facilities = [Facility]()
     private var sports = [Sport]()
     private var tags = [Tag]()
+    private var moneyUnit = [MoneyUnits]()
     private weak var outputs:SearchListOutputs!
     private var model:FetchFacilityInputs!
     private var option:SearchOptions!
     private var sportsInput:FetchSportsInputs!
     private var tagsInput:FetchTagInputs!
-    init(outputs:SearchListOutputs,model:FetchFacilityInputs,option:SearchOptions,sports:FetchSportsInputs,tags:FetchTagInputs) {
+    private var moneyInput:FetchMoneyInputs!
+    init(outputs:SearchListOutputs,model:FetchFacilityInputs,option:SearchOptions,sports:FetchSportsInputs,tags:FetchTagInputs,moneyUnit:FetchMoneyInputs) {
         self.outputs = outputs
         self.model = model
         self.option = option
         self.sportsInput = sports
         self.tagsInput = tags
+        self.moneyInput = moneyUnit
     }
     var numberOfCell: Int {
         switch option {
@@ -50,7 +54,7 @@ final class SearchListPresentar:SearchListInputs,PresentarType {
         case .competition:
             return sports.count
         case .price:
-            return 0
+            return moneyUnit.count
         case .tag:
             return tags.count
         case .none:
@@ -84,7 +88,15 @@ final class SearchListPresentar:SearchListInputs,PresentarType {
             }
          }
         case .price:
-            print("p")
+            moneyInput.fetchMoney { result in
+                switch result {
+                case .success(let moneyUnits):
+                    self.moneyUnit = moneyUnits
+                    self.outputs.reload()
+                case .failure(let error):
+                    print(error)
+                }
+            }
         case .tag:
             tagsInput.fetchTags { result in
                 switch result {
@@ -108,6 +120,9 @@ final class SearchListPresentar:SearchListInputs,PresentarType {
     }
     func tag(row:Int) -> Tag {
         return tags[row]
+    }
+    func moneyUnit(row:Int)->MoneyUnits {
+        return moneyUnit[row]
     }
     
    

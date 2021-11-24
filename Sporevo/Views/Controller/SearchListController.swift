@@ -27,7 +27,7 @@ class SearchListController: UIViewController {
     init(toJudegeTableViewKeyword: SearchOptions) {
         self.toJudegeTableViewKeyword = toJudegeTableViewKeyword
         super.init(nibName: nil, bundle: nil)
-        searchListPresentar = SearchListPresentar(outputs: self,model: FetchFacility(),option: toJudegeTableViewKeyword,sports: FetchSports(), tags: FetchTags())
+        searchListPresentar = SearchListPresentar(outputs: self,model: FetchFacility(),option: toJudegeTableViewKeyword,sports: FetchSports(), tags: FetchTags(),moneyUnit: FetchMoney())
     }
     
     required init?(coder: NSCoder) {
@@ -80,8 +80,11 @@ extension SearchListController {
         case.competition:
             let model = searchListPresentar.sport(row: row)
             message = model.name
-        case .place: print("ss")
-        case .price: print("ss")
+        case .place:
+            print("ss")
+        case .price:
+            let model = searchListPresentar.moneyUnit(row: row)
+            message = model.name
         case .tag:
             let model = searchListPresentar.tag(row: row)
            message = model.name

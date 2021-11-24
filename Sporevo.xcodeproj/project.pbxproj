@@ -38,6 +38,7 @@
 		D3D81170274E213000A380B1 /* Facility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D8116F274E213000A380B1 /* Facility.swift */; };
 		D3D81172274E509A00A380B1 /* Sports.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81171274E509A00A380B1 /* Sports.swift */; };
 		D3D81174274E564900A380B1 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81173274E564900A380B1 /* Tag.swift */; };
+		D3D81176274E5E8300A380B1 /* Money.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81175274E5E8300A380B1 /* Money.swift */; };
 		D41426E844A0C8504FD6E0B7 /* Pods_Sporevo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E227DC3926AF3003077FE3F2 /* Pods_Sporevo.framework */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +77,7 @@
 		D3D8116F274E213000A380B1 /* Facility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Facility.swift; sourceTree = "<group>"; };
 		D3D81171274E509A00A380B1 /* Sports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sports.swift; sourceTree = "<group>"; };
 		D3D81173274E564900A380B1 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		D3D81175274E5E8300A380B1 /* Money.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Money.swift; sourceTree = "<group>"; };
 		E227DC3926AF3003077FE3F2 /* Pods_Sporevo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sporevo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -169,6 +171,7 @@
 				D3D8116F274E213000A380B1 /* Facility.swift */,
 				D3D81171274E509A00A380B1 /* Sports.swift */,
 				D3D81173274E564900A380B1 /* Tag.swift */,
+				D3D81175274E5E8300A380B1 /* Money.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				D3D81170274E213000A380B1 /* Facility.swift in Sources */,
 				D32B13BE2739038A0039CC06 /* SearchCell.swift in Sources */,
 				D32B13C0273904370039CC06 /* MainHeaderView.swift in Sources */,
+				D3D81176274E5E8300A380B1 /* Money.swift in Sources */,
 				D32B13C227392BCC0039CC06 /* SearchListController.swift in Sources */,
 				D312C2212742228100DF7E83 /* DetailSearchController.swift in Sources */,
 				D32B13DE273A62460039CC06 /* SeachListCell.swift in Sources */,
