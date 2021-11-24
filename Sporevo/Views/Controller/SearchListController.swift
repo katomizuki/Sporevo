@@ -50,7 +50,7 @@ final class SearchListController: UIViewController {
 extension SearchListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function)
-        searchListPresentar.didSelectRowAt()
+        searchListPresentar.didSelectRowAt(id: indexPath.row)
     }
 }
 // MARK: - UITableViewDataSource
@@ -70,8 +70,8 @@ extension SearchListController:SearchListOutputs {
     func reload() {
         tableView.reloadData()
     }
-    func detailListController() {
-        let controller = DetailListController()
+    func detailListController(id:Int) {
+        let controller = DetailListController(option: toJudegeTableViewKeyword, apiID: id + 1)
         navigationController?.pushViewController(controller, animated: true)
     }
 }

@@ -8,6 +8,7 @@ struct Sport:Decodable {
 protocol FetchSportsInputs {
     func fetchSports(completion:@escaping(Result<[Sport],Error>) ->Void)
 }
+
 struct FetchSports:FetchSportsInputs {
     func fetchSports(completion:@escaping(Result<[Sport],Error>) ->Void) {
                 print(#function)

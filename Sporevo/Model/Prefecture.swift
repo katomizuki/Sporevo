@@ -4,11 +4,17 @@ struct Prefecture:Codable {
     let name:String
     let id:Int
 }
+struct City:Codable {
+    let id:Int
+    let name:String
+}
 protocol FetchPrefectureInputs {
     func fetchPrefecture(completion: @escaping (Result<[Prefecture], Error>) -> Void)
 }
-
-struct FetchPrefecture:FetchPrefectureInputs {
+protocol FetchCityInputs {
+    func fetchCities(id:Int,completion: @escaping (Result<[City], Error>) -> Void)
+}
+struct FetchPrefecture:FetchPrefectureInputs,FetchCityInputs {
     
     func fetchPrefecture(completion: @escaping (Result<[Prefecture], Error>) -> Void) {
         let header:HTTPHeaders = ["Authorization":"Token LIcCke0gTSNAloR7ptYq"]
@@ -23,4 +29,18 @@ struct FetchPrefecture:FetchPrefectureInputs {
             }
         }
     }
+    func fetchCities(id:Int,completion: @escaping (Result<[City], Error>) -> Void) {
+        let header:HTTPHeaders = ["Authorization":"Token LIcCke0gTSNAloR7ptYq"]
+        let baseURL = "https://spo-revo.com/api/v1/cities?prefecture_id=\(id)"
+        AF.request(baseURL, method: .get, parameters: nil, encoding: URLEncoding.default, headers: header).responseJSON { response in
+            guard let data = response.data else { return }
+            do {
+                let cities = try JSONDecoder().decode([City].self, from: data)
+                completion(.success(cities))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+    
 }

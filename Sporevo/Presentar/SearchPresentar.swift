@@ -6,7 +6,7 @@ protocol SearchListInputs {
     func viewDidLoad(_ tojudgeKeywordOptions:SearchOptions)
     func didTapCell()
     var numberOfCell:Int { get }
-    func didSelectRowAt()
+    func didSelectRowAt(id:Int)
     func prefecture(row:Int)->Prefecture
     func facility(row:Int)->Facility
     func sport(row:Int)-> Sport
@@ -15,7 +15,7 @@ protocol SearchListInputs {
 }
 protocol SearchListOutputs:AnyObject {
     func reload()
-    func detailListController()
+    func detailListController(id:Int)
 }
 
 final class SearchListPresentar:SearchListInputs {
@@ -118,9 +118,9 @@ final class SearchListPresentar:SearchListInputs {
             }
         }
     }
-    func didSelectRowAt() {
+    func didSelectRowAt(id:Int) {
         if option == .place || option == .price {
-            outputs.detailListController()
+            outputs.detailListController(id:id)
         }
     }
     func facility(row: Int) -> Facility {
