@@ -7,7 +7,7 @@ protocol SearchListInputs {
     func didTapCell()
     var numberOfCell:Int { get }
     func didSelectRowAt()
-//    func place(row:Int)->Int
+    func prefecture(row:Int)->Prefecture
     func facility(row:Int)->Facility
     func sport(row:Int)-> Sport
     func tag(row: Int)->Tag
@@ -31,24 +31,27 @@ final class SearchListPresentar:SearchListInputs,PresentarType {
     private var sports = [Sport]()
     private var tags = [Tag]()
     private var moneyUnit = [MoneyUnits]()
+    private var prefectures = [Prefecture]()
     private weak var outputs:SearchListOutputs!
     private var model:FetchFacilityInputs!
     private var option:SearchOptions!
     private var sportsInput:FetchSportsInputs!
     private var tagsInput:FetchTagInputs!
     private var moneyInput:FetchMoneyInputs!
-    init(outputs:SearchListOutputs,model:FetchFacilityInputs,option:SearchOptions,sports:FetchSportsInputs,tags:FetchTagInputs,moneyUnit:FetchMoneyInputs) {
+    private var prefectureInput:FetchPrefectureInputs!
+    init(outputs:SearchListOutputs,model:FetchFacilityInputs,option:SearchOptions,sports:FetchSportsInputs,tags:FetchTagInputs,moneyUnit:FetchMoneyInputs,prefecture:FetchPrefectureInputs) {
         self.outputs = outputs
         self.model = model
         self.option = option
         self.sportsInput = sports
         self.tagsInput = tags
         self.moneyInput = moneyUnit
+        self.prefectureInput = prefecture
     }
     var numberOfCell: Int {
         switch option {
         case .place:
-           return 0
+            return prefectures.count
         case .institution:
             return facilities.count
         case .competition:
@@ -67,7 +70,15 @@ final class SearchListPresentar:SearchListInputs,PresentarType {
     func viewDidLoad(_ tojudgeKeywordOptions: SearchOptions) {
         switch tojudgeKeywordOptions {
         case .place:
-            print("s")
+            prefectureInput.fetchPrefecture { result in
+                switch result {
+                case .success(let prefecture):
+                    self.prefectures = prefecture
+                    self.outputs.reload()
+                case.failure(let error):
+                    print(error)
+                }
+            }
         case .institution:
             model.fetchFacility { result in
                 switch result {
@@ -123,6 +134,9 @@ final class SearchListPresentar:SearchListInputs,PresentarType {
     }
     func moneyUnit(row:Int)->MoneyUnits {
         return moneyUnit[row]
+    }
+    func prefecture(row:Int)->Prefecture {
+        return prefectures[row]
     }
     
    

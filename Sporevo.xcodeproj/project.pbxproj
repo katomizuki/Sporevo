@@ -39,6 +39,7 @@
 		D3D81172274E509A00A380B1 /* Sports.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81171274E509A00A380B1 /* Sports.swift */; };
 		D3D81174274E564900A380B1 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81173274E564900A380B1 /* Tag.swift */; };
 		D3D81176274E5E8300A380B1 /* Money.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81175274E5E8300A380B1 /* Money.swift */; };
+		D3D81178274E66AE00A380B1 /* Prefecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81177274E66AE00A380B1 /* Prefecture.swift */; };
 		D41426E844A0C8504FD6E0B7 /* Pods_Sporevo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E227DC3926AF3003077FE3F2 /* Pods_Sporevo.framework */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +79,7 @@
 		D3D81171274E509A00A380B1 /* Sports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sports.swift; sourceTree = "<group>"; };
 		D3D81173274E564900A380B1 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		D3D81175274E5E8300A380B1 /* Money.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Money.swift; sourceTree = "<group>"; };
+		D3D81177274E66AE00A380B1 /* Prefecture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prefecture.swift; sourceTree = "<group>"; };
 		E227DC3926AF3003077FE3F2 /* Pods_Sporevo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sporevo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -172,6 +174,7 @@
 				D3D81171274E509A00A380B1 /* Sports.swift */,
 				D3D81173274E564900A380B1 /* Tag.swift */,
 				D3D81175274E5E8300A380B1 /* Money.swift */,
+				D3D81177274E66AE00A380B1 /* Prefecture.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				D32B13D8273A30FA0039CC06 /* CompetionView.swift in Sources */,
 				D3D8116A274E19C300A380B1 /* SearchPresentar.swift in Sources */,
 				D32B137E2738D8430039CC06 /* SporevoMainController.swift in Sources */,
+				D3D81178274E66AE00A380B1 /* Prefecture.swift in Sources */,
 				D3D8116C274E1A2B00A380B1 /* SporevoMainPresentar.swift in Sources */,
 				D3D81172274E509A00A380B1 /* Sports.swift in Sources */,
 				D32B137A2738D8430039CC06 /* AppDelegate.swift in Sources */,
