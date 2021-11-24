@@ -5,7 +5,6 @@ protocol SporevoMainControllerDelegate: AnyObject {
 }
 class SporevoMainController: UIViewController {
     // MARK: - Properties
-    
     private lazy var segmentController :UISegmentedControl = {
         let segment = UISegmentedControl(items: ["地図で探す","一覧"])
         segment.selectedSegmentIndex = 0
@@ -19,6 +18,7 @@ class SporevoMainController: UIViewController {
     weak var delegate: SporevoMainControllerDelegate?
     private let firstVC = SearchMapController()
     private let secondVC = ListController()
+    private var mainPresentar:SporevoMainInputs!
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +26,8 @@ class SporevoMainController: UIViewController {
         scrollView.contentSize = CGSize(width: view.frame.size.width * 2, height: 0)
         view.addSubview(scrollView)
         setupNav()
+        mainPresentar = SporevoMainPresentar(outputs: self)
+        mainPresentar.viewdidLoad()
     }
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
@@ -35,10 +37,8 @@ class SporevoMainController: UIViewController {
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        //ここで完全にViewのframeが決定されるから
         scrollView.frame = view.bounds
         addChildVC()
-        fetchData()
     }
     
     private func addChildVC() {
@@ -64,13 +64,13 @@ class SporevoMainController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: searchImage, style: .done, target: self, action: #selector(didTapSearchDetailButton))
         navigationItem.titleView = segmentController
     }
-    func fetchData() {
-        print(#function)
-        let header:HTTPHeaders = ["Authorization":"Token LIcCke0gTSNAloR7ptYq"]
-        let baseURL = "https://spo-revo.com/api/v1/prefectures"
-        AF.request(baseURL, method: .get, parameters: nil, encoding: URLEncoding.default, headers: header).responseJSON { response in
-        }
-    }
+//    func fetchData() {
+//        print(#function)
+//        let header:HTTPHeaders = ["Authorization":"Token LIcCke0gTSNAloR7ptYq"]
+//        let baseURL = "https://spo-revo.com/api/v1/prefectures"
+//        AF.request(baseURL, method: .get, parameters: nil, encoding: URLEncoding.default, headers: header).responseJSON { response in
+//        }
+//    }
     
     @objc private func didTapLeftBarButton() {
         print(#function)
@@ -78,18 +78,30 @@ class SporevoMainController: UIViewController {
     }
     @objc private func didTapSearchDetailButton() {
         print(#function)
-        let controller = SearchDetailController()
-        let nav = UINavigationController(rootViewController: controller)
-        nav.modalPresentationStyle = .fullScreen
-        present(nav, animated: true, completion: nil)
+        mainPresentar.didTapDetailSearchButton()
     }
     @objc private func didChangeSegmentController(sender: UISegmentedControl) {
         let selectedIndex = sender.selectedSegmentIndex
-        if selectedIndex == 0 {
+        mainPresentar.didTapSegment(index: selectedIndex)
+    }
+}
+// MARK: - SporevoMainOutputs
+extension SporevoMainController:SporevoMainOutputs {
+    
+    func changeSegment(index: Int) {
+        if index == 0 {
             scrollView.setContentOffset(.zero, animated: true)
         } else {
             scrollView.setContentOffset(CGPoint(x: view.frame.size.width, y: 0), animated: true)
         }
     }
+    func detailSearchController() {
+        let controller = SearchDetailController()
+        let nav = UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true, completion: nil)
+    }
+    func loadData() {
+        print(#function)
+    }
 }
-
