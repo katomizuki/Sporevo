@@ -10,12 +10,16 @@ protocol SearchListInputs {
 //    func place(row:Int)->Int
     func facility(row:Int)->Facility
     func sport(row:Int)-> Sport
+    func tag(row: Int)->Tag
 }
 protocol SearchListOutputs:AnyObject {
     func reload()
 }
+protocol PresentarType {
+    
+}
 
-final class SearchListPresentar:SearchListInputs {
+final class SearchListPresentar:SearchListInputs,PresentarType {
     
     private var selectedCity = [String]()
     private var selectedTag = [String]()
@@ -24,15 +28,18 @@ final class SearchListPresentar:SearchListInputs {
     private var selectedPrice = [String]()
     private var facilities = [Facility]()
     private var sports = [Sport]()
+    private var tags = [Tag]()
     private weak var outputs:SearchListOutputs!
     private var model:FetchFacilityInputs!
     private var option:SearchOptions!
     private var sportsInput:FetchSportsInputs!
-    init(outputs:SearchListOutputs,model:FetchFacilityInputs,option:SearchOptions,sports:FetchSportsInputs) {
+    private var tagsInput:FetchTagInputs!
+    init(outputs:SearchListOutputs,model:FetchFacilityInputs,option:SearchOptions,sports:FetchSportsInputs,tags:FetchTagInputs) {
         self.outputs = outputs
         self.model = model
         self.option = option
         self.sportsInput = sports
+        self.tagsInput = tags
     }
     var numberOfCell: Int {
         switch option {
@@ -45,7 +52,7 @@ final class SearchListPresentar:SearchListInputs {
         case .price:
             return 0
         case .tag:
-            return 0
+            return tags.count
         case .none:
             return 0
         }
@@ -79,7 +86,15 @@ final class SearchListPresentar:SearchListInputs {
         case .price:
             print("p")
         case .tag:
-            print("t")
+            tagsInput.fetchTags { result in
+                switch result {
+                case .success(let tags):
+                    self.tags = tags
+                    self.outputs.reload()
+                case .failure(let error):
+                    print(error)
+                }
+            }
         }
     }
     func didSelectRowAt() {
@@ -90,6 +105,9 @@ final class SearchListPresentar:SearchListInputs {
     }
     func sport(row: Int)-> Sport {
         return sports[row]
+    }
+    func tag(row:Int) -> Tag {
+        return tags[row]
     }
     
    

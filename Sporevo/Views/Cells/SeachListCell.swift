@@ -14,4 +14,5 @@ class SearchListCell:UITableViewCell {
     override func prepareForReuse() {
         backgroundColor = .clear
     }
+  
 }

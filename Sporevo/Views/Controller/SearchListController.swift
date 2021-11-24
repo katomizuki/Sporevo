@@ -27,7 +27,7 @@ class SearchListController: UIViewController {
     init(toJudegeTableViewKeyword: SearchOptions) {
         self.toJudegeTableViewKeyword = toJudegeTableViewKeyword
         super.init(nibName: nil, bundle: nil)
-        searchListPresentar = SearchListPresentar(outputs: self,model: FetchFacility(),option: toJudegeTableViewKeyword,sports: FetchSports())
+        searchListPresentar = SearchListPresentar(outputs: self,model: FetchFacility(),option: toJudegeTableViewKeyword,sports: FetchSports(), tags: FetchTags())
     }
     
     required init?(coder: NSCoder) {
@@ -55,17 +55,8 @@ extension SearchListController: UITableViewDelegate {
 extension SearchListController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchListCell.id,for: indexPath) as? SearchListCell else { fatalError("can't make SearchListCell Error") }
-        switch toJudegeTableViewKeyword {
-        case .institution:
-            let model = searchListPresentar.facility(row: indexPath.row)
-            cell.textLabel?.text = model.name
-        case.competition:
-            let model = searchListPresentar.sport(row: indexPath.row)
-            cell.textLabel?.text = model.name
-        case .place: print("ss")
-        case .price: print("ss")
-        case .tag: print("ss")
-        }
+        cell.textLabel?.text = getMessage(row: indexPath.row)
+
         return cell
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -77,5 +68,24 @@ extension SearchListController: UITableViewDataSource {
 extension SearchListController:SearchListOutputs {
     func reload() {
         tableView.reloadData()
+    }
+}
+extension SearchListController {
+    private func getMessage(row:Int)->String {
+        var message = String()
+        switch toJudegeTableViewKeyword {
+        case .institution:
+            let model = searchListPresentar.facility(row: row)
+            message = model.name
+        case.competition:
+            let model = searchListPresentar.sport(row: row)
+            message = model.name
+        case .place: print("ss")
+        case .price: print("ss")
+        case .tag:
+            let model = searchListPresentar.tag(row: row)
+           message = model.name
+        }
+        return message
     }
 }

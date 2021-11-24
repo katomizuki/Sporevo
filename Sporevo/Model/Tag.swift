@@ -18,7 +18,7 @@ struct FetchTags: FetchTagInputs {
             do {
                 let tags = try JSONDecoder().decode([Tag].self, from: data)
                 completion(.success(tags))
-            } catch {
+            } catch{
                 completion(.failure(error))
             }
         }
