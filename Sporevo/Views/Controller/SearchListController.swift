@@ -1,9 +1,9 @@
 import Foundation
 import UIKit
 
-class SearchListController: UIViewController {
+final class SearchListController: UIViewController {
+    // MARK: - Properties
     private var toJudegeTableViewKeyword:SearchOptions
-   
     private var searchListPresentar:SearchListInputs!
     private lazy var tableView:UITableView = {
         let tableView = UITableView()
@@ -12,6 +12,7 @@ class SearchListController: UIViewController {
         tableView.register(SearchListCell.self, forCellReuseIdentifier: SearchListCell.id)
         return tableView
     }()
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -24,6 +25,7 @@ class SearchListController: UIViewController {
         navigationController?.navigationBar.backgroundColor = .clear
         navigationController?.navigationBar.isHidden = false
     }
+    // MARK: - Initialize
     init(toJudegeTableViewKeyword: SearchOptions) {
         self.toJudegeTableViewKeyword = toJudegeTableViewKeyword
         super.init(nibName: nil, bundle: nil)
@@ -33,7 +35,7 @@ class SearchListController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-  
+    // MARK: - setupMethod
     private func setupTableView() {
         print(#function)
         view.addSubview(tableView)
@@ -56,7 +58,6 @@ extension SearchListController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchListCell.id,for: indexPath) as? SearchListCell else { fatalError("can't make SearchListCell Error") }
         cell.textLabel?.text = getMessage(row: indexPath.row)
-
         return cell
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -64,10 +65,14 @@ extension SearchListController: UITableViewDataSource {
         return searchListPresentar.numberOfCell
     }
 }
-
+// MARK: - SearchListOutputs
 extension SearchListController:SearchListOutputs {
     func reload() {
         tableView.reloadData()
+    }
+    func detailListController() {
+        let controller = DetailListController()
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
 extension SearchListController {

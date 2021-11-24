@@ -40,6 +40,7 @@
 		D3D81174274E564900A380B1 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81173274E564900A380B1 /* Tag.swift */; };
 		D3D81176274E5E8300A380B1 /* Money.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81175274E5E8300A380B1 /* Money.swift */; };
 		D3D81178274E66AE00A380B1 /* Prefecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81177274E66AE00A380B1 /* Prefecture.swift */; };
+		D3D8117A274EF19300A380B1 /* DetailListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81179274EF19300A380B1 /* DetailListController.swift */; };
 		D41426E844A0C8504FD6E0B7 /* Pods_Sporevo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E227DC3926AF3003077FE3F2 /* Pods_Sporevo.framework */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +81,7 @@
 		D3D81173274E564900A380B1 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		D3D81175274E5E8300A380B1 /* Money.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Money.swift; sourceTree = "<group>"; };
 		D3D81177274E66AE00A380B1 /* Prefecture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prefecture.swift; sourceTree = "<group>"; };
+		D3D81179274EF19300A380B1 /* DetailListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListController.swift; sourceTree = "<group>"; };
 		E227DC3926AF3003077FE3F2 /* Pods_Sporevo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sporevo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -211,6 +213,7 @@
 				D312C2202742228100DF7E83 /* DetailSearchController.swift */,
 				D33D95A72745E114001FBC48 /* SearchMapController.swift */,
 				D3B72CA32749278A00253933 /* ListController.swift */,
+				D3D81179274EF19300A380B1 /* DetailListController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 				D32B13C0273904370039CC06 /* MainHeaderView.swift in Sources */,
 				D3D81176274E5E8300A380B1 /* Money.swift in Sources */,
 				D32B13C227392BCC0039CC06 /* SearchListController.swift in Sources */,
+				D3D8117A274EF19300A380B1 /* DetailListController.swift in Sources */,
 				D312C2212742228100DF7E83 /* DetailSearchController.swift in Sources */,
 				D32B13DE273A62460039CC06 /* SeachListCell.swift in Sources */,
 				D32B13CA273961CD0039CC06 /* MenuController.swift in Sources */,

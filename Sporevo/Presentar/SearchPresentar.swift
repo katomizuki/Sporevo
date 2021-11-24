@@ -15,12 +15,10 @@ protocol SearchListInputs {
 }
 protocol SearchListOutputs:AnyObject {
     func reload()
-}
-protocol PresentarType {
-    
+    func detailListController()
 }
 
-final class SearchListPresentar:SearchListInputs,PresentarType {
+final class SearchListPresentar:SearchListInputs {
     
     private var selectedCity = [String]()
     private var selectedTag = [String]()
@@ -121,7 +119,9 @@ final class SearchListPresentar:SearchListInputs,PresentarType {
         }
     }
     func didSelectRowAt() {
-        
+        if option == .place || option == .price {
+            outputs.detailListController()
+        }
     }
     func facility(row: Int) -> Facility {
         return facilities[row]
