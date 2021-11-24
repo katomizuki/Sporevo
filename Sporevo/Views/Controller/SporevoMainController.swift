@@ -64,13 +64,7 @@ class SporevoMainController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: searchImage, style: .done, target: self, action: #selector(didTapSearchDetailButton))
         navigationItem.titleView = segmentController
     }
-//    func fetchData() {
-//        print(#function)
-//        let header:HTTPHeaders = ["Authorization":"Token LIcCke0gTSNAloR7ptYq"]
-//        let baseURL = "https://spo-revo.com/api/v1/prefectures"
-//        AF.request(baseURL, method: .get, parameters: nil, encoding: URLEncoding.default, headers: header).responseJSON { response in
-//        }
-//    }
+
     
     @objc private func didTapLeftBarButton() {
         print(#function)

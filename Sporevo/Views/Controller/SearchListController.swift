@@ -14,6 +14,7 @@ class SearchListController: UIViewController {
     private var selectedInstion = [String]()
     private var selectedCompetion = [String]()
     private var selectedPrice = [String]()
+    private var searchListPresentar:SearchListInputs!
     private lazy var tableView:UITableView = {
         let tableView = UITableView()
         tableView.delegate = self
@@ -26,6 +27,8 @@ class SearchListController: UIViewController {
         view.backgroundColor = .white
         setupTableView()
         setupSectionValue()
+        searchListPresentar = SearchListPresentar(outputs: self,model: FetchFacility())
+        searchListPresentar.viewDidLoad(toJudegeTableViewKeyword)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -125,7 +128,6 @@ extension SearchListController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchListCell.id,for: indexPath) as? SearchListCell else { fatalError("can't make SearchListCell Error") }
         cell.accessoryType = cell.accessoryType == .none ? .none : .checkmark
-//        cell.backgroundColor = .clear
         switch toJudegeTableViewKeyword {
         case .institution: cell.textLabel?.text = institutionData[indexPath.row]
         case .competition: cell.textLabel?.text = competionData[indexPath.row]
@@ -152,3 +154,6 @@ extension SearchListController: UITableViewDataSource {
     }
 }
 
+extension SearchListController:SearchListOutputs {
+    
+}

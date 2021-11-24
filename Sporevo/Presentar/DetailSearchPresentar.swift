@@ -1,2 +1,7 @@
 import Foundation
 
+
+
+struct DetailSearchPresentar {
+    
+}

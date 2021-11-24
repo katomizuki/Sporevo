@@ -35,6 +35,7 @@
 		D3D8116A274E19C300A380B1 /* SearchPresentar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81169274E19C300A380B1 /* SearchPresentar.swift */; };
 		D3D8116C274E1A2B00A380B1 /* SporevoMainPresentar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D8116B274E1A2B00A380B1 /* SporevoMainPresentar.swift */; };
 		D3D8116E274E1A4E00A380B1 /* DetailSearchPresentar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D8116D274E1A4E00A380B1 /* DetailSearchPresentar.swift */; };
+		D3D81170274E213000A380B1 /* Facility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D8116F274E213000A380B1 /* Facility.swift */; };
 		D41426E844A0C8504FD6E0B7 /* Pods_Sporevo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E227DC3926AF3003077FE3F2 /* Pods_Sporevo.framework */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,7 @@
 		D3D81169274E19C300A380B1 /* SearchPresentar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresentar.swift; sourceTree = "<group>"; };
 		D3D8116B274E1A2B00A380B1 /* SporevoMainPresentar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SporevoMainPresentar.swift; sourceTree = "<group>"; };
 		D3D8116D274E1A4E00A380B1 /* DetailSearchPresentar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSearchPresentar.swift; sourceTree = "<group>"; };
+		D3D8116F274E213000A380B1 /* Facility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Facility.swift; sourceTree = "<group>"; };
 		E227DC3926AF3003077FE3F2 /* Pods_Sporevo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sporevo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -160,6 +162,7 @@
 			children = (
 				D32B13B8273902670039CC06 /* SearchOptions.swift */,
 				D32B13CB273964000039CC06 /* MenuOptions.swift */,
+				D3D8116F274E213000A380B1 /* Facility.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				D32B13DC273A51C00039CC06 /* TagLabel.swift in Sources */,
 				D32B13D6273A2FB70039CC06 /* InstitutionHeader.swift in Sources */,
 				D32B13B9273902670039CC06 /* SearchOptions.swift in Sources */,
+				D3D81170274E213000A380B1 /* Facility.swift in Sources */,
 				D32B13BE2739038A0039CC06 /* SearchCell.swift in Sources */,
 				D32B13C0273904370039CC06 /* MainHeaderView.swift in Sources */,
 				D32B13C227392BCC0039CC06 /* SearchListController.swift in Sources */,

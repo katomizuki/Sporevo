@@ -17,15 +17,7 @@ class ListController:UIViewController {
         view.backgroundColor = .blue
         setupUI()
     }
-//    private func setupAPI() {
-//        let authData = "LIcCke0gTSNAloR7ptYq".data(using: String.Encoding.utf8)!
-//        let authBase64 = authData.base64EncodedString()
-//        let header:HTTPHeaders = ["Authorization":authBase64,
-//                                  "Content-Type": "application/json"]
-//        
-//        AF.request("https://spofac-staging.herokuapp.com/prefectures", method: .get, headers: header).validate(statusCode: 200...400).responseString { response in
-//        }
-//    }
+
     // MARK: - setupMethod
     private func setupUI() {
         let screenWidth = Int( UIScreen.main.bounds.size.width)
