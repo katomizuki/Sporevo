@@ -17,6 +17,7 @@ struct FetchFacility:FetchFacilityInputs {
                     guard let data = response.data else { return }
                     do {
                         let facility = try JSONDecoder().decode([Facility].self, from: data)
+                        print(facility,"⚡️")
                         completion(.success(facility))
                     } catch {
                         completion(.failure(error))
