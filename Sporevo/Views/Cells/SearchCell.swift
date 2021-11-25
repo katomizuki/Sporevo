@@ -19,10 +19,11 @@ class SearchCell:UITableViewCell {
         button.isEnabled = true
         return button
     }()
-    private let elementLabel:UILabel = {
+    let elementLabel:UILabel = {
         let label = UILabel()
         label.textColor = .darkGray
         label.font = .systemFont(ofSize: 14)
+        label.numberOfLines = 0
         return label
     }()
     // MARK: - Initialize
@@ -35,6 +36,9 @@ class SearchCell:UITableViewCell {
                             centerY:centerYAnchor,
                             width: 60,
                             height: 60)
+        addSubview(elementLabel)
+        elementLabel.anchor(top:topAnchor,bottom:bottomAnchor,left: leftAnchor,right: searchButton.leftAnchor,
+                            paddingRight: 5,paddingLeft: 10,centerY: centerYAnchor)
     }
     
     required init?(coder: NSCoder) {

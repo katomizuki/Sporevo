@@ -79,10 +79,9 @@ extension FacilitySearchController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchCell.id, for: indexPath) as? SearchCell else { fatalError("can't make SeachCell Error") }
         cell.delegate = self
-        cell.textLabel?.textColor = .darkGray
         let section = indexPath.section
         let message = presentar.getSelectedMessage(row: section)
-        cell.textLabel?.text = message
+        cell.elementLabel.text = message
         return cell
     }
 }
