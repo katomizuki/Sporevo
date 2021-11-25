@@ -42,7 +42,7 @@ final class SearchListController: UIViewController {
         tableView.anchor(top:view.safeAreaLayoutGuide.topAnchor,
                          bottom: view.safeAreaLayoutGuide.bottomAnchor,
                          left: view.leftAnchor,
-                         right: view.rightAnchor,paddingTop: 50)
+                         right: view.rightAnchor)
         tableView.allowsMultipleSelection = true
     }
 }
@@ -50,8 +50,11 @@ final class SearchListController: UIViewController {
 extension SearchListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function)
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.backgroundColor = .clear
         searchListPresentar.didSelectRowAt(id: indexPath.row)
     }
+
 }
 // MARK: - UITableViewDataSource
 extension SearchListController: UITableViewDataSource {

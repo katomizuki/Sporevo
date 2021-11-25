@@ -26,7 +26,7 @@ class DetailListController:UIViewController {
         self.option = option
         self.apiID = apiID
         super.init(nibName: nil, bundle: nil)
-        presentar = DetailSearchPresentar(output: self, city: FetchPrefecture(),option: option,apiID:apiID)
+        presentar = DetailSearchPresentar(output: self, city: FetchPrefecture(), priceUnit: FetchMoney(),option: option,apiID:apiID)
     }
     
     required init?(coder: NSCoder) {
@@ -64,7 +64,8 @@ extension DetailListController {
             let model = presentar.city(row: row)
             message = model.name
         } else if option == .price {
-            
+            let model = presentar.priceUnit(row: row)
+            message = model.name
         }
         return message
     }
