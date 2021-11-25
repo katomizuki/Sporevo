@@ -26,7 +26,7 @@ class DetailListController:UIViewController {
         self.option = option
         self.apiID = apiID
         super.init(nibName: nil, bundle: nil)
-        presentar = DetailSearchPresentar(output: self, city: FetchPrefecture(), priceUnit: FetchMoney(),option: option,apiID:apiID)
+        presentar = DetailListPresentar(output: self, city: FetchPrefecture(), priceUnit: FetchMoney(),option: option,apiID:apiID)
     }
     
     required init?(coder: NSCoder) {

@@ -1,7 +1,7 @@
 
 import Foundation
 import UIKit
-class ListController:UIViewController {
+class InstitutionListController:UIViewController {
     private lazy var collectionView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 200)
@@ -47,7 +47,7 @@ class ListController:UIViewController {
     }
 }
 // MARK: - UICollectionViewDelegate
-extension ListController: UICollectionViewDelegate {
+extension InstitutionListController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(#function)
         let controller = InstitutionDetailController()
@@ -55,7 +55,7 @@ extension ListController: UICollectionViewDelegate {
     }
 }
 // MARK: - UICollectionViewDatasource
-extension ListController:UICollectionViewDataSource {
+extension InstitutionListController:UICollectionViewDataSource {
      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
          guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InstitutionCell.id, for: indexPath) as? InstitutionCell else { fatalError("can't make InstitutionCell") }
         return cell
@@ -65,7 +65,7 @@ extension ListController:UICollectionViewDataSource {
     }
 }
 // MARK: - UICollectionViewDelegateFlowLayout
-extension ListController: UICollectionViewDelegateFlowLayout {
+extension InstitutionListController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: 250)
     }

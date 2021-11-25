@@ -1,7 +1,5 @@
 import Foundation
-struct Model<T> {
-    
-}
+
 protocol SearchListInputs {
     func viewDidLoad(_ tojudgeKeywordOptions:SearchOptions)
     var numberOfCell:Int { get }
@@ -11,6 +9,7 @@ protocol SearchListInputs {
     func sport(row:Int)-> Sport
     func tag(row: Int)->Tag
     func moneyUnit(row:Int)->MoneyUnits
+    func saveUserDefaults()
 }
 protocol SearchListOutputs:AnyObject {
     func reload()
@@ -18,11 +17,11 @@ protocol SearchListOutputs:AnyObject {
 }
 
 final class SearchListPresentar:SearchListInputs {
-    
+    // MARK: - Properties
     private var selectedCity = [String]()
-    private var selectedTag = [Tag]()
-    private var selectedInstion = [Facility]()
-    private var selectedCompetion = [Sport]()
+    var selectedTag = [Tag]()
+    var selectedInstion = [Facility]()
+    var selectedCompetion = [Sport]()
     private var selectedPrice = [String]()
     private var facilities = [Facility]()
     private var sports = [Sport]()
@@ -36,6 +35,7 @@ final class SearchListPresentar:SearchListInputs {
     private var tagsInput:FetchTagInputs!
     private var moneyInput:FetchMoneyInputs!
     private var prefectureInput:FetchPrefectureInputs!
+
     init(outputs:SearchListOutputs,model:FetchFacilityInputs,option:SearchOptions,sports:FetchSportsInputs,tags:FetchTagInputs,moneyUnit:FetchMoneyInputs,prefecture:FetchPrefectureInputs) {
         self.outputs = outputs
         self.model = model
@@ -123,21 +123,21 @@ final class SearchListPresentar:SearchListInputs {
             if judgeArray(ele: facilities[id], array: selectedInstion) == true {
                 selectedInstion.append(facilities[id])
             } else {
-                print("削除する処理")
+                selectedInstion.remove(value: facilities[id])
             }
         }
         if option == .competition {
             if judgeArray(ele: sports[id], array: selectedCompetion) == true {
                 selectedCompetion.append(sports[id])
             } else {
-                print("削除する処理")
+                selectedCompetion.remove(value: sports[id])
             }
         }
         if option == .tag {
             if judgeArray(ele: tags[id], array: selectedTag) == true {
                 selectedTag.append(tags[id])
             } else {
-                print("削除する処理")
+                selectedTag.remove(value: tags[id])
             }
         }
     }
@@ -156,8 +156,17 @@ final class SearchListPresentar:SearchListInputs {
     func prefecture(row:Int)->Prefecture {
         return prefectures[row]
     }
-    
-   
+    func saveUserDefaults() {
+        if option == .institution {
+            UserDefaultRepositry.shared.saveToUserDefaults(element: selectedInstion, key: "facility")
+        }
+        if option == .tag {
+            UserDefaultRepositry.shared.saveToUserDefaults(element: selectedTag, key: "tag")
+        }
+        if option == .competition {
+            UserDefaultRepositry.shared.saveToUserDefaults(element: selectedCompetion, key: "sport")
+        }
+    }
 }
 extension SearchListPresentar {
     private func judgeArray<T:Equatable>(ele:T,array:[T])->Bool {

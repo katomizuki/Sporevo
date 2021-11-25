@@ -1,8 +1,8 @@
 import Foundation
 import UIKit
 
-class SearchDetailController:UIViewController {
-    
+class FacilitySearchController:UIViewController {
+    // MARK: - Properties
     private var tableView:UITableView!
     private lazy var searchButton:UIButton = {
         let button = UIButton(type: .system)
@@ -15,6 +15,7 @@ class SearchDetailController:UIViewController {
         button.layer.masksToBounds = true
         return button
     }()
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
        setupUI()
@@ -52,30 +53,18 @@ class SearchDetailController:UIViewController {
     }
 }
 // MARK: - SearchCellDelegate
-extension SearchDetailController:SeachCellDelegate {
+extension FacilitySearchController:SeachCellDelegate {
     func searchCell(_ cell: SearchCell) {
         print(#function)
         guard let options = SearchOptions(rawValue: tableView.indexPath(for: cell)?.section ?? 0) else { return }
-        print(options)
-        switch options {
-        case .place:
-            navigationController?.pushViewController(SearchListController(toJudegeTableViewKeyword: .place), animated: true)
-        case .institution:
-            navigationController?.pushViewController(SearchListController(toJudegeTableViewKeyword: .institution), animated: true)
-        case .competition:
-            navigationController?.pushViewController(SearchListController(toJudegeTableViewKeyword: .competition), animated: true)
-        case .price:
-            navigationController?.pushViewController(SearchListController(toJudegeTableViewKeyword: .price), animated: true)
-        case .tag:
-            navigationController?.pushViewController(SearchListController(toJudegeTableViewKeyword: .tag), animated: true)
-        }
+        pushActions(options:options)
     }
     @objc private func didTapSearchButton() {
         print(#function)
     }
 }
 // MARK: - UITableViewDataSource
-extension SearchDetailController: UITableViewDataSource {
+extension FacilitySearchController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return SearchOptions.allCases.count
     }
@@ -85,11 +74,12 @@ extension SearchDetailController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchCell.id, for: indexPath) as? SearchCell else { fatalError("can't make SeachCell Error") }
         cell.delegate = self
+        cell.textLabel?.textColor = .darkGray
         return cell
     }
 }
 // MARK: - UITableViewDelegate
-extension SearchDetailController: UITableViewDelegate {
+extension FacilitySearchController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return SearchOptions(rawValue: section)?.description
     }
@@ -99,4 +89,36 @@ extension SearchDetailController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false
     }
+}
+extension FacilitySearchController {
+    private func pushActions(options:SearchOptions) {
+        switch options {
+        case .place:
+            let controller = SearchListController(toJudegeTableViewKeyword: .place)
+            controller.delegate = self
+            navigationController?.pushViewController(controller, animated: true)
+        case .institution:
+            let controller = SearchListController(toJudegeTableViewKeyword: .institution)
+            controller.delegate = self
+            navigationController?.pushViewController(controller, animated: true)
+        case .competition:
+            let controller = SearchListController(toJudegeTableViewKeyword: .competition)
+            controller.delegate = self
+            navigationController?.pushViewController(controller, animated: true)
+        case .price:
+            let controller = SearchListController(toJudegeTableViewKeyword: .price)
+            controller.delegate = self
+            navigationController?.pushViewController(controller, animated: true)
+        case .tag:
+            let controller = SearchListController(toJudegeTableViewKeyword: .tag)
+            controller.delegate = self
+            navigationController?.pushViewController(controller, animated: true)
+        }
+    }
+}
+extension FacilitySearchController: SearchListControllerProtocol {
+    func searchListController() {
+
+    }
+ 
 }

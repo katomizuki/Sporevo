@@ -1,6 +1,8 @@
 import Foundation
 import UIKit
-
+protocol SearchListControllerProtocol:AnyObject {
+    func searchListController()
+}
 final class SearchListController: UIViewController {
     // MARK: - Properties
     private var toJudegeTableViewKeyword:SearchOptions
@@ -12,12 +14,13 @@ final class SearchListController: UIViewController {
         tableView.register(SearchListCell.self, forCellReuseIdentifier: SearchListCell.id)
         return tableView
     }()
+    weak var delegate:SearchListControllerProtocol?
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupTableView()
-        
+        setupNav()
         searchListPresentar.viewDidLoad(toJudegeTableViewKeyword)
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -45,6 +48,17 @@ final class SearchListController: UIViewController {
                          right: view.rightAnchor)
         tableView.allowsMultipleSelection = true
     }
+    private func setupNav() {
+        let leftButton = UIBarButtonItem(title: "もどる", style: .done, target: self, action: #selector(didTapLeftBarButton))
+        navigationItem.leftBarButtonItem = leftButton
+        leftButton.tintColor = .systemMint
+    }
+    @objc private func didTapLeftBarButton() {
+        print(#function)
+        searchListPresentar.saveUserDefaults()
+        navigationController?.popViewController(animated: true)
+        self.delegate?.searchListController()
+    }
 }
 // MARK: - UITableViewDelegate
 extension SearchListController: UITableViewDelegate {
@@ -53,18 +67,24 @@ extension SearchListController: UITableViewDelegate {
         let cell = tableView.cellForRow(at: indexPath)
         cell?.backgroundColor = .clear
         searchListPresentar.didSelectRowAt(id: indexPath.row)
+        cell?.accessoryType = .checkmark
     }
-
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.accessoryType = .none
+        cell?.backgroundColor = .clear
+        searchListPresentar.didSelectRowAt(id: indexPath.row)
+    }
 }
 // MARK: - UITableViewDataSource
 extension SearchListController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchListCell.id,for: indexPath) as? SearchListCell else { fatalError("can't make SearchListCell Error") }
         cell.textLabel?.text = getMessage(row: indexPath.row)
+        cell.backgroundColor = .clear
         return cell
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(searchListPresentar.numberOfCell)
         return searchListPresentar.numberOfCell
     }
 }

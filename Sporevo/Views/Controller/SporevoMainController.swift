@@ -17,7 +17,7 @@ class SporevoMainController: UIViewController {
     }()
     weak var delegate: SporevoMainControllerDelegate?
     private let firstVC = SearchMapController()
-    private let secondVC = ListController()
+    private let secondVC = InstitutionListController()
     private var mainPresentar:SporevoMainInputs!
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -90,7 +90,7 @@ extension SporevoMainController:SporevoMainOutputs {
         }
     }
     func detailSearchController() {
-        let controller = SearchDetailController()
+        let controller = FacilitySearchController()
         let nav = UINavigationController(rootViewController: controller)
         nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true, completion: nil)

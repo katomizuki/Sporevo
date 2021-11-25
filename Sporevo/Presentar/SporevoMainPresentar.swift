@@ -10,7 +10,7 @@ protocol SporevoMainOutputs:AnyObject {
     func detailSearchController()
     func changeSegment(index:Int)
 }
-struct SporevoMainPresentar:SporevoMainInputs {
+final class SporevoMainPresentar:SporevoMainInputs {
     
     
     private weak var outputs:SporevoMainOutputs!

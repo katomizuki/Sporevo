@@ -65,7 +65,7 @@ class ContainerController:UIViewController {
         }
     private func didSelectMenuOption(menuOption: MenuOptions) {
         print(#function)
-        let controller = UINavigationController(rootViewController: SearchDetailController())
+        let controller = UINavigationController(rootViewController: FacilitySearchController())
         controller.modalPresentationStyle = .fullScreen
         present(controller, animated: true, completion: nil)
     }

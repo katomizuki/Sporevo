@@ -10,7 +10,7 @@ protocol DetailSearchOutputs:AnyObject {
     func reload()
 }
 
-final class DetailSearchPresentar:DetailSearchInputs {
+final class DetailListPresentar:DetailSearchInputs {
     // MARK: - Properties
     private weak var outputs:DetailSearchOutputs?
     private var cities = [City]()
