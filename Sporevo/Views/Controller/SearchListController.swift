@@ -91,7 +91,9 @@ extension SearchListController: UITableViewDataSource {
 // MARK: - SearchListOutputs
 extension SearchListController:SearchListOutputs {
     func reload() {
-        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     func detailListController(id:Int) {
         let controller = DetailListController(option: toJudegeTableViewKeyword, apiID: id + 1)

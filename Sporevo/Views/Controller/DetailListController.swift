@@ -72,7 +72,10 @@ extension DetailListController: UITableViewDataSource {
 // MARK: - DetailSearchOutputs
 extension DetailListController:DetailSearchOutputs {
     func reload() {
-        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+      
     }
 }
 // MARK: - HelperMethod

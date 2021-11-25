@@ -64,7 +64,6 @@ class InstitutionDetailController: UIViewController,GMSMapViewDelegate {
     }
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
-        
     }
     // MARK: - SetupMethod
     private func setupUI() {
