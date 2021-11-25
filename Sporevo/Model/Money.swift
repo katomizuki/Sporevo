@@ -1,10 +1,10 @@
 import Foundation
 import Alamofire
-struct MoneyUnits:Codable {
+struct MoneyUnits:Codable,Equatable {
     let id:Int
     let name:String
 }
-struct PriceUnits:Codable {
+struct PriceUnits:Codable,Equatable {
     let id:Int
     let name:String
 }

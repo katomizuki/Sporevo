@@ -1,7 +1,7 @@
 
 import Foundation
 import Alamofire
-struct Sport:Decodable {
+struct Sport:Decodable,Equatable {
     let name:String
     let id:Int
 }

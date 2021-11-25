@@ -1,7 +1,7 @@
 import Alamofire
 import Foundation
 
-struct Tag:Codable {
+struct Tag:Codable,Equatable {
     let id:Int
     let name:String
 }

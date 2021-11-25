@@ -4,7 +4,6 @@ struct Model<T> {
 }
 protocol SearchListInputs {
     func viewDidLoad(_ tojudgeKeywordOptions:SearchOptions)
-    func didTapCell()
     var numberOfCell:Int { get }
     func didSelectRowAt(id:Int)
     func prefecture(row:Int)->Prefecture
@@ -21,9 +20,9 @@ protocol SearchListOutputs:AnyObject {
 final class SearchListPresentar:SearchListInputs {
     
     private var selectedCity = [String]()
-    private var selectedTag = [String]()
-    private var selectedInstion = [String]()
-    private var selectedCompetion = [String]()
+    private var selectedTag = [Tag]()
+    private var selectedInstion = [Facility]()
+    private var selectedCompetion = [Sport]()
     private var selectedPrice = [String]()
     private var facilities = [Facility]()
     private var sports = [Sport]()
@@ -62,9 +61,7 @@ final class SearchListPresentar:SearchListInputs {
             return 0
         }
     }
-    func didTapCell() {
-        
-    }
+
     func viewDidLoad(_ tojudgeKeywordOptions: SearchOptions) {
         switch tojudgeKeywordOptions {
         case .place:
@@ -122,6 +119,27 @@ final class SearchListPresentar:SearchListInputs {
         if option == .place || option == .price {
             outputs.detailListController(id:id)
         }
+        if option == .institution {
+            if judgeArray(ele: facilities[id], array: selectedInstion) == true {
+                selectedInstion.append(facilities[id])
+            } else {
+                print("削除する処理")
+            }
+        }
+        if option == .competition {
+            if judgeArray(ele: sports[id], array: selectedCompetion) == true {
+                selectedCompetion.append(sports[id])
+            } else {
+                print("削除する処理")
+            }
+        }
+        if option == .tag {
+            if judgeArray(ele: tags[id], array: selectedTag) == true {
+                selectedTag.append(tags[id])
+            } else {
+                print("削除する処理")
+            }
+        }
     }
     func facility(row: Int) -> Facility {
         return facilities[row]
@@ -140,4 +158,9 @@ final class SearchListPresentar:SearchListInputs {
     }
     
    
+}
+extension SearchListPresentar {
+    private func judgeArray<T:Equatable>(ele:T,array:[T])->Bool {
+        return array.filter({ $0 == ele }).count == 0
+    }
 }

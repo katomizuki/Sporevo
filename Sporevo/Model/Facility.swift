@@ -1,7 +1,7 @@
 
 import Foundation
 import Alamofire
-struct Facility:Codable {
+struct Facility:Codable,Equatable {
     var id:Int
     var name:String
 }

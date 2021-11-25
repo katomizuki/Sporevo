@@ -1,10 +1,10 @@
 import Foundation
 import Alamofire
-struct Prefecture:Codable {
+struct Prefecture:Codable,Equatable {
     let name:String
     let id:Int
 }
-struct City:Codable {
+struct City:Codable,Equatable {
     let id:Int
     let name:String
 }
