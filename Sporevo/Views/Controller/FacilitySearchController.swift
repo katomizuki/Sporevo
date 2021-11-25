@@ -15,10 +15,13 @@ class FacilitySearchController:UIViewController {
         button.layer.masksToBounds = true
         return button
     }()
+    private var presentar:FacilitySearchPresentar!
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
        setupUI()
+        presentar = FacilitySearchPresentar(outputs: self)
+        presentar.deleteUserDefaults()
     }
     private func setupUI() {
         print(#function)
@@ -49,7 +52,9 @@ class FacilitySearchController:UIViewController {
     }
     @objc private func didTapDismissButton() {
         print(#function)
+        presentar.deleteUserDefaults()
         dismiss(animated: true, completion: nil)
+        
     }
 }
 // MARK: - SearchCellDelegate
@@ -57,7 +62,7 @@ extension FacilitySearchController:SeachCellDelegate {
     func searchCell(_ cell: SearchCell) {
         print(#function)
         guard let options = SearchOptions(rawValue: tableView.indexPath(for: cell)?.section ?? 0) else { return }
-        pushActions(options:options)
+        pushActions(options: options)
     }
     @objc private func didTapSearchButton() {
         print(#function)
@@ -75,6 +80,9 @@ extension FacilitySearchController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchCell.id, for: indexPath) as? SearchCell else { fatalError("can't make SeachCell Error") }
         cell.delegate = self
         cell.textLabel?.textColor = .darkGray
+        let section = indexPath.section
+        let message = presentar.getSelectedMessage(row: section)
+        cell.textLabel?.text = message
         return cell
     }
 }
@@ -116,9 +124,13 @@ extension FacilitySearchController {
         }
     }
 }
+extension FacilitySearchController:FacilitySearchOutputs {
+    
+}
 extension FacilitySearchController: SearchListControllerProtocol {
     func searchListController() {
-
+        presentar.loadUserDefaults()
+        tableView.reloadData()
     }
  
 }

@@ -25,5 +25,8 @@ class UserDefaultRepositry {
             return []
         }
     }
-//
+    func deleteFromUserDefaults(key:String) {
+        UserDefaults.standard.removeObject(forKey: key)
+    }
+
 }

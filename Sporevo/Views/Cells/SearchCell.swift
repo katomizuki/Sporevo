@@ -19,6 +19,12 @@ class SearchCell:UITableViewCell {
         button.isEnabled = true
         return button
     }()
+    private let elementLabel:UILabel = {
+        let label = UILabel()
+        label.textColor = .darkGray
+        label.font = .systemFont(ofSize: 14)
+        return label
+    }()
     // MARK: - Initialize
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
