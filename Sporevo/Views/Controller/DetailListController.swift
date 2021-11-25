@@ -20,6 +20,8 @@ class DetailListController:UIViewController {
         tableView.anchor(top:view.topAnchor,bottom: view.bottomAnchor,
                          left: view.leftAnchor,right: view.rightAnchor)
         presentar.viewdidLoad()
+        setupNav()
+        tableView.allowsMultipleSelection = true
     }
     // MARK: - Initialize
     init(option:SearchOptions,apiID:Int) {
@@ -32,11 +34,28 @@ class DetailListController:UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    private func setupNav() {
+        let leftButton = UIBarButtonItem(title: "もどる", style: .done, target: self, action: #selector(didTapPopButton))
+        navigationItem.leftBarButtonItem = leftButton
+        leftButton.tintColor = .systemMint
+    }
+    @objc private func didTapPopButton() {
+        print(#function)
+        presentar.saveUserDefaults()
+        navigationController?.popViewController(animated: true)
+    }
 }
 // MARK: - DetailListController
 extension DetailListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(#function)
+        presentar.didTapCell(row: indexPath.row)
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.accessoryType = .checkmark
+    }
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.accessoryType = .none
+        presentar.didTapCell(row: indexPath.row)
     }
 }
 // MARK: - UITableViewDataSource

@@ -5,6 +5,8 @@ protocol DetailSearchInputs {
     func city(row:Int)->City
     func priceUnit(row:Int)->PriceUnits
     var numberOfCell:Int { get }
+    func didTapCell(row:Int)
+    func saveUserDefaults()
 }
 protocol DetailSearchOutputs:AnyObject {
     func reload()
@@ -15,6 +17,8 @@ final class DetailListPresentar:DetailSearchInputs {
     private weak var outputs:DetailSearchOutputs?
     private var cities = [City]()
     private var priceUnits = [PriceUnits]()
+    private var selectedCity = [City]()
+    private var selectedPriceUnits = [PriceUnits]()
     private var cityInputs:FetchCityInputs!
     private var priceUnitsInputs:FetchMoneyInputs!
     private var option:SearchOptions
@@ -69,4 +73,43 @@ final class DetailListPresentar:DetailSearchInputs {
     func priceUnit(row: Int) -> PriceUnits {
         return priceUnits[row]
     }
+    func didTapCell(row: Int) {
+        if option == .place {
+            if judgeArray(ele: cities[row], array: selectedCity) == true {
+                selectedCity.append(cities[row])
+            } else {
+                selectedCity.remove(value: cities[row])
+            }
+        } else if option == .price {
+            if judgeArray(ele: priceUnits[row], array: selectedPriceUnits) == true {
+                selectedPriceUnits.append(priceUnits[row])
+            } else {
+                selectedPriceUnits.remove(value: priceUnits[row])
+            }
+        }
+    }
+    func saveUserDefaults() {
+        var cities:[City] = UserDefaultRepositry.shared.loadFromUserDefaults(key: "city")
+        var priceUnits:[PriceUnits] = UserDefaultRepositry.shared.loadFromUserDefaults(key: "priceUnits")
+
+        if cities.count == 0 {
+            UserDefaultRepositry.shared.saveToUserDefaults(element: selectedCity, key: "city")
+        } else {
+            cities = cities + selectedCity
+            UserDefaultRepositry.shared.saveToUserDefaults(element: cities, key: "city")
+        }
+        if priceUnits.count == 0 {
+            UserDefaultRepositry.shared.saveToUserDefaults(element: selectedPriceUnits, key: "priceUnits")
+        } else {
+            priceUnits += selectedPriceUnits
+            UserDefaultRepositry.shared.saveToUserDefaults(element: selectedPriceUnits, key: "priceUnits")
+        }
+        
+    }
 }
+extension DetailListPresentar {
+    func judgeArray<T:Equatable>(ele:T,array:[T])->Bool {
+        return array.filter({ $0 == ele }).count == 0
+    }
+}
+
