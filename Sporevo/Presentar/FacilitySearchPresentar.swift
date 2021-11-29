@@ -5,7 +5,7 @@ protocol FacilitySearchInputs {
     func loadUserDefaults()
     var selectedTag:[Tag] { get }
     var selectedSports:[Sport] { get }
-    var selectedFacility:[Facility] { get }
+    var selectedFacility:[FacilityType] { get }
     func getSelectedMessage(row:Int)->String
     func deleteUserDefaults()
 }
@@ -16,7 +16,7 @@ final class FacilitySearchPresentar:FacilitySearchInputs {
     // MARK: - Properties
     var selectedTag = [Tag]()
     var selectedSports = [Sport]()
-    var selectedFacility = [Facility]()
+    var selectedFacility = [FacilityType]()
     var selectedPriceUnits = [PriceUnits]()
     var selectedCity = [City]()
     private weak var outputs:FacilitySearchOutputs?

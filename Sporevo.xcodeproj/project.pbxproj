@@ -30,12 +30,13 @@
 		D32B13D8273A30FA0039CC06 /* CompetionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13D7273A30FA0039CC06 /* CompetionView.swift */; };
 		D32B13DC273A51C00039CC06 /* TagLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13DB273A51C00039CC06 /* TagLabel.swift */; };
 		D32B13DE273A62460039CC06 /* SeachListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13DD273A62460039CC06 /* SeachListCell.swift */; };
+		D32B8C4C2754770A0036FA98 /* Facility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8C4B2754770A0036FA98 /* Facility.swift */; };
 		D33D95A82745E114001FBC48 /* SearchMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33D95A72745E114001FBC48 /* SearchMapController.swift */; };
 		D3B72CA42749278A00253933 /* InstitutionListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B72CA32749278A00253933 /* InstitutionListController.swift */; };
 		D3D8116A274E19C300A380B1 /* SearchPresentar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81169274E19C300A380B1 /* SearchPresentar.swift */; };
 		D3D8116C274E1A2B00A380B1 /* SporevoMainPresentar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D8116B274E1A2B00A380B1 /* SporevoMainPresentar.swift */; };
 		D3D8116E274E1A4E00A380B1 /* DetailListPresentar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D8116D274E1A4E00A380B1 /* DetailListPresentar.swift */; };
-		D3D81170274E213000A380B1 /* Facility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D8116F274E213000A380B1 /* Facility.swift */; };
+		D3D81170274E213000A380B1 /* FacilityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D8116F274E213000A380B1 /* FacilityType.swift */; };
 		D3D81172274E509A00A380B1 /* Sports.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81171274E509A00A380B1 /* Sports.swift */; };
 		D3D81174274E564900A380B1 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81173274E564900A380B1 /* Tag.swift */; };
 		D3D81176274E5E8300A380B1 /* Money.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81175274E5E8300A380B1 /* Money.swift */; };
@@ -75,12 +76,13 @@
 		D32B13D7273A30FA0039CC06 /* CompetionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetionView.swift; sourceTree = "<group>"; };
 		D32B13DB273A51C00039CC06 /* TagLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagLabel.swift; sourceTree = "<group>"; };
 		D32B13DD273A62460039CC06 /* SeachListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeachListCell.swift; sourceTree = "<group>"; };
+		D32B8C4B2754770A0036FA98 /* Facility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Facility.swift; sourceTree = "<group>"; };
 		D33D95A72745E114001FBC48 /* SearchMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMapController.swift; sourceTree = "<group>"; };
 		D3B72CA32749278A00253933 /* InstitutionListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstitutionListController.swift; sourceTree = "<group>"; };
 		D3D81169274E19C300A380B1 /* SearchPresentar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresentar.swift; sourceTree = "<group>"; };
 		D3D8116B274E1A2B00A380B1 /* SporevoMainPresentar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SporevoMainPresentar.swift; sourceTree = "<group>"; };
 		D3D8116D274E1A4E00A380B1 /* DetailListPresentar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListPresentar.swift; sourceTree = "<group>"; };
-		D3D8116F274E213000A380B1 /* Facility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Facility.swift; sourceTree = "<group>"; };
+		D3D8116F274E213000A380B1 /* FacilityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityType.swift; sourceTree = "<group>"; };
 		D3D81171274E509A00A380B1 /* Sports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sports.swift; sourceTree = "<group>"; };
 		D3D81173274E564900A380B1 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		D3D81175274E5E8300A380B1 /* Money.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Money.swift; sourceTree = "<group>"; };
@@ -183,11 +185,12 @@
 			children = (
 				D32B13B8273902670039CC06 /* SearchOptions.swift */,
 				D32B13CB273964000039CC06 /* MenuOptions.swift */,
-				D3D8116F274E213000A380B1 /* Facility.swift */,
+				D3D8116F274E213000A380B1 /* FacilityType.swift */,
 				D3D81171274E509A00A380B1 /* Sports.swift */,
 				D3D81173274E564900A380B1 /* Tag.swift */,
 				D3D81175274E5E8300A380B1 /* Money.swift */,
 				D3D81177274E66AE00A380B1 /* Prefecture.swift */,
+				D32B8C4B2754770A0036FA98 /* Facility.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -374,7 +377,7 @@
 				D32B13B9273902670039CC06 /* SearchOptions.swift in Sources */,
 				D3D8117C274F619600A380B1 /* Array+Extension.swift in Sources */,
 				D3D81181274F75ED00A380B1 /* FacilitySearchPresentar.swift in Sources */,
-				D3D81170274E213000A380B1 /* Facility.swift in Sources */,
+				D3D81170274E213000A380B1 /* FacilityType.swift in Sources */,
 				D32B13BE2739038A0039CC06 /* SearchCell.swift in Sources */,
 				D32B13C0273904370039CC06 /* MainHeaderView.swift in Sources */,
 				D3D81176274E5E8300A380B1 /* Money.swift in Sources */,
@@ -397,6 +400,7 @@
 				D32B13CE273965120039CC06 /* MenuOptionsCell.swift in Sources */,
 				D33D95A82745E114001FBC48 /* SearchMapController.swift in Sources */,
 				D3D8116E274E1A4E00A380B1 /* DetailListPresentar.swift in Sources */,
+				D32B8C4C2754770A0036FA98 /* Facility.swift in Sources */,
 				D32B13C4273931EB0039CC06 /* Constants.swift in Sources */,
 				D32B13D0273A0E490039CC06 /* institutionCell.swift in Sources */,
 				D32B13CC273964000039CC06 /* MenuOptions.swift in Sources */,

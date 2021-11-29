@@ -5,7 +5,7 @@ protocol SearchListInputs {
     var numberOfCell:Int { get }
     func didSelectRowAt(id:Int)
     func prefecture(row:Int)->Prefecture
-    func facility(row:Int)->Facility
+    func facility(row:Int)->FacilityType
     func sport(row:Int)-> Sport
     func tag(row: Int)->Tag
     func moneyUnit(row:Int)->MoneyUnits
@@ -20,23 +20,23 @@ final class SearchListPresentar:SearchListInputs {
     // MARK: - Properties
     private var selectedCity = [String]()
     var selectedTag = [Tag]()
-    var selectedInstion = [Facility]()
+    var selectedInstion = [FacilityType]()
     var selectedCompetion = [Sport]()
     private var selectedPrice = [String]()
-    private var facilities = [Facility]()
+    private var facilities = [FacilityType]()
     private var sports = [Sport]()
     private var tags = [Tag]()
     private var moneyUnit = [MoneyUnits]()
     private var prefectures = [Prefecture]()
     private weak var outputs:SearchListOutputs!
-    private var model:FetchFacilityInputs!
+    private var model:FetchFacilityTypeInputs!
     private var option:SearchOptions!
     private var sportsInput:FetchSportsInputs!
     private var tagsInput:FetchTagInputs!
     private var moneyInput:FetchMoneyInputs!
     private var prefectureInput:FetchPrefectureInputs!
 
-    init(outputs:SearchListOutputs,model:FetchFacilityInputs,option:SearchOptions,sports:FetchSportsInputs,tags:FetchTagInputs,moneyUnit:FetchMoneyInputs,prefecture:FetchPrefectureInputs) {
+    init(outputs:SearchListOutputs,model:FetchFacilityTypeInputs,option:SearchOptions,sports:FetchSportsInputs,tags:FetchTagInputs,moneyUnit:FetchMoneyInputs,prefecture:FetchPrefectureInputs) {
         self.outputs = outputs
         self.model = model
         self.option = option
@@ -141,7 +141,7 @@ final class SearchListPresentar:SearchListInputs {
             }
         }
     }
-    func facility(row: Int) -> Facility {
+    func facility(row: Int) -> FacilityType {
         return facilities[row]
     }
     func sport(row: Int)-> Sport {

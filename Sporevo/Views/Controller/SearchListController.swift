@@ -32,7 +32,7 @@ final class SearchListController: UIViewController {
     init(toJudegeTableViewKeyword: SearchOptions) {
         self.toJudegeTableViewKeyword = toJudegeTableViewKeyword
         super.init(nibName: nil, bundle: nil)
-        searchListPresentar = SearchListPresentar(outputs: self,model: FetchFacility(),option: toJudegeTableViewKeyword,sports: FetchSports(), tags: FetchTags(),moneyUnit: FetchMoney(),prefecture: FetchPrefecture())
+        searchListPresentar = SearchListPresentar(outputs: self,model: FetchFacilityType(),option: toJudegeTableViewKeyword,sports: FetchSports(), tags: FetchTags(),moneyUnit: FetchMoney(),prefecture: FetchPrefecture())
     }
     
     required init?(coder: NSCoder) {
