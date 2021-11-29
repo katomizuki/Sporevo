@@ -12,10 +12,13 @@ class InstitutionListController:UIViewController {
         return colletionView
     }()
     private let headerView = MainHeaderView(image: UIImage(named: "バドミントン"))
+    private var presentar:InstituationPresentarInputs!
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .blue
         setupUI()
+        presentar = InstituationPresentar(outputs: self)
+        presentar.viewDidLoad()
     }
 
     // MARK: - setupMethod
@@ -41,7 +44,7 @@ class InstitutionListController:UIViewController {
         collectionView.anchor(top:headerView.bottomAnchor,
                               left: view.leftAnchor,
                               right: view.rightAnchor,
-                              paddingTop: 80,
+                              paddingTop: 70,
                               paddingRight: 20,
                               paddingLeft: 20,height: 1200)
     }
@@ -58,10 +61,12 @@ extension InstitutionListController: UICollectionViewDelegate {
 extension InstitutionListController:UICollectionViewDataSource {
      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
          guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InstitutionCell.id, for: indexPath) as? InstitutionCell else { fatalError("can't make InstitutionCell") }
+         let facility = presentar.facility(row: indexPath.row)
+         cell.configure(facility: facility)
         return cell
     }
      func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+         return presentar.numberOfCells
     }
 }
 // MARK: - UICollectionViewDelegateFlowLayout
@@ -71,5 +76,11 @@ extension InstitutionListController: UICollectionViewDelegateFlowLayout {
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 20
+    }
+}
+// MARK: - InstituationPresentarOutputs
+extension InstitutionListController:InstituationPresentarOutputs {
+    func reload() {
+        collectionView.reloadData()
     }
 }

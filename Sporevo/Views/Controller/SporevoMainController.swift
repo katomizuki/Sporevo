@@ -21,9 +21,6 @@ class SporevoMainController: UIViewController {
     private var mainPresentar:SporevoMainInputs!
     // MARK: - Lifecycle
     override func viewDidLoad() {
-        FetchFacility().fetchFacility { result in
-            print(result,"⚡️")
-        }
         super.viewDidLoad()
         view.backgroundColor = .darkGray
         scrollView.contentSize = CGSize(width: view.frame.size.width * 2, height: 0)

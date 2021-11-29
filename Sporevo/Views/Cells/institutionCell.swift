@@ -3,7 +3,6 @@ import UIKit
 
 class InstitutionCell: UICollectionViewCell {
     static let id = "InstitutionCell"
-    private let tagData = Constants.tagData
     private let institutionNameLabel:UILabel = {
         let label = UILabel()
         label.text = " 新国立競技場 - "
@@ -41,36 +40,32 @@ class InstitutionCell: UICollectionViewCell {
         label.font = .systemFont(ofSize: 16)
         return label
     }()
-    private let stackView:UIStackView = {
-        let stackView = UIStackView()
+    private let tagImage:UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(systemName: "tag.fill")?.withRenderingMode(.alwaysTemplate)
         iv.tintColor = .darkGray
-        stackView.addSubview(iv)
-        iv.anchor(top:stackView.topAnchor,
-                  right: stackView.leftAnchor,
-                  paddingTop: 5,
-                  paddingRight: 3,
-                  width: 20,
-                  height: 20)
-        return stackView
+        return iv
     }()
-   
+    private lazy var collectionView:UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        layout.scrollDirection = .vertical
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.delegate = self
+        cv.dataSource = self
+        cv.register(TagCell.self, forCellWithReuseIdentifier: TagCell.id)
+        return cv
+    }()
+    private var tags = [String]()    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .systemBackground
         addSubview(institutionNameLabel)
         addSubview(addressLabel)
         addSubview(competitionLabel)
-        for tag in tagData {
-            print(tag)
-            let label = TagLabel(content: tag)
-            stackView.addArrangedSubview(label)
-        }
-        stackView.distribution = .fill
-        stackView.spacing = 5
-        
-        addSubview(stackView)
+        let view = UIView()
+        addSubview(view)
+        addSubview(tagImage)
         institutionNameLabel.anchor(top:topAnchor,
                                     left: leftAnchor,
                                     right: rightAnchor)
@@ -81,18 +76,47 @@ class InstitutionCell: UICollectionViewCell {
                             paddingRight: 0,
                             paddingLeft: 25)
         competitionLabel.anchor(top: addressLabel.bottomAnchor,
-                            left: institutionNameLabel.leftAnchor,
-                            right: rightAnchor,paddingTop: 5,
-                            paddingRight: 0,
-                            paddingLeft: 25)
-        stackView.anchor(top:competitionLabel.bottomAnchor,bottom:bottomAnchor,
+                                left: institutionNameLabel.leftAnchor,
+                                right: rightAnchor,paddingTop: 5,
+                                paddingRight: 0,
+                                paddingLeft: 25)
+        tagImage.anchor(top:competitionLabel.bottomAnchor,left: institutionNameLabel.leftAnchor,paddingTop: 30, paddingLeft: 0)
+        view.addSubview(collectionView)
+        collectionView.anchor(top:view.topAnchor,bottom: view.bottomAnchor,
+                              left: view.leftAnchor,right: view.rightAnchor)
+        view.anchor(top:tagImage.topAnchor,bottom:bottomAnchor,
                          left: institutionNameLabel.leftAnchor,
                          right: rightAnchor,
-                         paddingTop: 15,paddingBottom: 80,
                          paddingRight: 10,
                          paddingLeft: 25)
     }
     required init?(coder: NSCoder) {
         fatalError()
+    }
+    func configure(facility:Facility) {
+        institutionNameLabel.text = " \(facility.name) "
+        addressLabel.text = facility.address
+        var message = String()
+        facility.sports_types.forEach {
+            message += "\($0)/"
+        }
+        message = String(message.dropLast())
+        competitionLabel.text = message
+        tags = facility.tags
+        collectionView.reloadData()
+    }
+}
+
+extension InstitutionCell:UICollectionViewDelegate {
+    
+}
+extension InstitutionCell:UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagCell.id, for: indexPath) as? TagCell else { fatalError("can't make TagCell") }
+        cell.tagLabel.text = tags[indexPath.row]
+        return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return tags.count
     }
 }

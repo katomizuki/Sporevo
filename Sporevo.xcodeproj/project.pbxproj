@@ -31,6 +31,9 @@
 		D32B13DC273A51C00039CC06 /* TagLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13DB273A51C00039CC06 /* TagLabel.swift */; };
 		D32B13DE273A62460039CC06 /* SeachListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13DD273A62460039CC06 /* SeachListCell.swift */; };
 		D32B8C4C2754770A0036FA98 /* Facility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8C4B2754770A0036FA98 /* Facility.swift */; };
+		D32B8C4E27547D9B0036FA98 /* InstituationPresentar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8C4D27547D9B0036FA98 /* InstituationPresentar.swift */; };
+		D32B8C50275486AD0036FA98 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8C4F275486AD0036FA98 /* String+Extension.swift */; };
+		D32B8C5227548E570036FA98 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8C5127548E570036FA98 /* TagCell.swift */; };
 		D33D95A82745E114001FBC48 /* SearchMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33D95A72745E114001FBC48 /* SearchMapController.swift */; };
 		D3B72CA42749278A00253933 /* InstitutionListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B72CA32749278A00253933 /* InstitutionListController.swift */; };
 		D3D8116A274E19C300A380B1 /* SearchPresentar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81169274E19C300A380B1 /* SearchPresentar.swift */; };
@@ -77,6 +80,9 @@
 		D32B13DB273A51C00039CC06 /* TagLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagLabel.swift; sourceTree = "<group>"; };
 		D32B13DD273A62460039CC06 /* SeachListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeachListCell.swift; sourceTree = "<group>"; };
 		D32B8C4B2754770A0036FA98 /* Facility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Facility.swift; sourceTree = "<group>"; };
+		D32B8C4D27547D9B0036FA98 /* InstituationPresentar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstituationPresentar.swift; sourceTree = "<group>"; };
+		D32B8C4F275486AD0036FA98 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		D32B8C5127548E570036FA98 /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
 		D33D95A72745E114001FBC48 /* SearchMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMapController.swift; sourceTree = "<group>"; };
 		D3B72CA32749278A00253933 /* InstitutionListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstitutionListController.swift; sourceTree = "<group>"; };
 		D3D81169274E19C300A380B1 /* SearchPresentar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresentar.swift; sourceTree = "<group>"; };
@@ -166,6 +172,7 @@
 				D32B13C3273931EB0039CC06 /* Constants.swift */,
 				D3D8117B274F619600A380B1 /* Array+Extension.swift */,
 				D3D81182274F98DF00A380B1 /* ViewController+Extension.swift */,
+				D32B8C4F275486AD0036FA98 /* String+Extension.swift */,
 			);
 			path = Extensiton;
 			sourceTree = "<group>";
@@ -202,6 +209,7 @@
 				D3D8116B274E1A2B00A380B1 /* SporevoMainPresentar.swift */,
 				D3D8116D274E1A4E00A380B1 /* DetailListPresentar.swift */,
 				D3D81180274F75ED00A380B1 /* FacilitySearchPresentar.swift */,
+				D32B8C4D27547D9B0036FA98 /* InstituationPresentar.swift */,
 			);
 			path = Presentar;
 			sourceTree = "<group>";
@@ -213,6 +221,7 @@
 				D32B13CD273965120039CC06 /* MenuOptionsCell.swift */,
 				D32B13CF273A0E480039CC06 /* institutionCell.swift */,
 				D32B13DD273A62460039CC06 /* SeachListCell.swift */,
+				D32B8C5127548E570036FA98 /* TagCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -384,6 +393,7 @@
 				D32B13C227392BCC0039CC06 /* SearchListController.swift in Sources */,
 				D3D8117A274EF19300A380B1 /* DetailListController.swift in Sources */,
 				D312C2212742228100DF7E83 /* FacilitySearchController.swift in Sources */,
+				D32B8C5227548E570036FA98 /* TagCell.swift in Sources */,
 				D32B13DE273A62460039CC06 /* SeachListCell.swift in Sources */,
 				D3D8117F274F6EA500A380B1 /* UserDefaultRepositry.swift in Sources */,
 				D32B13CA273961CD0039CC06 /* MenuController.swift in Sources */,
@@ -391,12 +401,14 @@
 				D3D8116A274E19C300A380B1 /* SearchPresentar.swift in Sources */,
 				D32B137E2738D8430039CC06 /* SporevoMainController.swift in Sources */,
 				D3D81178274E66AE00A380B1 /* Prefecture.swift in Sources */,
+				D32B8C50275486AD0036FA98 /* String+Extension.swift in Sources */,
 				D3D8116C274E1A2B00A380B1 /* SporevoMainPresentar.swift in Sources */,
 				D3D81172274E509A00A380B1 /* Sports.swift in Sources */,
 				D32B137A2738D8430039CC06 /* AppDelegate.swift in Sources */,
 				D32B13D2273A25E00039CC06 /* InstitutionDetailController.swift in Sources */,
 				D32B13B7273901230039CC06 /* Anchor+Extension.swift in Sources */,
 				D32B137C2738D8430039CC06 /* SceneDelegate.swift in Sources */,
+				D32B8C4E27547D9B0036FA98 /* InstituationPresentar.swift in Sources */,
 				D32B13CE273965120039CC06 /* MenuOptionsCell.swift in Sources */,
 				D33D95A82745E114001FBC48 /* SearchMapController.swift in Sources */,
 				D3D8116E274E1A4E00A380B1 /* DetailListPresentar.swift in Sources */,

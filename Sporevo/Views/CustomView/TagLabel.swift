@@ -18,10 +18,13 @@ class TagLabel: UILabel {
          layer.cornerRadius = 10
          textAlignment = .center
     }
+    override func drawText(in rect: CGRect) {
+        super.drawText(in: rect.inset(by: UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)))
+    }
     override var intrinsicContentSize: CGSize {
         var intrinsticContentSize = super.intrinsicContentSize
-        intrinsticContentSize.height += padding.top + padding.bottom
-        intrinsticContentSize.width += padding.left + padding.right
+        intrinsticContentSize.height += 10
+        intrinsticContentSize.width += 10
         return intrinsticContentSize
     }
     
