@@ -40,20 +40,24 @@ class InstitutionCell: UICollectionViewCell {
         label.font = .systemFont(ofSize: 16)
         return label
     }()
-    private let tagImage:UIImageView = {
-        let iv = UIImageView()
-        iv.image = UIImage(systemName: "tag.fill")?.withRenderingMode(.alwaysTemplate)
-        iv.tintColor = .darkGray
-        return iv
-    }()
+//    private let tagImage:UIImageView = {
+//        let iv = UIImageView()
+//        iv.image = UIImage(systemName: "tag.fill")?.withRenderingMode(.alwaysTemplate)
+//        iv.tintColor = .darkGray
+//        return iv
+//    }()
     private lazy var collectionView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+//        layout.minimumInteritemSpacing = 5
+//        layout.minimumLineSpacing = 5
         layout.scrollDirection = .vertical
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.delegate = self
         cv.dataSource = self
+        cv.contentMode = .left
         cv.register(TagCell.self, forCellWithReuseIdentifier: TagCell.id)
+        
         return cv
     }()
     private var tags = [String]()    
@@ -65,7 +69,7 @@ class InstitutionCell: UICollectionViewCell {
         addSubview(competitionLabel)
         let view = UIView()
         addSubview(view)
-        addSubview(tagImage)
+//        addSubview(tagImage)
         institutionNameLabel.anchor(top:topAnchor,
                                     left: leftAnchor,
                                     right: rightAnchor)
@@ -80,13 +84,12 @@ class InstitutionCell: UICollectionViewCell {
                                 right: rightAnchor,paddingTop: 5,
                                 paddingRight: 0,
                                 paddingLeft: 25)
-        tagImage.anchor(top:competitionLabel.bottomAnchor,left: institutionNameLabel.leftAnchor,paddingTop: 30, paddingLeft: 0)
         view.addSubview(collectionView)
         collectionView.anchor(top:view.topAnchor,bottom: view.bottomAnchor,
                               left: view.leftAnchor,right: view.rightAnchor)
-        view.anchor(top:tagImage.topAnchor,bottom:bottomAnchor,
+        view.anchor(top:competitionLabel.bottomAnchor,bottom:bottomAnchor,
                          left: institutionNameLabel.leftAnchor,
-                         right: rightAnchor,
+                         right: rightAnchor,paddingTop: 20,
                          paddingRight: 10,
                          paddingLeft: 25)
     }
@@ -113,10 +116,13 @@ extension InstitutionCell:UICollectionViewDelegate {
 extension InstitutionCell:UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagCell.id, for: indexPath) as? TagCell else { fatalError("can't make TagCell") }
-        cell.tagLabel.text = tags[indexPath.row]
+        cell.tagLabel.text = "# \(tags[indexPath.row])"
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return tags.count
     }
 }
+
+
+

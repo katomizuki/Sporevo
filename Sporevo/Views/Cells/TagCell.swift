@@ -3,12 +3,12 @@ import UIKit
 
 final class TagCell:UICollectionViewCell {
     static let id = String(describing: type(of: self))
-    let tagLabel = TagLabel(content: "アイウエオfafafafafafafafaf")
+    let tagLabel = TagLabel(content: "")
     override init(frame: CGRect) {
         super.init(frame: .zero)
         addSubview(tagLabel)
         tagLabel.anchor(top:topAnchor,bottom: bottomAnchor,left: leftAnchor,right: rightAnchor,paddingTop: 0,paddingBottom: 0,
-                        paddingRight: 0,paddingLeft: 0,centerX:centerXAnchor,centerY:centerYAnchor)
+                        paddingRight: 0,paddingLeft: 0)
     }
     
     required init?(coder: NSCoder) {

@@ -17,6 +17,7 @@ class TagLabel: UILabel {
          layer.masksToBounds = true
          layer.cornerRadius = 10
          textAlignment = .center
+         preferredMaxLayoutWidth = 80
     }
     override func drawText(in rect: CGRect) {
         super.drawText(in: rect.inset(by: UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)))
