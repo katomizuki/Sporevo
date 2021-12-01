@@ -15,6 +15,7 @@ final class SearchListController: UIViewController {
         return tableView
     }()
     weak var delegate:SearchListControllerProtocol?
+    private var selectedCell:[String:Bool] = [String:Bool]()
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,13 +65,31 @@ final class SearchListController: UIViewController {
 extension SearchListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function)
-        let cell = tableView.cellForRow(at: indexPath)
+        guard let cell = tableView.cellForRow(at: indexPath) else { return }
         searchListPresentar.didSelectRowAt(id: indexPath.row)
-        cell?.accessoryType = .checkmark
+        let key = "\(indexPath.row)"
+
+        if cell.accessoryType == .none {
+           cell.accessoryType = .checkmark
+            selectedCell[key] = true
+            // 値を入れる
+        } else {
+            cell.accessoryType = .none
+            //削除する
+            selectedCell.removeValue(forKey: key)
+        }
     }
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
-        cell?.accessoryType = .none
+        guard let cell = tableView.cellForRow(at: indexPath) else { return }
+        // cellの.no
+        let key = "\(indexPath.row)"
+        if cell.accessoryType == .none {
+           cell.accessoryType = .checkmark
+            selectedCell[key] = true
+        } else {
+            cell.accessoryType = .none
+            selectedCell.removeValue(forKey: key)
+        }
         searchListPresentar.didSelectRowAt(id: indexPath.row)
     }
 }
@@ -80,6 +99,12 @@ extension SearchListController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchListCell.id,for: indexPath) as? SearchListCell else { fatalError("can't make SearchListCell Error") }
         cell.textLabel?.text = getMessage(row: indexPath.row)
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
+        let key = "\(indexPath.row)"
+        if selectedCell[key] != nil {
+            cell.accessoryType = .checkmark
+                } else {
+            cell.accessoryType = .none
+                }
         return cell
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -13,6 +13,7 @@ class DetailListController:UIViewController {
     private var option:SearchOptions
     private var apiID:Int?
     private var presentar:DetailSearchInputs!
+    private var selectedCell:[String:Bool] = [String:Bool]()
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,12 +50,26 @@ class DetailListController:UIViewController {
 extension DetailListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presentar.didTapCell(row: indexPath.row)
-        let cell = tableView.cellForRow(at: indexPath)
-        cell?.accessoryType = .checkmark
+        guard let cell = tableView.cellForRow(at: indexPath) else { return }
+        let key = "\(indexPath.row)"
+        if cell.accessoryType == .none {
+            cell.accessoryType = .checkmark
+            selectedCell[key] = true
+        } else {
+            cell.accessoryType = .none
+            selectedCell.removeValue(forKey: key)
+        }
     }
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
-        cell?.accessoryType = .none
+        guard let cell = tableView.cellForRow(at: indexPath) else { return }
+        let key = "\(indexPath.row)"
+        if cell.accessoryType == .none {
+            cell.accessoryType = .checkmark
+            selectedCell[key] = true
+        } else {
+            cell.accessoryType = .none
+            selectedCell.removeValue(forKey: key)
+        }
         presentar.didTapCell(row: indexPath.row)
     }
 }
@@ -67,6 +82,12 @@ extension DetailListController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchListCell.id, for: indexPath) as? SearchListCell else { fatalError("can't make SearchListCell") }
         cell.textLabel?.text = getMessage(row: indexPath.row)
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
+        let key = "\(indexPath.row)"
+        if selectedCell[key] != nil {
+            cell.accessoryType = .checkmark
+        } else {
+            cell.accessoryType = .none
+        }
         return cell
     }
 }
