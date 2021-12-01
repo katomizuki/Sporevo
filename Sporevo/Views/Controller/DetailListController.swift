@@ -66,6 +66,7 @@ extension DetailListController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchListCell.id, for: indexPath) as? SearchListCell else { fatalError("can't make SearchListCell") }
         cell.textLabel?.text = getMessage(row: indexPath.row)
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell
     }
 }

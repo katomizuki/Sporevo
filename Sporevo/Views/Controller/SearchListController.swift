@@ -65,14 +65,12 @@ extension SearchListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function)
         let cell = tableView.cellForRow(at: indexPath)
-        cell?.backgroundColor = .clear
         searchListPresentar.didSelectRowAt(id: indexPath.row)
         cell?.accessoryType = .checkmark
     }
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         cell?.accessoryType = .none
-        cell?.backgroundColor = .clear
         searchListPresentar.didSelectRowAt(id: indexPath.row)
     }
 }
@@ -81,7 +79,7 @@ extension SearchListController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchListCell.id,for: indexPath) as? SearchListCell else { fatalError("can't make SearchListCell Error") }
         cell.textLabel?.text = getMessage(row: indexPath.row)
-        cell.backgroundColor = .clear
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
