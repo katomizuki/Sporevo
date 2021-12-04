@@ -13,6 +13,7 @@ protocol SearchListInputs {
     var sectionsCount:Int { get }
     func sectionTitle(section:Int) ->Prefecture
     func didTapPlaceSection(section:Int)
+    func cityies(section:Int)->[City]
 }
 protocol SearchListOutputs:AnyObject {
     func reload()
@@ -32,7 +33,7 @@ final class SearchListPresentar:SearchListInputs {
     private var tags = [Tag]()
     private var moneyUnit = [MoneyUnits]()
     private var prefectures = [Prefecture]()
-    private var sections = [Section]()
+    private var sections = [CitySection]()
     private weak var outputs:SearchListOutputs!
     private var model:FetchFacilityTypeInputs!
     private var option:SearchOptions!
@@ -92,7 +93,7 @@ final class SearchListPresentar:SearchListInputs {
                             switch result {
                             case .success(let city):
                                 defer { group.leave() }
-                                let section = Section(pre: pre, items: city)
+                                let section = CitySection(pre: pre, items: city)
                                 self.sections.append(section)
                             case .failure(let error):
                                 print(error)
@@ -207,6 +208,9 @@ final class SearchListPresentar:SearchListInputs {
     func didTapPlaceSection(section: Int) {
         sections[section].isOpened = !sections[section].isOpened
         self.outputs.reloadSections(section: section)
+    }
+    func cityies(section: Int) -> [City] {
+        return sections[section].items
     }
 }
 extension SearchListPresentar {

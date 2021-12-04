@@ -35,6 +35,8 @@
 		D32B8C50275486AD0036FA98 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8C4F275486AD0036FA98 /* String+Extension.swift */; };
 		D32B8C5227548E570036FA98 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8C5127548E570036FA98 /* TagCell.swift */; };
 		D33D95A82745E114001FBC48 /* SearchMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33D95A72745E114001FBC48 /* SearchMapController.swift */; };
+		D351FF3A275B988F00AA518B /* CitySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D351FF39275B988F00AA518B /* CitySection.swift */; };
+		D351FF3C275B98DD00AA518B /* MoneySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D351FF3B275B98DD00AA518B /* MoneySection.swift */; };
 		D3B72CA42749278A00253933 /* InstitutionListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B72CA32749278A00253933 /* InstitutionListController.swift */; };
 		D3D8116A274E19C300A380B1 /* SearchPresentar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81169274E19C300A380B1 /* SearchPresentar.swift */; };
 		D3D8116C274E1A2B00A380B1 /* SporevoMainPresentar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D8116B274E1A2B00A380B1 /* SporevoMainPresentar.swift */; };
@@ -84,6 +86,8 @@
 		D32B8C4F275486AD0036FA98 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		D32B8C5127548E570036FA98 /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
 		D33D95A72745E114001FBC48 /* SearchMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMapController.swift; sourceTree = "<group>"; };
+		D351FF39275B988F00AA518B /* CitySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySection.swift; sourceTree = "<group>"; };
+		D351FF3B275B98DD00AA518B /* MoneySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneySection.swift; sourceTree = "<group>"; };
 		D3B72CA32749278A00253933 /* InstitutionListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstitutionListController.swift; sourceTree = "<group>"; };
 		D3D81169274E19C300A380B1 /* SearchPresentar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresentar.swift; sourceTree = "<group>"; };
 		D3D8116B274E1A2B00A380B1 /* SporevoMainPresentar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SporevoMainPresentar.swift; sourceTree = "<group>"; };
@@ -198,6 +202,8 @@
 				D3D81175274E5E8300A380B1 /* Money.swift */,
 				D3D81177274E66AE00A380B1 /* Prefecture.swift */,
 				D32B8C4B2754770A0036FA98 /* Facility.swift */,
+				D351FF39275B988F00AA518B /* CitySection.swift */,
+				D351FF3B275B98DD00AA518B /* MoneySection.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -395,12 +401,14 @@
 				D312C2212742228100DF7E83 /* FacilitySearchController.swift in Sources */,
 				D32B8C5227548E570036FA98 /* TagCell.swift in Sources */,
 				D32B13DE273A62460039CC06 /* SeachListCell.swift in Sources */,
+				D351FF3C275B98DD00AA518B /* MoneySection.swift in Sources */,
 				D3D8117F274F6EA500A380B1 /* UserDefaultRepositry.swift in Sources */,
 				D32B13CA273961CD0039CC06 /* MenuController.swift in Sources */,
 				D32B13D8273A30FA0039CC06 /* CompetionView.swift in Sources */,
 				D3D8116A274E19C300A380B1 /* SearchPresentar.swift in Sources */,
 				D32B137E2738D8430039CC06 /* SporevoMainController.swift in Sources */,
 				D3D81178274E66AE00A380B1 /* Prefecture.swift in Sources */,
+				D351FF3A275B988F00AA518B /* CitySection.swift in Sources */,
 				D32B8C50275486AD0036FA98 /* String+Extension.swift in Sources */,
 				D3D8116C274E1A2B00A380B1 /* SporevoMainPresentar.swift in Sources */,
 				D3D81172274E509A00A380B1 /* Sports.swift in Sources */,

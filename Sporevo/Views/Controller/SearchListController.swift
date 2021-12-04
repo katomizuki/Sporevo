@@ -1,17 +1,6 @@
 import Foundation
 import UIKit
 
-struct Section {
-    let pre:Prefecture
-    let items:[City]
-    var isOpened = false
-    init(pre:Prefecture,items:[City],isOpened:Bool = false) {
-        self.pre = pre
-        self.items = items
-        self.isOpened = isOpened
-    }
-}
-
 protocol SearchListControllerProtocol:AnyObject {
     func searchListController()
 }
@@ -84,8 +73,12 @@ extension SearchListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function)
         if toJudegeTableViewKeyword == .place {
+            if indexPath.row == 0 {
             tableView.deselectRow(at: indexPath, animated: true)
             searchListPresentar.didTapPlaceSection(section: indexPath.section)
+            } else {
+                print("tap sub cell")
+            }
         } else {
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
         searchListPresentar.didSelectRowAt(id: indexPath.row)
@@ -141,7 +134,6 @@ extension SearchListController:SearchListOutputs {
             self.tableView.reloadSections([section], with: .none)
         }
     }
-    
     func reload() {
         DispatchQueue.main.async {
             self.indicator.stopAnimating()
@@ -166,10 +158,13 @@ extension SearchListController {
             let model = searchListPresentar.sport(row: row)
             message = model.name
         case .place:
-            
             let model = searchListPresentar.sectionTitle(section: section)
+            if row == 0 {
             message = model.name
-            
+            } else {
+                let cities = searchListPresentar.cityies(section: section)
+                message = cities[row - 1].name
+            }
         case .price:
             let model = searchListPresentar.moneyUnit(row: row)
             message = model.name
