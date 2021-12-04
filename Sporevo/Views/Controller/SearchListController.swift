@@ -1,5 +1,17 @@
 import Foundation
 import UIKit
+
+struct Section {
+    let pre:Prefecture
+    let items:[City]
+    var isOpened = false
+    init(pre:Prefecture,items:[City],isOpened:Bool = false) {
+        self.pre = pre
+        self.items = items
+        self.isOpened = isOpened
+    }
+}
+
 protocol SearchListControllerProtocol:AnyObject {
     func searchListController()
 }
@@ -16,6 +28,7 @@ final class SearchListController: UIViewController {
     }()
     weak var delegate:SearchListControllerProtocol?
     private var selectedCell:[String:Bool] = [String:Bool]()
+    private let indicator = UIActivityIndicatorView()
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +36,11 @@ final class SearchListController: UIViewController {
         setupTableView()
         setupNav()
         searchListPresentar.viewDidLoad(toJudegeTableViewKeyword)
+        view.addSubview(indicator)
+        indicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        indicator.center = view.center
+        indicator.hidesWhenStopped = true
+        indicator.startAnimating()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -33,7 +51,7 @@ final class SearchListController: UIViewController {
     init(toJudegeTableViewKeyword: SearchOptions) {
         self.toJudegeTableViewKeyword = toJudegeTableViewKeyword
         super.init(nibName: nil, bundle: nil)
-        searchListPresentar = SearchListPresentar(outputs: self,model: FetchFacilityType(),option: toJudegeTableViewKeyword,sports: FetchSports(), tags: FetchTags(),moneyUnit: FetchMoney(),prefecture: FetchPrefecture())
+        searchListPresentar = SearchListPresentar(outputs: self,model: FetchFacilityType(),option: toJudegeTableViewKeyword,sports: FetchSports(), tags: FetchTags(),moneyUnit: FetchMoney(),prefecture: FetchPrefecture(),city: FetchPrefecture())
     }
     
     required init?(coder: NSCoder) {
@@ -65,26 +83,28 @@ final class SearchListController: UIViewController {
 extension SearchListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function)
+        if toJudegeTableViewKeyword == .place {
+            tableView.deselectRow(at: indexPath, animated: true)
+            searchListPresentar.didTapPlaceSection(section: indexPath.section)
+        } else {
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
         searchListPresentar.didSelectRowAt(id: indexPath.row)
         let key = "\(indexPath.row)"
-
         if cell.accessoryType == .none {
-           cell.accessoryType = .checkmark
+            cell.accessoryType = .checkmark
             selectedCell[key] = true
-            // 値を入れる
         } else {
             cell.accessoryType = .none
-            //削除する
             selectedCell.removeValue(forKey: key)
         }
     }
+ }
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
         // cellの.no
         let key = "\(indexPath.row)"
         if cell.accessoryType == .none {
-           cell.accessoryType = .checkmark
+            cell.accessoryType = .checkmark
             selectedCell[key] = true
         } else {
             cell.accessoryType = .none
@@ -95,26 +115,36 @@ extension SearchListController: UITableViewDelegate {
 }
 // MARK: - UITableViewDataSource
 extension SearchListController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return searchListPresentar.sectionsCount
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchListCell.id,for: indexPath) as? SearchListCell else { fatalError("can't make SearchListCell Error") }
-        cell.textLabel?.text = getMessage(row: indexPath.row)
+        cell.textLabel?.text = getMessage(indexPath: indexPath)
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         let key = "\(indexPath.row)"
         if selectedCell[key] != nil {
             cell.accessoryType = .checkmark
-                } else {
+        } else {
             cell.accessoryType = .none
-                }
+        }
         return cell
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchListPresentar.numberOfCell
+        return searchListPresentar.numberOfCell(section: section)
     }
 }
 // MARK: - SearchListOutputs
 extension SearchListController:SearchListOutputs {
+    func reloadSections(section: Int) {
+        DispatchQueue.main.async {
+            self.tableView.reloadSections([section], with: .none)
+        }
+    }
+    
     func reload() {
         DispatchQueue.main.async {
+            self.indicator.stopAnimating()
             self.tableView.reloadData()
         }
     }
@@ -124,7 +154,9 @@ extension SearchListController:SearchListOutputs {
     }
 }
 extension SearchListController {
-    private func getMessage(row:Int)->String {
+    private func getMessage(indexPath:IndexPath)->String {
+        let row = indexPath.row
+        let section = indexPath.section
         var message = String()
         switch toJudegeTableViewKeyword {
         case .institution:
@@ -134,14 +166,16 @@ extension SearchListController {
             let model = searchListPresentar.sport(row: row)
             message = model.name
         case .place:
-            let model = searchListPresentar.prefecture(row: row)
+            
+            let model = searchListPresentar.sectionTitle(section: section)
             message = model.name
+            
         case .price:
             let model = searchListPresentar.moneyUnit(row: row)
             message = model.name
         case .tag:
             let model = searchListPresentar.tag(row: row)
-           message = model.name
+            message = model.name
         }
         return message
     }

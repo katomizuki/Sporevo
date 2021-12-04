@@ -2,7 +2,7 @@ import Foundation
 
 protocol SearchListInputs {
     func viewDidLoad(_ tojudgeKeywordOptions:SearchOptions)
-    var numberOfCell:Int { get }
+    func numberOfCell(section:Int)->Int
     func didSelectRowAt(id:Int)
     func prefecture(row:Int)->Prefecture
     func facility(row:Int)->FacilityType
@@ -10,9 +10,13 @@ protocol SearchListInputs {
     func tag(row: Int)->Tag
     func moneyUnit(row:Int)->MoneyUnits
     func saveUserDefaults()
+    var sectionsCount:Int { get }
+    func sectionTitle(section:Int) ->Prefecture
+    func didTapPlaceSection(section:Int)
 }
 protocol SearchListOutputs:AnyObject {
     func reload()
+    func reloadSections(section:Int)
     func detailListController(id:Int)
 }
 
@@ -28,6 +32,7 @@ final class SearchListPresentar:SearchListInputs {
     private var tags = [Tag]()
     private var moneyUnit = [MoneyUnits]()
     private var prefectures = [Prefecture]()
+    private var sections = [Section]()
     private weak var outputs:SearchListOutputs!
     private var model:FetchFacilityTypeInputs!
     private var option:SearchOptions!
@@ -35,8 +40,8 @@ final class SearchListPresentar:SearchListInputs {
     private var tagsInput:FetchTagInputs!
     private var moneyInput:FetchMoneyInputs!
     private var prefectureInput:FetchPrefectureInputs!
-
-    init(outputs:SearchListOutputs,model:FetchFacilityTypeInputs,option:SearchOptions,sports:FetchSportsInputs,tags:FetchTagInputs,moneyUnit:FetchMoneyInputs,prefecture:FetchPrefectureInputs) {
+    private var cityInput:FetchCityInputs!
+    init(outputs:SearchListOutputs,model:FetchFacilityTypeInputs,option:SearchOptions,sports:FetchSportsInputs,tags:FetchTagInputs,moneyUnit:FetchMoneyInputs,prefecture:FetchPrefectureInputs,city:FetchCityInputs) {
         self.outputs = outputs
         self.model = model
         self.option = option
@@ -44,11 +49,21 @@ final class SearchListPresentar:SearchListInputs {
         self.tagsInput = tags
         self.moneyInput = moneyUnit
         self.prefectureInput = prefecture
+        self.cityInput = city
     }
-    var numberOfCell: Int {
+    var sectionsCount: Int {
+        return option == .place ? sections.count : 1
+    }
+    func numberOfCell(section:Int)->Int {
         switch option {
         case .place:
-            return prefectures.count
+            //sectionsが流れてくるので、isOpendで開いているかどうかをチャックする、しまっていたら1を返す。
+            let section = sections[section]
+            if section.isOpened {
+                return section.items.count + 1
+            } else {
+                return 1
+            }
         case .institution:
             return facilities.count
         case .competition:
@@ -69,7 +84,24 @@ final class SearchListPresentar:SearchListInputs {
                 switch result {
                 case .success(let prefecture):
                     self.prefectures = prefecture
-                    self.outputs.reload()
+                    let group = DispatchGroup()
+                    prefecture.forEach { pre in
+                        group.enter()
+                        let id = Int(exactly: pre.id)!
+                        self.cityInput.fetchCities(id: id) { result in
+                            switch result {
+                            case .success(let city):
+                                defer { group.leave() }
+                                let section = Section(pre: pre, items: city)
+                                self.sections.append(section)
+                            case .failure(let error):
+                                print(error)
+                            }
+                        }
+                    }
+                    group.notify(queue: .main) {
+                        self.outputs.reload()
+                    }
                 case.failure(let error):
                     print(error)
                 }
@@ -114,6 +146,8 @@ final class SearchListPresentar:SearchListInputs {
                 }
             }
         }
+       
+
     }
     func didSelectRowAt(id:Int) {
         if option == .place || option == .price {
@@ -156,6 +190,9 @@ final class SearchListPresentar:SearchListInputs {
     func prefecture(row:Int)->Prefecture {
         return prefectures[row]
     }
+    func sectionTitle(section: Int) -> Prefecture {
+        return sections[section].pre
+    }
     func saveUserDefaults() {
         if option == .institution {
             UserDefaultRepositry.shared.saveToUserDefaults(element: selectedInstion, key: "facility")
@@ -166,6 +203,10 @@ final class SearchListPresentar:SearchListInputs {
         if option == .competition {
             UserDefaultRepositry.shared.saveToUserDefaults(element: selectedCompetion, key: "sport")
         }
+    }
+    func didTapPlaceSection(section: Int) {
+        sections[section].isOpened = !sections[section].isOpened
+        self.outputs.reloadSections(section: section)
     }
 }
 extension SearchListPresentar {
