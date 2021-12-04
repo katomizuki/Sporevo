@@ -72,7 +72,7 @@ final class SearchListController: UIViewController {
 extension SearchListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function)
-        if toJudegeTableViewKeyword == .place {
+        if toJudegeTableViewKeyword == .place || toJudegeTableViewKeyword == .price {
             if indexPath.row == 0 {
             tableView.deselectRow(at: indexPath, animated: true)
             searchListPresentar.didTapPlaceSection(section: indexPath.section)
@@ -166,8 +166,13 @@ extension SearchListController {
                 message = cities[row - 1].name
             }
         case .price:
-            let model = searchListPresentar.moneyUnit(row: row)
-            message = model.name
+            let model = searchListPresentar.sectionMoneyUnit(section: section)
+            if row == 0 {
+                message = model.name
+            } else {
+                let prices = searchListPresentar.prices(section: section)
+                message = prices[row - 1].name
+            }
         case .tag:
             let model = searchListPresentar.tag(row: row)
             message = model.name

@@ -15,6 +15,7 @@ protocol SearchListInputs {
     func didTapPlaceSection(section:Int)
     func cityies(section:Int)->[City]
     func sectionMoneyUnit(section:Int)-> MoneyUnits
+    func prices(section:Int)->[PriceUnits]
 }
 protocol SearchListOutputs:AnyObject {
     func reload()
@@ -242,7 +243,7 @@ final class SearchListPresentar:SearchListInputs {
         if option == .place {
             citySections[section].isOpened = !citySections[section].isOpened
         } else {
-            moneySections[section].isOpened = !citySections[section].isOpened
+            moneySections[section].isOpened = !moneySections[section].isOpened
         }
         self.outputs.reloadSections(section: section)
     }
