@@ -4,18 +4,10 @@ protocol SearchListInputs {
     func viewDidLoad(_ tojudgeKeywordOptions:SearchOptions)
     func numberOfCell(section:Int)->Int
     func didSelectRowAt(id:Int)
-    func prefecture(row:Int)->Prefecture
-    func facility(row:Int)->FacilityType
-    func sport(row:Int)-> Sport
-    func tag(row: Int)->Tag
-    func moneyUnit(row:Int)->MoneyUnits
     func saveUserDefaults()
     var sectionsCount:Int { get }
-    func sectionTitle(section:Int) ->Prefecture
-    func didTapPlaceSection(section:Int)
-    func cityies(section:Int)->[City]
-    func sectionMoneyUnit(section:Int)-> MoneyUnits
-    func prices(section:Int)->[PriceUnits]
+    func didTapSection(section:Int)
+    func getMessage(indexPath:IndexPath)->String
 }
 protocol SearchListOutputs:AnyObject {
     func reload()
@@ -24,11 +16,12 @@ protocol SearchListOutputs:AnyObject {
 }
 
 final class SearchListPresentar:SearchListInputs {
+    
     // MARK: - Properties
     private var selectedCity = [String]()
-    var selectedTag = [Tag]()
-    var selectedInstion = [FacilityType]()
-    var selectedCompetion = [Sport]()
+    private var selectedTag = [Tag]()
+    private var selectedInstion = [FacilityType]()
+    private var selectedCompetion = [Sport]()
     private var selectedPrice = [String]()
     private var facilities = [FacilityType]()
     private var sports = [Sport]()
@@ -207,27 +200,6 @@ final class SearchListPresentar:SearchListInputs {
             }
         }
     }
-    func facility(row: Int) -> FacilityType {
-        return facilities[row]
-    }
-    func sport(row: Int)-> Sport {
-        return sports[row]
-    }
-    func tag(row:Int) -> Tag {
-        return tags[row]
-    }
-    func moneyUnit(row:Int)->MoneyUnits {
-        return moneyUnit[row]
-    }
-    func prefecture(row:Int)->Prefecture {
-        return prefectures[row]
-    }
-    func sectionTitle(section: Int) -> Prefecture {
-        return citySections[section].pre
-    }
-    func sectionMoneyUnit(section:Int)-> MoneyUnits {
-        return moneySections[section].units
-    }
     func saveUserDefaults() {
         if option == .institution {
             UserDefaultRepositry.shared.saveToUserDefaults(element: selectedInstion, key: "facility")
@@ -239,7 +211,7 @@ final class SearchListPresentar:SearchListInputs {
             UserDefaultRepositry.shared.saveToUserDefaults(element: selectedCompetion, key: "sport")
         }
     }
-    func didTapPlaceSection(section: Int) {
+    func didTapSection(section: Int) {
         if option == .place {
             citySections[section].isOpened = !citySections[section].isOpened
         } else {
@@ -247,12 +219,39 @@ final class SearchListPresentar:SearchListInputs {
         }
         self.outputs.reloadSections(section: section)
     }
-    func cityies(section: Int) -> [City] {
-        return citySections[section].items
+    func getMessage(indexPath: IndexPath) -> String {
+        let row = indexPath.row
+        let section = indexPath.section
+        var message = String()
+        switch option {
+        case .institution:
+            message = self.facilities[row].name
+        case.competition:
+            message = self.sports[row].name
+        case .place:
+            let model = self.citySections[section].pre
+            if row == 0 {
+            message = model.name
+            } else {
+                let cities = self.citySections[section].items
+                message = cities[row - 1].name
+            }
+        case .price:
+            let model = self.moneySections[section].units
+            if row == 0 {
+                message = model.name
+            } else {
+                let prices = self.moneySections[section].prices
+                message = prices[row - 1].name
+            }
+        case .tag:
+            message = self.tags[row].name
+        case .none:
+            break
+        }
+        return message
     }
-    func prices(section:Int)->[PriceUnits] {
-        return moneySections[section].prices
-    }
+    
 }
 extension SearchListPresentar {
     private func judgeArray<T:Equatable>(ele:T,array:[T])->Bool {

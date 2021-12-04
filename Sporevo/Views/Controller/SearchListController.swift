@@ -75,7 +75,7 @@ extension SearchListController: UITableViewDelegate {
         if toJudegeTableViewKeyword == .place || toJudegeTableViewKeyword == .price {
             if indexPath.row == 0 {
             tableView.deselectRow(at: indexPath, animated: true)
-            searchListPresentar.didTapPlaceSection(section: indexPath.section)
+            searchListPresentar.didTapSection(section: indexPath.section)
             } else {
                 print("tap sub cell")
             }
@@ -113,7 +113,7 @@ extension SearchListController: UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchListCell.id,for: indexPath) as? SearchListCell else { fatalError("can't make SearchListCell Error") }
-        cell.textLabel?.text = getMessage(indexPath: indexPath)
+        cell.textLabel?.text = searchListPresentar.getMessage(indexPath: indexPath)
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         let key = "\(indexPath.row)"
         if selectedCell[key] != nil {
@@ -143,40 +143,5 @@ extension SearchListController:SearchListOutputs {
     func detailListController(id:Int) {
         let controller = DetailListController(option: toJudegeTableViewKeyword, apiID: id + 1)
         navigationController?.pushViewController(controller, animated: true)
-    }
-}
-extension SearchListController {
-    private func getMessage(indexPath:IndexPath)->String {
-        let row = indexPath.row
-        let section = indexPath.section
-        var message = String()
-        switch toJudegeTableViewKeyword {
-        case .institution:
-            let model = searchListPresentar.facility(row: row)
-            message = model.name
-        case.competition:
-            let model = searchListPresentar.sport(row: row)
-            message = model.name
-        case .place:
-            let model = searchListPresentar.sectionTitle(section: section)
-            if row == 0 {
-            message = model.name
-            } else {
-                let cities = searchListPresentar.cityies(section: section)
-                message = cities[row - 1].name
-            }
-        case .price:
-            let model = searchListPresentar.sectionMoneyUnit(section: section)
-            if row == 0 {
-                message = model.name
-            } else {
-                let prices = searchListPresentar.prices(section: section)
-                message = prices[row - 1].name
-            }
-        case .tag:
-            let model = searchListPresentar.tag(row: row)
-            message = model.name
-        }
-        return message
     }
 }
