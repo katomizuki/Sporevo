@@ -40,17 +40,10 @@ class InstitutionCell: UICollectionViewCell {
         label.font = .systemFont(ofSize: 16)
         return label
     }()
-//    private let tagImage:UIImageView = {
-//        let iv = UIImageView()
-//        iv.image = UIImage(systemName: "tag.fill")?.withRenderingMode(.alwaysTemplate)
-//        iv.tintColor = .darkGray
-//        return iv
-//    }()
+
     private lazy var collectionView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-//        layout.minimumInteritemSpacing = 5
-//        layout.minimumLineSpacing = 5
         layout.scrollDirection = .vertical
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.delegate = self
@@ -69,10 +62,9 @@ class InstitutionCell: UICollectionViewCell {
         addSubview(competitionLabel)
         let view = UIView()
         addSubview(view)
-//        addSubview(tagImage)
         institutionNameLabel.anchor(top:topAnchor,
                                     left: leftAnchor,
-                                    right: rightAnchor)
+                                    right: rightAnchor,paddingRight: 20,paddingLeft: 20)
         addressLabel.anchor(top: institutionNameLabel.bottomAnchor,
                             left: institutionNameLabel.leftAnchor,
                             right:rightAnchor,

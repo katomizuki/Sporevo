@@ -3,7 +3,7 @@ import Alamofire
 protocol SporevoMainControllerDelegate: AnyObject {
     func handleMenuToggle(forMenuOptions menuOptions: MenuOptions?)
 }
-class SporevoMainController: UIViewController {
+final class SporevoMainController: UIViewController {
     // MARK: - Properties
     private lazy var segmentController :UISegmentedControl = {
         let segment = UISegmentedControl(items: ["地図で探す","一覧"])
@@ -22,7 +22,7 @@ class SporevoMainController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .darkGray
+        view.backgroundColor = .systemMint
         scrollView.contentSize = CGSize(width: view.frame.size.width * 2, height: 0)
         view.addSubview(scrollView)
         setupNav()
@@ -57,15 +57,14 @@ class SporevoMainController: UIViewController {
         secondVC.didMove(toParent: self)
     }
     private func setupNav() {
-        navigationController?.navigationBar.barTintColor = .darkGray
+        navigationController?.navigationBar.barTintColor = .systemMint
               let image = UIImage(systemName: "line.horizontal.3")?.withRenderingMode(.alwaysOriginal)
               navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(didTapLeftBarButton))
         let searchImage = UIImage(systemName: "magnifyingglass")?.withRenderingMode(.alwaysOriginal)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: searchImage, style: .done, target: self, action: #selector(didTapSearchDetailButton))
         navigationItem.titleView = segmentController
     }
-
-    
+    // MARK: - Selector
     @objc private func didTapLeftBarButton() {
         print(#function)
         delegate?.handleMenuToggle(forMenuOptions: nil)
@@ -103,6 +102,6 @@ extension SporevoMainController:SporevoMainOutputs {
 extension SporevoMainController:FacilitySearchControllerDelegate {
     func facilitySearchController(_ controller: FacilitySearchController) {
         controller.dismiss(animated: true, completion: nil)
-        mainPresentar.dismiss()
+        mainPresentar.dismiss(secondVC)
     }
 }

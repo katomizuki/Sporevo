@@ -1,6 +1,6 @@
-
 import Foundation
 import UIKit
+
 class InstitutionListController:UIViewController {
     private lazy var collectionView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -11,11 +11,17 @@ class InstitutionListController:UIViewController {
         colletionView.dataSource = self
         return colletionView
     }()
+    var facilities:Facilities? {
+        didSet {
+            if let facilities = facilities {
+            presentar.searchFacilies(facilities: facilities)
+        }
+      }
+    }
     private let headerView = MainHeaderView(image: UIImage(named: "バドミントン"))
     private var presentar:InstituationPresentarInputs!
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .blue
         setupUI()
         presentar = InstituationPresentar(outputs: self)
         presentar.viewDidLoad()
@@ -45,8 +51,7 @@ class InstitutionListController:UIViewController {
                               left: view.leftAnchor,
                               right: view.rightAnchor,
                               paddingTop: 70,
-                              paddingRight: 20,
-                              paddingLeft: 20,height: 1200)
+                              height: 1200)
     }
 }
 // MARK: - UICollectionViewDelegate

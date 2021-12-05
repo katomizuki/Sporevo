@@ -7,7 +7,7 @@ class MenuController:UIViewController {
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .darkGray
+        view.backgroundColor = .systemMint
         setupTableView()
     }
     // MARK: - setupMethod
@@ -15,7 +15,7 @@ class MenuController:UIViewController {
         tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.backgroundColor = .darkGray
+        tableView.backgroundColor = .systemMint
         tableView.register(MenuOptionsCell.self, forCellReuseIdentifier: MenuOptionsCell.id)
         view.addSubview(tableView)
         tableView.anchor(top:view.topAnchor,

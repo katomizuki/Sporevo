@@ -4,13 +4,13 @@ protocol InstituationPresentarInputs {
     func viewDidLoad()
     var numberOfCells:Int { get }
     func facility(row:Int)->Facility
+    func searchFacilies(facilities:Facilities)
 }
 protocol InstituationPresentarOutputs:AnyObject {
     func reload()
 }
 
 final class InstituationPresentar:InstituationPresentarInputs {
-    
     private weak var outputs:InstituationPresentarOutputs?
     var facilities:Facilities?
     var numberOfCells: Int {
@@ -35,5 +35,9 @@ final class InstituationPresentar:InstituationPresentarInputs {
             fatalError()
         }
         return facilities.facilities[row]
+    }
+    func searchFacilies(facilities: Facilities) {
+        self.facilities = facilities
+        self.outputs?.reload()
     }
 }

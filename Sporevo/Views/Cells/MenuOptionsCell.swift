@@ -6,19 +6,19 @@ class MenuOptionsCell:UITableViewCell {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
-        iv.tintColor = .white
+        iv.tintColor = .darkGray
         return iv
     }()
     var desciptionLabel:UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 18)
+        label.font = .boldSystemFont(ofSize: 18)
         label.text = "text"
-        label.textColor = .white
+        label.textColor = .darkGray
         return label
     }()
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = .darkGray
+        backgroundColor = .systemMint
         addSubview(iconImageView)
         addSubview(desciptionLabel)
         iconImageView.anchor(left:leftAnchor,

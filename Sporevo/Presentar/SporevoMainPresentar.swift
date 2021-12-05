@@ -4,7 +4,7 @@ protocol SporevoMainInputs {
     func viewdidLoad()
     func didTapDetailSearchButton()
     func didTapSegment(index:Int)
-    func dismiss()
+    func dismiss(_ controller:InstitutionListController)
 }
 protocol SporevoMainOutputs:AnyObject {
     func loadData()
@@ -31,11 +31,12 @@ final class SporevoMainPresentar:SporevoMainInputs {
     func didTapSegment(index:Int) {
         self.outputs.changeSegment(index: index)
     }
-    func dismiss() {
+    func dismiss(_ controller:InstitutionListController) {
         api.fetchFacility { result in
             switch result {
             case .success(let facility):
                 self.facility = facility
+                controller.facilities = facility
             case .failure(let error):
                 print(error)
             }
