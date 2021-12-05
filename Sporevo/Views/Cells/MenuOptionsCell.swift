@@ -6,14 +6,14 @@ class MenuOptionsCell:UITableViewCell {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
-        iv.tintColor = .darkGray
+        iv.tintColor = .white
         return iv
     }()
     var desciptionLabel:UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 18)
         label.text = "text"
-        label.textColor = .darkGray
+        label.textColor = .white
         return label
     }()
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

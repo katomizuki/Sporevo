@@ -20,7 +20,7 @@ class SearchMapController:UIViewController {
     }
     private func setupNabBar() {
         print(#function)
-        navigationController?.navigationBar.barTintColor = .darkGray
+        navigationController?.navigationBar.barTintColor = .systemMint
         view.addSubview(mapView)
         mapView.anchor(top:view.topAnchor,bottom: view.bottomAnchor,
                        left: view.leftAnchor,right: view.rightAnchor)
