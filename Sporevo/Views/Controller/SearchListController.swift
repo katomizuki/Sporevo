@@ -72,16 +72,24 @@ final class SearchListController: UIViewController {
 extension SearchListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function)
+        guard let cell = tableView.cellForRow(at: indexPath) else { return }
+        searchListPresentar.didSelectRowAt(indexPath: indexPath)
         if toJudegeTableViewKeyword == .place || toJudegeTableViewKeyword == .price {
             if indexPath.row == 0 {
             tableView.deselectRow(at: indexPath, animated: true)
             searchListPresentar.didTapSection(section: indexPath.section)
             } else {
                 print("tap sub cell")
+                let key = "\(indexPath.section) + \(indexPath.row)"
+                if cell.accessoryType == .none {
+                    cell.accessoryType = .checkmark
+                    selectedCell[key] = true
+                } else {
+                    cell.accessoryType = .none
+                    selectedCell.removeValue(forKey: key)
+                }
             }
         } else {
-        guard let cell = tableView.cellForRow(at: indexPath) else { return }
-        searchListPresentar.didSelectRowAt(id: indexPath.row)
         let key = "\(indexPath.row)"
         if cell.accessoryType == .none {
             cell.accessoryType = .checkmark
@@ -103,7 +111,7 @@ extension SearchListController: UITableViewDelegate {
             cell.accessoryType = .none
             selectedCell.removeValue(forKey: key)
         }
-        searchListPresentar.didSelectRowAt(id: indexPath.row)
+        searchListPresentar.didSelectRowAt(indexPath: indexPath)
     }
 }
 // MARK: - UITableViewDataSource
@@ -115,12 +123,21 @@ extension SearchListController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchListCell.id,for: indexPath) as? SearchListCell else { fatalError("can't make SearchListCell Error") }
         cell.textLabel?.text = searchListPresentar.getMessage(indexPath: indexPath)
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
+        if toJudegeTableViewKeyword == .price || toJudegeTableViewKeyword == .place {
+            let key = "\(indexPath.section) + \(indexPath.row)"
+            if selectedCell[key] != nil {
+                cell.accessoryType = .checkmark
+            } else {
+                cell.accessoryType = .none
+            }
+        } else {
         let key = "\(indexPath.row)"
         if selectedCell[key] != nil {
             cell.accessoryType = .checkmark
         } else {
             cell.accessoryType = .none
         }
+    }
         return cell
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -139,9 +156,5 @@ extension SearchListController:SearchListOutputs {
             self.indicator.stopAnimating()
             self.tableView.reloadData()
         }
-    }
-    func detailListController(id:Int) {
-        let controller = DetailListController(option: toJudegeTableViewKeyword, apiID: id + 1)
-        navigationController?.pushViewController(controller, animated: true)
     }
 }

@@ -3,7 +3,7 @@ import Foundation
 protocol SearchListInputs {
     func viewDidLoad(_ tojudgeKeywordOptions:SearchOptions)
     func numberOfCell(section:Int)->Int
-    func didSelectRowAt(id:Int)
+    func didSelectRowAt(indexPath:IndexPath)
     func saveUserDefaults()
     var sectionsCount:Int { get }
     func didTapSection(section:Int)
@@ -12,17 +12,16 @@ protocol SearchListInputs {
 protocol SearchListOutputs:AnyObject {
     func reload()
     func reloadSections(section:Int)
-    func detailListController(id:Int)
 }
 
 final class SearchListPresentar:SearchListInputs {
     
     // MARK: - Properties
-    private var selectedCity = [String]()
+    private var selectedCity = [City]()
     private var selectedTag = [Tag]()
     private var selectedInstion = [FacilityType]()
     private var selectedCompetion = [Sport]()
-    private var selectedPrice = [String]()
+    private var selectedPrice = [PriceUnits]()
     private var facilities = [FacilityType]()
     private var sports = [Sport]()
     private var tags = [Tag]()
@@ -174,9 +173,26 @@ final class SearchListPresentar:SearchListInputs {
        
 
     }
-    func didSelectRowAt(id:Int) {
-        if option == .place || option == .price {
-            outputs.detailListController(id:id)
+    func didSelectRowAt(indexPath:IndexPath) {
+        let id = indexPath.row
+        let sectionId = indexPath.section
+        if option == .place  {
+            if id == 0 { return }
+            let city = citySections[sectionId].items[id - 1]
+            if judgeArray(ele: city, array: selectedCity) {
+                selectedCity.append(city)
+            } else {
+                selectedCity.remove(value: city)
+            }
+        }
+        if option == .price {
+            if id == 0 { return }
+            let price = moneySections[sectionId].prices[id - 1]
+            if judgeArray(ele: price, array: selectedPrice) {
+                selectedPrice.append(price)
+            } else {
+                selectedPrice.remove(value: price)
+            }
         }
         if option == .institution {
             if judgeArray(ele: facilities[id], array: selectedInstion) == true {
@@ -199,6 +215,7 @@ final class SearchListPresentar:SearchListInputs {
                 selectedTag.remove(value: tags[id])
             }
         }
+        print(selectedCity)
     }
     func saveUserDefaults() {
         if option == .institution {
