@@ -213,7 +213,6 @@ final class SearchListPresentar:SearchListInputs {
                 selectedTag.remove(value: tags[id])
             }
         }
-        print(selectedCity)
     }
     func saveUserDefaults() {
         if option == .institution {
@@ -239,6 +238,7 @@ final class SearchListPresentar:SearchListInputs {
             moneySections[section].isOpened = !moneySections[section].isOpened
         }
         self.outputs.reloadSections(section: section)
+        
     }
     func getMessage(indexPath: IndexPath) -> String {
         let row = indexPath.row

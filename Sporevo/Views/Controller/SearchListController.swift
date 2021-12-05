@@ -9,7 +9,7 @@ final class SearchListController: UIViewController {
     private var toJudegeTableViewKeyword:SearchOptions
     private var searchListPresentar:SearchListInputs!
     private lazy var tableView:UITableView = {
-        let tableView = UITableView()
+        let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(SearchListCell.self, forCellReuseIdentifier: SearchListCell.id)
@@ -72,10 +72,11 @@ final class SearchListController: UIViewController {
 extension SearchListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function)
-        guard let cell = tableView.cellForRow(at: indexPath) else { return }
+        guard let cell = tableView.cellForRow(at: indexPath) as? SearchListCell else { return }
         searchListPresentar.didSelectRowAt(indexPath: indexPath)
         if toJudegeTableViewKeyword == .place || toJudegeTableViewKeyword == .price {
             if indexPath.row == 0 {
+                cell.sectionImageAnimate()
             tableView.deselectRow(at: indexPath, animated: true)
             searchListPresentar.didTapSection(section: indexPath.section)
             } else {
@@ -124,6 +125,7 @@ extension SearchListController: UITableViewDataSource {
         cell.textLabel?.text = searchListPresentar.getMessage(indexPath: indexPath)
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         if toJudegeTableViewKeyword == .price || toJudegeTableViewKeyword == .place {
+            cell.sectionImageView.image = cell.isOpened == false ? UIImage(systemName: "chevron.forward"):UIImage(systemName: "chevron.down")
             let key = "\(indexPath.section) + \(indexPath.row)"
             if indexPath.row == 0 { cell.sectionImageView.isHidden = false }
             if selectedCell[key] != nil {
@@ -149,7 +151,7 @@ extension SearchListController: UITableViewDataSource {
 extension SearchListController:SearchListOutputs {
     func reloadSections(section: Int) {
         DispatchQueue.main.async {
-            self.tableView.reloadSections([section], with: .none)
+            self.tableView.reloadSections([section], with: .fade)
         }
     }
     func reload() {
@@ -159,3 +161,4 @@ extension SearchListController:SearchListOutputs {
         }
     }
 }
+

@@ -1,8 +1,11 @@
 import Foundation
 import UIKit
-
+protocol SearchListCellDelegate: AnyObject{
+    func animate()
+}
 class SearchListCell:UITableViewCell {
     static let id = "SearchListCell"
+    weak var delegate:SearchListCellDelegate?
     let sectionImageView :UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(systemName: "chevron.forward")?.withRenderingMode(.alwaysTemplate)
@@ -10,6 +13,7 @@ class SearchListCell:UITableViewCell {
         iv.isHidden = true
         return iv
     }()
+    var isOpened = false
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubview(sectionImageView)
@@ -20,9 +24,11 @@ class SearchListCell:UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     override func prepareForReuse() {
-        backgroundColor = .clear
         sectionImageView.isHidden = true
-//        accessoryType = .none
+    }
+    func sectionImageAnimate() {
+        isOpened = !isOpened
+        print(isOpened)
     }
   
 }
