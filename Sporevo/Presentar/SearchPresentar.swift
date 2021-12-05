@@ -170,8 +170,6 @@ final class SearchListPresentar:SearchListInputs {
                 }
             }
         }
-       
-
     }
     func didSelectRowAt(indexPath:IndexPath) {
         let id = indexPath.row
@@ -226,6 +224,12 @@ final class SearchListPresentar:SearchListInputs {
         }
         if option == .competition {
             UserDefaultRepositry.shared.saveToUserDefaults(element: selectedCompetion, key: "sport")
+        }
+        if option == .place {
+            UserDefaultRepositry.shared.saveToUserDefaults(element: selectedCity, key: "city")
+        }
+        if option == .price {
+            UserDefaultRepositry.shared.saveToUserDefaults(element: selectedPrice, key: "priceUnits")
         }
     }
     func didTapSection(section: Int) {

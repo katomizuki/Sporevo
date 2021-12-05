@@ -40,13 +40,11 @@
 		D3B72CA42749278A00253933 /* InstitutionListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B72CA32749278A00253933 /* InstitutionListController.swift */; };
 		D3D8116A274E19C300A380B1 /* SearchPresentar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81169274E19C300A380B1 /* SearchPresentar.swift */; };
 		D3D8116C274E1A2B00A380B1 /* SporevoMainPresentar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D8116B274E1A2B00A380B1 /* SporevoMainPresentar.swift */; };
-		D3D8116E274E1A4E00A380B1 /* DetailListPresentar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D8116D274E1A4E00A380B1 /* DetailListPresentar.swift */; };
 		D3D81170274E213000A380B1 /* FacilityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D8116F274E213000A380B1 /* FacilityType.swift */; };
 		D3D81172274E509A00A380B1 /* Sports.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81171274E509A00A380B1 /* Sports.swift */; };
 		D3D81174274E564900A380B1 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81173274E564900A380B1 /* Tag.swift */; };
 		D3D81176274E5E8300A380B1 /* Money.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81175274E5E8300A380B1 /* Money.swift */; };
 		D3D81178274E66AE00A380B1 /* Prefecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81177274E66AE00A380B1 /* Prefecture.swift */; };
-		D3D8117A274EF19300A380B1 /* DetailListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81179274EF19300A380B1 /* DetailListController.swift */; };
 		D3D8117C274F619600A380B1 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D8117B274F619600A380B1 /* Array+Extension.swift */; };
 		D3D8117F274F6EA500A380B1 /* UserDefaultRepositry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D8117E274F6EA500A380B1 /* UserDefaultRepositry.swift */; };
 		D3D81181274F75ED00A380B1 /* FacilitySearchPresentar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81180274F75ED00A380B1 /* FacilitySearchPresentar.swift */; };
@@ -91,13 +89,11 @@
 		D3B72CA32749278A00253933 /* InstitutionListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstitutionListController.swift; sourceTree = "<group>"; };
 		D3D81169274E19C300A380B1 /* SearchPresentar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresentar.swift; sourceTree = "<group>"; };
 		D3D8116B274E1A2B00A380B1 /* SporevoMainPresentar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SporevoMainPresentar.swift; sourceTree = "<group>"; };
-		D3D8116D274E1A4E00A380B1 /* DetailListPresentar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListPresentar.swift; sourceTree = "<group>"; };
 		D3D8116F274E213000A380B1 /* FacilityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityType.swift; sourceTree = "<group>"; };
 		D3D81171274E509A00A380B1 /* Sports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sports.swift; sourceTree = "<group>"; };
 		D3D81173274E564900A380B1 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		D3D81175274E5E8300A380B1 /* Money.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Money.swift; sourceTree = "<group>"; };
 		D3D81177274E66AE00A380B1 /* Prefecture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prefecture.swift; sourceTree = "<group>"; };
-		D3D81179274EF19300A380B1 /* DetailListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListController.swift; sourceTree = "<group>"; };
 		D3D8117B274F619600A380B1 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		D3D8117E274F6EA500A380B1 /* UserDefaultRepositry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultRepositry.swift; sourceTree = "<group>"; };
 		D3D81180274F75ED00A380B1 /* FacilitySearchPresentar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilitySearchPresentar.swift; sourceTree = "<group>"; };
@@ -213,7 +209,6 @@
 			children = (
 				D3D81169274E19C300A380B1 /* SearchPresentar.swift */,
 				D3D8116B274E1A2B00A380B1 /* SporevoMainPresentar.swift */,
-				D3D8116D274E1A4E00A380B1 /* DetailListPresentar.swift */,
 				D3D81180274F75ED00A380B1 /* FacilitySearchPresentar.swift */,
 				D32B8C4D27547D9B0036FA98 /* InstituationPresentar.swift */,
 			);
@@ -236,7 +231,6 @@
 			isa = PBXGroup;
 			children = (
 				D32B13C7273960720039CC06 /* ContainerController.swift */,
-				D3D81179274EF19300A380B1 /* DetailListController.swift */,
 				D312C2202742228100DF7E83 /* FacilitySearchController.swift */,
 				D32B13D1273A25E00039CC06 /* InstitutionDetailController.swift */,
 				D3B72CA32749278A00253933 /* InstitutionListController.swift */,
@@ -397,7 +391,6 @@
 				D32B13C0273904370039CC06 /* MainHeaderView.swift in Sources */,
 				D3D81176274E5E8300A380B1 /* Money.swift in Sources */,
 				D32B13C227392BCC0039CC06 /* SearchListController.swift in Sources */,
-				D3D8117A274EF19300A380B1 /* DetailListController.swift in Sources */,
 				D312C2212742228100DF7E83 /* FacilitySearchController.swift in Sources */,
 				D32B8C5227548E570036FA98 /* TagCell.swift in Sources */,
 				D32B13DE273A62460039CC06 /* SeachListCell.swift in Sources */,
@@ -419,7 +412,6 @@
 				D32B8C4E27547D9B0036FA98 /* InstituationPresentar.swift in Sources */,
 				D32B13CE273965120039CC06 /* MenuOptionsCell.swift in Sources */,
 				D33D95A82745E114001FBC48 /* SearchMapController.swift in Sources */,
-				D3D8116E274E1A4E00A380B1 /* DetailListPresentar.swift in Sources */,
 				D32B8C4C2754770A0036FA98 /* Facility.swift in Sources */,
 				D32B13C4273931EB0039CC06 /* Constants.swift in Sources */,
 				D32B13D0273A0E490039CC06 /* institutionCell.swift in Sources */,
