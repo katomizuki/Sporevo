@@ -13,6 +13,9 @@ class MenuController:UIViewController {
     // MARK: - setupMethod
     private func setupTableView() {
         tableView = UITableView()
+        tableView.isUserInteractionEnabled = true
+//        let gesture = UITapGestureRecognizer(target: self, action: #selector(close))
+//        tableView.backgroundView?.addGestureRecognizer(gesture)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .systemMint
@@ -22,6 +25,9 @@ class MenuController:UIViewController {
                          bottom:view.bottomAnchor,
                          left: view.leftAnchor,
                          right: view.rightAnchor)
+    }
+    @objc private func close() {
+        self.delegate?.handleMenuToggle(forMenuOptions: nil)
     }
 }
 // MARK: - UITableViewDelegate
@@ -41,6 +47,7 @@ extension MenuController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MenuOptionsCell.id, for: indexPath) as? MenuOptionsCell else { fatalError("Can’ｔ make MenuOptionsCell Error") }
         cell.desciptionLabel.text = MenuOptions(rawValue: indexPath.row)?.description
+//        let context = cell.defaultContentConfiguration()
         cell.iconImageView.image = MenuOptions(rawValue: indexPath.row)?.icon
         return cell
     }
