@@ -26,7 +26,7 @@ class FacilitySearchController:UIViewController {
     private func setupUI() {
         print(#function)
         view.backgroundColor = .systemBackground
-        tableView = UITableView()
+        tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(SearchCell.self, forCellReuseIdentifier: SearchCell.id)
@@ -34,15 +34,13 @@ class FacilitySearchController:UIViewController {
         tableView.anchor(top:view.safeAreaLayoutGuide.topAnchor,
                          left: view.leftAnchor,
                          right: view.rightAnchor,
-                         paddingTop: 20,
                          paddingRight: 20,
-                         paddingLeft: 20,height: 500)
+                         paddingLeft: 20)
         tableView.rowHeight = 60
         tableView.isScrollEnabled = false
         view.addSubview(searchButton)
-        searchButton.anchor(top:tableView.bottomAnchor,
-                            bottom: view.safeAreaLayoutGuide.bottomAnchor,
-                            paddingTop: 20,paddingBottom: 40,
+        searchButton.anchor(top:tableView.bottomAnchor,bottom: view.safeAreaLayoutGuide.bottomAnchor,
+                            paddingTop: 20,paddingBottom: 20,
                             centerX: view.centerXAnchor,
                             width: 60,
                             height: 40)
@@ -91,7 +89,7 @@ extension FacilitySearchController: UITableViewDelegate {
         return SearchOptions(rawValue: section)?.description
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 12
+        return 30
     }
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false

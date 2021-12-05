@@ -9,7 +9,7 @@ final class SearchListController: UIViewController {
     private var toJudegeTableViewKeyword:SearchOptions
     private var searchListPresentar:SearchListInputs!
     private lazy var tableView:UITableView = {
-        let tableView = UITableView(frame: .zero, style: .grouped)
+        let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(SearchListCell.self, forCellReuseIdentifier: SearchListCell.id)
@@ -76,11 +76,11 @@ extension SearchListController: UITableViewDelegate {
         searchListPresentar.didSelectRowAt(indexPath: indexPath)
         if toJudegeTableViewKeyword == .place || toJudegeTableViewKeyword == .price {
             if indexPath.row == 0 {
-                cell.sectionImageAnimate()
+                let iv = cell.sectionImageView.image
+//                cell.sectionImageView.image = iv == UIImage(systemName: "chevron.forward") ? UIImage(systemName: "chevron.down") : UIImage(systemName: "chevron.forward")
             tableView.deselectRow(at: indexPath, animated: true)
             searchListPresentar.didTapSection(section: indexPath.section)
             } else {
-                print("tap sub cell")
                 let key = "\(indexPath.section) + \(indexPath.row)"
                 if cell.accessoryType == .none {
                     cell.accessoryType = .checkmark
@@ -125,7 +125,7 @@ extension SearchListController: UITableViewDataSource {
         cell.textLabel?.text = searchListPresentar.getMessage(indexPath: indexPath)
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         if toJudegeTableViewKeyword == .price || toJudegeTableViewKeyword == .place {
-            cell.sectionImageView.image = cell.isOpened == false ? UIImage(systemName: "chevron.forward"):UIImage(systemName: "chevron.down")
+//            cell.sectionImageView.image = cell.isOpened == false ? UIImage(systemName: "chevron.forward"):UIImage(systemName: "chevron.down")
             let key = "\(indexPath.section) + \(indexPath.row)"
             if indexPath.row == 0 { cell.sectionImageView.isHidden = false }
             if selectedCell[key] != nil {
