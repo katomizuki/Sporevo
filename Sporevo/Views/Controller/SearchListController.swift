@@ -125,6 +125,7 @@ extension SearchListController: UITableViewDataSource {
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         if toJudegeTableViewKeyword == .price || toJudegeTableViewKeyword == .place {
             let key = "\(indexPath.section) + \(indexPath.row)"
+            if indexPath.row == 0 { cell.sectionImageView.isHidden = false }
             if selectedCell[key] != nil {
                 cell.accessoryType = .checkmark
             } else {

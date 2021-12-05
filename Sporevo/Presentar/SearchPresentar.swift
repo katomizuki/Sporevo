@@ -272,7 +272,6 @@ final class SearchListPresentar:SearchListInputs {
         }
         return message
     }
-    
 }
 extension SearchListPresentar {
     private func judgeArray<T:Equatable>(ele:T,array:[T])->Bool {
