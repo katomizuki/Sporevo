@@ -42,6 +42,9 @@ struct FacilityDetail:Codable {
     var updated_at:String?
     var user_types:[String]
 }
+struct FacilitySearchEntity:Codable {
+    
+}
 
 protocol FetchFacilityInputs {
     func fetchFacility(completion:@escaping(Result<Facilities,Error>) ->Void)
@@ -49,9 +52,11 @@ protocol FetchFacilityInputs {
 struct FetchFacility: FetchFacilityInputs {
     func fetchFacility(completion: @escaping (Result<Facilities, Error>) -> Void) {
         let header:HTTPHeaders = ["Authorization":"Token LIcCke0gTSNAloR7ptYq"]
-        let baseURL = "https://spo-revo.com/api/v1/facilities?q=q&size=10&page=1"
+        let queri = makeCityQueri()
+        let baseURL = "https://spo-revo.com/api/v1/facilities?\(queri)&size=10&page=1"
         AF.request(baseURL, method: .get, parameters: nil, encoding: URLEncoding.default, headers: header).responseJSON { response in
             guard let data = response.data else { return }
+            print(response.value)
             do {
                 let decodeData = try JSONDecoder().decode(Facilities.self, from: data)
                 completion(.success(decodeData))
@@ -60,6 +65,7 @@ struct FetchFacility: FetchFacilityInputs {
             }
         }
     }
+
     func fetchFacilityById(id:String,completion:@escaping(Result<FacilityDetail,Error>)->Void) {
         let header:HTTPHeaders = ["Authorization":"Token LIcCke0gTSNAloR7ptYq"]
         let baseURL = "https://spo-revo.com/api/v1/facilities/" + id
@@ -72,5 +78,51 @@ struct FetchFacility: FetchFacilityInputs {
                 completion(.failure(error))
             }
         }
+    }
+    func makeCityQueri()->String {
+        print(#function)
+        var q = String()
+        let city:[City] = UserDefaultRepositry.shared.loadFromUserDefaults(key:"city")
+        city.forEach { ele in
+            let id = ele.id
+            q += "q[city_id_eq_any][]=\(id)&"
+        }
+        return q
+    }
+    func makeFacilityQueri()->String {
+        var q = String()
+        let facility:[FacilityType] = UserDefaultRepositry.shared.loadFromUserDefaults(key: "facility")
+        facility.forEach { ele in
+            let id = ele.id
+            q += "q[facility_type_id_eq_any][]=\(id)&"
+        }
+        return q
+    }
+    func makeTagQueri()->String {
+        var q = String()
+        let tag:[Tag] = UserDefaultRepositry.shared.loadFromUserDefaults(key: "tag")
+        tag.forEach { ele in
+            let id = ele.id
+            q += "q[tags_id_eq_any][]=\(id)&"
+        }
+        return q
+    }
+    func makePriceQueri()->String {
+        var q = String()
+        let price:[PriceUnits] = UserDefaultRepositry.shared.loadFromUserDefaults(key: "priceUnits")
+        price.forEach { ele in
+            let id = ele.id
+            q += "q[price_ranges_id_eq_any][]=\(id)&"
+        }
+        return q
+    }
+    func makeSportQueri()->String {
+        var q = String()
+        let sports:[Sport] = UserDefaultRepositry.shared.loadFromUserDefaults(key: "sport")
+        sports.forEach { ele in
+            let id = ele.id
+            q += "q[sports_types_id_eq_any][]=\(id)&"
+        }
+        return q
     }
 }

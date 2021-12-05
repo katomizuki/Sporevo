@@ -28,14 +28,6 @@ class SporevoMainController: UIViewController {
         setupNav()
         mainPresentar = SporevoMainPresentar(outputs: self)
         mainPresentar.viewdidLoad()
-        FetchFacility().fetchFacilityById(id: "1796") { result in
-            switch result {
-            case .success(let facility):
-                print(facility,"⚡️")
-            case .failure(let error):
-                print(error,"📌")
-            }
-        }
     }
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false

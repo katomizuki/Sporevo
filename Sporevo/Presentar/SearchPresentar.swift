@@ -213,6 +213,7 @@ final class SearchListPresentar:SearchListInputs {
                 selectedTag.remove(value: tags[id])
             }
         }
+        print(selectedCity)
     }
     func saveUserDefaults() {
         if option == .institution {
