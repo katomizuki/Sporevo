@@ -1,9 +1,12 @@
 import Foundation
 import UIKit
-
-class FacilitySearchController:UIViewController {
+protocol FacilitySearchControllerDelegate:AnyObject {
+    func facilitySearchController(_ controller:FacilitySearchController)
+}
+final class FacilitySearchController:UIViewController {
     // MARK: - Properties
     private var tableView:UITableView!
+    weak var delegate:FacilitySearchControllerDelegate?
     private lazy var searchButton:UIButton = {
         let button = UIButton(type: .system)
         button.addTarget(self, action: #selector(didTapSearchButton), for: .touchUpInside)
@@ -64,9 +67,7 @@ extension FacilitySearchController:SeachCellDelegate {
     }
     @objc private func didTapSearchButton() {
         print(#function)
-        FetchFacility().fetchFacility { result in
-
-        }
+        self.delegate?.facilitySearchController(self)
     }
 }
 // MARK: - UITableViewDataSource

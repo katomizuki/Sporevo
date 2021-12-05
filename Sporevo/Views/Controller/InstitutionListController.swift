@@ -81,6 +81,8 @@ extension InstitutionListController: UICollectionViewDelegateFlowLayout {
 // MARK: - InstituationPresentarOutputs
 extension InstitutionListController:InstituationPresentarOutputs {
     func reload() {
-        collectionView.reloadData()
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
 }

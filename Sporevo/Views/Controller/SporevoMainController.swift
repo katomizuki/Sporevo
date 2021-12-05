@@ -26,7 +26,7 @@ class SporevoMainController: UIViewController {
         scrollView.contentSize = CGSize(width: view.frame.size.width * 2, height: 0)
         view.addSubview(scrollView)
         setupNav()
-        mainPresentar = SporevoMainPresentar(outputs: self)
+        mainPresentar = SporevoMainPresentar(outputs: self, api: FetchFacility())
         mainPresentar.viewdidLoad()
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -91,11 +91,18 @@ extension SporevoMainController:SporevoMainOutputs {
     }
     func detailSearchController() {
         let controller = FacilitySearchController()
+        controller.delegate = self
         let nav = UINavigationController(rootViewController: controller)
         nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true, completion: nil)
     }
     func loadData() {
         print(#function)
+    }
+}
+extension SporevoMainController:FacilitySearchControllerDelegate {
+    func facilitySearchController(_ controller: FacilitySearchController) {
+        controller.dismiss(animated: true, completion: nil)
+        mainPresentar.dismiss()
     }
 }
