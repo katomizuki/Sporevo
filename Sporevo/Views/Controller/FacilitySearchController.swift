@@ -64,6 +64,9 @@ extension FacilitySearchController:SeachCellDelegate {
     }
     @objc private func didTapSearchButton() {
         print(#function)
+        FetchFacility().fetchFacility { result in
+
+        }
     }
 }
 // MARK: - UITableViewDataSource

@@ -52,8 +52,8 @@ protocol FetchFacilityInputs {
 struct FetchFacility: FetchFacilityInputs {
     func fetchFacility(completion: @escaping (Result<Facilities, Error>) -> Void) {
         let header:HTTPHeaders = ["Authorization":"Token LIcCke0gTSNAloR7ptYq"]
-        let queri = makeCityQueri()
-        let baseURL = "https://spo-revo.com/api/v1/facilities?\(queri)&size=10&page=1"
+        let queri = makeCityQueri() + makeFacilityQueri() + makeTagQueri() + makePriceQueri() + makeSportQueri()
+        let baseURL = "https://spo-revo.com/api/v1/facilities?\(queri)size=10&page=1"
         AF.request(baseURL, method: .get, parameters: nil, encoding: URLEncoding.default, headers: header).responseJSON { response in
             guard let data = response.data else { return }
             print(response.value)
