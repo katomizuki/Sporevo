@@ -63,6 +63,8 @@ final class SporevoMainController: UIViewController {
         let searchImage = UIImage(systemName: "magnifyingglass")?.withRenderingMode(.alwaysOriginal)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: searchImage, style: .done, target: self, action: #selector(didTapSearchDetailButton))
         navigationItem.titleView = segmentController
+        navigationController?.navigationBar.tintColor = .darkGray
+        navigationItem.backButtonDisplayMode = .minimal
     }
     // MARK: - Selector
     @objc private func didTapLeftBarButton() {

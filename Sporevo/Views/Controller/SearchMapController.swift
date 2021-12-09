@@ -17,6 +17,7 @@ class SearchMapController:UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
+       
     }
     private func setupNabBar() {
         print(#function)
