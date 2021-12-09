@@ -58,7 +58,8 @@ class InstitutionListController:UIViewController {
 extension InstitutionListController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(#function)
-        let controller = InstitutionDetailController()
+        let facility = presentar.facility(row: indexPath.row)
+        let controller = InstitutionDetailController(facility: facility)
         navigationController?.pushViewController(controller, animated: true)
     }
 }

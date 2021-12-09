@@ -50,6 +50,7 @@ class InstitutionDetailController: UIViewController,GMSMapViewDelegate {
     lazy var infoButton = creatButton(buttonTitle:"この施設の情報や写真を提供します。\nこの施設も掲載してください")
     lazy var  missButton = creatButton(buttonTitle:"この施設の情報が間違っています。\n削除をお願い致します")
     lazy var  requireButton = creatButton(buttonTitle:"サイトに関するご意見・ご要望")
+    private var facility:Facility?
     // MARK: - Lifecycle
     override func loadView() {
         super.loadView()
@@ -64,6 +65,14 @@ class InstitutionDetailController: UIViewController,GMSMapViewDelegate {
     }
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
+    }
+    // MARK: - Init
+    init(facility:Facility) {
+        self.facility = facility
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     // MARK: - SetupMethod
     private func setupUI() {
