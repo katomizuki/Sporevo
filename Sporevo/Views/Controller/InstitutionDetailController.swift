@@ -6,13 +6,11 @@ class InstitutionDetailController: UIViewController,GMSMapViewDelegate {
     private let searchLabel:UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16)
-        label.text = "Sporevo / 検索結果 / 月島スポーツプラザ"
         label.textColor = .darkGray
         return label
     }()
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "月島スポーツセンター"
         label.font = .systemFont(ofSize: 24, weight: .black)
         label.textColor = .darkGray
         return label
@@ -50,7 +48,7 @@ class InstitutionDetailController: UIViewController,GMSMapViewDelegate {
     lazy var infoButton = creatButton(buttonTitle:"この施設の情報や写真を提供します。\nこの施設も掲載してください")
     lazy var  missButton = creatButton(buttonTitle:"この施設の情報が間違っています。\n削除をお願い致します")
     lazy var  requireButton = creatButton(buttonTitle:"サイトに関するご意見・ご要望")
-    private var facility:Facility?
+    private var facility:Facility!
     // MARK: - Lifecycle
     override func loadView() {
         super.loadView()
@@ -60,8 +58,9 @@ class InstitutionDetailController: UIViewController,GMSMapViewDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .darkGray
+        view.backgroundColor = .systemMint
         setupUI()
+        updateUI()
     }
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
@@ -232,6 +231,11 @@ class InstitutionDetailController: UIViewController,GMSMapViewDelegate {
                            paddingTop: 10,
                            paddingRight:15,
                            paddingLeft: 15)
+    }
+    private func updateUI() {
+        searchLabel.text = "Sporevo / 検索結果 / \(facility.name)"
+        titleLabel.text = "\(facility.name)"
+        
     }
     private func createLabel(text: String) ->UILabel {
         let label = UILabel()

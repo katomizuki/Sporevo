@@ -77,7 +77,6 @@ extension SearchListController: UITableViewDelegate {
         if toJudegeTableViewKeyword == .place || toJudegeTableViewKeyword == .price {
             if indexPath.row == 0 {
                 let iv = cell.sectionImageView.image
-//                cell.sectionImageView.image = iv == UIImage(systemName: "chevron.forward") ? UIImage(systemName: "chevron.down") : UIImage(systemName: "chevron.forward")
             tableView.deselectRow(at: indexPath, animated: true)
             searchListPresentar.didTapSection(section: indexPath.section)
             } else {
@@ -125,7 +124,6 @@ extension SearchListController: UITableViewDataSource {
         cell.textLabel?.text = searchListPresentar.getMessage(indexPath: indexPath)
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         if toJudegeTableViewKeyword == .price || toJudegeTableViewKeyword == .place {
-//            cell.sectionImageView.image = cell.isOpened == false ? UIImage(systemName: "chevron.forward"):UIImage(systemName: "chevron.down")
             let key = "\(indexPath.section) + \(indexPath.row)"
             if indexPath.row == 0 { cell.sectionImageView.isHidden = false }
             if selectedCell[key] != nil {
