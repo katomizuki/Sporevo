@@ -40,4 +40,9 @@ final class InstituationPresentar:InstituationPresentarInputs {
         self.facilities = facilities
         self.outputs?.reload()
     }
+    func fetchDetailFacilities(id:String) {
+        FetchFacility().fetchFacilityById(id: id) { result in
+            
+        }
+    }
 }

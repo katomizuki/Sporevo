@@ -60,7 +60,6 @@ class InstitutionDetailController: UIViewController,GMSMapViewDelegate {
         super.viewDidLoad()
         view.backgroundColor = .systemMint
         setupUI()
-        updateUI()
     }
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
@@ -231,12 +230,10 @@ class InstitutionDetailController: UIViewController,GMSMapViewDelegate {
                            paddingTop: 10,
                            paddingRight:15,
                            paddingLeft: 15)
-    }
-    private func updateUI() {
         searchLabel.text = "Sporevo / 検索結果 / \(facility.name)"
         titleLabel.text = "\(facility.name)"
-        
     }
+
     private func createLabel(text: String) ->UILabel {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16, weight: .bold)
