@@ -45,6 +45,8 @@ class InstitutionCell: UICollectionViewCell {
         let layout = UICollectionViewFlowLayout()
         layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 5
+        layout.minimumInteritemSpacing = 5
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.delegate = self
         cv.dataSource = self
@@ -64,7 +66,7 @@ class InstitutionCell: UICollectionViewCell {
         addSubview(view)
         institutionNameLabel.anchor(top:topAnchor,
                                     left: leftAnchor,
-                                    right: rightAnchor,paddingRight: 20,paddingLeft: 20)
+                                    right: rightAnchor,paddingRight: 20,paddingLeft: 20,height: 30)
         addressLabel.anchor(top: institutionNameLabel.bottomAnchor,
                             left: institutionNameLabel.leftAnchor,
                             right:rightAnchor,
@@ -89,7 +91,7 @@ class InstitutionCell: UICollectionViewCell {
         fatalError()
     }
     func configure(facility:Facility) {
-        institutionNameLabel.text = " \(facility.name) "
+        institutionNameLabel.attributedText = makeAttributedText(name: facility.name, subName: facility.sub_name)
         addressLabel.text = facility.address
         var message = String()
         facility.sports_types.forEach {
@@ -99,6 +101,11 @@ class InstitutionCell: UICollectionViewCell {
         competitionLabel.text = message
         tags = facility.tags
         collectionView.reloadData()
+    }
+    func makeAttributedText(name:String,subName:String)->NSAttributedString {
+        let attributedText = NSMutableAttributedString(string:" \(name)", attributes: [.foregroundColor:UIColor.darkGray,.font:UIFont.systemFont(ofSize: 18)])
+        attributedText.append(NSAttributedString(string: " -\(subName)-", attributes: [.foregroundColor:UIColor.darkGray,.font:UIFont.systemFont(ofSize: 16)]))
+        return attributedText
     }
 }
 
