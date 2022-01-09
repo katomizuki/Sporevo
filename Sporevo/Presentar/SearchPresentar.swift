@@ -1,7 +1,7 @@
 import Foundation
 
 protocol SearchListInputs {
-    func viewDidLoad(_ tojudgeKeywordOptions:SearchOptions)
+    func viewDidLoad(_ tojudgeKeywordOptions: SearchOptions)
     func numberOfCell(section:Int)->Int
     func didSelectRowAt(indexPath:IndexPath)
     func saveUserDefaults()
@@ -13,9 +13,7 @@ protocol SearchListOutputs:AnyObject {
     func reload()
     func reloadSections(section:Int)
 }
-
 final class SearchListPresentar:SearchListInputs {
-    
     // MARK: - Properties
     private var selectedCity = [City]()
     private var selectedTag = [Tag]()
@@ -37,7 +35,14 @@ final class SearchListPresentar:SearchListInputs {
     private var moneyInput:FetchMoneyInputs!
     private var prefectureInput:FetchPrefectureInputs!
     private var cityInput:FetchCityInputs!
-    init(outputs:SearchListOutputs,model:FetchFacilityTypeInputs,option:SearchOptions,sports:FetchSportsInputs,tags:FetchTagInputs,moneyUnit:FetchMoneyInputs,prefecture:FetchPrefectureInputs,city:FetchCityInputs) {
+    init(outputs:SearchListOutputs,
+         model:FetchFacilityTypeInputs,
+         option:SearchOptions,
+         sports:FetchSportsInputs,
+         tags:FetchTagInputs,
+         moneyUnit:FetchMoneyInputs,
+         prefecture:FetchPrefectureInputs,
+         city:FetchCityInputs) {
         self.outputs = outputs
         self.model = model
         self.option = option

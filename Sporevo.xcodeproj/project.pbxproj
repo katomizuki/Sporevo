@@ -274,6 +274,7 @@
 				D32B13732738D8430039CC06 /* Frameworks */,
 				D32B13742738D8430039CC06 /* Resources */,
 				237B4E3807F089AF75613594 /* [CP] Copy Pods Resources */,
+				E1AEC22D46461F94F132451F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -312,7 +313,7 @@
 			);
 			mainGroup = D32B136D2738D8430039CC06;
 			packageReferences = (
-				D312C2222742363C00DF7E83 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				D312C2222742363C00DF7E83 /* XCRemoteSwiftPackageReference "Alamofire.git" */,
 			);
 			productRefGroup = D32B13772738D8430039CC06 /* Products */;
 			projectDirPath = "";
@@ -372,6 +373,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Sporevo/Pods-Sporevo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E1AEC22D46461F94F132451F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Sporevo/Pods-Sporevo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Sporevo/Pods-Sporevo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Sporevo/Pods-Sporevo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -623,7 +641,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		D312C2222742363C00DF7E83 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		D312C2222742363C00DF7E83 /* XCRemoteSwiftPackageReference "Alamofire.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -636,7 +654,7 @@
 /* Begin XCSwiftPackageProductDependency section */
 		D312C2232742363C00DF7E83 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D312C2222742363C00DF7E83 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			package = D312C2222742363C00DF7E83 /* XCRemoteSwiftPackageReference "Alamofire.git" */;
 			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */

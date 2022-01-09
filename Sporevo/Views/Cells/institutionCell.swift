@@ -40,24 +40,26 @@ class InstitutionCell: UICollectionViewCell {
         label.font = .systemFont(ofSize: 16)
         return label
     }()
-
-    private lazy var collectionView:UICollectionView = {
+    
+    private  var collectionView:UICollectionView!
+    private var tags = [String]()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         let layout = UICollectionViewFlowLayout()
-        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        if tags.count == 1 {
+            layout.itemSize = CGSize(width: 100, height: 50)
+        } else {
+            layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        }
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 5
         layout.minimumInteritemSpacing = 5
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.delegate = self
-        cv.dataSource = self
-        cv.contentMode = .left
-        cv.register(TagCell.self, forCellWithReuseIdentifier: TagCell.id)
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.contentMode = .left
+        collectionView.register(TagCell.self, forCellWithReuseIdentifier: TagCell.id)
         
-        return cv
-    }()
-    private var tags = [String]()    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
         backgroundColor = .systemBackground
         addSubview(institutionNameLabel)
         addSubview(addressLabel)
@@ -82,10 +84,10 @@ class InstitutionCell: UICollectionViewCell {
         collectionView.anchor(top:view.topAnchor,bottom: view.bottomAnchor,
                               left: view.leftAnchor,right: view.rightAnchor)
         view.anchor(top:competitionLabel.bottomAnchor,bottom:bottomAnchor,
-                         left: institutionNameLabel.leftAnchor,
-                         right: rightAnchor,paddingTop: 20,
-                         paddingRight: 10,
-                         paddingLeft: 25)
+                    left: institutionNameLabel.leftAnchor,
+                    right: rightAnchor,paddingTop: 20,
+                    paddingRight: 10,
+                    paddingLeft: 25)
     }
     required init?(coder: NSCoder) {
         fatalError()
@@ -100,6 +102,15 @@ class InstitutionCell: UICollectionViewCell {
         message = String(message.dropLast())
         competitionLabel.text = message
         tags = facility.tags
+        if tags.count == 1 {
+            let layout = UICollectionViewFlowLayout()
+            layout.itemSize = CGSize(width: 100, height: 50)
+            layout.scrollDirection = .vertical
+            layout.minimumLineSpacing = 5
+            layout.minimumInteritemSpacing = 5
+            collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+            collectionView.contentMode = .left
+        }
         collectionView.reloadData()
     }
     func makeAttributedText(name:String,subName:String)->NSAttributedString {
@@ -122,6 +133,7 @@ extension InstitutionCell:UICollectionViewDataSource {
         return tags.count
     }
 }
+
 
 
 
