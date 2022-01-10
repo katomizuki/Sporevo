@@ -26,12 +26,6 @@ class FacilityDetailEntity:Object {
     @objc dynamic var personalUseRegist:String = ""
     @objc dynamic var personalUseRegistText:String = ""
     @objc dynamic var subName:String = ""
-    @objc dynamic var bookingType:[String] = [String]()
-    @objc dynamic var equipmentTypes:[String] = [String]()
-    @objc dynamic var parkingTypes:[String] = [String]()
-    @objc dynamic var priceRanges:[String] = [String]()
-    @objc dynamic var sportsType:[String] = [String]()
-    @objc dynamic var tags:[String] = [String]()
     @objc dynamic var updateAt:String = ""
-    @objc dynamic var userTypes:[String] = [String]()
+
 }

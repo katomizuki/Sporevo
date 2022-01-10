@@ -50,11 +50,13 @@ struct FetchFacility: FetchFacilityInputs {
     func fetchFacility(completion: @escaping (Result<Facilities, Error>) -> Void) {
         let header:HTTPHeaders = ["Authorization":"Token LIcCke0gTSNAloR7ptYq"]
         let queri = makeCityQueri() + makeFacilityQueri() + makeTagQueri() + makePriceQueri() + makeSportQueri()
-        let baseURL = "https://spo-revo.com/api/v1/facilities?\(queri)size=10&page=1"
+//        \(queri)/size=10&page=1
+        let baseURL = "https://spo-revo.com/api/v1/facilities"
         AF.request(baseURL, method: .get, parameters: nil, encoding: URLEncoding.default, headers: header).responseJSON { response in
             guard let data = response.data else { return }
             do {
                 let decodeData = try JSONDecoder().decode(Facilities.self, from: data)
+                print(decodeData,"🌤")
                 completion(.success(decodeData))
             } catch {
                 completion(.failure(error))
@@ -76,7 +78,6 @@ struct FetchFacility: FetchFacilityInputs {
         }
     }
     func makeCityQueri()->String {
-        print(#function)
         var q = String()
         let city:[City] = UserDefaultRepositry.shared.loadFromUserDefaults(key:"city")
         city.forEach { ele in

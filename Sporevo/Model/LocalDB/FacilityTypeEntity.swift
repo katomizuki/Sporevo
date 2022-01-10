@@ -7,6 +7,6 @@
 
 import RealmSwift
 class FacilityTypeEntity:Object {
-    @objc dynamic let id:Int = 0
-    @objc dynamic let name:String = ""
+    @objc dynamic var id:Int = 0
+    @objc dynamic var name:String = ""
 }

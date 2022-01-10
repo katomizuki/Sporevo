@@ -7,6 +7,7 @@
 
 import RealmSwift
 class CityEntity:Object {
-    @objc dynamic let name:String = ""
-    @objc dynamic let id:Int = 0
+    @objc dynamic var name:String = ""
+    @objc dynamic var id:Int = 0
+    @objc dynamic var prefectureId:Int = 0
 }

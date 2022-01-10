@@ -1,5 +1,7 @@
 import Foundation
 import Alamofire
+import RealmSwift
+
 struct MoneyUnits:Codable,Equatable {
     let id:Int
     let name:String
@@ -14,6 +16,7 @@ protocol FetchMoneyInputs {
 }
 
 struct FetchMoney:FetchMoneyInputs {
+    private let realm = try! Realm()
     func fetchMoney(completion: @escaping (Result<[MoneyUnits], Error>) -> Void) {
         let header:HTTPHeaders = ["Authorization":"Token LIcCke0gTSNAloR7ptYq"]
         let baseURL = "https://spo-revo.com/api/v1/price_use_units"
@@ -22,6 +25,14 @@ struct FetchMoney:FetchMoneyInputs {
             do {
                 let moneyUnits = try JSONDecoder().decode([MoneyUnits].self, from: data)
                 completion(.success(moneyUnits))
+                moneyUnits.forEach {
+                    let moneyUnitsEntity = MoneyUnitsEntity()
+                    moneyUnitsEntity.id = $0.id
+                    moneyUnitsEntity.name = $0.name
+                    try! realm.write({
+                        realm.add(moneyUnitsEntity)
+                    })
+                }
             } catch {
                 completion(.failure(error))
             }
@@ -36,6 +47,15 @@ struct FetchMoney:FetchMoneyInputs {
             do {
                 let moneyUnitsSelected = try JSONDecoder().decode([PriceUnits].self, from: data)
                 completion(.success(moneyUnitsSelected))
+                moneyUnitsSelected.forEach {
+                    let priceUnitsEntity = PriceUnitsEntity()
+                    priceUnitsEntity.id = $0.id
+                    priceUnitsEntity.name = $0.name
+                    priceUnitsEntity.moneyUnitId = index
+                    try! realm.write({
+                        realm.add(priceUnitsEntity)
+                    })
+                }
             } catch {
                 completion(.failure(error))
             }

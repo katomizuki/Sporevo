@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import RealmSwift
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
@@ -19,6 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = ContainerController()
 //        UINavigationController(rootViewController: SporevoMainController())
         window?.makeKeyAndVisible()
+        let realm = try! Realm()  // Realmの初期化
+        print(Realm.Configuration.defaultConfiguration.fileURL!,"⚡️")
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

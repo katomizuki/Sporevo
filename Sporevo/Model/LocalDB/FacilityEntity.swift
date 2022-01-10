@@ -11,6 +11,5 @@ class FacilityEntity:Object {
     @objc dynamic var id:Int = 0
     @objc dynamic var address:String = ""
     @objc dynamic var subName:String = ""
-    @objc dynamic var tags = [String]()
-    @objc dynamic var sportsType = [String]()
+
 }
