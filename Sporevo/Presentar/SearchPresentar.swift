@@ -1,5 +1,5 @@
 import Foundation
-
+import RealmSwift
 protocol SearchListInputs {
     func viewDidLoad(_ tojudgeKeywordOptions: SearchOptions)
     func numberOfCell(section:Int)->Int
@@ -15,6 +15,7 @@ protocol SearchListOutputs:AnyObject {
 }
 final class SearchListPresentar:SearchListInputs {
     // MARK: - Properties
+    private let realm = try! Realm()
     private var selectedCity = [City]()
     private var selectedTag = [Tag]()
     private var selectedInstion = [FacilityType]()
@@ -28,29 +29,10 @@ final class SearchListPresentar:SearchListInputs {
     private var citySections = [CitySection]()
     private var moneySections = [MoneySection]()
     private weak var outputs:SearchListOutputs!
-    private let model:FetchFacilityTypeInputs
     private var option:SearchOptions!
-    private let sportsInput:FetchSportsInputs
-    private let tagsInput:FetchTagInputs
-    private let moneyInput:FetchMoneyInputs
-    private let prefectureInput:FetchPrefectureInputs
-    private let cityInput:FetchCityInputs
-    init(outputs:SearchListOutputs,
-         model:FetchFacilityTypeInputs,
-         option:SearchOptions,
-         sports:FetchSportsInputs,
-         tags:FetchTagInputs,
-         moneyUnit:FetchMoneyInputs,
-         prefecture:FetchPrefectureInputs,
-         city:FetchCityInputs) {
+    init(outputs:SearchListOutputs,option:SearchOptions) {
         self.outputs = outputs
-        self.model = model
         self.option = option
-        self.sportsInput = sports
-        self.tagsInput = tags
-        self.moneyInput = moneyUnit
-        self.prefectureInput = prefecture
-        self.cityInput = city
     }
     var sectionsCount: Int {
         if option == .place {
@@ -85,88 +67,34 @@ final class SearchListPresentar:SearchListInputs {
         }
     }
     private func fetchPrefecture() {
-        prefectureInput.fetchPrefecture { result in
-            switch result {
-            case .success(let prefecture):
-                self.prefectures = prefecture
-                let group = DispatchGroup()
-                prefecture.forEach { pre in
-                    group.enter()
-                    let id = Int(exactly: pre.id)!
-                    self.cityInput.fetchCities(id: id) { result in
-                        switch result {
-                        case .success(let city):
-                            defer { group.leave() }
-                            let section = CitySection(pre: pre, items: city)
-                            self.citySections.append(section)
-                        case .failure(let error):
-                            print(error)
-                        }
-                    }
-                }
-                group.notify(queue: .main) {
-                    self.outputs.reload()
-                }
-            case.failure(let error): print(error)
-            }
+        self.prefectures = realm.objects(PrefectureEntity.self).sorted(byKeyPath: "id", ascending: true).map { Prefecture(name: $0.name, id: $0.id) }
+        prefectures.forEach { pre in
+            let cities:[City] = realm.objects(CityEntity.self).filter("prefectureId == \(pre.id)").map { City(id:$0.id,name:$0.name) }
+            let section = CitySection(pre: pre, items: cities)
+            self.citySections.append(section)
         }
     }
     
     private func fetchFacility() {
-        model.fetchFacility { result in
-            switch result {
-            case .success(let models):
-                self.facilities = models
-                self.outputs.reload()
-            case .failure(let error): print(error)
-            }
-        }
+        self.facilities = realm.objects(FacilityTypeEntity.self).map { FacilityType(id: $0.id, name: $0.name) }
+        self.outputs.reload()
     }
+    
     private func fetchSports() {
-        sportsInput.fetchSports { result in
-            switch result {
-            case .success(let models):
-                self.sports = models
-                self.outputs.reload()
-            case .failure(let error): print(error)
-        }
-     }
+        self.sports = realm.objects(SportEntity.self).map { Sport(name: $0.name, id: $0.id) }
+        self.outputs.reload()
   }
     private func fetchMoney() {
-        moneyInput.fetchMoney { result in
-            switch result {
-            case .success(let moneyUnits):
-                self.moneyUnit = moneyUnits
-                let group = DispatchGroup()
-                moneyUnits.forEach { unit in
-                    group.enter()
-                    let id = unit.id
-                    self.moneyInput.fetchMoney(index: id) { result in
-                        group.leave()
-                        switch result {
-                        case .success(let priceUnits):
-                            let section = MoneySection(units: unit, prices: priceUnits)
-                            self.moneySections.append(section)
-                        case .failure(let error): print(error)
-                        }
-                    }
-                }
-                group.notify(queue: .main) {
-                    self.outputs.reload()
-                }
-            case .failure(let error): print(error)
-            }
+        self.moneyUnit = realm.objects(MoneyUnitsEntity.self).sorted(byKeyPath: "id", ascending: true).map { MoneyUnits(id: $0.id, name: $0.name) }
+        moneyUnit.forEach { unit in
+            let priceUnits:[PriceUnits] = realm.objects(PriceUnitsEntity.self).filter("moneyUnitId == \(unit.id)").map { PriceUnits(id:$0.id,name:$0.name) }
+            let section = MoneySection(units: unit, prices: priceUnits)
+            self.moneySections.append(section)
         }
     }
     private func fetchTags() {
-        tagsInput.fetchTags { result in
-            switch result {
-            case .success(let tags):
-                self.tags = tags
-                self.outputs.reload()
-            case .failure(let error): print(error)
-            }
-        }
+        self.tags = realm.objects(TagEntity.self).map{ Tag(id: $0.id, name: $0.name) }
+        self.outputs.reload()
     }
 
     func viewDidLoad(_ tojudgeKeywordOptions: SearchOptions) {
@@ -246,8 +174,8 @@ final class SearchListPresentar:SearchListInputs {
             moneySections[section].isOpened = !moneySections[section].isOpened
         }
         self.outputs.reloadSections(section: section)
-        
     }
+    
     func getMessage(indexPath: IndexPath) -> String {
         let row = indexPath.row
         let section = indexPath.section
