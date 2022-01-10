@@ -11,7 +11,6 @@ protocol FetchSportsInputs {
 
 struct FetchSports:FetchSportsInputs {
     func fetchSports(completion:@escaping(Result<[Sport],Error>) ->Void) {
-                print(#function)
                 let header:HTTPHeaders = ["Authorization":"Token LIcCke0gTSNAloR7ptYq"]
                 let baseURL = "https://spo-revo.com/api/v1/sports_types"
                 AF.request(baseURL, method: .get, parameters: nil, encoding: URLEncoding.default, headers: header).responseJSON { response in

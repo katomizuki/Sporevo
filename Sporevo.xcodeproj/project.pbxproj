@@ -35,6 +35,21 @@
 		D32B8C50275486AD0036FA98 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8C4F275486AD0036FA98 /* String+Extension.swift */; };
 		D32B8C5227548E570036FA98 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8C5127548E570036FA98 /* TagCell.swift */; };
 		D33D95A82745E114001FBC48 /* SearchMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33D95A72745E114001FBC48 /* SearchMapController.swift */; };
+		D3459C1B278C16E000B61C6E /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3459C1A278C16E000B61C6E /* AppState.swift */; };
+		D3459C1D278C170E00B61C6E /* DetailSearchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3459C1C278C170E00B61C6E /* DetailSearchState.swift */; };
+		D3459C22278C17BA00B61C6E /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3459C21278C17BA00B61C6E /* AppReducer.swift */; };
+		D3459C24278C184000B61C6E /* DetailSearchReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3459C23278C184000B61C6E /* DetailSearchReducer.swift */; };
+		D3459C26278C18AE00B61C6E /* DetailSearchAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3459C25278C18AE00B61C6E /* DetailSearchAction.swift */; };
+		D3459C28278C190100B61C6E /* DetailSearchActionCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3459C27278C190100B61C6E /* DetailSearchActionCreator.swift */; };
+		D3459C2B278C403C00B61C6E /* FacilityEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3459C2A278C403C00B61C6E /* FacilityEntity.swift */; };
+		D3459C2D278C408500B61C6E /* SportEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3459C2C278C408500B61C6E /* SportEntity.swift */; };
+		D3459C2F278C40F300B61C6E /* TagEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3459C2E278C40F300B61C6E /* TagEntity.swift */; };
+		D3459C31278C413900B61C6E /* FacilityTypeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3459C30278C413900B61C6E /* FacilityTypeEntity.swift */; };
+		D3459C33278C41B700B61C6E /* MoneyUnitsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3459C32278C41B700B61C6E /* MoneyUnitsEntity.swift */; };
+		D3459C35278C41E300B61C6E /* PriceUnitsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3459C34278C41E300B61C6E /* PriceUnitsEntity.swift */; };
+		D3459C37278C42BE00B61C6E /* PrefectureEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3459C36278C42BE00B61C6E /* PrefectureEntity.swift */; };
+		D3459C39278C433100B61C6E /* CityEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3459C38278C433100B61C6E /* CityEntity.swift */; };
+		D3459C3B278C443700B61C6E /* FacilityDetailEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3459C3A278C443700B61C6E /* FacilityDetailEntity.swift */; };
 		D351FF3A275B988F00AA518B /* CitySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D351FF39275B988F00AA518B /* CitySection.swift */; };
 		D351FF3C275B98DD00AA518B /* MoneySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D351FF3B275B98DD00AA518B /* MoneySection.swift */; };
 		D3B72CA42749278A00253933 /* InstitutionListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B72CA32749278A00253933 /* InstitutionListController.swift */; };
@@ -84,6 +99,21 @@
 		D32B8C4F275486AD0036FA98 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		D32B8C5127548E570036FA98 /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
 		D33D95A72745E114001FBC48 /* SearchMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMapController.swift; sourceTree = "<group>"; };
+		D3459C1A278C16E000B61C6E /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		D3459C1C278C170E00B61C6E /* DetailSearchState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSearchState.swift; sourceTree = "<group>"; };
+		D3459C21278C17BA00B61C6E /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
+		D3459C23278C184000B61C6E /* DetailSearchReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSearchReducer.swift; sourceTree = "<group>"; };
+		D3459C25278C18AE00B61C6E /* DetailSearchAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSearchAction.swift; sourceTree = "<group>"; };
+		D3459C27278C190100B61C6E /* DetailSearchActionCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSearchActionCreator.swift; sourceTree = "<group>"; };
+		D3459C2A278C403C00B61C6E /* FacilityEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityEntity.swift; sourceTree = "<group>"; };
+		D3459C2C278C408500B61C6E /* SportEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportEntity.swift; sourceTree = "<group>"; };
+		D3459C2E278C40F300B61C6E /* TagEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagEntity.swift; sourceTree = "<group>"; };
+		D3459C30278C413900B61C6E /* FacilityTypeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityTypeEntity.swift; sourceTree = "<group>"; };
+		D3459C32278C41B700B61C6E /* MoneyUnitsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyUnitsEntity.swift; sourceTree = "<group>"; };
+		D3459C34278C41E300B61C6E /* PriceUnitsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceUnitsEntity.swift; sourceTree = "<group>"; };
+		D3459C36278C42BE00B61C6E /* PrefectureEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefectureEntity.swift; sourceTree = "<group>"; };
+		D3459C38278C433100B61C6E /* CityEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityEntity.swift; sourceTree = "<group>"; };
+		D3459C3A278C443700B61C6E /* FacilityDetailEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityDetailEntity.swift; sourceTree = "<group>"; };
 		D351FF39275B988F00AA518B /* CitySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySection.swift; sourceTree = "<group>"; };
 		D351FF3B275B98DD00AA518B /* MoneySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneySection.swift; sourceTree = "<group>"; };
 		D3B72CA32749278A00253933 /* InstitutionListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstitutionListController.swift; sourceTree = "<group>"; };
@@ -152,6 +182,10 @@
 		D32B13782738D8430039CC06 /* Sporevo */ = {
 			isa = PBXGroup;
 			children = (
+				D3459C20278C179400B61C6E /* Action */,
+				D3459C1F278C178C00B61C6E /* ActionCreators */,
+				D3459C1E278C178600B61C6E /* Reducer */,
+				D3459C19278C16A500B61C6E /* State */,
 				D32B13792738D8430039CC06 /* AppDelegate.swift */,
 				D32B137B2738D8430039CC06 /* SceneDelegate.swift */,
 				D32B13822738D8450039CC06 /* Assets.xcassets */,
@@ -190,16 +224,9 @@
 		D32B13B42738FF1B0039CC06 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D32B13B8273902670039CC06 /* SearchOptions.swift */,
-				D32B13CB273964000039CC06 /* MenuOptions.swift */,
-				D3D8116F274E213000A380B1 /* FacilityType.swift */,
-				D3D81171274E509A00A380B1 /* Sports.swift */,
-				D3D81173274E564900A380B1 /* Tag.swift */,
-				D3D81175274E5E8300A380B1 /* Money.swift */,
-				D3D81177274E66AE00A380B1 /* Prefecture.swift */,
-				D32B8C4B2754770A0036FA98 /* Facility.swift */,
-				D351FF39275B988F00AA518B /* CitySection.swift */,
-				D351FF3B275B98DD00AA518B /* MoneySection.swift */,
+				D3459C3D278C446300B61C6E /* APIDB */,
+				D3459C3C278C444E00B61C6E /* Enum */,
+				D3459C29278C38EC00B61C6E /* LocalDB */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -207,6 +234,7 @@
 		D32B13B52738FF1F0039CC06 /* Presentar */ = {
 			isa = PBXGroup;
 			children = (
+				D3459C3E278C447A00B61C6E /* Section */,
 				D3D81169274E19C300A380B1 /* SearchPresentar.swift */,
 				D3D8116B274E1A2B00A380B1 /* SporevoMainPresentar.swift */,
 				D3D81180274F75ED00A380B1 /* FacilitySearchPresentar.swift */,
@@ -252,6 +280,87 @@
 				D32B13DB273A51C00039CC06 /* TagLabel.swift */,
 			);
 			path = CustomView;
+			sourceTree = "<group>";
+		};
+		D3459C19278C16A500B61C6E /* State */ = {
+			isa = PBXGroup;
+			children = (
+				D3459C1A278C16E000B61C6E /* AppState.swift */,
+				D3459C1C278C170E00B61C6E /* DetailSearchState.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
+		D3459C1E278C178600B61C6E /* Reducer */ = {
+			isa = PBXGroup;
+			children = (
+				D3459C21278C17BA00B61C6E /* AppReducer.swift */,
+				D3459C23278C184000B61C6E /* DetailSearchReducer.swift */,
+			);
+			path = Reducer;
+			sourceTree = "<group>";
+		};
+		D3459C1F278C178C00B61C6E /* ActionCreators */ = {
+			isa = PBXGroup;
+			children = (
+				D3459C27278C190100B61C6E /* DetailSearchActionCreator.swift */,
+			);
+			path = ActionCreators;
+			sourceTree = "<group>";
+		};
+		D3459C20278C179400B61C6E /* Action */ = {
+			isa = PBXGroup;
+			children = (
+				D3459C25278C18AE00B61C6E /* DetailSearchAction.swift */,
+			);
+			path = Action;
+			sourceTree = "<group>";
+		};
+		D3459C29278C38EC00B61C6E /* LocalDB */ = {
+			isa = PBXGroup;
+			children = (
+				D3459C2A278C403C00B61C6E /* FacilityEntity.swift */,
+				D3459C2C278C408500B61C6E /* SportEntity.swift */,
+				D3459C2E278C40F300B61C6E /* TagEntity.swift */,
+				D3459C30278C413900B61C6E /* FacilityTypeEntity.swift */,
+				D3459C32278C41B700B61C6E /* MoneyUnitsEntity.swift */,
+				D3459C34278C41E300B61C6E /* PriceUnitsEntity.swift */,
+				D3459C36278C42BE00B61C6E /* PrefectureEntity.swift */,
+				D3459C38278C433100B61C6E /* CityEntity.swift */,
+				D3459C3A278C443700B61C6E /* FacilityDetailEntity.swift */,
+			);
+			path = LocalDB;
+			sourceTree = "<group>";
+		};
+		D3459C3C278C444E00B61C6E /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				D32B13B8273902670039CC06 /* SearchOptions.swift */,
+				D32B13CB273964000039CC06 /* MenuOptions.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
+		D3459C3D278C446300B61C6E /* APIDB */ = {
+			isa = PBXGroup;
+			children = (
+				D3D8116F274E213000A380B1 /* FacilityType.swift */,
+				D3D81171274E509A00A380B1 /* Sports.swift */,
+				D3D81173274E564900A380B1 /* Tag.swift */,
+				D3D81175274E5E8300A380B1 /* Money.swift */,
+				D3D81177274E66AE00A380B1 /* Prefecture.swift */,
+				D32B8C4B2754770A0036FA98 /* Facility.swift */,
+			);
+			path = APIDB;
+			sourceTree = "<group>";
+		};
+		D3459C3E278C447A00B61C6E /* Section */ = {
+			isa = PBXGroup;
+			children = (
+				D351FF39275B988F00AA518B /* CitySection.swift */,
+				D351FF3B275B98DD00AA518B /* MoneySection.swift */,
+			);
+			path = Section;
 			sourceTree = "<group>";
 		};
 		D3D8117D274F6E8700A380B1 /* Repositry */ = {
@@ -405,8 +514,13 @@
 				D3D8117C274F619600A380B1 /* Array+Extension.swift in Sources */,
 				D3D81181274F75ED00A380B1 /* FacilitySearchPresentar.swift in Sources */,
 				D3D81170274E213000A380B1 /* FacilityType.swift in Sources */,
+				D3459C1B278C16E000B61C6E /* AppState.swift in Sources */,
+				D3459C3B278C443700B61C6E /* FacilityDetailEntity.swift in Sources */,
 				D32B13BE2739038A0039CC06 /* SearchCell.swift in Sources */,
+				D3459C26278C18AE00B61C6E /* DetailSearchAction.swift in Sources */,
 				D32B13C0273904370039CC06 /* MainHeaderView.swift in Sources */,
+				D3459C22278C17BA00B61C6E /* AppReducer.swift in Sources */,
+				D3459C33278C41B700B61C6E /* MoneyUnitsEntity.swift in Sources */,
 				D3D81176274E5E8300A380B1 /* Money.swift in Sources */,
 				D32B13C227392BCC0039CC06 /* SearchListController.swift in Sources */,
 				D312C2212742228100DF7E83 /* FacilitySearchController.swift in Sources */,
@@ -420,25 +534,35 @@
 				D32B137E2738D8430039CC06 /* SporevoMainController.swift in Sources */,
 				D3D81178274E66AE00A380B1 /* Prefecture.swift in Sources */,
 				D351FF3A275B988F00AA518B /* CitySection.swift in Sources */,
+				D3459C1D278C170E00B61C6E /* DetailSearchState.swift in Sources */,
 				D32B8C50275486AD0036FA98 /* String+Extension.swift in Sources */,
 				D3D8116C274E1A2B00A380B1 /* SporevoMainPresentar.swift in Sources */,
+				D3459C35278C41E300B61C6E /* PriceUnitsEntity.swift in Sources */,
 				D3D81172274E509A00A380B1 /* Sports.swift in Sources */,
 				D32B137A2738D8430039CC06 /* AppDelegate.swift in Sources */,
+				D3459C39278C433100B61C6E /* CityEntity.swift in Sources */,
 				D32B13D2273A25E00039CC06 /* InstitutionDetailController.swift in Sources */,
+				D3459C2B278C403C00B61C6E /* FacilityEntity.swift in Sources */,
 				D32B13B7273901230039CC06 /* Anchor+Extension.swift in Sources */,
+				D3459C28278C190100B61C6E /* DetailSearchActionCreator.swift in Sources */,
+				D3459C31278C413900B61C6E /* FacilityTypeEntity.swift in Sources */,
+				D3459C2D278C408500B61C6E /* SportEntity.swift in Sources */,
 				D32B137C2738D8430039CC06 /* SceneDelegate.swift in Sources */,
 				D32B8C4E27547D9B0036FA98 /* InstituationPresentar.swift in Sources */,
 				D32B13CE273965120039CC06 /* MenuOptionsCell.swift in Sources */,
 				D33D95A82745E114001FBC48 /* SearchMapController.swift in Sources */,
 				D32B8C4C2754770A0036FA98 /* Facility.swift in Sources */,
+				D3459C2F278C40F300B61C6E /* TagEntity.swift in Sources */,
 				D32B13C4273931EB0039CC06 /* Constants.swift in Sources */,
 				D32B13D0273A0E490039CC06 /* institutionCell.swift in Sources */,
 				D32B13CC273964000039CC06 /* MenuOptions.swift in Sources */,
 				D3B72CA42749278A00253933 /* InstitutionListController.swift in Sources */,
+				D3459C24278C184000B61C6E /* DetailSearchReducer.swift in Sources */,
 				D3D81183274F98DF00A380B1 /* ViewController+Extension.swift in Sources */,
 				D32B13C8273960720039CC06 /* ContainerController.swift in Sources */,
 				D3D81174274E564900A380B1 /* Tag.swift in Sources */,
 				D32B13C6273944840039CC06 /* CustomSearchSectionHeader.swift in Sources */,
+				D3459C37278C42BE00B61C6E /* PrefectureEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

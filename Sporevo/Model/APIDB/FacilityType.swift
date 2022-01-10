@@ -10,7 +10,6 @@ protocol FetchFacilityTypeInputs {
 }
 struct FetchFacilityType:FetchFacilityTypeInputs {
     func fetchFacility(completion:@escaping(Result<[FacilityType],Error>) ->Void) {
-                print(#function)
                 let header:HTTPHeaders = ["Authorization":"Token LIcCke0gTSNAloR7ptYq"]
                 let baseURL = "https://spo-revo.com/api/v1/facility_types"
                 AF.request(baseURL, method: .get, parameters: nil, encoding: URLEncoding.default, headers: header).responseJSON { response in

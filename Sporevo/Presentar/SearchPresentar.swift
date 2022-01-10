@@ -28,13 +28,13 @@ final class SearchListPresentar:SearchListInputs {
     private var citySections = [CitySection]()
     private var moneySections = [MoneySection]()
     private weak var outputs:SearchListOutputs!
-    private var model:FetchFacilityTypeInputs!
+    private let model:FetchFacilityTypeInputs
     private var option:SearchOptions!
-    private var sportsInput:FetchSportsInputs!
-    private var tagsInput:FetchTagInputs!
-    private var moneyInput:FetchMoneyInputs!
-    private var prefectureInput:FetchPrefectureInputs!
-    private var cityInput:FetchCityInputs!
+    private let sportsInput:FetchSportsInputs
+    private let tagsInput:FetchTagInputs
+    private let moneyInput:FetchMoneyInputs
+    private let prefectureInput:FetchPrefectureInputs
+    private let cityInput:FetchCityInputs
     init(outputs:SearchListOutputs,
          model:FetchFacilityTypeInputs,
          option:SearchOptions,
@@ -71,10 +71,8 @@ final class SearchListPresentar:SearchListInputs {
             } else {
                 return 1
             }
-        case .institution:
-            return facilities.count
-        case .competition:
-            return sports.count
+        case .institution: return facilities.count
+        case .competition: return sports.count
         case .price:
             let section = moneySections[section]
             if section.isOpened {
@@ -82,104 +80,114 @@ final class SearchListPresentar:SearchListInputs {
             } else {
                 return 1
             }
-        case .tag:
-            return tags.count
-        case .none:
-            return 0
+        case .tag: return tags.count
+        case .none: return 0
+        }
+    }
+    private func fetchPrefecture() {
+        prefectureInput.fetchPrefecture { result in
+            switch result {
+            case .success(let prefecture):
+                self.prefectures = prefecture
+                let group = DispatchGroup()
+                prefecture.forEach { pre in
+                    group.enter()
+                    let id = Int(exactly: pre.id)!
+                    self.cityInput.fetchCities(id: id) { result in
+                        switch result {
+                        case .success(let city):
+                            defer { group.leave() }
+                            let section = CitySection(pre: pre, items: city)
+                            self.citySections.append(section)
+                        case .failure(let error):
+                            print(error)
+                        }
+                    }
+                }
+                group.notify(queue: .main) {
+                    self.outputs.reload()
+                }
+            case.failure(let error): print(error)
+            }
+        }
+    }
+    
+    private func fetchFacility() {
+        model.fetchFacility { result in
+            switch result {
+            case .success(let models):
+                self.facilities = models
+                self.outputs.reload()
+            case .failure(let error): print(error)
+            }
+        }
+    }
+    private func fetchSports() {
+        sportsInput.fetchSports { result in
+            switch result {
+            case .success(let models):
+                self.sports = models
+                self.outputs.reload()
+            case .failure(let error): print(error)
+        }
+     }
+  }
+    private func fetchMoney() {
+        moneyInput.fetchMoney { result in
+            switch result {
+            case .success(let moneyUnits):
+                self.moneyUnit = moneyUnits
+                let group = DispatchGroup()
+                moneyUnits.forEach { unit in
+                    group.enter()
+                    let id = unit.id
+                    self.moneyInput.fetchMoney(index: id) { result in
+                        group.leave()
+                        switch result {
+                        case .success(let priceUnits):
+                            let section = MoneySection(units: unit, prices: priceUnits)
+                            self.moneySections.append(section)
+                        case .failure(let error): print(error)
+                        }
+                    }
+                }
+                group.notify(queue: .main) {
+                    self.outputs.reload()
+                }
+            case .failure(let error): print(error)
+            }
+        }
+    }
+    private func fetchTags() {
+        tagsInput.fetchTags { result in
+            switch result {
+            case .success(let tags):
+                self.tags = tags
+                self.outputs.reload()
+            case .failure(let error): print(error)
+            }
         }
     }
 
     func viewDidLoad(_ tojudgeKeywordOptions: SearchOptions) {
         switch tojudgeKeywordOptions {
         case .place:
-            prefectureInput.fetchPrefecture { result in
-                switch result {
-                case .success(let prefecture):
-                    self.prefectures = prefecture
-                    let group = DispatchGroup()
-                    prefecture.forEach { pre in
-                        group.enter()
-                        let id = Int(exactly: pre.id)!
-                        self.cityInput.fetchCities(id: id) { result in
-                            switch result {
-                            case .success(let city):
-                                defer { group.leave() }
-                                let section = CitySection(pre: pre, items: city)
-                                self.citySections.append(section)
-                            case .failure(let error):
-                                print(error)
-                            }
-                        }
-                    }
-                    group.notify(queue: .main) {
-                        self.outputs.reload()
-                    }
-                case.failure(let error):
-                    print(error)
-                }
-            }
+            fetchPrefecture()
         case .institution:
-            model.fetchFacility { result in
-                switch result {
-                case .success(let models):
-                    self.facilities = models
-                    self.outputs.reload()
-                case .failure(let error): print(error)
-                }
-            }
+            fetchFacility()
         case .competition:
-            sportsInput.fetchSports { result in
-                switch result {
-                case .success(let models):
-                    self.sports = models
-                    self.outputs.reload()
-                case .failure(let error):
-                    print(error)
-            }
-         }
+            fetchSports()
         case .price:
-            moneyInput.fetchMoney { result in
-                switch result {
-                case .success(let moneyUnits):
-                    self.moneyUnit = moneyUnits
-                    let group = DispatchGroup()
-                    moneyUnits.forEach { unit in
-                        group.enter()
-                        let id = unit.id
-                        self.moneyInput.fetchMoney(index: id) { result in
-                            group.leave()
-                            switch result {
-                            case .success(let priceUnits):
-                                let section = MoneySection(units: unit, prices: priceUnits)
-                                self.moneySections.append(section)
-                            case .failure(let error):
-                                print(error)
-                            }
-                        }
-                    }
-                    group.notify(queue: .main) {
-                        self.outputs.reload()
-                    }
-                case .failure(let error):
-                    print(error)
-                }
-            }
+            fetchMoney()
         case .tag:
-            tagsInput.fetchTags { result in
-                switch result {
-                case .success(let tags):
-                    self.tags = tags
-                    self.outputs.reload()
-                case .failure(let error):
-                    print(error)
-                }
-            }
+            fetchTags()
         }
     }
     func didSelectRowAt(indexPath:IndexPath) {
         let id = indexPath.row
         let sectionId = indexPath.section
-        if option == .place  {
+        switch option {
+        case .place:
             if id == 0 { return }
             let city = citySections[sectionId].items[id - 1]
             if judgeArray(ele: city, array: selectedCity) {
@@ -187,8 +195,19 @@ final class SearchListPresentar:SearchListInputs {
             } else {
                 selectedCity.remove(value: city)
             }
-        }
-        if option == .price {
+        case .institution:
+            if judgeArray(ele: facilities[id], array: selectedInstion) == true {
+                selectedInstion.append(facilities[id])
+            } else {
+                selectedInstion.remove(value: facilities[id])
+            }
+        case .competition:
+            if judgeArray(ele: sports[id], array: selectedCompetion) == true {
+                selectedCompetion.append(sports[id])
+            } else {
+                selectedCompetion.remove(value: sports[id])
+            }
+        case .price:
             if id == 0 { return }
             let price = moneySections[sectionId].prices[id - 1]
             if judgeArray(ele: price, array: selectedPrice) {
@@ -196,45 +215,28 @@ final class SearchListPresentar:SearchListInputs {
             } else {
                 selectedPrice.remove(value: price)
             }
-        }
-        if option == .institution {
-            if judgeArray(ele: facilities[id], array: selectedInstion) == true {
-                selectedInstion.append(facilities[id])
-            } else {
-                selectedInstion.remove(value: facilities[id])
-            }
-        }
-        if option == .competition {
-            if judgeArray(ele: sports[id], array: selectedCompetion) == true {
-                selectedCompetion.append(sports[id])
-            } else {
-                selectedCompetion.remove(value: sports[id])
-            }
-        }
-        if option == .tag {
+        case .tag:
             if judgeArray(ele: tags[id], array: selectedTag) == true {
                 selectedTag.append(tags[id])
             } else {
                 selectedTag.remove(value: tags[id])
             }
+        default:break
         }
-        print(selectedCity)
     }
     func saveUserDefaults() {
-        if option == .institution {
-            UserDefaultRepositry.shared.saveToUserDefaults(element: selectedInstion, key: "facility")
-        }
-        if option == .tag {
-            UserDefaultRepositry.shared.saveToUserDefaults(element: selectedTag, key: "tag")
-        }
-        if option == .competition {
-            UserDefaultRepositry.shared.saveToUserDefaults(element: selectedCompetion, key: "sport")
-        }
-        if option == .place {
+        switch option {
+        case .place:
             UserDefaultRepositry.shared.saveToUserDefaults(element: selectedCity, key: "city")
-        }
-        if option == .price {
+        case .institution:
+            UserDefaultRepositry.shared.saveToUserDefaults(element: selectedInstion, key: "facility")
+        case .competition:
+            UserDefaultRepositry.shared.saveToUserDefaults(element: selectedCompetion, key: "sport")
+        case .price:
             UserDefaultRepositry.shared.saveToUserDefaults(element: selectedPrice, key: "priceUnits")
+        case .tag:
+            UserDefaultRepositry.shared.saveToUserDefaults(element: selectedTag, key: "tag")
+        default:break
         }
     }
     func didTapSection(section: Int) {
@@ -251,10 +253,8 @@ final class SearchListPresentar:SearchListInputs {
         let section = indexPath.section
         var message = String()
         switch option {
-        case .institution:
-            message = self.facilities[row].name
-        case.competition:
-            message = self.sports[row].name
+        case .institution: message = self.facilities[row].name
+        case.competition: message = self.sports[row].name
         case .place:
             let model = self.citySections[section].pre
             if row == 0 {
@@ -271,10 +271,8 @@ final class SearchListPresentar:SearchListInputs {
                 let prices = self.moneySections[section].prices
                 message = prices[row - 1].name
             }
-        case .tag:
-            message = self.tags[row].name
-        case .none:
-            break
+        case .tag: message = self.tags[row].name
+        case .none: break
         }
         return message
     }

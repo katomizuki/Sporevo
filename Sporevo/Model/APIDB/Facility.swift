@@ -42,9 +42,6 @@ struct FacilityDetail:Codable {
     var updated_at:String?
     var user_types:[String]
 }
-struct FacilitySearchEntity:Codable {
-    
-}
 
 protocol FetchFacilityInputs {
     func fetchFacility(completion:@escaping(Result<Facilities,Error>) ->Void)
@@ -56,7 +53,6 @@ struct FetchFacility: FetchFacilityInputs {
         let baseURL = "https://spo-revo.com/api/v1/facilities?\(queri)size=10&page=1"
         AF.request(baseURL, method: .get, parameters: nil, encoding: URLEncoding.default, headers: header).responseJSON { response in
             guard let data = response.data else { return }
-            print(response.value)
             do {
                 let decodeData = try JSONDecoder().decode(Facilities.self, from: data)
                 completion(.success(decodeData))
