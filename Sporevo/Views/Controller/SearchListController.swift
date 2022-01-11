@@ -18,20 +18,13 @@ final class SearchListController: UIViewController {
     }()
     weak var delegate:SearchListControllerProtocol?
     private var selectedCell:[String:Bool] = [String:Bool]()
-    private let indicator = UIActivityIndicatorView()
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupTableView()
         setupNav()
-        searchListPresentar.viewDidLoad(toJudegeTableViewKeyword)
-        view.addSubview(indicator)
-        indicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        indicator.center = view.center
-        indicator.hidesWhenStopped = true
-        indicator.startAnimating()
-        
+        searchListPresentar.viewDidLoad()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -68,7 +61,6 @@ final class SearchListController: UIViewController {
         leftButton.tintColor = .systemMint
     }
     @objc private func didTapLeftBarButton() {
-        print(#function)
         searchListPresentar.saveUserDefaults()
         navigationController?.popViewController(animated: true)
         self.delegate?.searchListController()
@@ -82,7 +74,6 @@ extension SearchListController: UITableViewDelegate {
         searchListPresentar.didSelectRowAt(indexPath: indexPath)
         if toJudegeTableViewKeyword == .place || toJudegeTableViewKeyword == .price {
             if indexPath.row == 0 {
-                let iv = cell.sectionImageView.image
             tableView.deselectRow(at: indexPath, animated: true)
             searchListPresentar.didTapSection(section: indexPath.section)
             } else {
@@ -160,7 +151,6 @@ extension SearchListController:SearchListOutputs {
     }
     func reload() {
         DispatchQueue.main.async {
-            self.indicator.stopAnimating()
             self.tableView.reloadData()
         }
     }

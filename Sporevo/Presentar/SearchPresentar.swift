@@ -1,12 +1,12 @@
 import Foundation
 import RealmSwift
 protocol SearchListInputs {
-    func viewDidLoad(_ tojudgeKeywordOptions: SearchOptions)
+    func viewDidLoad()
     func numberOfCell(section:Int)->Int
     func didSelectRowAt(indexPath:IndexPath)
     func saveUserDefaults()
-    var sectionsCount:Int { get }
-    func didTapSection(section:Int)
+    var sectionsCount: Int { get }
+    func didTapSection(section: Int)
     func getMessage(indexPath:IndexPath)->String
     var citySections:[CitySection] { get set }
     var tags:[Tag] { get set }
@@ -20,7 +20,6 @@ protocol SearchListOutputs:AnyObject {
 }
 final class SearchListPresentar:SearchListInputs {
     // MARK: - Properties
-    private let realm = try! Realm()
     private var selectedCity = [City]()
     private var selectedTag = [Tag]()
     private var selectedInstion = [FacilityType]()
@@ -70,8 +69,8 @@ final class SearchListPresentar:SearchListInputs {
         }
     }
 
-    func viewDidLoad(_ tojudgeKeywordOptions: SearchOptions) {
-        switch tojudgeKeywordOptions {
+    func viewDidLoad() {
+        switch option {
         case .place:
             DetailSearchActionCreator.fetchPrefecture()
         case .institution:
@@ -82,6 +81,8 @@ final class SearchListPresentar:SearchListInputs {
             DetailSearchActionCreator.fetchMoneySections()
         case .tag:
             DetailSearchActionCreator.fetchTag()
+        case .none:
+            break
         }
     }
     

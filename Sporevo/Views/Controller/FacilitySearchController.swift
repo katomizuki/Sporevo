@@ -22,12 +22,11 @@ final class FacilitySearchController:UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-       setupUI()
+        setupUI()
         presentar = FacilitySearchPresentar(outputs: self)
         presentar.deleteUserDefaults()
     }
     private func setupUI() {
-        print(#function)
         view.backgroundColor = .systemBackground
         tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.delegate = self
@@ -52,7 +51,6 @@ final class FacilitySearchController:UIViewController {
         leftButton.tintColor = .systemMint
     }
     @objc private func didTapDismissButton() {
-        print(#function)
         presentar.deleteUserDefaults()
         dismiss(animated: true, completion: nil)
         
@@ -66,7 +64,6 @@ extension FacilitySearchController:SeachCellDelegate {
         pushActions(options: options)
     }
     @objc private func didTapSearchButton() {
-        print(#function)
         self.delegate?.facilitySearchController(self)
     }
 }
