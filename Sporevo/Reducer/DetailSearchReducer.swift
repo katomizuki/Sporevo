@@ -13,6 +13,14 @@ struct DetailSearchReducer {
         switch action {
         case .setPlaceSection(section: let sections):
             state.placeSections = sections
+        case .setTags(tags: let tags):
+            state.tags = tags
+        case .setSports(sports: let sports):
+            state.sports = sports
+        case .setFacilityType(types: let types):
+            state.facilityType = types
+        case .setMoneySections(sections: let sections):
+            state.moneySections = sections
         }
         return state
     }

@@ -8,6 +8,11 @@ protocol SearchListInputs {
     var sectionsCount:Int { get }
     func didTapSection(section:Int)
     func getMessage(indexPath:IndexPath)->String
+    var citySections:[CitySection] { get set }
+    var tags:[Tag] { get set }
+    var sports:[Sport] { get set }
+    var facilities:[FacilityType] { get set }
+    var moneySections:[MoneySection] { get set }
 }
 protocol SearchListOutputs:AnyObject {
     func reload()
@@ -21,16 +26,14 @@ final class SearchListPresentar:SearchListInputs {
     private var selectedInstion = [FacilityType]()
     private var selectedCompetion = [Sport]()
     private var selectedPrice = [PriceUnits]()
-    private var facilities = [FacilityType]()
-    private var sports = [Sport]()
-    private var tags = [Tag]()
-    private var moneyUnit = [MoneyUnits]()
-    private var prefectures = [Prefecture]()
-    private var citySections = [CitySection]()
-    private var moneySections = [MoneySection]()
+    var facilities = [FacilityType]()
+    var sports = [Sport]()
+    var tags = [Tag]()
+    var citySections = [CitySection]()
+    var moneySections = [MoneySection]()
     private weak var outputs:SearchListOutputs!
     private var option:SearchOptions!
-    init(outputs:SearchListOutputs,option:SearchOptions) {
+    init(outputs:SearchListOutputs,option: SearchOptions) {
         self.outputs = outputs
         self.option = option
     }
@@ -66,51 +69,22 @@ final class SearchListPresentar:SearchListInputs {
         case .none: return 0
         }
     }
-    private func fetchPrefecture() {
-        self.prefectures = realm.objects(PrefectureEntity.self).sorted(byKeyPath: "id", ascending: true).map { Prefecture(name: $0.name, id: $0.id) }
-        prefectures.forEach { pre in
-            let cities:[City] = realm.objects(CityEntity.self).filter("prefectureId == \(pre.id)").map { City(id:$0.id,name:$0.name) }
-            let section = CitySection(pre: pre, items: cities)
-            self.citySections.append(section)
-        }
-    }
-    
-    private func fetchFacility() {
-        self.facilities = realm.objects(FacilityTypeEntity.self).map { FacilityType(id: $0.id, name: $0.name) }
-        self.outputs.reload()
-    }
-    
-    private func fetchSports() {
-        self.sports = realm.objects(SportEntity.self).map { Sport(name: $0.name, id: $0.id) }
-        self.outputs.reload()
-  }
-    private func fetchMoney() {
-        self.moneyUnit = realm.objects(MoneyUnitsEntity.self).sorted(byKeyPath: "id", ascending: true).map { MoneyUnits(id: $0.id, name: $0.name) }
-        moneyUnit.forEach { unit in
-            let priceUnits:[PriceUnits] = realm.objects(PriceUnitsEntity.self).filter("moneyUnitId == \(unit.id)").map { PriceUnits(id:$0.id,name:$0.name) }
-            let section = MoneySection(units: unit, prices: priceUnits)
-            self.moneySections.append(section)
-        }
-    }
-    private func fetchTags() {
-        self.tags = realm.objects(TagEntity.self).map{ Tag(id: $0.id, name: $0.name) }
-        self.outputs.reload()
-    }
 
     func viewDidLoad(_ tojudgeKeywordOptions: SearchOptions) {
         switch tojudgeKeywordOptions {
         case .place:
-            fetchPrefecture()
+            DetailSearchActionCreator.fetchPrefecture()
         case .institution:
-            fetchFacility()
+            DetailSearchActionCreator.fetchFacilityType()
         case .competition:
-            fetchSports()
+            DetailSearchActionCreator.fetchSport()
         case .price:
-            fetchMoney()
+            DetailSearchActionCreator.fetchMoneySections()
         case .tag:
-            fetchTags()
+            DetailSearchActionCreator.fetchTag()
         }
     }
+    
     func didSelectRowAt(indexPath:IndexPath) {
         let id = indexPath.row
         let sectionId = indexPath.section
@@ -167,6 +141,7 @@ final class SearchListPresentar:SearchListInputs {
         default:break
         }
     }
+    
     func didTapSection(section: Int) {
         if option == .place {
             citySections[section].isOpened = !citySections[section].isOpened

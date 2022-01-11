@@ -31,12 +31,17 @@ final class SearchListController: UIViewController {
         indicator.center = view.center
         indicator.hidesWhenStopped = true
         indicator.startAnimating()
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         appStore.subscribe(self)
         navigationController?.navigationBar.backgroundColor = .clear
         navigationController?.navigationBar.isHidden = false
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        appStore.unsubscribe(self)
     }
     // MARK: - Initialize
     init(toJudegeTableViewKeyword: SearchOptions) {
@@ -164,7 +169,11 @@ extension SearchListController:StoreSubscriber {
     typealias StoreSubscriberStateType = AppState
     
     func newState(state: StoreSubscriberStateType) {
-        let a = state.Detai
+        searchListPresentar.citySections = state.detailState.placeSections
+        searchListPresentar.tags = state.detailState.tags
+        searchListPresentar.sports = state.detailState.sports
+        searchListPresentar.moneySections = state.detailState.moneySections
+        searchListPresentar.facilities = state.detailState.facilityType
     }
     
     

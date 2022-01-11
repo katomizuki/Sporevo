@@ -14,8 +14,6 @@ class MenuController:UIViewController {
     private func setupTableView() {
         tableView = UITableView()
         tableView.isUserInteractionEnabled = true
-//        let gesture = UITapGestureRecognizer(target: self, action: #selector(close))
-//        tableView.backgroundView?.addGestureRecognizer(gesture)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .systemMint
