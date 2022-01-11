@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import ReSwift
 
 protocol SearchListControllerProtocol:AnyObject {
     func searchListController()
@@ -33,6 +34,7 @@ final class SearchListController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        appStore.subscribe(self)
         navigationController?.navigationBar.backgroundColor = .clear
         navigationController?.navigationBar.isHidden = false
     }
@@ -48,7 +50,6 @@ final class SearchListController: UIViewController {
     }
     // MARK: - setupMethod
     private func setupTableView() {
-        print(#function)
         view.addSubview(tableView)
         tableView.anchor(top:view.safeAreaLayoutGuide.topAnchor,
                          bottom: view.safeAreaLayoutGuide.bottomAnchor,
@@ -158,5 +159,14 @@ extension SearchListController:SearchListOutputs {
             self.tableView.reloadData()
         }
     }
+}
+extension SearchListController:StoreSubscriber {
+    typealias StoreSubscriberStateType = AppState
+    
+    func newState(state: StoreSubscriberStateType) {
+        let a = state.Detai
+    }
+    
+    
 }
 

@@ -8,6 +8,6 @@
 import ReSwift
 extension DetailSearchState {
     enum DetailSearchAction: ReSwift.Action {
-        case fetchData
+        case setPlaceSection(section: [CitySection])
     }
 }

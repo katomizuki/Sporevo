@@ -6,6 +6,6 @@
 //
 
 import ReSwift
-struct AppState:ReSwift.StateType {
-    
+struct AppState: ReSwift.StateType {
+    var detailState = DetailSearchState()
 }

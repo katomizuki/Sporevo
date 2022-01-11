@@ -7,6 +7,8 @@
 
 import UIKit
 import GoogleMaps
+import ReSwift
+let appStore = Store(reducer: appReduce, state: AppState())
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

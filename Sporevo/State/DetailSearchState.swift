@@ -7,5 +7,5 @@
 
 import ReSwift
 struct DetailSearchState: StateType {
-    
+    var placeSections = [CitySection]()
 }
