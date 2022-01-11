@@ -164,6 +164,11 @@ extension SearchListController:StoreSubscriber {
         searchListPresentar.sports = state.detailState.sports
         searchListPresentar.moneySections = state.detailState.moneySections
         searchListPresentar.facilities = state.detailState.facilityType
+        searchListPresentar.selectedCity = state.detailState.selectedCity
+        searchListPresentar.selectedInstion = state.detailState.selectedInstion
+        searchListPresentar.selectedCompetion = state.detailState.selectedCompetion
+        searchListPresentar.selectedPrice = state.detailState.selectedPrice
+        searchListPresentar.selectedTag = state.detailState.selectedTag
     }
     
     

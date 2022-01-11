@@ -44,5 +44,37 @@ struct DetailSearchActionCreator {
             moneySections.append(section)
     }
         appStore.dispatch(DetailSearchState.DetailSearchAction.setMoneySections(sections: moneySections))
+    }
+    static func didSelectRowAt(option:SearchOptions,indexPath:IndexPath) {
+        let id = indexPath.row
+        let sectionId = indexPath.section
+        switch option {
+        case .place:
+            if id == 0 { return }
+            appStore.dispatch(DetailSearchState.DetailSearchAction.cityTap(id: id, sectionId: sectionId))
+        case .institution:
+            appStore.dispatch(DetailSearchState.DetailSearchAction.institutionTap(id: id))
+        case .competition:
+            appStore.dispatch(DetailSearchState.DetailSearchAction.sportTap(id: id))
+        case .price:
+            if id == 0 { return }
+            appStore.dispatch(DetailSearchState.DetailSearchAction.moneyTap(id: id, sectionId: sectionId))
+        case .tag:
+            appStore.dispatch(DetailSearchState.DetailSearchAction.tagTap(id: id))
+        default: break
+        }
+    }
+    static func saveUserDefaults(option:SearchOptions) {
+        appStore.dispatch(DetailSearchState.DetailSearchAction.saveUserDefaults(option: option))
+    }
+    static func didTapSection(section: Int,option:SearchOptions) {
+        if option == .place {
+            appStore.dispatch(DetailSearchState.DetailSearchAction.tapSectionPlace(section: section))
+            
+        } else {
+            appStore.dispatch(DetailSearchState.DetailSearchAction.tapSectionMoney(section:section))
+        }
+    }
+   
 }
-}
+

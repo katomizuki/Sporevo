@@ -13,5 +13,13 @@ extension DetailSearchState {
         case setSports(sports:[Sport])
         case setFacilityType(types:[FacilityType])
         case setMoneySections(sections:[MoneySection])
+        case saveUserDefaults(option: SearchOptions)
+        case cityTap(id:Int,sectionId: Int)
+        case sportTap(id:Int)
+        case tagTap(id:Int)
+        case institutionTap(id:Int)
+        case moneyTap(id:Int,sectionId: Int)
+        case tapSectionMoney(section:Int)
+        case tapSectionPlace(section:Int)
     }
 }

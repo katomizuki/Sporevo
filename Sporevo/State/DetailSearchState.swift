@@ -12,4 +12,9 @@ struct DetailSearchState: StateType {
     var sports = [Sport]()
     var facilityType = [FacilityType]()
     var moneySections = [MoneySection]()
+    var selectedCity = [City]()
+    var selectedTag = [Tag]()
+    var selectedInstion = [FacilityType]()
+    var selectedCompetion = [Sport]()
+    var selectedPrice = [PriceUnits]()
 }
