@@ -8,4 +8,6 @@
 import ReSwift
 struct AppState: ReSwift.StateType {
     var detailState = DetailSearchState()
+    var facilityDetailState = FacilityDetailState()
+    var mapState = SporevoMapState()
 }

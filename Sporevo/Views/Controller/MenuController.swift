@@ -45,7 +45,6 @@ extension MenuController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MenuOptionsCell.id, for: indexPath) as? MenuOptionsCell else { fatalError("Can’ｔ make MenuOptionsCell Error") }
         cell.desciptionLabel.text = MenuOptions(rawValue: indexPath.row)?.description
-//        let context = cell.defaultContentConfiguration()
         cell.iconImageView.image = MenuOptions(rawValue: indexPath.row)?.icon
         return cell
     }
