@@ -32,7 +32,6 @@ final class SporevoMainPresentar:SporevoMainInputs {
             FetchFacility().saveFacility()
         }
         UserDefaults.standard.set(true, forKey: "isLocalDB")
-        FetchFacility().saveFacilityDetail()
     }
     
     func didTapDetailSearchButton() {
