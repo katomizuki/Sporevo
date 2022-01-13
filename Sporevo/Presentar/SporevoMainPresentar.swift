@@ -29,8 +29,10 @@ final class SporevoMainPresentar:SporevoMainInputs {
             FetchMoney().saveMoney()
             FetchTags().saveTags()
             FetchPrefecture().savePrefecture()
+            FetchFacility().saveFacility()
         }
         UserDefaults.standard.set(true, forKey: "isLocalDB")
+        FetchFacility().saveFacilityDetail()
     }
     
     func didTapDetailSearchButton() {

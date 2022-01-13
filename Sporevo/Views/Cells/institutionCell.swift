@@ -93,7 +93,7 @@ class InstitutionCell: UICollectionViewCell {
         fatalError()
     }
     func configure(facility:Facility) {
-        institutionNameLabel.attributedText = makeAttributedText(name: facility.name, subName: facility.sub_name)
+        institutionNameLabel.attributedText = makeAttributedText(name: facility.name ?? "", subName: facility.sub_name ?? "")
         addressLabel.text = facility.address
         var message = String()
         facility.sports_types.forEach {

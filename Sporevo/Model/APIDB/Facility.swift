@@ -1,14 +1,14 @@
 import Alamofire
 import Foundation
-
+import RealmSwift
 struct Facilities :Codable {
     let facilities:[Facility]
 }
 struct Facility:Codable,Equatable {
-    let address:String
-    let id:Int
-    let name: String
-    let sub_name:String
+    let address:String?
+    let id:Int?
+    let name: String?
+    let sub_name:String?
     let tags:[String]
     let sports_types:[String]
 }
@@ -47,18 +47,53 @@ protocol FetchFacilityInputs {
     func fetchFacility(completion:@escaping(Result<Facilities,Error>) ->Void)
 }
 struct FetchFacility: FetchFacilityInputs {
+    private let realm = try! Realm()
     func fetchFacility(completion: @escaping (Result<Facilities, Error>) -> Void) {
         let header:HTTPHeaders = ["Authorization":"Token LIcCke0gTSNAloR7ptYq"]
         let queri = makeCityQueri() + makeFacilityQueri() + makeTagQueri() + makePriceQueri() + makeSportQueri()
 //        \(queri)/size=10&page=1
-        let baseURL = "https://spo-revo.com/api/v1/facilities"
+        let baseURL = "https://spo-revo.com/api/v1/facilities?size=2000&page=1"
         AF.request(baseURL, method: .get, parameters: nil, encoding: URLEncoding.default, headers: header).responseJSON { response in
             guard let data = response.data else { return }
             do {
                 let decodeData = try JSONDecoder().decode(Facilities.self, from: data)
+                print(decodeData)
                 completion(.success(decodeData))
             } catch {
                 completion(.failure(error))
+            }
+        }
+    }
+    func saveFacility() {
+        let header:HTTPHeaders = ["Authorization":"Token LIcCke0gTSNAloR7ptYq"]
+//        let queri = makeCityQueri() + makeFacilityQueri() + makeTagQueri() + makePriceQueri() + makeSportQueri()
+//        \(queri)/size=10&page=1
+        let baseURL = "https://spo-revo.com/api/v1/facilities?size=2000&page=1"
+        AF.request(baseURL, method: .get, parameters: nil, encoding: URLEncoding.default, headers: header).responseJSON { response in
+            guard let data = response.data else { return }
+            do {
+                let decodeData = try JSONDecoder().decode(Facilities.self, from: data)
+                decodeData.facilities.forEach {
+                    let facility = FacilityEntity()
+                    facility.address = $0.address ?? ""
+                    facility.id = $0.id ?? 0
+                    facility.subName = $0.sub_name ?? ""
+                    facility.name = $0.name ?? ""
+                    $0.tags.forEach { tag in
+                        let tagTitle = TagTitle()
+                        tagTitle.title = tag
+                        facility.tags.append(tagTitle)
+                    }
+                    $0.sports_types.forEach { typeName in
+                        let sportType = SportsType()
+                        sportType.name = typeName
+                        facility.sportsType.append(sportType)
+                    }
+                    try! realm.write({
+                        realm.add(facility)
+                    })
+                }
+            } catch {
             }
         }
     }
@@ -73,6 +108,48 @@ struct FetchFacility: FetchFacilityInputs {
                 completion(.success(decodedData))
             } catch {
                 completion(.failure(error))
+            }
+        }
+    }
+    func saveFacilityDetail() {
+        let allFacility = realm.objects(FacilityEntity.self).map(
+            { Facility(address: $0.address, id: $0.id, name: $0.name, sub_name: $0.subName, tags: $0.tags.map({ $0.title }), sports_types: $0.sportsType.map( {$0.name} )) }
+        )
+        let group = DispatchGroup()
+        allFacility.forEach {
+            group.enter()
+            self.fetchFacilityById(id: String($0.id!)) { result in
+                defer { group.leave() }
+                switch result {
+                case .success(let detail):
+
+                    try! realm.write({
+                        let entity = FacilityDetailEntity()
+                        entity.subName = detail.sub_name ?? ""
+                        entity.address = detail.address ?? ""
+                        entity.name = detail.name ?? ""
+                        entity.access = detail.access ?? ""
+                        entity.hp = detail.hp ?? ""
+                        entity.bookingUrl = detail.booking_url ?? ""
+                        entity.businessHours = detail.business_hours ?? ""
+                        entity.lat = detail.lat ?? 0.0
+                        entity.lng = detail.lng ?? 0.0
+                        entity.facilityType = detail.facility_type ?? ""
+                        entity.groupUseRegist = detail.group_use_regist ?? ""
+                        entity.holiday = detail.holiday ?? ""
+                        entity.howToBook = detail.how_to_book ?? ""
+                        entity.personalUseRegist = detail.personal_use_regist ?? ""
+                        entity.personalUseRegistText = detail.personal_use_regist_text ?? ""
+                        entity.informer = detail.informer ?? ""
+                        entity.memo = detail.memo ?? ""
+                        entity.priceInfo = detail.price_info ?? ""
+                        entity.phoneNumber = detail.phone_number ?? ""
+                        entity.updateAt = detail.updated_at ?? ""
+                        realm.add(entity)
+                    })
+                case .failure(let error):
+                    print(error)
+                }
             }
         }
     }
