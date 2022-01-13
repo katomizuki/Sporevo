@@ -23,11 +23,14 @@ final class SporevoMainPresentar:SporevoMainInputs {
     
     func viewdidLoad() {
         self.outputs.loadData()
-//        FetchFacilityType().saveFacility()
-//        FetchSports().saveSports()
-//        FetchMoney().saveMoney()
-//        FetchTags().saveTags()
-//        FetchPrefecture().savePrefecture()
+        if UserDefaults.standard.object(forKey: "isLocalDB") == nil {
+            FetchFacilityType().saveFacility()
+            FetchSports().saveSports()
+            FetchMoney().saveMoney()
+            FetchTags().saveTags()
+            FetchPrefecture().savePrefecture()
+        }
+        UserDefaults.standard.set(true, forKey: "isLocalDB")
     }
     
     func didTapDetailSearchButton() {
