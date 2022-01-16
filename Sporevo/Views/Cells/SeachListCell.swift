@@ -18,7 +18,7 @@ class SearchListCell:UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubview(sectionImageView)
-        sectionImageView.anchor(right:rightAnchor, paddingRight: 20,centerY:centerYAnchor,width: 20,height: 20)
+        sectionImageView.anchor(right:rightAnchor, paddingRight: 20,centerY: centerYAnchor,width: 20,height: 20)
     }
     
     required init?(coder: NSCoder) {
