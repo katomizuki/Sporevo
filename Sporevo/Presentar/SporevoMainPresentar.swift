@@ -24,6 +24,7 @@ final class SporevoMainPresentar:SporevoMainInputs {
     func viewdidLoad() {
         self.outputs.loadData()
         if UserDefaults.standard.object(forKey: "isLocalDB") == nil {
+            print("sdsdsds")
             FetchFacilityType().saveFacility()
             FetchSports().saveSports()
             FetchMoney().saveMoney()

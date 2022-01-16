@@ -17,42 +17,44 @@ struct FetchPrefecture {
     func savePrefecture() {
         let header:HTTPHeaders = ["Authorization":"Token LIcCke0gTSNAloR7ptYq"]
         let baseURL = "https://spo-revo.com/api/v1/prefectures"
-        AF.request(baseURL, method: .get, parameters: nil, encoding: URLEncoding.default, headers: header).responseJSON { response in
-            guard let data = response.data else { return }
-            do {
-                let prefecture = try JSONDecoder().decode([Prefecture].self, from: data)
-                prefecture.forEach {
-                    let prefectureEntity = PrefectureEntity()
-                    prefectureEntity.id = $0.id
-                    prefectureEntity.name = $0.name
-                    self.saveCities(id: $0.id)
-                    try! realm.write({
-                        realm.add(prefectureEntity)
-                    })
-                }
-            } catch {
+            AF.request(baseURL, method: .get, parameters: nil, encoding: URLEncoding.default, headers: header).responseJSON { response in
+                guard let data = response.data else { return }
+                do {
+                    let prefecture = try JSONDecoder().decode([Prefecture].self, from: data)
+                    prefecture.forEach {
+                        let prefectureEntity = PrefectureEntity()
+                        prefectureEntity.id = $0.id
+                        prefectureEntity.name = $0.name
+                        self.saveCities(id: $0.id)
+                        try! realm.write({
+                            realm.add(prefectureEntity)
+                        })
+                    }
+                } catch {
+                    print(error.localizedDescription)
             }
         }
     }
+    
     func saveCities(id:Int) {
         let header:HTTPHeaders = ["Authorization":"Token LIcCke0gTSNAloR7ptYq"]
         let baseURL = "https://spo-revo.com/api/v1/cities?prefecture_id=\(id)"
-        AF.request(baseURL, method: .get, parameters: nil, encoding: URLEncoding.default, headers: header).responseJSON { response in
-            guard let data = response.data else { return }
-            do {
-                let cities = try JSONDecoder().decode([City].self, from: data)
-                cities.forEach {
-                    let cityEntity = CityEntity()
-                    cityEntity.id = $0.id
-                    cityEntity.name = $0.name
-                    cityEntity.prefectureId = id
-                    try! realm.write ({
-                        realm.add(cityEntity)
-                    })
+            AF.request(baseURL, method: .get, parameters: nil, encoding: URLEncoding.default, headers: header).responseJSON { response in
+                guard let data = response.data else { return }
+                do {
+                    let cities = try JSONDecoder().decode([City].self, from: data)
+                    cities.forEach {
+                        let cityEntity = CityEntity()
+                        cityEntity.id = $0.id
+                        cityEntity.name = $0.name
+                        cityEntity.prefectureId = id
+                        try! realm.write ({
+                            realm.add(cityEntity)
+                        })
+                    }
+                } catch {
+                    print(error.localizedDescription)
                 }
-            } catch {
-                print(error.localizedDescription)
             }
         }
-    }
 }

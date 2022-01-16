@@ -18,7 +18,6 @@ struct FetchMoney {
     func saveMoney() {
         let header:HTTPHeaders = ["Authorization":"Token LIcCke0gTSNAloR7ptYq"]
         let baseURL = "https://spo-revo.com/api/v1/price_use_units"
-        DispatchQueue(label: "money.com",qos: .userInitiated,attributes: .concurrent).async {
             AF.request(baseURL, method: .get, parameters: nil, encoding: URLEncoding.default, headers: header).responseJSON { response in
                 guard let data = response.data else { return }
                 do {
@@ -34,13 +33,11 @@ struct FetchMoney {
                     }
                 } catch { print(error.localizedDescription) }
             }
-        }
     }
     
     func savePrice(index:Int) {
         let header:HTTPHeaders = ["Authorization":"Token LIcCke0gTSNAloR7ptYq"]
         let baseURL = "https://spo-revo.com/api/v1//price_ranges?price_use_unit_id=\(index)"
-        DispatchQueue(label: "price.com",qos: .userInitiated,attributes: .concurrent).async {
             AF.request(baseURL, method: .get, parameters: nil, encoding: URLEncoding.default, headers: header).responseJSON { response in
                 guard let data = response.data else { return }
                 do {
@@ -56,8 +53,6 @@ struct FetchMoney {
                     }
                 } catch { print(error.localizedDescription) }
             }
-        }
-        
     }
 
 }

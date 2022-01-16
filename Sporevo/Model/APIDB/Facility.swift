@@ -51,53 +51,52 @@ struct FetchFacility: FetchFacilityInputs {
     func fetchFacility(completion: @escaping (Result<Facilities, Error>) -> Void) {
         let header:HTTPHeaders = ["Authorization":"Token LIcCke0gTSNAloR7ptYq"]
         let queri = makeCityQueri() + makeFacilityQueri() + makeTagQueri() + makePriceQueri() + makeSportQueri()
-//        \(queri)/size=10&page=1
+        //        \(queri)/size=10&page=1
         let baseURL = "https://spo-revo.com/api/v1/facilities?size=2000&page=1"
         AF.request(baseURL, method: .get, parameters: nil, encoding: URLEncoding.default, headers: header).responseJSON { response in
             guard let data = response.data else { return }
             do {
                 let decodeData = try JSONDecoder().decode(Facilities.self, from: data)
-                print(decodeData)
                 completion(.success(decodeData))
             } catch {
                 completion(.failure(error))
             }
         }
     }
+
     func saveFacility() {
         let header:HTTPHeaders = ["Authorization":"Token LIcCke0gTSNAloR7ptYq"]
-//        let queri = makeCityQueri() + makeFacilityQueri() + makeTagQueri() + makePriceQueri() + makeSportQueri()
-//        \(queri)/size=10&page=1
         let baseURL = "https://spo-revo.com/api/v1/facilities?size=2000&page=1"
-        AF.request(baseURL, method: .get, parameters: nil, encoding: URLEncoding.default, headers: header).responseJSON { response in
-            guard let data = response.data else { return }
-            do {
-                let decodeData = try JSONDecoder().decode(Facilities.self, from: data)
-                decodeData.facilities.forEach {
-                    let facility = FacilityEntity()
-                    facility.address = $0.address ?? ""
-                    facility.id = $0.id ?? 0
-                    facility.subName = $0.sub_name ?? ""
-                    facility.name = $0.name ?? ""
-                    $0.tags.forEach { tag in
-                        let tagTitle = TagTitle()
-                        tagTitle.title = tag
-                        facility.tags.append(tagTitle)
+            AF.request(baseURL, method: .get, parameters: nil, encoding: URLEncoding.default, headers: header).responseJSON { response in
+                guard let data = response.data else { return }
+                do {
+                    let decodeData = try JSONDecoder().decode(Facilities.self, from: data)
+                    decodeData.facilities.forEach {
+                        let facility = FacilityEntity()
+                        facility.address = $0.address ?? ""
+                        facility.id = $0.id ?? 0
+                        facility.subName = $0.sub_name ?? ""
+                        facility.name = $0.name ?? ""
+                        $0.tags.forEach { tag in
+                            let tagTitle = TagTitle()
+                            tagTitle.title = tag
+                            facility.tags.append(tagTitle)
+                        }
+                        $0.sports_types.forEach { typeName in
+                            let sportType = SportsType()
+                            sportType.name = typeName
+                            facility.sportsType.append(sportType)
+                        }
+                        try! realm.write({
+                            realm.add(facility)
+                        })
                     }
-                    $0.sports_types.forEach { typeName in
-                        let sportType = SportsType()
-                        sportType.name = typeName
-                        facility.sportsType.append(sportType)
-                    }
-                    try! realm.write({
-                        realm.add(facility)
-                    })
-                }
-            } catch {
+                    FetchFacility().saveFacilityDetail()
+                } catch { print(error.localizedDescription) }
             }
         }
-    }
-
+    
+    
     func fetchFacilityById(id:String,completion:@escaping(Result<FacilityDetail,Error>)->Void) {
         let header:HTTPHeaders = ["Authorization":"Token LIcCke0gTSNAloR7ptYq"]
         let baseURL = "https://spo-revo.com/api/v1/facilities/" + id
@@ -122,7 +121,7 @@ struct FetchFacility: FetchFacilityInputs {
                 defer { group.leave() }
                 switch result {
                 case .success(let detail):
-
+                    
                     try! realm.write({
                         let entity = FacilityDetailEntity()
                         entity.subName = detail.sub_name ?? ""
@@ -153,6 +152,8 @@ struct FetchFacility: FetchFacilityInputs {
             }
         }
     }
+    
+    
     func makeCityQueri()->String {
         var q = String()
         let city:[City] = UserDefaultRepositry.shared.loadFromUserDefaults(key:"city")
@@ -199,3 +200,4 @@ struct FetchFacility: FetchFacilityInputs {
         return q
     }
 }
+
