@@ -144,6 +144,41 @@ struct FetchFacility: FetchFacilityInputs {
                         entity.priceInfo = detail.price_info ?? ""
                         entity.phoneNumber = detail.phone_number ?? ""
                         entity.updateAt = detail.updated_at ?? ""
+                        detail.booking_types.forEach {
+                            let bookingType = BookingType()
+                            bookingType.title = $0
+                            entity.bookingTypes.append(bookingType)
+                        }
+                        detail.equipment_types.forEach {
+                            let equipmentType = EquipmentType()
+                            equipmentType.title = $0
+                            entity.equipmentTypes.append(equipmentType)
+                        }
+                        detail.user_types.forEach {
+                            let userType = UserType()
+                            userType.title = $0
+                            entity.user_types.append(userType)
+                        }
+                        detail.sports_types.forEach {
+                            let sportType = SportsType()
+                            sportType.name = $0
+                            entity.sportsTypes.append(sportType)
+                        }
+                        detail.tags.forEach {
+                            let tag = TagTitle()
+                            tag.title = $0
+                            entity.tags.append(tag)
+                        }
+                        detail.parking_types.forEach {
+                            let parkingType = ParkingTypes()
+                            parkingType.title = $0
+                            entity.parkingTypes.append(parkingType)
+                        }
+                        detail.price_ranges.forEach {
+                            let priceRange = PriceRanges()
+                            priceRange.title = $0
+                            entity.priceRanges.append(priceRange)
+                        }
                         realm.add(entity)
                     })
                 case .failure(let error):

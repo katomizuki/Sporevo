@@ -27,5 +27,27 @@ class FacilityDetailEntity:Object {
     @objc dynamic var personalUseRegistText:String = ""
     @objc dynamic var subName:String = ""
     @objc dynamic var updateAt:String = ""
-
+    let tags = List<TagTitle>()
+    var bookingTypes = List<BookingType>()
+    var equipmentTypes = List<EquipmentType>()
+    var parkingTypes = List<ParkingTypes>()
+    var priceRanges = List<PriceRanges>()
+    var sportsTypes = List<SportsType>()
+    var user_types = List<UserType>()
 }
+class BookingType: Object {
+    @objc dynamic var title: String = ""
+}
+class EquipmentType: Object {
+    @objc dynamic var title: String = ""
+}
+class ParkingTypes:Object {
+    @objc dynamic var title: String = ""
+}
+class PriceRanges:Object {
+    @objc dynamic var title:String = ""
+}
+class UserType:Object {
+    @objc dynamic var title:String = ""
+}
+
