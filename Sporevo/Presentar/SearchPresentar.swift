@@ -37,7 +37,7 @@ final class SearchListPresentar:SearchListInputs {
     var moneySections = [MoneySection]()
     private weak var outputs:SearchListOutputs!
     private var option:SearchOptions!
-    init(outputs:SearchListOutputs,option: SearchOptions) {
+    init(outputs:SearchListOutputs, option: SearchOptions) {
         self.outputs = outputs
         self.option = option
     }

@@ -33,7 +33,6 @@ struct DetailSearchReducer {
                 UserDefaultRepositry.shared.saveToUserDefaults(element: state.selectedPrice, key: "priceUnits")
             case .tag:
                 UserDefaultRepositry.shared.saveToUserDefaults(element: state.selectedTag, key: "tag")
-            default: break
             }
         case .cityTap(id: let id, sectionId: let sectionId):
             let city = state.placeSections[sectionId].items[id - 1]
