@@ -11,53 +11,49 @@ class InstitutionListController:UIViewController {
         colletionView.dataSource = self
         return colletionView
     }()
-    var facilities:Facilities? {
+    var navigationHeight: CGFloat
+    var facilities:Facilities?
+    {
         didSet {
             if let facilities = facilities {
             presentar.searchFacilies(facilities: facilities)
         }
       }
     }
-    private let headerView = MainHeaderView(image: UIImage(named: "バドミントン"))
+     init(height:CGFloat) {
+        self.navigationHeight = height
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+//    private let headerView = MainHeaderView(image: UIImage(named: "バドミントン"))
     private var presentar:InstituationPresentarInputs!
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
+//        setupUI()
         presentar = InstituationPresentar(outputs: self)
         presentar.viewDidLoad()
+    }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setupUI()
     }
 
     // MARK: - setupMethod
     private func setupUI() {
-        let screenWidth = Int( UIScreen.main.bounds.size.width)
-        let scrollView = UIScrollView()
-        scrollView.backgroundColor = .white
-        scrollView.frame = self.view.frame
-        scrollView.contentSize = CGSize(width: screenWidth, height: 1500)
-        view.addSubview(scrollView)
-        scrollView.anchor(top:view.safeAreaLayoutGuide.topAnchor,
-                          bottom: view.bottomAnchor,
-                          left: view.leftAnchor,
-                          right: view.rightAnchor)
-        scrollView.addSubview(headerView)
-        headerView.anchor(top:scrollView.topAnchor,
-                          left: view.leftAnchor,
-                          right: view.rightAnchor,
-                          paddingTop: 0,
-                          paddingLeft: 0)
-
-        scrollView.addSubview(collectionView)
-        collectionView.anchor(top:headerView.bottomAnchor,
+        view.addSubview(collectionView)
+        navigationHeight = (self.navigationController?.navigationBar.frame.height)!
+        
+        collectionView.anchor(top: view.topAnchor,
+                              bottom: view.safeAreaLayoutGuide.bottomAnchor,
                               left: view.leftAnchor,
-                              right: view.rightAnchor,
-                              paddingTop: 70,
-                              height: 1200)
+                              right: view.rightAnchor, paddingTop: self.navigationHeight)
     }
 }
 // MARK: - UICollectionViewDelegate
 extension InstitutionListController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(#function)
         let facility = presentar.facility(row: indexPath.row)
         let controller = InstitutionDetailController(facility: facility)
         navigationController?.pushViewController(controller, animated: true)

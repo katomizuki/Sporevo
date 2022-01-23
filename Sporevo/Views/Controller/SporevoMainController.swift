@@ -17,7 +17,7 @@ final class SporevoMainController: UIViewController {
     }()
     weak var delegate: SporevoMainControllerDelegate?
     private let firstVC = SearchMapController()
-    private let secondVC = InstitutionListController()
+    private lazy var secondVC = InstitutionListController(height: self.navigationController?.navigationBar.frame.height ?? 0.0)
     private var mainPresentar:SporevoMainInputs!
     // MARK: - Lifecycle
     override func viewDidLoad() {
