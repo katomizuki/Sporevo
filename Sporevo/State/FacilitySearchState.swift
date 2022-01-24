@@ -7,7 +7,7 @@
 
 import ReSwift
 
-struct FacilitySearchState {
+struct FacilitySearchState:StateType {
     var selectedTag = [Tag]()
     var selectedSports = [Sport]()
     var selectedFacility = [FacilityType]()

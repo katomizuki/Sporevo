@@ -1,6 +1,6 @@
-
 import Foundation
 import UIKit
+
 protocol FacilitySearchInputs {
     func loadUserDefaults()
     var selectedTag:[Tag] { get }
@@ -8,9 +8,11 @@ protocol FacilitySearchInputs {
     var selectedFacility:[FacilityType] { get }
     func getSelectedMessage(row:Int)->String
     func deleteUserDefaults()
+    func reload()
 }
 protocol FacilitySearchOutputs:AnyObject {
-    
+    func showError(_ error: Error)
+    func reload()
 }
 final class FacilitySearchPresentar:FacilitySearchInputs {
     // MARK: - Properties
@@ -25,7 +27,10 @@ final class FacilitySearchPresentar:FacilitySearchInputs {
         self.outputs = outputs
     }
     func loadUserDefaults() {
-        
+        FacilitySearchActionCreator.loadUserDefaults()
+    }
+    func reload() {
+        self.outputs?.reload()
     }
     func getSelectedMessage(row: Int) -> String {
         var message = String()
@@ -51,6 +56,4 @@ final class FacilitySearchPresentar:FacilitySearchInputs {
     func deleteUserDefaults() {
         FacilitySearchActionCreator.deleteUserDefaults()
     }
-    
-    
 }

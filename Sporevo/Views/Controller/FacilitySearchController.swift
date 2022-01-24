@@ -1,11 +1,14 @@
 import Foundation
 import UIKit
+import ReSwift
+
 protocol FacilitySearchControllerDelegate:AnyObject {
     func facilitySearchController(_ controller:FacilitySearchController)
 }
+
 final class FacilitySearchController:UIViewController {
     // MARK: - Properties
-    private var tableView:UITableView!
+    private var tableView:UITableView = UITableView(frame: .zero, style: .insetGrouped)
     weak var delegate:FacilitySearchControllerDelegate?
     private lazy var searchButton:UIButton = {
         let button = UIButton(type: .system)
@@ -22,13 +25,17 @@ final class FacilitySearchController:UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
         presentar = FacilitySearchPresentar(outputs: self)
+        appStore.subscribe(self)
+        setupUI()
         presentar.deleteUserDefaults()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        appStore.unsubscribe(self)
     }
     private func setupUI() {
         view.backgroundColor = .systemBackground
-        tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(SearchCell.self, forCellReuseIdentifier: SearchCell.id)
@@ -123,12 +130,28 @@ extension FacilitySearchController {
     }
 }
 extension FacilitySearchController:FacilitySearchOutputs {
-    
+    func showError(_ error: Error) {
+        
+    }
+    func reload() {
+        tableView.reloadData()
+    }
 }
 extension FacilitySearchController: SearchListControllerProtocol {
     func searchListController() {
         presentar.loadUserDefaults()
-        tableView.reloadData()
+        appStore.subscribe(self)
     }
- 
+}
+extension FacilitySearchController:StoreSubscriber {    
+    typealias StoreSubscriberStateType = AppState
+    func newState(state: StoreSubscriberStateType) {
+        print(state.facilitySearchState.selectedTag)
+        presentar.selectedTag = state.facilitySearchState.selectedTag
+        presentar.selectedCity = state.facilitySearchState.selectedCity
+        presentar.selectedSports = state.facilitySearchState.selectedSports
+        presentar.selectedFacility = state.facilitySearchState.selectedFacility
+        presentar.selectedPriceUnits = state.facilitySearchState.selectedPriceUnits
+        presentar.reload()
+    }
 }
