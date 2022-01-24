@@ -7,6 +7,7 @@ class InstitutionListController:UIViewController {
         let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 200)
         let colletionView = UICollectionView(frame: frame, collectionViewLayout: layout)
         colletionView.register(InstitutionCell.self, forCellWithReuseIdentifier: InstitutionCell.id)
+        colletionView.register(UIView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
         colletionView.delegate = self
         colletionView.dataSource = self
         return colletionView
@@ -31,7 +32,7 @@ class InstitutionListController:UIViewController {
     private var presentar:InstituationPresentarInputs!
     override func viewDidLoad() {
         super.viewDidLoad()
-//        setupUI()
+        
         presentar = InstituationPresentar(outputs: self)
         presentar.viewDidLoad()
     }
@@ -44,11 +45,10 @@ class InstitutionListController:UIViewController {
     private func setupUI() {
         view.addSubview(collectionView)
         navigationHeight = (self.navigationController?.navigationBar.frame.height)!
-        
-        collectionView.anchor(top: view.topAnchor,
+        collectionView.anchor(top: view.safeAreaLayoutGuide.topAnchor,
                               bottom: view.safeAreaLayoutGuide.bottomAnchor,
                               left: view.leftAnchor,
-                              right: view.rightAnchor, paddingTop: self.navigationHeight)
+                              right: view.rightAnchor)
     }
 }
 // MARK: - UICollectionViewDelegate
@@ -79,6 +79,9 @@ extension InstitutionListController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 20
     }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: view.frame.width, height: 100)
+    }
 }
 // MARK: - InstituationPresentarOutputs
 extension InstitutionListController:InstituationPresentarOutputs {
@@ -86,5 +89,8 @@ extension InstitutionListController:InstituationPresentarOutputs {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
+    }
+    func showError(_ error: Error) {
+        
     }
 }

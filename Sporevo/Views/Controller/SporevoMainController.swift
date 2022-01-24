@@ -23,7 +23,7 @@ final class SporevoMainController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemMint
-        scrollView.contentSize = CGSize(width: view.frame.size.width * 2, height: 0)
+       
         view.addSubview(scrollView)
         setupNav()
         mainPresentar = SporevoMainPresentar(outputs: self, api: FetchFacility())
@@ -38,6 +38,7 @@ final class SporevoMainController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         scrollView.frame = view.bounds
+        scrollView.contentSize = CGSize(width: view.frame.width * 2, height: 0)
         addChildVC()
     }
     
@@ -48,11 +49,12 @@ final class SporevoMainController: UIViewController {
         scrollView.addSubview(secondVC.view)
         firstVC.view.frame = CGRect(x: 0,
                                     y: 0,
-                                    width: scrollView.frame.width,
-                                    height: scrollView.frame.height)
-        secondVC.view.frame = CGRect(x: scrollView.frame.size.width, y: 0,
-                                     width: scrollView.frame.size.width,
-                                     height: scrollView.frame.size.height)
+                                    width: view.frame.width,
+                                    height: view.frame.height)
+        secondVC.view.frame = CGRect(x: scrollView.frame.size.width,
+                                     y: 0,
+                                     width: view.frame.width,
+                                     height: view.frame.height)
         firstVC.didMove(toParent: self)
         secondVC.didMove(toParent: self)
     }
@@ -87,7 +89,7 @@ extension SporevoMainController:SporevoMainOutputs {
         if index == 0 {
             scrollView.setContentOffset(.zero, animated: true)
         } else {
-            scrollView.setContentOffset(CGPoint(x: view.frame.size.width, y: 0), animated: true)
+            scrollView.setContentOffset(CGPoint(x: view.frame.width, y: 0), animated: true)
         }
     }
     func detailSearchController() {
@@ -99,6 +101,9 @@ extension SporevoMainController:SporevoMainOutputs {
     }
     func loadData() {
         print(#function)
+    }
+    func showError(_ error: Error) {
+        
     }
 }
 extension SporevoMainController:FacilitySearchControllerDelegate {

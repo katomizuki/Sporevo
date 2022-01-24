@@ -156,6 +156,7 @@ extension SearchListController:SearchListOutputs {
     }
 }
 extension SearchListController:StoreSubscriber {
+    
     typealias StoreSubscriberStateType = AppState
     
     func newState(state: StoreSubscriberStateType) {

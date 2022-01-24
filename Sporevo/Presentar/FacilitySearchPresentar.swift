@@ -25,11 +25,7 @@ final class FacilitySearchPresentar:FacilitySearchInputs {
         self.outputs = outputs
     }
     func loadUserDefaults() {
-        selectedTag = UserDefaultRepositry.shared.loadFromUserDefaults(key: "tag")
-        selectedFacility = UserDefaultRepositry.shared.loadFromUserDefaults(key: "facility")
-        selectedSports = UserDefaultRepositry.shared.loadFromUserDefaults(key: "sport")
-        selectedCity = UserDefaultRepositry.shared.loadFromUserDefaults(key: "city")
-        selectedPriceUnits = UserDefaultRepositry.shared.loadFromUserDefaults(key: "priceUnits")
+        
     }
     func getSelectedMessage(row: Int) -> String {
         var message = String()
@@ -53,11 +49,7 @@ final class FacilitySearchPresentar:FacilitySearchInputs {
         return message
     }
     func deleteUserDefaults() {
-        UserDefaultRepositry.shared.deleteFromUserDefaults(key: "tag")
-        UserDefaultRepositry.shared.deleteFromUserDefaults(key: "sport")
-        UserDefaultRepositry.shared.deleteFromUserDefaults(key: "facility")
-        UserDefaultRepositry.shared.deleteFromUserDefaults(key: "city")
-        UserDefaultRepositry.shared.deleteFromUserDefaults(key: "priceUnits")
+        FacilitySearchActionCreator.deleteUserDefaults()
     }
     
     

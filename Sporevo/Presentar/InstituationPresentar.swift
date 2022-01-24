@@ -8,6 +8,7 @@ protocol InstituationPresentarInputs {
 }
 protocol InstituationPresentarOutputs:AnyObject {
     func reload()
+    func showError(_ error: Error)
 }
 
 final class InstituationPresentar:InstituationPresentarInputs {
@@ -26,7 +27,7 @@ final class InstituationPresentar:InstituationPresentarInputs {
                 self.facilities = facilities
                 self.outputs?.reload()
             case .failure(let error):
-                print(error)
+                self.outputs?.showError(error)
             }
         }
     }

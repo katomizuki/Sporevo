@@ -72,6 +72,10 @@
 		D3D8117F274F6EA500A380B1 /* UserDefaultRepositry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D8117E274F6EA500A380B1 /* UserDefaultRepositry.swift */; };
 		D3D81181274F75ED00A380B1 /* FacilitySearchPresentar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81180274F75ED00A380B1 /* FacilitySearchPresentar.swift */; };
 		D3D81183274F98DF00A380B1 /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81182274F98DF00A380B1 /* ViewController+Extension.swift */; };
+		D3F21512279ECEB9009897CE /* FacilitySearchActionCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F21511279ECEB9009897CE /* FacilitySearchActionCreator.swift */; };
+		D3F21514279ECF7F009897CE /* FacilitySearchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F21513279ECF7F009897CE /* FacilitySearchState.swift */; };
+		D3F21516279ECFDB009897CE /* FacilitySearchAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F21515279ECFDB009897CE /* FacilitySearchAction.swift */; };
+		D3F21518279ED18A009897CE /* FacilitySearchReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F21517279ED18A009897CE /* FacilitySearchReducer.swift */; };
 		D41426E844A0C8504FD6E0B7 /* Pods_Sporevo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E227DC3926AF3003077FE3F2 /* Pods_Sporevo.framework */; };
 /* End PBXBuildFile section */
 
@@ -144,6 +148,10 @@
 		D3D8117E274F6EA500A380B1 /* UserDefaultRepositry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultRepositry.swift; sourceTree = "<group>"; };
 		D3D81180274F75ED00A380B1 /* FacilitySearchPresentar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilitySearchPresentar.swift; sourceTree = "<group>"; };
 		D3D81182274F98DF00A380B1 /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
+		D3F21511279ECEB9009897CE /* FacilitySearchActionCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilitySearchActionCreator.swift; sourceTree = "<group>"; };
+		D3F21513279ECF7F009897CE /* FacilitySearchState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilitySearchState.swift; sourceTree = "<group>"; };
+		D3F21515279ECFDB009897CE /* FacilitySearchAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilitySearchAction.swift; sourceTree = "<group>"; };
+		D3F21517279ED18A009897CE /* FacilitySearchReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilitySearchReducer.swift; sourceTree = "<group>"; };
 		E227DC3926AF3003077FE3F2 /* Pods_Sporevo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sporevo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -305,6 +313,7 @@
 				D3459C1C278C170E00B61C6E /* DetailSearchState.swift */,
 				D3459C41278DAD9800B61C6E /* FacilityDetailState.swift */,
 				D3459C4B278DAFED00B61C6E /* SporevoMapState.swift */,
+				D3F21513279ECF7F009897CE /* FacilitySearchState.swift */,
 			);
 			path = State;
 			sourceTree = "<group>";
@@ -316,6 +325,7 @@
 				D3459C23278C184000B61C6E /* DetailSearchReducer.swift */,
 				D3459C3F278DAD5D00B61C6E /* FacilityDetailReducer.swift */,
 				D3459C4D278DB03600B61C6E /* SporevoMapReducer.swift */,
+				D3F21517279ED18A009897CE /* FacilitySearchReducer.swift */,
 			);
 			path = Reducer;
 			sourceTree = "<group>";
@@ -326,6 +336,7 @@
 				D3459C27278C190100B61C6E /* DetailSearchActionCreator.swift */,
 				D3459C43278DAE2A00B61C6E /* FacilityDetailCreator.swift */,
 				D3459C49278DAFAC00B61C6E /* SporevoMapActionCreator.swift */,
+				D3F21511279ECEB9009897CE /* FacilitySearchActionCreator.swift */,
 			);
 			path = ActionCreators;
 			sourceTree = "<group>";
@@ -336,6 +347,7 @@
 				D3459C25278C18AE00B61C6E /* DetailSearchAction.swift */,
 				D3459C45278DAE6700B61C6E /* FacilityDetailAction.swift */,
 				D3459C47278DAF9A00B61C6E /* SporevoMapAction.swift */,
+				D3F21515279ECFDB009897CE /* FacilitySearchAction.swift */,
 			);
 			path = Action;
 			sourceTree = "<group>";
@@ -544,6 +556,7 @@
 				D3D81170274E213000A380B1 /* FacilityType.swift in Sources */,
 				D3459C1B278C16E000B61C6E /* AppState.swift in Sources */,
 				D3459C3B278C443700B61C6E /* FacilityDetailEntity.swift in Sources */,
+				D3F21516279ECFDB009897CE /* FacilitySearchAction.swift in Sources */,
 				D32B13BE2739038A0039CC06 /* SearchCell.swift in Sources */,
 				D3459C26278C18AE00B61C6E /* DetailSearchAction.swift in Sources */,
 				D32B13C0273904370039CC06 /* MainHeaderView.swift in Sources */,
@@ -563,6 +576,7 @@
 				D32B137E2738D8430039CC06 /* SporevoMainController.swift in Sources */,
 				D3D81178274E66AE00A380B1 /* Prefecture.swift in Sources */,
 				D351FF3A275B988F00AA518B /* CitySection.swift in Sources */,
+				D3F21512279ECEB9009897CE /* FacilitySearchActionCreator.swift in Sources */,
 				D3459C1D278C170E00B61C6E /* DetailSearchState.swift in Sources */,
 				D32B8C50275486AD0036FA98 /* String+Extension.swift in Sources */,
 				D3D8116C274E1A2B00A380B1 /* SporevoMainPresentar.swift in Sources */,
@@ -576,8 +590,10 @@
 				D3459C2B278C403C00B61C6E /* FacilityEntity.swift in Sources */,
 				D32B13B7273901230039CC06 /* Anchor+Extension.swift in Sources */,
 				D3459C28278C190100B61C6E /* DetailSearchActionCreator.swift in Sources */,
+				D3F21514279ECF7F009897CE /* FacilitySearchState.swift in Sources */,
 				D3459C31278C413900B61C6E /* FacilityTypeEntity.swift in Sources */,
 				D3459C2D278C408500B61C6E /* SportEntity.swift in Sources */,
+				D3F21518279ED18A009897CE /* FacilitySearchReducer.swift in Sources */,
 				D32B137C2738D8430039CC06 /* SceneDelegate.swift in Sources */,
 				D32B8C4E27547D9B0036FA98 /* InstituationPresentar.swift in Sources */,
 				D32B13CE273965120039CC06 /* MenuOptionsCell.swift in Sources */,

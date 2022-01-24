@@ -4,12 +4,13 @@ protocol SporevoMainInputs {
     func viewdidLoad()
     func didTapDetailSearchButton()
     func didTapSegment(index:Int)
-    func dismiss(_ controller:InstitutionListController)
+    func dismiss(_ controller: InstitutionListController)
 }
 protocol SporevoMainOutputs:AnyObject {
     func loadData()
     func detailSearchController()
     func changeSegment(index:Int)
+    func showError(_ error: Error)
 }
 final class SporevoMainPresentar:SporevoMainInputs {
     
@@ -17,7 +18,7 @@ final class SporevoMainPresentar:SporevoMainInputs {
     private var api:FetchFacilityInputs!
     private var facility:Facilities?
     
-    init(outputs:SporevoMainOutputs,api:FetchFacilityInputs) {
+    init(outputs:SporevoMainOutputs,api: FetchFacilityInputs) {
         self.outputs = outputs
         self.api = api
     }
@@ -48,7 +49,7 @@ final class SporevoMainPresentar:SporevoMainInputs {
                 self.facility = facility
                 controller.facilities = facility
             case .failure(let error):
-                print(error)
+                self.outputs.showError(error)
             }
         }
     }
