@@ -7,6 +7,7 @@
 
 import ReSwift
 struct DetailSearchReducer {
+    
     static func reducer(action: ReSwift.Action, state:DetailSearchState?)->DetailSearchState {
         var state = state ?? DetailSearchState()
         guard let action = action as? DetailSearchState.DetailSearchAction else { return state }
@@ -70,10 +71,10 @@ struct DetailSearchReducer {
             state.moneySections[section].isOpened = !state.moneySections[section].isOpened
         case .tapSectionPlace(section: let section):
             state.placeSections[section].isOpened = !state.placeSections[section].isOpened
-            
         }
         return state
     }
+    
     static func judgeArray<T:Equatable>(ele:T,array:[T])->Bool {
         return array.filter({ $0 == ele }).count == 0
     }

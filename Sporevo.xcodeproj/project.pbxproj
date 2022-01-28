@@ -42,6 +42,10 @@
 		D33AA16F27A409BA00FF182F /* MoneyUnits.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA16E27A409BA00FF182F /* MoneyUnits.swift */; };
 		D33AA17127A409F400FF182F /* FacilityDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA17027A409F400FF182F /* FacilityDetail.swift */; };
 		D33AA17327A40A1100FF182F /* Facilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA17227A40A1100FF182F /* Facilities.swift */; };
+		D33AA17527A40E0800FF182F /* SearchListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA17427A40E0800FF182F /* SearchListViewModel.swift */; };
+		D33AA17727A40E1600FF182F /* SporevoMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA17627A40E1600FF182F /* SporevoMainViewModel.swift */; };
+		D33AA17927A40E5100FF182F /* InstituationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA17827A40E5100FF182F /* InstituationViewModel.swift */; };
+		D33AA17B27A40E6C00FF182F /* FacilitySearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA17A27A40E6C00FF182F /* FacilitySearchViewModel.swift */; };
 		D33D95A82745E114001FBC48 /* SearchMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33D95A72745E114001FBC48 /* SearchMapController.swift */; };
 		D3459C1B278C16E000B61C6E /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3459C1A278C16E000B61C6E /* AppState.swift */; };
 		D3459C1D278C170E00B61C6E /* DetailSearchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3459C1C278C170E00B61C6E /* DetailSearchState.swift */; };
@@ -129,6 +133,10 @@
 		D33AA16E27A409BA00FF182F /* MoneyUnits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyUnits.swift; sourceTree = "<group>"; };
 		D33AA17027A409F400FF182F /* FacilityDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityDetail.swift; sourceTree = "<group>"; };
 		D33AA17227A40A1100FF182F /* Facilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Facilities.swift; sourceTree = "<group>"; };
+		D33AA17427A40E0800FF182F /* SearchListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListViewModel.swift; sourceTree = "<group>"; };
+		D33AA17627A40E1600FF182F /* SporevoMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SporevoMainViewModel.swift; sourceTree = "<group>"; };
+		D33AA17827A40E5100FF182F /* InstituationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstituationViewModel.swift; sourceTree = "<group>"; };
+		D33AA17A27A40E6C00FF182F /* FacilitySearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilitySearchViewModel.swift; sourceTree = "<group>"; };
 		D33D95A72745E114001FBC48 /* SearchMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMapController.swift; sourceTree = "<group>"; };
 		D3459C1A278C16E000B61C6E /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		D3459C1C278C170E00B61C6E /* DetailSearchState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSearchState.swift; sourceTree = "<group>"; };
@@ -273,7 +281,7 @@
 				D33AA16327A407B100FF182F /* Repositry */,
 				D3459C3D278C446300B61C6E /* APIEntity */,
 				D3459C3C278C444E00B61C6E /* Enum */,
-				D3459C29278C38EC00B61C6E /* LocalDB */,
+				D3459C29278C38EC00B61C6E /* LocalEntity */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -281,6 +289,7 @@
 		D32B13B52738FF1F0039CC06 /* Presentar */ = {
 			isa = PBXGroup;
 			children = (
+				D33AA17C27A40E7600FF182F /* ViewModel */,
 				D3459C3E278C447A00B61C6E /* Section */,
 				D3D81169274E19C300A380B1 /* SearchPresentar.swift */,
 				D3D8116B274E1A2B00A380B1 /* SporevoMainPresentar.swift */,
@@ -341,6 +350,17 @@
 			path = Repositry;
 			sourceTree = "<group>";
 		};
+		D33AA17C27A40E7600FF182F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D33AA17427A40E0800FF182F /* SearchListViewModel.swift */,
+				D33AA17627A40E1600FF182F /* SporevoMainViewModel.swift */,
+				D33AA17827A40E5100FF182F /* InstituationViewModel.swift */,
+				D33AA17A27A40E6C00FF182F /* FacilitySearchViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		D3459C19278C16A500B61C6E /* State */ = {
 			isa = PBXGroup;
 			children = (
@@ -387,7 +407,7 @@
 			path = Action;
 			sourceTree = "<group>";
 		};
-		D3459C29278C38EC00B61C6E /* LocalDB */ = {
+		D3459C29278C38EC00B61C6E /* LocalEntity */ = {
 			isa = PBXGroup;
 			children = (
 				D3459C2A278C403C00B61C6E /* FacilityEntity.swift */,
@@ -400,7 +420,7 @@
 				D3459C38278C433100B61C6E /* CityEntity.swift */,
 				D3459C3A278C443700B61C6E /* FacilityDetailEntity.swift */,
 			);
-			path = LocalDB;
+			path = LocalEntity;
 			sourceTree = "<group>";
 		};
 		D3459C3C278C444E00B61C6E /* Enum */ = {
@@ -603,6 +623,7 @@
 				D3F21516279ECFDB009897CE /* FacilitySearchAction.swift in Sources */,
 				D32B13BE2739038A0039CC06 /* SearchCell.swift in Sources */,
 				D3459C26278C18AE00B61C6E /* DetailSearchAction.swift in Sources */,
+				D33AA17927A40E5100FF182F /* InstituationViewModel.swift in Sources */,
 				D32B13C0273904370039CC06 /* MainHeaderView.swift in Sources */,
 				D3459C22278C17BA00B61C6E /* AppReducer.swift in Sources */,
 				D3459C33278C41B700B61C6E /* MoneyUnitsEntity.swift in Sources */,
@@ -622,6 +643,7 @@
 				D32B137E2738D8430039CC06 /* SporevoMainController.swift in Sources */,
 				D3D81178274E66AE00A380B1 /* Prefecture.swift in Sources */,
 				D351FF3A275B988F00AA518B /* CitySection.swift in Sources */,
+				D33AA17B27A40E6C00FF182F /* FacilitySearchViewModel.swift in Sources */,
 				D3F21512279ECEB9009897CE /* FacilitySearchActionCreator.swift in Sources */,
 				D3459C1D278C170E00B61C6E /* DetailSearchState.swift in Sources */,
 				D32B8C50275486AD0036FA98 /* String+Extension.swift in Sources */,
@@ -637,6 +659,7 @@
 				D33AA16827A4088800FF182F /* TagRepositry.swift in Sources */,
 				D32B13B7273901230039CC06 /* Anchor+Extension.swift in Sources */,
 				D3459C28278C190100B61C6E /* DetailSearchActionCreator.swift in Sources */,
+				D33AA17727A40E1600FF182F /* SporevoMainViewModel.swift in Sources */,
 				D3F21514279ECF7F009897CE /* FacilitySearchState.swift in Sources */,
 				D3459C31278C413900B61C6E /* FacilityTypeEntity.swift in Sources */,
 				D3459C2D278C408500B61C6E /* SportEntity.swift in Sources */,
@@ -661,6 +684,7 @@
 				D3D81174274E564900A380B1 /* Tag.swift in Sources */,
 				D32B13C6273944840039CC06 /* CustomSearchSectionHeader.swift in Sources */,
 				D3459C37278C42BE00B61C6E /* PrefectureEntity.swift in Sources */,
+				D33AA17527A40E0800FF182F /* SearchListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

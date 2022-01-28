@@ -3,10 +3,10 @@ import UIKit
 
 protocol FacilitySearchInputs {
     func loadUserDefaults()
-    var selectedTag:[Tag] { get }
-    var selectedSports:[Sport] { get }
-    var selectedFacility:[FacilityType] { get }
-    func getSelectedMessage(row:Int)->String
+    var selectedTag: [Tag] { get }
+    var selectedSports: [Sport] { get }
+    var selectedFacility: [FacilityType] { get }
+    func getSelectedMessage(row: Int) -> String
     func deleteUserDefaults()
     func reload()
 }
@@ -26,12 +26,15 @@ final class FacilitySearchPresentar:FacilitySearchInputs {
     init(outputs:FacilitySearchOutputs) {
         self.outputs = outputs
     }
+    
     func loadUserDefaults() {
         FacilitySearchActionCreator.loadUserDefaults()
     }
+    
     func reload() {
         self.outputs?.reload()
     }
+    
     func getSelectedMessage(row: Int) -> String {
         var message = String()
         switch row {
@@ -53,6 +56,7 @@ final class FacilitySearchPresentar:FacilitySearchInputs {
         }
         return message
     }
+    
     func deleteUserDefaults() {
         FacilitySearchActionCreator.deleteUserDefaults()
     }

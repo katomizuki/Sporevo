@@ -7,7 +7,9 @@
 
 import ReSwift
 import RealmSwift
+
 struct DetailSearchActionCreator {
+    
     static func fetchPrefecture() {
         let realm = try! Realm()
         var citySections = [CitySection]()
@@ -19,21 +21,25 @@ struct DetailSearchActionCreator {
         }
         appStore.dispatch(DetailSearchState.DetailSearchAction.setPlaceSection(section: citySections))
     }
+    
     static func fetchTag() {
         let realm = try! Realm()
         let tags:[Tag] = realm.objects(TagEntity.self).map{ Tag(id: $0.id, name: $0.name) }
         appStore.dispatch(DetailSearchState.DetailSearchAction.setTags(tags:tags))
     }
+    
     static func fetchSport() {
         let realm = try! Realm()
         let sports:[Sport] = realm.objects(SportEntity.self).map { Sport(name: $0.name, id: $0.id) }
         appStore.dispatch(DetailSearchState.DetailSearchAction.setSports(sports:sports))
     }
+    
     static func fetchFacilityType() {
         let realm = try! Realm()
         let facilities:[FacilityType] = realm.objects(FacilityTypeEntity.self).map { FacilityType(id: $0.id, name: $0.name) }
         appStore.dispatch(DetailSearchState.DetailSearchAction.setFacilityType(types:facilities))
     }
+    
     static func fetchMoneySections() {
         let realm = try! Realm()
         var moneySections = [MoneySection]()
@@ -45,6 +51,7 @@ struct DetailSearchActionCreator {
     }
         appStore.dispatch(DetailSearchState.DetailSearchAction.setMoneySections(sections: moneySections))
     }
+    
     static func didSelectRowAt(option:SearchOptions,indexPath:IndexPath) {
         let id = indexPath.row
         let sectionId = indexPath.section
@@ -61,12 +68,13 @@ struct DetailSearchActionCreator {
             appStore.dispatch(DetailSearchState.DetailSearchAction.moneyTap(id: id, sectionId: sectionId))
         case .tag:
             appStore.dispatch(DetailSearchState.DetailSearchAction.tagTap(id: id))
-        default: break
         }
     }
+    
     static func saveUserDefaults(option:SearchOptions) {
         appStore.dispatch(DetailSearchState.DetailSearchAction.saveUserDefaults(option: option))
     }
+    
     static func didTapSection(section: Int,option:SearchOptions) {
         if option == .place {
             appStore.dispatch(DetailSearchState.DetailSearchAction.tapSectionPlace(section: section))

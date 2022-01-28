@@ -8,6 +8,7 @@
 import ReSwift
 
 struct FacilityDetailReducer {
+    
     static func reducer(action: ReSwift.Action, state:FacilityDetailState?)->FacilityDetailState {
         var state = state ?? FacilityDetailState()
         guard let action = action as? FacilityDetailState.FacilityDetailAction else { return state }

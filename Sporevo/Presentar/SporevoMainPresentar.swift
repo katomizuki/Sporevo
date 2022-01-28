@@ -15,10 +15,10 @@ protocol SporevoMainOutputs:AnyObject {
 final class SporevoMainPresentar:SporevoMainInputs {
     
     private weak var outputs:SporevoMainOutputs!
-    private var api:FetchFacilityInputs!
+    private var api:FacilityRepositryInputs!
     private var facility:Facilities?
     
-    init(outputs:SporevoMainOutputs,api: FetchFacilityInputs) {
+    init(outputs:SporevoMainOutputs,api: FacilityRepositryInputs) {
         self.outputs = outputs
         self.api = api
     }

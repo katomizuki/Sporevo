@@ -7,6 +7,7 @@
 
 import ReSwift
 struct FacilitySearchReducer {
+    
     static func reducer(action: ReSwift.Action, state:FacilitySearchState?)->FacilitySearchState {
         var state = state ?? FacilitySearchState()
         guard let action = action as? FacilitySearchState.FacilitySearchAction else { return state }
