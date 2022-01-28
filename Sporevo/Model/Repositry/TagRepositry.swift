@@ -1,14 +1,15 @@
+//
+//  FetchTagRepositry.swift
+//  Sporevo
+//
+//  Created by ミズキ on 2022/01/28.
+//
+
 import Alamofire
 import Foundation
 import RealmSwift
 
-struct Tag:Codable,Equatable {
-    let id:Int
-    let name:String
-}
-
-
-struct FetchTags {
+struct TagRepositry {
     private let realm = try! Realm()
     func saveTags() {
         let header:HTTPHeaders = ["Authorization":"Token LIcCke0gTSNAloR7ptYq"]

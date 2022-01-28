@@ -1,13 +1,15 @@
+//
+//  FetchSportsRepositry.swift
+//  Sporevo
+//
+//  Created by ミズキ on 2022/01/28.
+//
 
 import Foundation
 import Alamofire
 import RealmSwift
-struct Sport:Codable,Equatable {
-    let name:String
-    let id:Int
-}
 
-struct FetchSports {
+struct SportsRepositry {
     private let realm = try! Realm()
     func saveSports() {
         let header:HTTPHeaders = ["Authorization":"Token LIcCke0gTSNAloR7ptYq"]

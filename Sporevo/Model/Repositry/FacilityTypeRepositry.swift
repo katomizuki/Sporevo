@@ -1,13 +1,15 @@
-
+//
+//  FetchFacilityTypeRepositry.swift
+//  Sporevo
+//
+//  Created by ミズキ on 2022/01/28.
+//
 import Foundation
 import Alamofire
 import RealmSwift
-struct FacilityType:Codable,Equatable {
-    var id:Int
-    var name:String
-}
 
-struct FetchFacilityType {
+struct FacilityTypeRepositry {
+    
     private let realm = try! Realm()
     
     func saveFacility() {

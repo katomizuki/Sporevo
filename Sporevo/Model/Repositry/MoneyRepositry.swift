@@ -1,18 +1,15 @@
+//
+//  FetchMoneyRepositry.swift
+//  Sporevo
+//
+//  Created by ミズキ on 2022/01/28.
+//
+
 import Foundation
 import Alamofire
 import RealmSwift
 
-struct MoneyUnits:Codable,Equatable {
-    let id:Int
-    let name:String
-}
-struct PriceUnits:Codable,Equatable {
-    let id:Int
-    let name:String
-}
-
-
-struct FetchMoney {
+struct MoneyRepositry {
     private let realm = try! Realm()
  
     func saveMoney() {

@@ -34,6 +34,14 @@
 		D32B8C4E27547D9B0036FA98 /* InstituationPresentar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8C4D27547D9B0036FA98 /* InstituationPresentar.swift */; };
 		D32B8C50275486AD0036FA98 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8C4F275486AD0036FA98 /* String+Extension.swift */; };
 		D32B8C5227548E570036FA98 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8C5127548E570036FA98 /* TagCell.swift */; };
+		D33AA16227A4077200FF182F /* FacilityRepositry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA16127A4077200FF182F /* FacilityRepositry.swift */; };
+		D33AA16627A4084300FF182F /* MoneyRepositry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA16527A4084300FF182F /* MoneyRepositry.swift */; };
+		D33AA16827A4088800FF182F /* TagRepositry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA16727A4088800FF182F /* TagRepositry.swift */; };
+		D33AA16A27A408BE00FF182F /* FetchSportsRepositry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA16927A408BE00FF182F /* FetchSportsRepositry.swift */; };
+		D33AA16D27A4097200FF182F /* FacilityTypeRepositry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA16C27A4097200FF182F /* FacilityTypeRepositry.swift */; };
+		D33AA16F27A409BA00FF182F /* MoneyUnits.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA16E27A409BA00FF182F /* MoneyUnits.swift */; };
+		D33AA17127A409F400FF182F /* FacilityDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA17027A409F400FF182F /* FacilityDetail.swift */; };
+		D33AA17327A40A1100FF182F /* Facilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA17227A40A1100FF182F /* Facilities.swift */; };
 		D33D95A82745E114001FBC48 /* SearchMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33D95A72745E114001FBC48 /* SearchMapController.swift */; };
 		D3459C1B278C16E000B61C6E /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3459C1A278C16E000B61C6E /* AppState.swift */; };
 		D3459C1D278C170E00B61C6E /* DetailSearchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3459C1C278C170E00B61C6E /* DetailSearchState.swift */; };
@@ -66,7 +74,7 @@
 		D3D81170274E213000A380B1 /* FacilityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D8116F274E213000A380B1 /* FacilityType.swift */; };
 		D3D81172274E509A00A380B1 /* Sports.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81171274E509A00A380B1 /* Sports.swift */; };
 		D3D81174274E564900A380B1 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81173274E564900A380B1 /* Tag.swift */; };
-		D3D81176274E5E8300A380B1 /* Money.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81175274E5E8300A380B1 /* Money.swift */; };
+		D3D81176274E5E8300A380B1 /* PriceUnits.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81175274E5E8300A380B1 /* PriceUnits.swift */; };
 		D3D81178274E66AE00A380B1 /* Prefecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81177274E66AE00A380B1 /* Prefecture.swift */; };
 		D3D8117C274F619600A380B1 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D8117B274F619600A380B1 /* Array+Extension.swift */; };
 		D3D8117F274F6EA500A380B1 /* UserDefaultRepositry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D8117E274F6EA500A380B1 /* UserDefaultRepositry.swift */; };
@@ -113,6 +121,14 @@
 		D32B8C4D27547D9B0036FA98 /* InstituationPresentar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstituationPresentar.swift; sourceTree = "<group>"; };
 		D32B8C4F275486AD0036FA98 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		D32B8C5127548E570036FA98 /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
+		D33AA16127A4077200FF182F /* FacilityRepositry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityRepositry.swift; sourceTree = "<group>"; };
+		D33AA16527A4084300FF182F /* MoneyRepositry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyRepositry.swift; sourceTree = "<group>"; };
+		D33AA16727A4088800FF182F /* TagRepositry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagRepositry.swift; sourceTree = "<group>"; };
+		D33AA16927A408BE00FF182F /* FetchSportsRepositry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchSportsRepositry.swift; sourceTree = "<group>"; };
+		D33AA16C27A4097200FF182F /* FacilityTypeRepositry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityTypeRepositry.swift; sourceTree = "<group>"; };
+		D33AA16E27A409BA00FF182F /* MoneyUnits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyUnits.swift; sourceTree = "<group>"; };
+		D33AA17027A409F400FF182F /* FacilityDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityDetail.swift; sourceTree = "<group>"; };
+		D33AA17227A40A1100FF182F /* Facilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Facilities.swift; sourceTree = "<group>"; };
 		D33D95A72745E114001FBC48 /* SearchMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMapController.swift; sourceTree = "<group>"; };
 		D3459C1A278C16E000B61C6E /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		D3459C1C278C170E00B61C6E /* DetailSearchState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSearchState.swift; sourceTree = "<group>"; };
@@ -145,7 +161,7 @@
 		D3D8116F274E213000A380B1 /* FacilityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityType.swift; sourceTree = "<group>"; };
 		D3D81171274E509A00A380B1 /* Sports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sports.swift; sourceTree = "<group>"; };
 		D3D81173274E564900A380B1 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
-		D3D81175274E5E8300A380B1 /* Money.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Money.swift; sourceTree = "<group>"; };
+		D3D81175274E5E8300A380B1 /* PriceUnits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceUnits.swift; sourceTree = "<group>"; };
 		D3D81177274E66AE00A380B1 /* Prefecture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prefecture.swift; sourceTree = "<group>"; };
 		D3D8117B274F619600A380B1 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		D3D8117E274F6EA500A380B1 /* UserDefaultRepositry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultRepositry.swift; sourceTree = "<group>"; };
@@ -254,7 +270,8 @@
 		D32B13B42738FF1B0039CC06 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D3459C3D278C446300B61C6E /* APIDB */,
+				D33AA16327A407B100FF182F /* Repositry */,
+				D3459C3D278C446300B61C6E /* APIEntity */,
 				D3459C3C278C444E00B61C6E /* Enum */,
 				D3459C29278C38EC00B61C6E /* LocalDB */,
 			);
@@ -310,6 +327,18 @@
 				D32B13DB273A51C00039CC06 /* TagLabel.swift */,
 			);
 			path = CustomView;
+			sourceTree = "<group>";
+		};
+		D33AA16327A407B100FF182F /* Repositry */ = {
+			isa = PBXGroup;
+			children = (
+				D33AA16927A408BE00FF182F /* FetchSportsRepositry.swift */,
+				D33AA16127A4077200FF182F /* FacilityRepositry.swift */,
+				D33AA16527A4084300FF182F /* MoneyRepositry.swift */,
+				D33AA16727A4088800FF182F /* TagRepositry.swift */,
+				D33AA16C27A4097200FF182F /* FacilityTypeRepositry.swift */,
+			);
+			path = Repositry;
 			sourceTree = "<group>";
 		};
 		D3459C19278C16A500B61C6E /* State */ = {
@@ -383,17 +412,20 @@
 			path = Enum;
 			sourceTree = "<group>";
 		};
-		D3459C3D278C446300B61C6E /* APIDB */ = {
+		D3459C3D278C446300B61C6E /* APIEntity */ = {
 			isa = PBXGroup;
 			children = (
 				D3D8116F274E213000A380B1 /* FacilityType.swift */,
 				D3D81171274E509A00A380B1 /* Sports.swift */,
 				D3D81173274E564900A380B1 /* Tag.swift */,
-				D3D81175274E5E8300A380B1 /* Money.swift */,
+				D3D81175274E5E8300A380B1 /* PriceUnits.swift */,
 				D3D81177274E66AE00A380B1 /* Prefecture.swift */,
 				D32B8C4B2754770A0036FA98 /* Facility.swift */,
+				D33AA16E27A409BA00FF182F /* MoneyUnits.swift */,
+				D33AA17027A409F400FF182F /* FacilityDetail.swift */,
+				D33AA17227A40A1100FF182F /* Facilities.swift */,
 			);
-			path = APIDB;
+			path = APIEntity;
 			sourceTree = "<group>";
 		};
 		D3459C3E278C447A00B61C6E /* Section */ = {
@@ -556,6 +588,7 @@
 			files = (
 				D3459C4A278DAFAC00B61C6E /* SporevoMapActionCreator.swift in Sources */,
 				D3459C40278DAD5D00B61C6E /* FacilityDetailReducer.swift in Sources */,
+				D33AA16D27A4097200FF182F /* FacilityTypeRepositry.swift in Sources */,
 				D32B13DC273A51C00039CC06 /* TagLabel.swift in Sources */,
 				D32B13D6273A2FB70039CC06 /* InstitutionHeader.swift in Sources */,
 				D32B13B9273902670039CC06 /* SearchOptions.swift in Sources */,
@@ -566,16 +599,19 @@
 				D3D81170274E213000A380B1 /* FacilityType.swift in Sources */,
 				D3459C1B278C16E000B61C6E /* AppState.swift in Sources */,
 				D3459C3B278C443700B61C6E /* FacilityDetailEntity.swift in Sources */,
+				D33AA16627A4084300FF182F /* MoneyRepositry.swift in Sources */,
 				D3F21516279ECFDB009897CE /* FacilitySearchAction.swift in Sources */,
 				D32B13BE2739038A0039CC06 /* SearchCell.swift in Sources */,
 				D3459C26278C18AE00B61C6E /* DetailSearchAction.swift in Sources */,
 				D32B13C0273904370039CC06 /* MainHeaderView.swift in Sources */,
 				D3459C22278C17BA00B61C6E /* AppReducer.swift in Sources */,
 				D3459C33278C41B700B61C6E /* MoneyUnitsEntity.swift in Sources */,
-				D3D81176274E5E8300A380B1 /* Money.swift in Sources */,
+				D3D81176274E5E8300A380B1 /* PriceUnits.swift in Sources */,
 				D32B13C227392BCC0039CC06 /* SearchListController.swift in Sources */,
 				D3459C4E278DB03600B61C6E /* SporevoMapReducer.swift in Sources */,
+				D33AA16F27A409BA00FF182F /* MoneyUnits.swift in Sources */,
 				D312C2212742228100DF7E83 /* FacilitySearchController.swift in Sources */,
+				D33AA17127A409F400FF182F /* FacilityDetail.swift in Sources */,
 				D32B8C5227548E570036FA98 /* TagCell.swift in Sources */,
 				D32B13DE273A62460039CC06 /* SeachListCell.swift in Sources */,
 				D351FF3C275B98DD00AA518B /* MoneySection.swift in Sources */,
@@ -598,6 +634,7 @@
 				D3459C39278C433100B61C6E /* CityEntity.swift in Sources */,
 				D32B13D2273A25E00039CC06 /* InstitutionDetailController.swift in Sources */,
 				D3459C2B278C403C00B61C6E /* FacilityEntity.swift in Sources */,
+				D33AA16827A4088800FF182F /* TagRepositry.swift in Sources */,
 				D32B13B7273901230039CC06 /* Anchor+Extension.swift in Sources */,
 				D3459C28278C190100B61C6E /* DetailSearchActionCreator.swift in Sources */,
 				D3F21514279ECF7F009897CE /* FacilitySearchState.swift in Sources */,
@@ -607,14 +644,17 @@
 				D32B137C2738D8430039CC06 /* SceneDelegate.swift in Sources */,
 				D32B8C4E27547D9B0036FA98 /* InstituationPresentar.swift in Sources */,
 				D32B13CE273965120039CC06 /* MenuOptionsCell.swift in Sources */,
+				D33AA17327A40A1100FF182F /* Facilities.swift in Sources */,
 				D33D95A82745E114001FBC48 /* SearchMapController.swift in Sources */,
 				D3459C48278DAF9A00B61C6E /* SporevoMapAction.swift in Sources */,
+				D33AA16A27A408BE00FF182F /* FetchSportsRepositry.swift in Sources */,
 				D32B8C4C2754770A0036FA98 /* Facility.swift in Sources */,
 				D3459C2F278C40F300B61C6E /* TagEntity.swift in Sources */,
 				D32B13C4273931EB0039CC06 /* Constants.swift in Sources */,
 				D32B13D0273A0E490039CC06 /* institutionCell.swift in Sources */,
 				D32B13CC273964000039CC06 /* MenuOptions.swift in Sources */,
 				D3B72CA42749278A00253933 /* InstitutionListController.swift in Sources */,
+				D33AA16227A4077200FF182F /* FacilityRepositry.swift in Sources */,
 				D3459C24278C184000B61C6E /* DetailSearchReducer.swift in Sources */,
 				D3D81183274F98DF00A380B1 /* ViewController+Extension.swift in Sources */,
 				D32B13C8273960720039CC06 /* ContainerController.swift in Sources */,

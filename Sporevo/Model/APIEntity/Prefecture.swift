@@ -6,6 +6,7 @@ struct Prefecture:Codable,Equatable {
     let name:String
     let id:Int
 }
+
 struct City:Codable,Equatable {
     let id:Int
     let name:String

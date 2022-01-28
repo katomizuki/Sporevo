@@ -26,7 +26,7 @@ final class SporevoMainController: UIViewController {
        
         view.addSubview(scrollView)
         setupNav()
-        mainPresentar = SporevoMainPresentar(outputs: self, api: FetchFacility())
+        mainPresentar = SporevoMainPresentar(outputs: self, api: FacilityRepositry())
         mainPresentar.viewdidLoad()
     }
     override func viewWillAppear(_ animated: Bool) {

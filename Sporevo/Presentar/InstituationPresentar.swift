@@ -21,7 +21,7 @@ final class InstituationPresentar:InstituationPresentarInputs {
         self.outputs = outputs
     }
     func viewDidLoad() {
-        FetchFacility().fetchFacility { result in
+        FacilityRepositry().fetchFacility { result in
             switch result {
             case .success(let facilities):
                 self.facilities = facilities
@@ -42,7 +42,7 @@ final class InstituationPresentar:InstituationPresentarInputs {
         self.outputs?.reload()
     }
     func fetchDetailFacilities(id:String) {
-        FetchFacility().fetchFacilityById(id: id) { result in
+        FacilityRepositry().fetchFacilityById(id: id) { result in
             
         }
     }
