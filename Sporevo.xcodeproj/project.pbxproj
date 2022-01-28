@@ -42,7 +42,7 @@
 		D33AA16F27A409BA00FF182F /* MoneyUnits.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA16E27A409BA00FF182F /* MoneyUnits.swift */; };
 		D33AA17127A409F400FF182F /* FacilityDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA17027A409F400FF182F /* FacilityDetail.swift */; };
 		D33AA17327A40A1100FF182F /* Facilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA17227A40A1100FF182F /* Facilities.swift */; };
-		D33AA17527A40E0800FF182F /* SearchListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA17427A40E0800FF182F /* SearchListViewModel.swift */; };
+		D33AA17527A40E0800FF182F /* DetailSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA17427A40E0800FF182F /* DetailSearchViewModel.swift */; };
 		D33AA17727A40E1600FF182F /* SporevoMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA17627A40E1600FF182F /* SporevoMainViewModel.swift */; };
 		D33AA17927A40E5100FF182F /* InstituationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA17827A40E5100FF182F /* InstituationViewModel.swift */; };
 		D33AA17B27A40E6C00FF182F /* FacilitySearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA17A27A40E6C00FF182F /* FacilitySearchViewModel.swift */; };
@@ -133,7 +133,7 @@
 		D33AA16E27A409BA00FF182F /* MoneyUnits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyUnits.swift; sourceTree = "<group>"; };
 		D33AA17027A409F400FF182F /* FacilityDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityDetail.swift; sourceTree = "<group>"; };
 		D33AA17227A40A1100FF182F /* Facilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Facilities.swift; sourceTree = "<group>"; };
-		D33AA17427A40E0800FF182F /* SearchListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListViewModel.swift; sourceTree = "<group>"; };
+		D33AA17427A40E0800FF182F /* DetailSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSearchViewModel.swift; sourceTree = "<group>"; };
 		D33AA17627A40E1600FF182F /* SporevoMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SporevoMainViewModel.swift; sourceTree = "<group>"; };
 		D33AA17827A40E5100FF182F /* InstituationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstituationViewModel.swift; sourceTree = "<group>"; };
 		D33AA17A27A40E6C00FF182F /* FacilitySearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilitySearchViewModel.swift; sourceTree = "<group>"; };
@@ -353,7 +353,7 @@
 		D33AA17C27A40E7600FF182F /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				D33AA17427A40E0800FF182F /* SearchListViewModel.swift */,
+				D33AA17427A40E0800FF182F /* DetailSearchViewModel.swift */,
 				D33AA17627A40E1600FF182F /* SporevoMainViewModel.swift */,
 				D33AA17827A40E5100FF182F /* InstituationViewModel.swift */,
 				D33AA17A27A40E6C00FF182F /* FacilitySearchViewModel.swift */,
@@ -684,7 +684,7 @@
 				D3D81174274E564900A380B1 /* Tag.swift in Sources */,
 				D32B13C6273944840039CC06 /* CustomSearchSectionHeader.swift in Sources */,
 				D3459C37278C42BE00B61C6E /* PrefectureEntity.swift in Sources */,
-				D33AA17527A40E0800FF182F /* SearchListViewModel.swift in Sources */,
+				D33AA17527A40E0800FF182F /* DetailSearchViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

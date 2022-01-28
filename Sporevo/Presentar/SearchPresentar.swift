@@ -52,6 +52,7 @@ final class SearchListPresentar:SearchListInputs {
             return 1
         }
     }
+    
     func numberOfCell(section:Int)->Int {
         switch option {
         case .place:
