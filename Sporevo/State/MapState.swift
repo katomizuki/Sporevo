@@ -6,6 +6,6 @@
 //
 
 import ReSwift
-struct SporevoMapState {
+struct MapState: StateType {
     var facilities = [FacilityDetail]()
 }

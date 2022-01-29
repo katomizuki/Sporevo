@@ -6,7 +6,7 @@
 //
 
 import ReSwift
-struct FacilityDetailCreator {
+struct FacilityDetailActionCreator {
     static func fetchFacilityDetail() {
         
     }

@@ -6,11 +6,11 @@
 //
 
 import ReSwift
-struct FacilitySearchReducer {
+struct SearchListReducer {
     
-    static func reducer(action: ReSwift.Action, state:FacilitySearchState?)->FacilitySearchState {
-        var state = state ?? FacilitySearchState()
-        guard let action = action as? FacilitySearchState.FacilitySearchAction else { return state }
+    static func reducer(action: ReSwift.Action, state:SearchListState?)->SearchListState {
+        var state = state ?? SearchListState()
+        guard let action = action as? SearchListState.FacilitySearchAction else { return state }
         switch action {
         case .selectedCity(let cities):
             state.selectedCity = cities

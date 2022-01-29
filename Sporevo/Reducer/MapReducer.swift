@@ -6,11 +6,11 @@
 //
 
 import ReSwift
-struct SporevoMapReducer {
+struct MapReducer {
     
-    static func reducer(action: ReSwift.Action, state:SporevoMapState?)->SporevoMapState {
-        var state = state ?? SporevoMapState()
-        guard let action = action as? SporevoMapState.SporevoMapAction else { return state }
+    static func reducer(action: ReSwift.Action, state:MapState?)->MapState {
+        var state = state ?? MapState()
+        guard let action = action as? MapState.SporevoMapAction else { return state }
         switch action {
         case .fetchFacilities(facilities: let facilities):
             state.facilities = facilities

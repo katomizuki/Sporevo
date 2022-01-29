@@ -6,7 +6,7 @@
 //
 
 import ReSwift
-struct SporevoMapActionCreator {
+struct MapActionCreator {
     static func fetchAllFacility() {
         
     }

@@ -7,8 +7,10 @@
 
 import ReSwift
 struct AppState: ReSwift.StateType {
-    var detailState = DetailSearchState()
+    var detailSearchState = DetailSearchState()
     var facilityDetailState = FacilityDetailState()
-    var mapState = SporevoMapState()
-    var facilitySearchState = FacilitySearchState()
+    var mapState = MapState()
+    var mainState = MainState()
+    var searchListState = SearchListState()
+    var instituationListState = FacilityListState()
 }

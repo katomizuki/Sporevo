@@ -1,32 +1,32 @@
 //
-//  FetchSportsRepositry.swift
+//  FetchTagRepositry.swift
 //  Sporevo
 //
 //  Created by ミズキ on 2022/01/28.
 //
 
-import Foundation
 import Alamofire
+import Foundation
 import RealmSwift
 
-struct SportsRepositry {
+struct TagRepositryImpl {
     private let realm = try! Realm()
-    func saveSports() {
+    func saveTags() {
         let header:HTTPHeaders = ["Authorization":"Token LIcCke0gTSNAloR7ptYq"]
-        let baseURL = "https://spo-revo.com/api/v1/sports_types"
+        let baseURL = "https://spo-revo.com/api/v1/tags"
             AF.request(baseURL, method: .get, parameters: nil, encoding: URLEncoding.default, headers: header).responseJSON { response in
                 guard let data = response.data else { return }
                 do {
-                    let sports = try JSONDecoder().decode([Sport].self, from: data)
-                    sports.forEach {
-                        let sportEntity = SportEntity()
-                        sportEntity.name = $0.name
-                        sportEntity.id = $0.id
+                    let tags = try JSONDecoder().decode([Tag].self, from: data)
+                    tags.forEach {
+                        let tagEntity = TagEntity()
+                        tagEntity.id = $0.id
+                        tagEntity.name = $0.name
                         try! realm.write({
-                            realm.add(sportEntity)
+                            realm.add(tagEntity)
                         })
                     }
                 } catch { print(error.localizedDescription) }
-            }
+        }
     }
 }

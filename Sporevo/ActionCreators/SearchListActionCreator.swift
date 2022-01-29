@@ -7,7 +7,7 @@
 
 import ReSwift
 import Foundation
-struct FacilitySearchActionCreator {
+struct SearchListActionCreator {
     
     static func deleteUserDefaults() {
         UserDefaultRepositry.shared.deleteFromUserDefaults(key: "tag")
@@ -24,10 +24,10 @@ struct FacilitySearchActionCreator {
         let selectedCity:[City] = UserDefaultRepositry.shared.loadFromUserDefaults(key: "city")
         let selectedPriceUnits:[PriceUnits] = UserDefaultRepositry.shared.loadFromUserDefaults(key: "priceUnits")
         
-        appStore.dispatch(FacilitySearchState.FacilitySearchAction.setTag(tags: selectedTag))
-        appStore.dispatch(FacilitySearchState.FacilitySearchAction.setSports(sports: selectedSports))
-        appStore.dispatch(FacilitySearchState.FacilitySearchAction.setFacility(facility: selectedFacility))
-        appStore.dispatch(FacilitySearchState.FacilitySearchAction.setPriceUnits(units: selectedPriceUnits))
-        appStore.dispatch(FacilitySearchState.FacilitySearchAction.selectedCity(city: selectedCity))
+        appStore.dispatch(SearchListState.FacilitySearchAction.setTag(tags: selectedTag))
+        appStore.dispatch(SearchListState.FacilitySearchAction.setSports(sports: selectedSports))
+        appStore.dispatch(SearchListState.FacilitySearchAction.setFacility(facility: selectedFacility))
+        appStore.dispatch(SearchListState.FacilitySearchAction.setPriceUnits(units: selectedPriceUnits))
+        appStore.dispatch(SearchListState.FacilitySearchAction.selectedCity(city: selectedCity))
     }
 }

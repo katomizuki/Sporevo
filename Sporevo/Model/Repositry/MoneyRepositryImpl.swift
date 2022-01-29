@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 import RealmSwift
 
-struct MoneyRepositry {
+struct MoneyRepositryImpl {
     private let realm = try! Realm()
  
     func saveMoney() {

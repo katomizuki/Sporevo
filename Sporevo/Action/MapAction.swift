@@ -6,7 +6,8 @@
 //
 
 import ReSwift
-extension SporevoMapState {
+extension MapState {
+    
     enum SporevoMapAction:ReSwift.Action {
         case fetchFacilities(facilities:[FacilityDetail])
     }

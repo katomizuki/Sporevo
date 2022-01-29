@@ -7,17 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D312C2212742228100DF7E83 /* FacilitySearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D312C2202742228100DF7E83 /* FacilitySearchController.swift */; };
+		D312C2212742228100DF7E83 /* SearchListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D312C2202742228100DF7E83 /* SearchListController.swift */; };
 		D312C2242742363C00DF7E83 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D312C2232742363C00DF7E83 /* Alamofire */; };
 		D32B137A2738D8430039CC06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13792738D8430039CC06 /* AppDelegate.swift */; };
 		D32B137C2738D8430039CC06 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B137B2738D8430039CC06 /* SceneDelegate.swift */; };
-		D32B137E2738D8430039CC06 /* SporevoMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B137D2738D8430039CC06 /* SporevoMainController.swift */; };
+		D32B137E2738D8430039CC06 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B137D2738D8430039CC06 /* MainController.swift */; };
 		D32B13832738D8450039CC06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D32B13822738D8450039CC06 /* Assets.xcassets */; };
 		D32B13B7273901230039CC06 /* Anchor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13B6273901230039CC06 /* Anchor+Extension.swift */; };
 		D32B13B9273902670039CC06 /* SearchOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13B8273902670039CC06 /* SearchOptions.swift */; };
 		D32B13BE2739038A0039CC06 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13BD2739038A0039CC06 /* SearchCell.swift */; };
 		D32B13C0273904370039CC06 /* MainHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13BF273904370039CC06 /* MainHeaderView.swift */; };
-		D32B13C227392BCC0039CC06 /* SearchListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13C127392BCC0039CC06 /* SearchListController.swift */; };
+		D32B13C227392BCC0039CC06 /* DetailSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13C127392BCC0039CC06 /* DetailSearchController.swift */; };
 		D32B13C4273931EB0039CC06 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13C3273931EB0039CC06 /* Constants.swift */; };
 		D32B13C6273944840039CC06 /* CustomSearchSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13C5273944840039CC06 /* CustomSearchSectionHeader.swift */; };
 		D32B13C8273960720039CC06 /* ContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13C7273960720039CC06 /* ContainerController.swift */; };
@@ -25,7 +25,7 @@
 		D32B13CC273964000039CC06 /* MenuOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13CB273964000039CC06 /* MenuOptions.swift */; };
 		D32B13CE273965120039CC06 /* MenuOptionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13CD273965120039CC06 /* MenuOptionsCell.swift */; };
 		D32B13D0273A0E490039CC06 /* institutionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13CF273A0E480039CC06 /* institutionCell.swift */; };
-		D32B13D2273A25E00039CC06 /* InstitutionDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13D1273A25E00039CC06 /* InstitutionDetailController.swift */; };
+		D32B13D2273A25E00039CC06 /* FacilityDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13D1273A25E00039CC06 /* FacilityDetailController.swift */; };
 		D32B13D6273A2FB70039CC06 /* InstitutionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13D5273A2FB70039CC06 /* InstitutionHeader.swift */; };
 		D32B13D8273A30FA0039CC06 /* CompetionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13D7273A30FA0039CC06 /* CompetionView.swift */; };
 		D32B13DC273A51C00039CC06 /* TagLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13DB273A51C00039CC06 /* TagLabel.swift */; };
@@ -34,19 +34,24 @@
 		D32B8C4E27547D9B0036FA98 /* InstituationPresentar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8C4D27547D9B0036FA98 /* InstituationPresentar.swift */; };
 		D32B8C50275486AD0036FA98 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8C4F275486AD0036FA98 /* String+Extension.swift */; };
 		D32B8C5227548E570036FA98 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8C5127548E570036FA98 /* TagCell.swift */; };
-		D33AA16227A4077200FF182F /* FacilityRepositry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA16127A4077200FF182F /* FacilityRepositry.swift */; };
-		D33AA16627A4084300FF182F /* MoneyRepositry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA16527A4084300FF182F /* MoneyRepositry.swift */; };
-		D33AA16827A4088800FF182F /* TagRepositry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA16727A4088800FF182F /* TagRepositry.swift */; };
-		D33AA16A27A408BE00FF182F /* FetchSportsRepositry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA16927A408BE00FF182F /* FetchSportsRepositry.swift */; };
-		D33AA16D27A4097200FF182F /* FacilityTypeRepositry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA16C27A4097200FF182F /* FacilityTypeRepositry.swift */; };
+		D33AA16227A4077200FF182F /* FacilityRepositryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA16127A4077200FF182F /* FacilityRepositryImpl.swift */; };
+		D33AA16627A4084300FF182F /* MoneyRepositryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA16527A4084300FF182F /* MoneyRepositryImpl.swift */; };
+		D33AA16827A4088800FF182F /* TagRepositryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA16727A4088800FF182F /* TagRepositryImpl.swift */; };
+		D33AA16A27A408BE00FF182F /* SportsRepositry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA16927A408BE00FF182F /* SportsRepositry.swift */; };
+		D33AA16D27A4097200FF182F /* FacilityTypeRepositryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA16C27A4097200FF182F /* FacilityTypeRepositryImpl.swift */; };
 		D33AA16F27A409BA00FF182F /* MoneyUnits.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA16E27A409BA00FF182F /* MoneyUnits.swift */; };
 		D33AA17127A409F400FF182F /* FacilityDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA17027A409F400FF182F /* FacilityDetail.swift */; };
 		D33AA17327A40A1100FF182F /* Facilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA17227A40A1100FF182F /* Facilities.swift */; };
 		D33AA17527A40E0800FF182F /* DetailSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA17427A40E0800FF182F /* DetailSearchViewModel.swift */; };
-		D33AA17727A40E1600FF182F /* SporevoMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA17627A40E1600FF182F /* SporevoMainViewModel.swift */; };
-		D33AA17927A40E5100FF182F /* InstituationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA17827A40E5100FF182F /* InstituationViewModel.swift */; };
-		D33AA17B27A40E6C00FF182F /* FacilitySearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA17A27A40E6C00FF182F /* FacilitySearchViewModel.swift */; };
-		D33D95A82745E114001FBC48 /* SearchMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33D95A72745E114001FBC48 /* SearchMapController.swift */; };
+		D33AA17727A40E1600FF182F /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA17627A40E1600FF182F /* MainViewModel.swift */; };
+		D33AA17927A40E5100FF182F /* InstituationListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA17827A40E5100FF182F /* InstituationListViewModel.swift */; };
+		D33AA17B27A40E6C00FF182F /* SearchListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA17A27A40E6C00FF182F /* SearchListViewModel.swift */; };
+		D33AA18E27A52DAC00FF182F /* FacilityListActionCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA18D27A52DAC00FF182F /* FacilityListActionCreator.swift */; };
+		D33AA19027A5311300FF182F /* FacilityListState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA18F27A5311300FF182F /* FacilityListState.swift */; };
+		D33AA19227A5375900FF182F /* MainState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA19127A5375900FF182F /* MainState.swift */; };
+		D33AA19427A5378100FF182F /* MainReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA19327A5378100FF182F /* MainReducer.swift */; };
+		D33AA19627A537D300FF182F /* FacilityListAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA19527A537D300FF182F /* FacilityListAction.swift */; };
+		D33D95A82745E114001FBC48 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33D95A72745E114001FBC48 /* MapController.swift */; };
 		D3459C1B278C16E000B61C6E /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3459C1A278C16E000B61C6E /* AppState.swift */; };
 		D3459C1D278C170E00B61C6E /* DetailSearchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3459C1C278C170E00B61C6E /* DetailSearchState.swift */; };
 		D3459C22278C17BA00B61C6E /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3459C21278C17BA00B61C6E /* AppReducer.swift */; };
@@ -64,12 +69,12 @@
 		D3459C3B278C443700B61C6E /* FacilityDetailEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3459C3A278C443700B61C6E /* FacilityDetailEntity.swift */; };
 		D3459C40278DAD5D00B61C6E /* FacilityDetailReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3459C3F278DAD5D00B61C6E /* FacilityDetailReducer.swift */; };
 		D3459C42278DAD9800B61C6E /* FacilityDetailState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3459C41278DAD9800B61C6E /* FacilityDetailState.swift */; };
-		D3459C44278DAE2A00B61C6E /* FacilityDetailCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3459C43278DAE2A00B61C6E /* FacilityDetailCreator.swift */; };
+		D3459C44278DAE2A00B61C6E /* FacilityDetailActionCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3459C43278DAE2A00B61C6E /* FacilityDetailActionCreator.swift */; };
 		D3459C46278DAE6700B61C6E /* FacilityDetailAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3459C45278DAE6700B61C6E /* FacilityDetailAction.swift */; };
-		D3459C48278DAF9A00B61C6E /* SporevoMapAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3459C47278DAF9A00B61C6E /* SporevoMapAction.swift */; };
-		D3459C4A278DAFAC00B61C6E /* SporevoMapActionCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3459C49278DAFAC00B61C6E /* SporevoMapActionCreator.swift */; };
-		D3459C4C278DAFED00B61C6E /* SporevoMapState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3459C4B278DAFED00B61C6E /* SporevoMapState.swift */; };
-		D3459C4E278DB03600B61C6E /* SporevoMapReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3459C4D278DB03600B61C6E /* SporevoMapReducer.swift */; };
+		D3459C48278DAF9A00B61C6E /* MapAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3459C47278DAF9A00B61C6E /* MapAction.swift */; };
+		D3459C4A278DAFAC00B61C6E /* MapActionCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3459C49278DAFAC00B61C6E /* MapActionCreator.swift */; };
+		D3459C4C278DAFED00B61C6E /* MapState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3459C4B278DAFED00B61C6E /* MapState.swift */; };
+		D3459C4E278DB03600B61C6E /* MapReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3459C4D278DB03600B61C6E /* MapReducer.swift */; };
 		D351FF3A275B988F00AA518B /* CitySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D351FF39275B988F00AA518B /* CitySection.swift */; };
 		D351FF3C275B98DD00AA518B /* MoneySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D351FF3B275B98DD00AA518B /* MoneySection.swift */; };
 		D3B72CA42749278A00253933 /* InstitutionListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B72CA32749278A00253933 /* InstitutionListController.swift */; };
@@ -84,10 +89,10 @@
 		D3D8117F274F6EA500A380B1 /* UserDefaultRepositry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D8117E274F6EA500A380B1 /* UserDefaultRepositry.swift */; };
 		D3D81181274F75ED00A380B1 /* FacilitySearchPresentar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81180274F75ED00A380B1 /* FacilitySearchPresentar.swift */; };
 		D3D81183274F98DF00A380B1 /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81182274F98DF00A380B1 /* ViewController+Extension.swift */; };
-		D3F21512279ECEB9009897CE /* FacilitySearchActionCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F21511279ECEB9009897CE /* FacilitySearchActionCreator.swift */; };
-		D3F21514279ECF7F009897CE /* FacilitySearchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F21513279ECF7F009897CE /* FacilitySearchState.swift */; };
-		D3F21516279ECFDB009897CE /* FacilitySearchAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F21515279ECFDB009897CE /* FacilitySearchAction.swift */; };
-		D3F21518279ED18A009897CE /* FacilitySearchReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F21517279ED18A009897CE /* FacilitySearchReducer.swift */; };
+		D3F21512279ECEB9009897CE /* SearchListActionCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F21511279ECEB9009897CE /* SearchListActionCreator.swift */; };
+		D3F21514279ECF7F009897CE /* SearchListState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F21513279ECF7F009897CE /* SearchListState.swift */; };
+		D3F21516279ECFDB009897CE /* SearchListAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F21515279ECFDB009897CE /* SearchListAction.swift */; };
+		D3F21518279ED18A009897CE /* SearchListReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F21517279ED18A009897CE /* SearchListReducer.swift */; };
 		D3F2151B279ED9AA009897CE /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = D3F2151A279ED9AA009897CE /* RxCocoa */; };
 		D3F2151D279ED9AA009897CE /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = D3F2151C279ED9AA009897CE /* RxRelay */; };
 		D3F2151F279ED9AA009897CE /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D3F2151E279ED9AA009897CE /* RxSwift */; };
@@ -97,18 +102,18 @@
 /* Begin PBXFileReference section */
 		2C93011280A86064B55CC333 /* Pods-Sporevo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sporevo.release.xcconfig"; path = "Target Support Files/Pods-Sporevo/Pods-Sporevo.release.xcconfig"; sourceTree = "<group>"; };
 		BC4DD863CB20520031AB2ADC /* Pods-Sporevo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sporevo.debug.xcconfig"; path = "Target Support Files/Pods-Sporevo/Pods-Sporevo.debug.xcconfig"; sourceTree = "<group>"; };
-		D312C2202742228100DF7E83 /* FacilitySearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilitySearchController.swift; sourceTree = "<group>"; };
+		D312C2202742228100DF7E83 /* SearchListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListController.swift; sourceTree = "<group>"; };
 		D32B13762738D8430039CC06 /* Sporevo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sporevo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D32B13792738D8430039CC06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D32B137B2738D8430039CC06 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D32B137D2738D8430039CC06 /* SporevoMainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SporevoMainController.swift; sourceTree = "<group>"; };
+		D32B137D2738D8430039CC06 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		D32B13822738D8450039CC06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D32B13872738D8450039CC06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D32B13B6273901230039CC06 /* Anchor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Anchor+Extension.swift"; sourceTree = "<group>"; };
 		D32B13B8273902670039CC06 /* SearchOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOptions.swift; sourceTree = "<group>"; };
 		D32B13BD2739038A0039CC06 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		D32B13BF273904370039CC06 /* MainHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHeaderView.swift; sourceTree = "<group>"; };
-		D32B13C127392BCC0039CC06 /* SearchListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListController.swift; sourceTree = "<group>"; };
+		D32B13C127392BCC0039CC06 /* DetailSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSearchController.swift; sourceTree = "<group>"; };
 		D32B13C3273931EB0039CC06 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D32B13C5273944840039CC06 /* CustomSearchSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchSectionHeader.swift; sourceTree = "<group>"; };
 		D32B13C7273960720039CC06 /* ContainerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerController.swift; sourceTree = "<group>"; };
@@ -116,7 +121,7 @@
 		D32B13CB273964000039CC06 /* MenuOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptions.swift; sourceTree = "<group>"; };
 		D32B13CD273965120039CC06 /* MenuOptionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionsCell.swift; sourceTree = "<group>"; };
 		D32B13CF273A0E480039CC06 /* institutionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = institutionCell.swift; sourceTree = "<group>"; };
-		D32B13D1273A25E00039CC06 /* InstitutionDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstitutionDetailController.swift; sourceTree = "<group>"; };
+		D32B13D1273A25E00039CC06 /* FacilityDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityDetailController.swift; sourceTree = "<group>"; };
 		D32B13D5273A2FB70039CC06 /* InstitutionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstitutionHeader.swift; sourceTree = "<group>"; };
 		D32B13D7273A30FA0039CC06 /* CompetionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetionView.swift; sourceTree = "<group>"; };
 		D32B13DB273A51C00039CC06 /* TagLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagLabel.swift; sourceTree = "<group>"; };
@@ -125,19 +130,24 @@
 		D32B8C4D27547D9B0036FA98 /* InstituationPresentar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstituationPresentar.swift; sourceTree = "<group>"; };
 		D32B8C4F275486AD0036FA98 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		D32B8C5127548E570036FA98 /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
-		D33AA16127A4077200FF182F /* FacilityRepositry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityRepositry.swift; sourceTree = "<group>"; };
-		D33AA16527A4084300FF182F /* MoneyRepositry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyRepositry.swift; sourceTree = "<group>"; };
-		D33AA16727A4088800FF182F /* TagRepositry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagRepositry.swift; sourceTree = "<group>"; };
-		D33AA16927A408BE00FF182F /* FetchSportsRepositry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchSportsRepositry.swift; sourceTree = "<group>"; };
-		D33AA16C27A4097200FF182F /* FacilityTypeRepositry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityTypeRepositry.swift; sourceTree = "<group>"; };
+		D33AA16127A4077200FF182F /* FacilityRepositryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityRepositryImpl.swift; sourceTree = "<group>"; };
+		D33AA16527A4084300FF182F /* MoneyRepositryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyRepositryImpl.swift; sourceTree = "<group>"; };
+		D33AA16727A4088800FF182F /* TagRepositryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagRepositryImpl.swift; sourceTree = "<group>"; };
+		D33AA16927A408BE00FF182F /* SportsRepositry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsRepositry.swift; sourceTree = "<group>"; };
+		D33AA16C27A4097200FF182F /* FacilityTypeRepositryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityTypeRepositryImpl.swift; sourceTree = "<group>"; };
 		D33AA16E27A409BA00FF182F /* MoneyUnits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyUnits.swift; sourceTree = "<group>"; };
 		D33AA17027A409F400FF182F /* FacilityDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityDetail.swift; sourceTree = "<group>"; };
 		D33AA17227A40A1100FF182F /* Facilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Facilities.swift; sourceTree = "<group>"; };
 		D33AA17427A40E0800FF182F /* DetailSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSearchViewModel.swift; sourceTree = "<group>"; };
-		D33AA17627A40E1600FF182F /* SporevoMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SporevoMainViewModel.swift; sourceTree = "<group>"; };
-		D33AA17827A40E5100FF182F /* InstituationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstituationViewModel.swift; sourceTree = "<group>"; };
-		D33AA17A27A40E6C00FF182F /* FacilitySearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilitySearchViewModel.swift; sourceTree = "<group>"; };
-		D33D95A72745E114001FBC48 /* SearchMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMapController.swift; sourceTree = "<group>"; };
+		D33AA17627A40E1600FF182F /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		D33AA17827A40E5100FF182F /* InstituationListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstituationListViewModel.swift; sourceTree = "<group>"; };
+		D33AA17A27A40E6C00FF182F /* SearchListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListViewModel.swift; sourceTree = "<group>"; };
+		D33AA18D27A52DAC00FF182F /* FacilityListActionCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityListActionCreator.swift; sourceTree = "<group>"; };
+		D33AA18F27A5311300FF182F /* FacilityListState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityListState.swift; sourceTree = "<group>"; };
+		D33AA19127A5375900FF182F /* MainState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainState.swift; sourceTree = "<group>"; };
+		D33AA19327A5378100FF182F /* MainReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainReducer.swift; sourceTree = "<group>"; };
+		D33AA19527A537D300FF182F /* FacilityListAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityListAction.swift; sourceTree = "<group>"; };
+		D33D95A72745E114001FBC48 /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 		D3459C1A278C16E000B61C6E /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		D3459C1C278C170E00B61C6E /* DetailSearchState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSearchState.swift; sourceTree = "<group>"; };
 		D3459C21278C17BA00B61C6E /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
@@ -155,12 +165,12 @@
 		D3459C3A278C443700B61C6E /* FacilityDetailEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityDetailEntity.swift; sourceTree = "<group>"; };
 		D3459C3F278DAD5D00B61C6E /* FacilityDetailReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityDetailReducer.swift; sourceTree = "<group>"; };
 		D3459C41278DAD9800B61C6E /* FacilityDetailState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityDetailState.swift; sourceTree = "<group>"; };
-		D3459C43278DAE2A00B61C6E /* FacilityDetailCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityDetailCreator.swift; sourceTree = "<group>"; };
+		D3459C43278DAE2A00B61C6E /* FacilityDetailActionCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityDetailActionCreator.swift; sourceTree = "<group>"; };
 		D3459C45278DAE6700B61C6E /* FacilityDetailAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityDetailAction.swift; sourceTree = "<group>"; };
-		D3459C47278DAF9A00B61C6E /* SporevoMapAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SporevoMapAction.swift; sourceTree = "<group>"; };
-		D3459C49278DAFAC00B61C6E /* SporevoMapActionCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SporevoMapActionCreator.swift; sourceTree = "<group>"; };
-		D3459C4B278DAFED00B61C6E /* SporevoMapState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SporevoMapState.swift; sourceTree = "<group>"; };
-		D3459C4D278DB03600B61C6E /* SporevoMapReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SporevoMapReducer.swift; sourceTree = "<group>"; };
+		D3459C47278DAF9A00B61C6E /* MapAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAction.swift; sourceTree = "<group>"; };
+		D3459C49278DAFAC00B61C6E /* MapActionCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapActionCreator.swift; sourceTree = "<group>"; };
+		D3459C4B278DAFED00B61C6E /* MapState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapState.swift; sourceTree = "<group>"; };
+		D3459C4D278DB03600B61C6E /* MapReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapReducer.swift; sourceTree = "<group>"; };
 		D351FF39275B988F00AA518B /* CitySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySection.swift; sourceTree = "<group>"; };
 		D351FF3B275B98DD00AA518B /* MoneySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneySection.swift; sourceTree = "<group>"; };
 		D3B72CA32749278A00253933 /* InstitutionListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstitutionListController.swift; sourceTree = "<group>"; };
@@ -175,10 +185,10 @@
 		D3D8117E274F6EA500A380B1 /* UserDefaultRepositry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultRepositry.swift; sourceTree = "<group>"; };
 		D3D81180274F75ED00A380B1 /* FacilitySearchPresentar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilitySearchPresentar.swift; sourceTree = "<group>"; };
 		D3D81182274F98DF00A380B1 /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
-		D3F21511279ECEB9009897CE /* FacilitySearchActionCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilitySearchActionCreator.swift; sourceTree = "<group>"; };
-		D3F21513279ECF7F009897CE /* FacilitySearchState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilitySearchState.swift; sourceTree = "<group>"; };
-		D3F21515279ECFDB009897CE /* FacilitySearchAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilitySearchAction.swift; sourceTree = "<group>"; };
-		D3F21517279ED18A009897CE /* FacilitySearchReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilitySearchReducer.swift; sourceTree = "<group>"; };
+		D3F21511279ECEB9009897CE /* SearchListActionCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListActionCreator.swift; sourceTree = "<group>"; };
+		D3F21513279ECF7F009897CE /* SearchListState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListState.swift; sourceTree = "<group>"; };
+		D3F21515279ECFDB009897CE /* SearchListAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListAction.swift; sourceTree = "<group>"; };
+		D3F21517279ED18A009897CE /* SearchListReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListReducer.swift; sourceTree = "<group>"; };
 		E227DC3926AF3003077FE3F2 /* Pods_Sporevo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sporevo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -244,6 +254,8 @@
 				D32B137B2738D8430039CC06 /* SceneDelegate.swift */,
 				D32B13822738D8450039CC06 /* Assets.xcassets */,
 				D3D8117D274F6E8700A380B1 /* Repositry */,
+				D3459C3E278C447A00B61C6E /* Section */,
+				D33AA17C27A40E7600FF182F /* ViewModel */,
 				D32B13B52738FF1F0039CC06 /* Presentar */,
 				D32B13B42738FF1B0039CC06 /* Model */,
 				D32B13B32738FF170039CC06 /* Views */,
@@ -289,8 +301,6 @@
 		D32B13B52738FF1F0039CC06 /* Presentar */ = {
 			isa = PBXGroup;
 			children = (
-				D33AA17C27A40E7600FF182F /* ViewModel */,
-				D3459C3E278C447A00B61C6E /* Section */,
 				D3D81169274E19C300A380B1 /* SearchPresentar.swift */,
 				D3D8116B274E1A2B00A380B1 /* SporevoMainPresentar.swift */,
 				D3D81180274F75ED00A380B1 /* FacilitySearchPresentar.swift */,
@@ -315,13 +325,13 @@
 			isa = PBXGroup;
 			children = (
 				D32B13C7273960720039CC06 /* ContainerController.swift */,
-				D312C2202742228100DF7E83 /* FacilitySearchController.swift */,
-				D32B13D1273A25E00039CC06 /* InstitutionDetailController.swift */,
+				D312C2202742228100DF7E83 /* SearchListController.swift */,
+				D32B13D1273A25E00039CC06 /* FacilityDetailController.swift */,
 				D3B72CA32749278A00253933 /* InstitutionListController.swift */,
 				D32B13C9273961CD0039CC06 /* MenuController.swift */,
-				D32B13C127392BCC0039CC06 /* SearchListController.swift */,
-				D33D95A72745E114001FBC48 /* SearchMapController.swift */,
-				D32B137D2738D8430039CC06 /* SporevoMainController.swift */,
+				D32B13C127392BCC0039CC06 /* DetailSearchController.swift */,
+				D33D95A72745E114001FBC48 /* MapController.swift */,
+				D32B137D2738D8430039CC06 /* MainController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -341,11 +351,11 @@
 		D33AA16327A407B100FF182F /* Repositry */ = {
 			isa = PBXGroup;
 			children = (
-				D33AA16927A408BE00FF182F /* FetchSportsRepositry.swift */,
-				D33AA16127A4077200FF182F /* FacilityRepositry.swift */,
-				D33AA16527A4084300FF182F /* MoneyRepositry.swift */,
-				D33AA16727A4088800FF182F /* TagRepositry.swift */,
-				D33AA16C27A4097200FF182F /* FacilityTypeRepositry.swift */,
+				D33AA16927A408BE00FF182F /* SportsRepositry.swift */,
+				D33AA16127A4077200FF182F /* FacilityRepositryImpl.swift */,
+				D33AA16527A4084300FF182F /* MoneyRepositryImpl.swift */,
+				D33AA16727A4088800FF182F /* TagRepositryImpl.swift */,
+				D33AA16C27A4097200FF182F /* FacilityTypeRepositryImpl.swift */,
 			);
 			path = Repositry;
 			sourceTree = "<group>";
@@ -354,9 +364,9 @@
 			isa = PBXGroup;
 			children = (
 				D33AA17427A40E0800FF182F /* DetailSearchViewModel.swift */,
-				D33AA17627A40E1600FF182F /* SporevoMainViewModel.swift */,
-				D33AA17827A40E5100FF182F /* InstituationViewModel.swift */,
-				D33AA17A27A40E6C00FF182F /* FacilitySearchViewModel.swift */,
+				D33AA17627A40E1600FF182F /* MainViewModel.swift */,
+				D33AA17827A40E5100FF182F /* InstituationListViewModel.swift */,
+				D33AA17A27A40E6C00FF182F /* SearchListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -367,8 +377,10 @@
 				D3459C1A278C16E000B61C6E /* AppState.swift */,
 				D3459C1C278C170E00B61C6E /* DetailSearchState.swift */,
 				D3459C41278DAD9800B61C6E /* FacilityDetailState.swift */,
-				D3459C4B278DAFED00B61C6E /* SporevoMapState.swift */,
-				D3F21513279ECF7F009897CE /* FacilitySearchState.swift */,
+				D3459C4B278DAFED00B61C6E /* MapState.swift */,
+				D3F21513279ECF7F009897CE /* SearchListState.swift */,
+				D33AA18F27A5311300FF182F /* FacilityListState.swift */,
+				D33AA19127A5375900FF182F /* MainState.swift */,
 			);
 			path = State;
 			sourceTree = "<group>";
@@ -379,8 +391,9 @@
 				D3459C21278C17BA00B61C6E /* AppReducer.swift */,
 				D3459C23278C184000B61C6E /* DetailSearchReducer.swift */,
 				D3459C3F278DAD5D00B61C6E /* FacilityDetailReducer.swift */,
-				D3459C4D278DB03600B61C6E /* SporevoMapReducer.swift */,
-				D3F21517279ED18A009897CE /* FacilitySearchReducer.swift */,
+				D3459C4D278DB03600B61C6E /* MapReducer.swift */,
+				D3F21517279ED18A009897CE /* SearchListReducer.swift */,
+				D33AA19327A5378100FF182F /* MainReducer.swift */,
 			);
 			path = Reducer;
 			sourceTree = "<group>";
@@ -389,9 +402,10 @@
 			isa = PBXGroup;
 			children = (
 				D3459C27278C190100B61C6E /* DetailSearchActionCreator.swift */,
-				D3459C43278DAE2A00B61C6E /* FacilityDetailCreator.swift */,
-				D3459C49278DAFAC00B61C6E /* SporevoMapActionCreator.swift */,
-				D3F21511279ECEB9009897CE /* FacilitySearchActionCreator.swift */,
+				D3459C43278DAE2A00B61C6E /* FacilityDetailActionCreator.swift */,
+				D3459C49278DAFAC00B61C6E /* MapActionCreator.swift */,
+				D3F21511279ECEB9009897CE /* SearchListActionCreator.swift */,
+				D33AA18D27A52DAC00FF182F /* FacilityListActionCreator.swift */,
 			);
 			path = ActionCreators;
 			sourceTree = "<group>";
@@ -401,8 +415,9 @@
 			children = (
 				D3459C25278C18AE00B61C6E /* DetailSearchAction.swift */,
 				D3459C45278DAE6700B61C6E /* FacilityDetailAction.swift */,
-				D3459C47278DAF9A00B61C6E /* SporevoMapAction.swift */,
-				D3F21515279ECFDB009897CE /* FacilitySearchAction.swift */,
+				D3459C47278DAF9A00B61C6E /* MapAction.swift */,
+				D3F21515279ECFDB009897CE /* SearchListAction.swift */,
+				D33AA19527A537D300FF182F /* FacilityListAction.swift */,
 			);
 			path = Action;
 			sourceTree = "<group>";
@@ -606,45 +621,47 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3459C4A278DAFAC00B61C6E /* SporevoMapActionCreator.swift in Sources */,
+				D3459C4A278DAFAC00B61C6E /* MapActionCreator.swift in Sources */,
 				D3459C40278DAD5D00B61C6E /* FacilityDetailReducer.swift in Sources */,
-				D33AA16D27A4097200FF182F /* FacilityTypeRepositry.swift in Sources */,
+				D33AA16D27A4097200FF182F /* FacilityTypeRepositryImpl.swift in Sources */,
 				D32B13DC273A51C00039CC06 /* TagLabel.swift in Sources */,
 				D32B13D6273A2FB70039CC06 /* InstitutionHeader.swift in Sources */,
 				D32B13B9273902670039CC06 /* SearchOptions.swift in Sources */,
 				D3D8117C274F619600A380B1 /* Array+Extension.swift in Sources */,
 				D3D81181274F75ED00A380B1 /* FacilitySearchPresentar.swift in Sources */,
-				D3459C4C278DAFED00B61C6E /* SporevoMapState.swift in Sources */,
-				D3459C44278DAE2A00B61C6E /* FacilityDetailCreator.swift in Sources */,
+				D3459C4C278DAFED00B61C6E /* MapState.swift in Sources */,
+				D3459C44278DAE2A00B61C6E /* FacilityDetailActionCreator.swift in Sources */,
 				D3D81170274E213000A380B1 /* FacilityType.swift in Sources */,
 				D3459C1B278C16E000B61C6E /* AppState.swift in Sources */,
 				D3459C3B278C443700B61C6E /* FacilityDetailEntity.swift in Sources */,
-				D33AA16627A4084300FF182F /* MoneyRepositry.swift in Sources */,
-				D3F21516279ECFDB009897CE /* FacilitySearchAction.swift in Sources */,
+				D33AA16627A4084300FF182F /* MoneyRepositryImpl.swift in Sources */,
+				D3F21516279ECFDB009897CE /* SearchListAction.swift in Sources */,
 				D32B13BE2739038A0039CC06 /* SearchCell.swift in Sources */,
 				D3459C26278C18AE00B61C6E /* DetailSearchAction.swift in Sources */,
-				D33AA17927A40E5100FF182F /* InstituationViewModel.swift in Sources */,
+				D33AA17927A40E5100FF182F /* InstituationListViewModel.swift in Sources */,
 				D32B13C0273904370039CC06 /* MainHeaderView.swift in Sources */,
 				D3459C22278C17BA00B61C6E /* AppReducer.swift in Sources */,
 				D3459C33278C41B700B61C6E /* MoneyUnitsEntity.swift in Sources */,
 				D3D81176274E5E8300A380B1 /* PriceUnits.swift in Sources */,
-				D32B13C227392BCC0039CC06 /* SearchListController.swift in Sources */,
-				D3459C4E278DB03600B61C6E /* SporevoMapReducer.swift in Sources */,
+				D32B13C227392BCC0039CC06 /* DetailSearchController.swift in Sources */,
+				D3459C4E278DB03600B61C6E /* MapReducer.swift in Sources */,
 				D33AA16F27A409BA00FF182F /* MoneyUnits.swift in Sources */,
-				D312C2212742228100DF7E83 /* FacilitySearchController.swift in Sources */,
+				D312C2212742228100DF7E83 /* SearchListController.swift in Sources */,
 				D33AA17127A409F400FF182F /* FacilityDetail.swift in Sources */,
 				D32B8C5227548E570036FA98 /* TagCell.swift in Sources */,
 				D32B13DE273A62460039CC06 /* SeachListCell.swift in Sources */,
 				D351FF3C275B98DD00AA518B /* MoneySection.swift in Sources */,
+				D33AA19227A5375900FF182F /* MainState.swift in Sources */,
 				D3D8117F274F6EA500A380B1 /* UserDefaultRepositry.swift in Sources */,
 				D32B13CA273961CD0039CC06 /* MenuController.swift in Sources */,
 				D32B13D8273A30FA0039CC06 /* CompetionView.swift in Sources */,
 				D3D8116A274E19C300A380B1 /* SearchPresentar.swift in Sources */,
-				D32B137E2738D8430039CC06 /* SporevoMainController.swift in Sources */,
+				D32B137E2738D8430039CC06 /* MainController.swift in Sources */,
+				D33AA19027A5311300FF182F /* FacilityListState.swift in Sources */,
 				D3D81178274E66AE00A380B1 /* Prefecture.swift in Sources */,
 				D351FF3A275B988F00AA518B /* CitySection.swift in Sources */,
-				D33AA17B27A40E6C00FF182F /* FacilitySearchViewModel.swift in Sources */,
-				D3F21512279ECEB9009897CE /* FacilitySearchActionCreator.swift in Sources */,
+				D33AA17B27A40E6C00FF182F /* SearchListViewModel.swift in Sources */,
+				D3F21512279ECEB9009897CE /* SearchListActionCreator.swift in Sources */,
 				D3459C1D278C170E00B61C6E /* DetailSearchState.swift in Sources */,
 				D32B8C50275486AD0036FA98 /* String+Extension.swift in Sources */,
 				D3D8116C274E1A2B00A380B1 /* SporevoMainPresentar.swift in Sources */,
@@ -654,34 +671,37 @@
 				D3459C46278DAE6700B61C6E /* FacilityDetailAction.swift in Sources */,
 				D32B137A2738D8430039CC06 /* AppDelegate.swift in Sources */,
 				D3459C39278C433100B61C6E /* CityEntity.swift in Sources */,
-				D32B13D2273A25E00039CC06 /* InstitutionDetailController.swift in Sources */,
+				D32B13D2273A25E00039CC06 /* FacilityDetailController.swift in Sources */,
 				D3459C2B278C403C00B61C6E /* FacilityEntity.swift in Sources */,
-				D33AA16827A4088800FF182F /* TagRepositry.swift in Sources */,
+				D33AA16827A4088800FF182F /* TagRepositryImpl.swift in Sources */,
 				D32B13B7273901230039CC06 /* Anchor+Extension.swift in Sources */,
 				D3459C28278C190100B61C6E /* DetailSearchActionCreator.swift in Sources */,
-				D33AA17727A40E1600FF182F /* SporevoMainViewModel.swift in Sources */,
-				D3F21514279ECF7F009897CE /* FacilitySearchState.swift in Sources */,
+				D33AA17727A40E1600FF182F /* MainViewModel.swift in Sources */,
+				D3F21514279ECF7F009897CE /* SearchListState.swift in Sources */,
 				D3459C31278C413900B61C6E /* FacilityTypeEntity.swift in Sources */,
 				D3459C2D278C408500B61C6E /* SportEntity.swift in Sources */,
-				D3F21518279ED18A009897CE /* FacilitySearchReducer.swift in Sources */,
+				D3F21518279ED18A009897CE /* SearchListReducer.swift in Sources */,
 				D32B137C2738D8430039CC06 /* SceneDelegate.swift in Sources */,
+				D33AA18E27A52DAC00FF182F /* FacilityListActionCreator.swift in Sources */,
+				D33AA19627A537D300FF182F /* FacilityListAction.swift in Sources */,
 				D32B8C4E27547D9B0036FA98 /* InstituationPresentar.swift in Sources */,
 				D32B13CE273965120039CC06 /* MenuOptionsCell.swift in Sources */,
 				D33AA17327A40A1100FF182F /* Facilities.swift in Sources */,
-				D33D95A82745E114001FBC48 /* SearchMapController.swift in Sources */,
-				D3459C48278DAF9A00B61C6E /* SporevoMapAction.swift in Sources */,
-				D33AA16A27A408BE00FF182F /* FetchSportsRepositry.swift in Sources */,
+				D33D95A82745E114001FBC48 /* MapController.swift in Sources */,
+				D3459C48278DAF9A00B61C6E /* MapAction.swift in Sources */,
+				D33AA16A27A408BE00FF182F /* SportsRepositry.swift in Sources */,
 				D32B8C4C2754770A0036FA98 /* Facility.swift in Sources */,
 				D3459C2F278C40F300B61C6E /* TagEntity.swift in Sources */,
 				D32B13C4273931EB0039CC06 /* Constants.swift in Sources */,
 				D32B13D0273A0E490039CC06 /* institutionCell.swift in Sources */,
 				D32B13CC273964000039CC06 /* MenuOptions.swift in Sources */,
 				D3B72CA42749278A00253933 /* InstitutionListController.swift in Sources */,
-				D33AA16227A4077200FF182F /* FacilityRepositry.swift in Sources */,
+				D33AA16227A4077200FF182F /* FacilityRepositryImpl.swift in Sources */,
 				D3459C24278C184000B61C6E /* DetailSearchReducer.swift in Sources */,
 				D3D81183274F98DF00A380B1 /* ViewController+Extension.swift in Sources */,
 				D32B13C8273960720039CC06 /* ContainerController.swift in Sources */,
 				D3D81174274E564900A380B1 /* Tag.swift in Sources */,
+				D33AA19427A5378100FF182F /* MainReducer.swift in Sources */,
 				D32B13C6273944840039CC06 /* CustomSearchSectionHeader.swift in Sources */,
 				D3459C37278C42BE00B61C6E /* PrefectureEntity.swift in Sources */,
 				D33AA17527A40E0800FF182F /* DetailSearchViewModel.swift in Sources */,

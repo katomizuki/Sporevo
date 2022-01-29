@@ -3,7 +3,7 @@ import UIKit
 class MenuController:UIViewController {
     // MARK: - Properties
     var tableView:UITableView!
-    weak var delegate: SporevoMainControllerDelegate?
+    weak var delegate: MainControllerDelegate?
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()

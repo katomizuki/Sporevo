@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import GoogleMaps
 
-class InstitutionDetailController: UIViewController,GMSMapViewDelegate {
+class FacilityDetailController: UIViewController,GMSMapViewDelegate {
     private let searchLabel:UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16)
@@ -263,7 +263,7 @@ class InstitutionDetailController: UIViewController,GMSMapViewDelegate {
         stackview.spacing = 15
     }
 }
-extension InstitutionDetailController :GMSPanoramaViewDelegate {
+extension FacilityDetailController :GMSPanoramaViewDelegate {
     func panoramaView(_ view: GMSPanoramaView, error: Error, onMoveToPanoramaID panoramaID: String) {
         print(error.localizedDescription)
     }

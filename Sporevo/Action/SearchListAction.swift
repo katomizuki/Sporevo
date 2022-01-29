@@ -6,7 +6,8 @@
 //
 
 import ReSwift
-extension FacilitySearchState {
+extension SearchListState {
+    
     enum FacilitySearchAction: ReSwift.Action {
         case setTag(tags:[Tag])
         case setSports(sports: [Sport])

@@ -1,9 +1,12 @@
 import UIKit
 import Alamofire
-protocol SporevoMainControllerDelegate: AnyObject {
+import RxSwift
+import RxCocoa
+
+protocol MainControllerDelegate: AnyObject {
     func handleMenuToggle(forMenuOptions menuOptions: MenuOptions?)
 }
-final class SporevoMainController: UIViewController {
+final class MainController: UIViewController {
     // MARK: - Properties
     private lazy var segmentController :UISegmentedControl = {
         let segment = UISegmentedControl(items: ["地図で探す","一覧"])
@@ -15,31 +18,80 @@ final class SporevoMainController: UIViewController {
         let scrollView = UIScrollView()
         return scrollView
     }()
-    weak var delegate: SporevoMainControllerDelegate?
-    private let firstVC = SearchMapController()
-    private lazy var secondVC = InstitutionListController(height: self.navigationController?.navigationBar.frame.height ?? 0.0)
-    private var mainPresentar:SporevoMainInputs!
+    weak var delegate: MainControllerDelegate?
+    private let firstVC = MapController()
+    private lazy var secondVC = FacilityListController(viewModel: InstituationListViewModel(store: appStore))
+    private var viewModel: MainViewModel
+    private let disposeBag = DisposeBag()
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemMint
-       
         view.addSubview(scrollView)
         setupNav()
-        mainPresentar = SporevoMainPresentar(outputs: self, api: FacilityRepositry())
-        mainPresentar.viewdidLoad()
+        viewModel.didLoad.accept(())
+        bind()
     }
+    
+    init(viewModel: MainViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
+        viewModel.willAppear.accept(())
     }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         scrollView.frame = view.bounds
         scrollView.contentSize = CGSize(width: view.frame.width * 2, height: 0)
         addChildVC()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        viewModel.willDisAppear.accept(())
+    }
+    
+    func bind() {
+        viewModel.outputs.toDetail.subscribe { [weak self] _ in
+            guard let self = self else { return }
+            self.toDetail()
+        }.disposed(by: disposeBag)
+        
+        viewModel.outputs.segmentIndex.subscribe(onNext: { [weak self] index in
+            guard let self = self else { return }
+            self.moveScoll(index: index)
+        }).disposed(by: disposeBag)
+        
+        
+    }
+    
+    private func moveScoll(index: Int) {
+        if index == 0 {
+            self.scrollView.setContentOffset(.zero, animated: true)
+        } else {
+            self.scrollView.setContentOffset(CGPoint(x: self.view.frame.width, y: 0), animated: true)
+        }
+    }
+    
+    private func toDetail() {
+        let controller = SearchListController()
+        controller.delegate = self
+        let nav = UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true, completion: nil)
     }
     
     private func addChildVC() {
@@ -58,16 +110,18 @@ final class SporevoMainController: UIViewController {
         firstVC.didMove(toParent: self)
         secondVC.didMove(toParent: self)
     }
+    
     private func setupNav() {
         navigationController?.navigationBar.barTintColor = .systemMint
-              let image = UIImage(systemName: "line.horizontal.3")?.withRenderingMode(.alwaysOriginal)
-              navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(didTapLeftBarButton))
+        let image = UIImage(systemName: "line.horizontal.3")?.withRenderingMode(.alwaysOriginal)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(didTapLeftBarButton))
         let searchImage = UIImage(systemName: "magnifyingglass")?.withRenderingMode(.alwaysOriginal)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: searchImage, style: .done, target: self, action: #selector(didTapSearchDetailButton))
         navigationItem.titleView = segmentController
         navigationController?.navigationBar.tintColor = .darkGray
         navigationItem.backButtonDisplayMode = .minimal
     }
+    
     // MARK: - Selector
     @objc private func didTapLeftBarButton() {
         print(#function)
@@ -75,40 +129,17 @@ final class SporevoMainController: UIViewController {
     }
     @objc private func didTapSearchDetailButton() {
         print(#function)
-        mainPresentar.didTapDetailSearchButton()
+        viewModel.didTapDetailSearchButton()
     }
     @objc private func didChangeSegmentController(sender: UISegmentedControl) {
         let selectedIndex = sender.selectedSegmentIndex
-        mainPresentar.didTapSegment(index: selectedIndex)
+        viewModel.didTapSegment(index: selectedIndex)
     }
 }
-// MARK: - SporevoMainOutputs
-extension SporevoMainController:SporevoMainOutputs {
-    
-    func changeSegment(index: Int) {
-        if index == 0 {
-            scrollView.setContentOffset(.zero, animated: true)
-        } else {
-            scrollView.setContentOffset(CGPoint(x: view.frame.width, y: 0), animated: true)
-        }
-    }
-    func detailSearchController() {
-        let controller = FacilitySearchController()
-        controller.delegate = self
-        let nav = UINavigationController(rootViewController: controller)
-        nav.modalPresentationStyle = .fullScreen
-        present(nav, animated: true, completion: nil)
-    }
-    func loadData() {
-        print(#function)
-    }
-    func showError(_ error: Error) {
-        
-    }
-}
-extension SporevoMainController:FacilitySearchControllerDelegate {
-    func facilitySearchController(_ controller: FacilitySearchController) {
+
+extension MainController:SearchListControllerDelegate {
+    func facilitySearchController(_ controller: SearchListController) {
         controller.dismiss(animated: true, completion: nil)
-        mainPresentar.dismiss(secondVC)
+        viewModel.dismiss(secondVC)
     }
 }

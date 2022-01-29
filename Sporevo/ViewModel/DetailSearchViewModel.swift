@@ -70,7 +70,7 @@ final class DetailSearchViewModel: DetailSearchViewModelType,DetailSearchViewMod
         
         willAppear.subscribe(onNext: { [unowned self] _ in
             self.store.subscribe(self) { subcription in
-                subcription.select { state in state.facilitySearchState }
+                subcription.select { state in state.searchListState }
             }
         }).disposed(by: disposeBag)
         
@@ -171,9 +171,9 @@ final class DetailSearchViewModel: DetailSearchViewModelType,DetailSearchViewMod
 
 extension DetailSearchViewModel: StoreSubscriber {
     
-    typealias StoreSubscriberStateType = FacilitySearchState
+    typealias StoreSubscriberStateType = SearchListState
     
-    func newState(state: FacilitySearchState) {
+    func newState(state: SearchListState) {
         
     }
     

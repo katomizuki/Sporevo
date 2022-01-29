@@ -27,7 +27,7 @@ class ContainerController:UIViewController {
     // MARK: - setupMethod
     private func setupMainController() {
 
-        let main = SporevoMainController()
+        let main = MainController(viewModel: MainViewModel(store: appStore, repositry: FacilityRepositryImpl()))
         centerController = UINavigationController(rootViewController: main)
         main.delegate = self
         // CenterControllerのViewをsubViewに追加
@@ -65,13 +65,13 @@ class ContainerController:UIViewController {
         }
     private func didSelectMenuOption(menuOption: MenuOptions) {
         print(#function)
-        let controller = UINavigationController(rootViewController: FacilitySearchController())
+        let controller = UINavigationController(rootViewController: SearchListController())
         controller.modalPresentationStyle = .fullScreen
         present(controller, animated: true, completion: nil)
     }
 }
 // MARK: - SporevoMainControllerDelegate
-extension ContainerController: SporevoMainControllerDelegate {
+extension ContainerController: MainControllerDelegate {
     
     func handleMenuToggle(forMenuOptions menuOptions: MenuOptions?) {
         print(#function)

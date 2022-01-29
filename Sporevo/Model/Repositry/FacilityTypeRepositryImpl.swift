@@ -8,7 +8,7 @@ import Foundation
 import Alamofire
 import RealmSwift
 
-struct FacilityTypeRepositry {
+struct FacilityTypeRepositryImpl {
     
     private let realm = try! Realm()
     

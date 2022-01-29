@@ -10,10 +10,12 @@ protocol FacilitySearchInputs {
     func deleteUserDefaults()
     func reload()
 }
+
 protocol FacilitySearchOutputs:AnyObject {
     func showError(_ error: Error)
     func reload()
 }
+
 final class FacilitySearchPresentar:FacilitySearchInputs {
     // MARK: - Properties
     var selectedTag = [Tag]()
@@ -28,7 +30,7 @@ final class FacilitySearchPresentar:FacilitySearchInputs {
     }
     
     func loadUserDefaults() {
-        FacilitySearchActionCreator.loadUserDefaults()
+        SearchListActionCreator.loadUserDefaults()
     }
     
     func reload() {
@@ -58,6 +60,6 @@ final class FacilitySearchPresentar:FacilitySearchInputs {
     }
     
     func deleteUserDefaults() {
-        FacilitySearchActionCreator.deleteUserDefaults()
+        SearchListActionCreator.deleteUserDefaults()
     }
 }
