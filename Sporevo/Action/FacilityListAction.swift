@@ -8,7 +8,7 @@
 import ReSwift
 extension FacilityListState {
     
-    enum FacilityListAction {
-        case getFacilityList
+    enum FacilityListAction: ReSwift.Action {
+        case getFacilityList(facilities: Facilities)
     }
 }

@@ -8,5 +8,5 @@
 import ReSwift
 
 struct FacilityListState: StateType {
-    
+    var facilities:Facilities?
 }

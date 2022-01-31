@@ -92,19 +92,13 @@ final class MainViewModel:MainViewModelType, MainViewModelOutputs,MainViewModelI
     }
     
     func dismiss(_ controller: FacilityListController) {
-        
-        self.repositry.fetchFacility { result in
-            switch result {
-            case .success(let facility):
-                self.facility = facility
-                controller.facilities = facility
-            case .failure(let error):
-                self.errorHandling.accept(error)
-            }
-        }
+        self.repositry.fetchFacility().subscribe { facility in
+            self.facility = facility
+            controller.facilities = facility
+        } onFailure: { error in
+            self.errorHandling.accept(error)
+        }.disposed(by: disposeBag)
     }
-    
-    
 }
 extension MainViewModel: StoreSubscriber {
     

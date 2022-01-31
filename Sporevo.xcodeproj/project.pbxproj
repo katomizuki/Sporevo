@@ -77,6 +77,7 @@
 		D3459C4E278DB03600B61C6E /* MapReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3459C4D278DB03600B61C6E /* MapReducer.swift */; };
 		D351FF3A275B988F00AA518B /* CitySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D351FF39275B988F00AA518B /* CitySection.swift */; };
 		D351FF3C275B98DD00AA518B /* MoneySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D351FF3B275B98DD00AA518B /* MoneySection.swift */; };
+		D36DE4E227A80ACD00253FB8 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36DE4E127A80ACD00253FB8 /* Util.swift */; };
 		D3B72CA42749278A00253933 /* InstitutionListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B72CA32749278A00253933 /* InstitutionListController.swift */; };
 		D3D8116A274E19C300A380B1 /* SearchPresentar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81169274E19C300A380B1 /* SearchPresentar.swift */; };
 		D3D8116C274E1A2B00A380B1 /* SporevoMainPresentar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D8116B274E1A2B00A380B1 /* SporevoMainPresentar.swift */; };
@@ -173,6 +174,7 @@
 		D3459C4D278DB03600B61C6E /* MapReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapReducer.swift; sourceTree = "<group>"; };
 		D351FF39275B988F00AA518B /* CitySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySection.swift; sourceTree = "<group>"; };
 		D351FF3B275B98DD00AA518B /* MoneySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneySection.swift; sourceTree = "<group>"; };
+		D36DE4E127A80ACD00253FB8 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		D3B72CA32749278A00253933 /* InstitutionListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstitutionListController.swift; sourceTree = "<group>"; };
 		D3D81169274E19C300A380B1 /* SearchPresentar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresentar.swift; sourceTree = "<group>"; };
 		D3D8116B274E1A2B00A380B1 /* SporevoMainPresentar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SporevoMainPresentar.swift; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 				D3D8117B274F619600A380B1 /* Array+Extension.swift */,
 				D3D81182274F98DF00A380B1 /* ViewController+Extension.swift */,
 				D32B8C4F275486AD0036FA98 /* String+Extension.swift */,
+				D36DE4E127A80ACD00253FB8 /* Util.swift */,
 			);
 			path = Extensiton;
 			sourceTree = "<group>";
@@ -678,6 +681,7 @@
 				D3459C28278C190100B61C6E /* DetailSearchActionCreator.swift in Sources */,
 				D33AA17727A40E1600FF182F /* MainViewModel.swift in Sources */,
 				D3F21514279ECF7F009897CE /* SearchListState.swift in Sources */,
+				D36DE4E227A80ACD00253FB8 /* Util.swift in Sources */,
 				D3459C31278C413900B61C6E /* FacilityTypeEntity.swift in Sources */,
 				D3459C2D278C408500B61C6E /* SportEntity.swift in Sources */,
 				D3F21518279ED18A009897CE /* SearchListReducer.swift in Sources */,

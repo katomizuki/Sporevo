@@ -20,7 +20,7 @@ final class MainController: UIViewController {
     }()
     weak var delegate: MainControllerDelegate?
     private let firstVC = MapController()
-    private lazy var secondVC = FacilityListController(viewModel: InstituationListViewModel(store: appStore, repositry: FacilityRepositryImpl()))
+    private lazy var secondVC = FacilityListController(viewModel: InstituationListViewModel(store: appStore, actionCreator: FacilityListActionCreator(repositry: FacilityRepositryImpl())))
     private var viewModel: MainViewModel
     private let disposeBag = DisposeBag()
     // MARK: - Lifecycle

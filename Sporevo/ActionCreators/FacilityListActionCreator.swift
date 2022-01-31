@@ -7,9 +7,11 @@
 
 
 import ReSwift
+import RxSwift
 
 struct FacilityListActionCreator {
-
+    let repositry: FacilityRepositry
+    private let disposeBag = DisposeBag()
     static func getInstituationDetail(id: Int) {
         FacilityRepositryImpl.getFacilityDetail(id: id).subscribe { detail in
 //            appStore.dispatch(Ins)
@@ -17,4 +19,12 @@ struct FacilityListActionCreator {
             print(error)
         }
     }
+     func getInstituatonList() {
+         self.repositry.fetchFacility().subscribe { facility in
+             appStore.dispatch(FacilityListState.FacilityListAction.getFacilityList(facilities: facility))
+         } onFailure: { error in
+             print(error)
+         }.disposed(by: disposeBag)
+
+     }
 }

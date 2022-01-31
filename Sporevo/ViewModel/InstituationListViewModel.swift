@@ -39,11 +39,11 @@ final class InstituationListViewModel:InstituationViewModelInputs,InstituationVi
     private let disposeBag = DisposeBag()
     private let store:Store<AppState>
     var facilities:Facilities?
-    let repositry: FacilityRepositry
+    let actionCreator: FacilityListActionCreator
     
-    init(store: Store<AppState>,repositry: FacilityRepositry) {
+    init(store: Store<AppState>,actionCreator: FacilityListActionCreator) {
         self.store = store
-        self.repositry = repositry
+        self.actionCreator = actionCreator
         
         willAppear.subscribe(onNext: { [unowned self] _ in
             self.store.subscribe(self) { subscription in
@@ -56,15 +56,7 @@ final class InstituationListViewModel:InstituationViewModelInputs,InstituationVi
         }).disposed(by: disposeBag)
         
         didLoad.subscribe(onNext: { [unowned self] _ in
-            self.repositry.fetchFacility { result in
-                        switch result {
-                        case .success(let facilities):
-                            self.facilities = facilities
-                            self.reload.onNext(())
-                        case .failure(let error):
-                            self.errorHandling.accept(error)
-                        }
-                    }
+            
         }).disposed(by: disposeBag)
     }
     
