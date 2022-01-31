@@ -18,6 +18,7 @@ protocol InstituationViewModelInputs {
 protocol InstituationViewModelOutputs {
     var reload: PublishSubject<Void> { get }
     var errorHandling: PublishRelay<Error> { get }
+    var facilitiesRelay: BehaviorRelay<[Facility]> { get }
 }
 
 protocol InstituationViewModelType {
@@ -38,7 +39,7 @@ final class InstituationListViewModel:InstituationViewModelInputs,InstituationVi
     
     private let disposeBag = DisposeBag()
     private let store:Store<AppState>
-    var facilities:Facilities?
+    let facilitiesRelay = BehaviorRelay<[Facility]>(value: [])
     let actionCreator: FacilityListActionCreator
     
     init(store: Store<AppState>,actionCreator: FacilityListActionCreator) {
@@ -56,28 +57,26 @@ final class InstituationListViewModel:InstituationViewModelInputs,InstituationVi
         }).disposed(by: disposeBag)
         
         didLoad.subscribe(onNext: { [unowned self] _ in
-            
+            self.actionCreator.getInstituatonList()
         }).disposed(by: disposeBag)
     }
     
     var numberOfCells: Int {
-        return facilities?.facilities.count ?? 0
+        return facilitiesRelay.value.count
     }
 
     
     private func setupFacilities(id: Int) {
-        FacilityListActionCreator.getInstituationDetail(id: id)
+        self.actionCreator.getInstituationDetail(id: id)
     }
     
     func facility(row: Int) -> Facility {
-        guard let facilities = facilities else {
-            fatalError()
-        }
-        return facilities.facilities[row]
+
+        return facilitiesRelay.value[row]
     }
     
     func searchFacilies(facilities: Facilities) {
-        self.facilities = facilities
+        self.facilitiesRelay.accept(facilities.facilities)
         self.reload.onNext(())
     }
     
@@ -87,7 +86,9 @@ extension InstituationListViewModel:StoreSubscriber {
     typealias StoreSubscriberStateType = FacilityListState
     
     func newState(state: FacilityListState) {
-        
+        guard let list = state.facilities?.facilities else { return }
+        facilitiesRelay.accept(list)
+        reload.onNext(())
     }
 }
 

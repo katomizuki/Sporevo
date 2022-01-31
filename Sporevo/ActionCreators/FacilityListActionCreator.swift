@@ -12,7 +12,7 @@ import RxSwift
 struct FacilityListActionCreator {
     let repositry: FacilityRepositry
     private let disposeBag = DisposeBag()
-    static func getInstituationDetail(id: Int) {
+     func getInstituationDetail(id: Int) {
         FacilityRepositryImpl.getFacilityDetail(id: id).subscribe { detail in
 //            appStore.dispatch(Ins)
         } onFailure: { error in

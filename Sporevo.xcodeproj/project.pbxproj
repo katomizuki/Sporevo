@@ -78,6 +78,9 @@
 		D351FF3A275B988F00AA518B /* CitySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D351FF39275B988F00AA518B /* CitySection.swift */; };
 		D351FF3C275B98DD00AA518B /* MoneySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D351FF3B275B98DD00AA518B /* MoneySection.swift */; };
 		D36DE4E227A80ACD00253FB8 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36DE4E127A80ACD00253FB8 /* Util.swift */; };
+		D36DE4E427A80DAF00253FB8 /* FacilityListReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36DE4E327A80DAF00253FB8 /* FacilityListReducer.swift */; };
+		D36DE4E627A8121500253FB8 /* MainActionCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36DE4E527A8121500253FB8 /* MainActionCreator.swift */; };
+		D36DE4E827A8124300253FB8 /* MainStateAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36DE4E727A8124300253FB8 /* MainStateAction.swift */; };
 		D3B72CA42749278A00253933 /* InstitutionListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B72CA32749278A00253933 /* InstitutionListController.swift */; };
 		D3D8116A274E19C300A380B1 /* SearchPresentar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81169274E19C300A380B1 /* SearchPresentar.swift */; };
 		D3D8116C274E1A2B00A380B1 /* SporevoMainPresentar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D8116B274E1A2B00A380B1 /* SporevoMainPresentar.swift */; };
@@ -175,6 +178,9 @@
 		D351FF39275B988F00AA518B /* CitySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySection.swift; sourceTree = "<group>"; };
 		D351FF3B275B98DD00AA518B /* MoneySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneySection.swift; sourceTree = "<group>"; };
 		D36DE4E127A80ACD00253FB8 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		D36DE4E327A80DAF00253FB8 /* FacilityListReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityListReducer.swift; sourceTree = "<group>"; };
+		D36DE4E527A8121500253FB8 /* MainActionCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainActionCreator.swift; sourceTree = "<group>"; };
+		D36DE4E727A8124300253FB8 /* MainStateAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStateAction.swift; sourceTree = "<group>"; };
 		D3B72CA32749278A00253933 /* InstitutionListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstitutionListController.swift; sourceTree = "<group>"; };
 		D3D81169274E19C300A380B1 /* SearchPresentar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresentar.swift; sourceTree = "<group>"; };
 		D3D8116B274E1A2B00A380B1 /* SporevoMainPresentar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SporevoMainPresentar.swift; sourceTree = "<group>"; };
@@ -397,6 +403,7 @@
 				D3459C4D278DB03600B61C6E /* MapReducer.swift */,
 				D3F21517279ED18A009897CE /* SearchListReducer.swift */,
 				D33AA19327A5378100FF182F /* MainReducer.swift */,
+				D36DE4E327A80DAF00253FB8 /* FacilityListReducer.swift */,
 			);
 			path = Reducer;
 			sourceTree = "<group>";
@@ -409,6 +416,7 @@
 				D3459C49278DAFAC00B61C6E /* MapActionCreator.swift */,
 				D3F21511279ECEB9009897CE /* SearchListActionCreator.swift */,
 				D33AA18D27A52DAC00FF182F /* FacilityListActionCreator.swift */,
+				D36DE4E527A8121500253FB8 /* MainActionCreator.swift */,
 			);
 			path = ActionCreators;
 			sourceTree = "<group>";
@@ -421,6 +429,7 @@
 				D3459C47278DAF9A00B61C6E /* MapAction.swift */,
 				D3F21515279ECFDB009897CE /* SearchListAction.swift */,
 				D33AA19527A537D300FF182F /* FacilityListAction.swift */,
+				D36DE4E727A8124300253FB8 /* MainStateAction.swift */,
 			);
 			path = Action;
 			sourceTree = "<group>";
@@ -643,6 +652,8 @@
 				D3459C26278C18AE00B61C6E /* DetailSearchAction.swift in Sources */,
 				D33AA17927A40E5100FF182F /* InstituationListViewModel.swift in Sources */,
 				D32B13C0273904370039CC06 /* MainHeaderView.swift in Sources */,
+				D36DE4E427A80DAF00253FB8 /* FacilityListReducer.swift in Sources */,
+				D36DE4E827A8124300253FB8 /* MainStateAction.swift in Sources */,
 				D3459C22278C17BA00B61C6E /* AppReducer.swift in Sources */,
 				D3459C33278C41B700B61C6E /* MoneyUnitsEntity.swift in Sources */,
 				D3D81176274E5E8300A380B1 /* PriceUnits.swift in Sources */,
@@ -653,6 +664,7 @@
 				D33AA17127A409F400FF182F /* FacilityDetail.swift in Sources */,
 				D32B8C5227548E570036FA98 /* TagCell.swift in Sources */,
 				D32B13DE273A62460039CC06 /* SeachListCell.swift in Sources */,
+				D36DE4E627A8121500253FB8 /* MainActionCreator.swift in Sources */,
 				D351FF3C275B98DD00AA518B /* MoneySection.swift in Sources */,
 				D33AA19227A5375900FF182F /* MainState.swift in Sources */,
 				D3D8117F274F6EA500A380B1 /* UserDefaultRepositry.swift in Sources */,

@@ -73,6 +73,7 @@ class FacilityListController:UIViewController {
         viewModel.outputs.errorHandling.subscribe { _ in
             
         }.disposed(by: disposeBag)
+        
 
 
     }
