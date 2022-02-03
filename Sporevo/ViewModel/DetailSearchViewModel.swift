@@ -19,7 +19,7 @@ protocol DetailSearchViewModelOutput {
     var sectionsCount: Int { get }
     func numberOfCell(section:Int) -> Int
     var reload: PublishRelay<Void> { get }
-    var reloadSections: PublishRelay<Int> { get }
+    var reloadSections: PublishSubject<Int> { get }
 }
 
 protocol DetailSearchViewModelType {
@@ -37,7 +37,7 @@ final class DetailSearchViewModel: DetailSearchViewModelType,DetailSearchViewMod
     
     var reload = PublishRelay<Void>()
     
-    var reloadSections = PublishRelay<Int>()
+    var reloadSections = PublishSubject<Int>()
     
     
     var inputs: DetailSearchViewModelInput { return self }
@@ -114,7 +114,7 @@ final class DetailSearchViewModel: DetailSearchViewModelType,DetailSearchViewMod
     
     func didTapSection(section: Int) {
         DetailSearchActionCreator.didTapSection(section: section, option: option)
-        self.outputs.reloadSections.accept(section)
+        self.outputs.reloadSections.onNext(section)
     }
     
     func numberOfCell(section:Int) -> Int {
@@ -180,8 +180,6 @@ extension DetailSearchViewModel: StoreSubscriber {
         self.tags = state.tags
         self.citySections = state.placeSections
         reload.accept(())
-        print(state.moneySections)
-        print(state.placeSections)
     }
     
 }

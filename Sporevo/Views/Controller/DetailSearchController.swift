@@ -9,9 +9,9 @@ protocol DetailSearchControllerProtocol:AnyObject {
 final class DetailSearchController: UIViewController {
     // MARK: - Properties
     private var toJudegeTableViewKeyword:SearchOptions
-//    private var searchListPresentar:SearchListInputs!
     private let viewModel: DetailSearchViewModel
     private let disposeBag = DisposeBag()
+    
     private lazy var tableView:UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.delegate = self
@@ -20,7 +20,7 @@ final class DetailSearchController: UIViewController {
         return tableView
     }()
     weak var delegate:DetailSearchControllerProtocol?
-    private var selectedCell:[String:Bool] = [String:Bool]()
+    private var selectedCell:[String:Bool] = [String: Bool]()
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,19 +28,16 @@ final class DetailSearchController: UIViewController {
         setupTableView()
         setupNav()
         bind()
-//        searchListPresentar.viewDidLoad()
         viewModel.didLoad.accept(())
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.willAppear.accept(())
-//        appStore.subscribe(self)
         navigationController?.navigationBar.backgroundColor = .clear
         navigationController?.navigationBar.isHidden = false
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-//        appStore.unsubscribe(self)
         viewModel.willDisAppear.accept(())
     }
     // MARK: - Initialize
@@ -68,17 +65,24 @@ final class DetailSearchController: UIViewController {
         leftButton.tintColor = .systemMint
     }
     @objc private func didTapLeftBarButton() {
-//        searchListPresentar.saveUserDefaults()
         viewModel.saveUserDefaults()
         navigationController?.popViewController(animated: true)
         self.delegate?.searchListController()
     }
     func bind() {
         
-        viewModel.reload.subscribe { [weak self] _  in
-            self?.tableView.reloadData()
-        }.disposed(by: disposeBag)
-
+        viewModel.outputs.reload.observe(on: MainScheduler.instance)
+            .subscribe { [weak self] _  in
+                guard let self = self else { return }
+                self.tableView.reloadData()
+            }.disposed(by: disposeBag)
+        
+        viewModel.outputs.reloadSections.observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] section in
+                guard let self = self else { return }
+                self.tableView.reloadSections([section], with: .bottom)
+            }).disposed(by: disposeBag)
+        
     }
 }
 // MARK: - UITableViewDelegate
@@ -88,8 +92,8 @@ extension DetailSearchController: UITableViewDelegate {
         viewModel.didSelectRowAt(indexPath: indexPath)
         if toJudegeTableViewKeyword == .place || toJudegeTableViewKeyword == .price {
             if indexPath.row == 0 {
-            tableView.deselectRow(at: indexPath, animated: true)
-            viewModel.didTapSection(section: indexPath.section)
+                tableView.deselectRow(at: indexPath, animated: true)
+                viewModel.didTapSection(section: indexPath.section)
             } else {
                 let key = "\(indexPath.section) + \(indexPath.row)"
                 if cell.accessoryType == .none {
@@ -101,16 +105,16 @@ extension DetailSearchController: UITableViewDelegate {
                 }
             }
         } else {
-        let key = "\(indexPath.row)"
-        if cell.accessoryType == .none {
-            cell.accessoryType = .checkmark
-            selectedCell[key] = true
-        } else {
-            cell.accessoryType = .none
-            selectedCell.removeValue(forKey: key)
+            let key = "\(indexPath.row)"
+            if cell.accessoryType == .none {
+                cell.accessoryType = .checkmark
+                selectedCell[key] = true
+            } else {
+                cell.accessoryType = .none
+                selectedCell.removeValue(forKey: key)
+            }
         }
     }
- }
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
         // cellの.no
@@ -143,47 +147,17 @@ extension DetailSearchController: UITableViewDataSource {
                 cell.accessoryType = .none
             }
         } else {
-        let key = "\(indexPath.row)"
-        if selectedCell[key] != nil {
-            cell.accessoryType = .checkmark
-        } else {
-            cell.accessoryType = .none
+            let key = "\(indexPath.row)"
+            if selectedCell[key] != nil {
+                cell.accessoryType = .checkmark
+            } else {
+                cell.accessoryType = .none
+            }
         }
-    }
         return cell
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfCell(section: section)
     }
 }
-// MARK: - SearchListOutputs
-extension DetailSearchController:SearchListOutputs {
-    func reloadSections(section: Int) {
-        DispatchQueue.main.async {
-            self.tableView.reloadSections([section], with: .fade)
-        }
-    }
-    func reload() {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
-}
-//extension DetailSearchController:StoreSubscriber {
-//
-//    typealias StoreSubscriberStateType = AppState
-//
-//    func newState(state: StoreSubscriberStateType) {
-//        searchListPresentar.citySections = state.detailSearchState.placeSections
-//        searchListPresentar.tags = state.detailSearchState.tags
-//        searchListPresentar.sports = state.detailSearchState.sports
-//        searchListPresentar.moneySections = state.detailSearchState.moneySections
-//        searchListPresentar.facilities = state.detailSearchState.facilityType
-//        searchListPresentar.selectedCity = state.detailSearchState.selectedCity
-//        searchListPresentar.selectedInstion = state.detailSearchState.selectedInstion
-//        searchListPresentar.selectedCompetion = state.detailSearchState.selectedCompetion
-//        searchListPresentar.selectedPrice = state.detailSearchState.selectedPrice
-//        searchListPresentar.selectedTag = state.detailSearchState.selectedTag
-//    }
-//}
-
