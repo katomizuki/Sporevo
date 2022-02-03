@@ -94,6 +94,11 @@ extension SearchListViewModel: StoreSubscriber {
     typealias StoreSubscriberStateType = SearchListState
     
     func newState(state: SearchListState) {
-        
+        self.selectedCity = state.selectedCity
+        self.selectedTag = state.selectedTag
+        self.selectedSports = state.selectedSports
+        self.selectedPriceUnits = state.selectedPriceUnits
+        self.selectedFacility = state.selectedFacility
+        reload.onNext(())
     }
 }

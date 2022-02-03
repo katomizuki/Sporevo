@@ -31,7 +31,6 @@
 		D32B13DC273A51C00039CC06 /* TagLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13DB273A51C00039CC06 /* TagLabel.swift */; };
 		D32B13DE273A62460039CC06 /* SeachListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B13DD273A62460039CC06 /* SeachListCell.swift */; };
 		D32B8C4C2754770A0036FA98 /* Facility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8C4B2754770A0036FA98 /* Facility.swift */; };
-		D32B8C4E27547D9B0036FA98 /* InstituationPresentar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8C4D27547D9B0036FA98 /* InstituationPresentar.swift */; };
 		D32B8C50275486AD0036FA98 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8C4F275486AD0036FA98 /* String+Extension.swift */; };
 		D32B8C5227548E570036FA98 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B8C5127548E570036FA98 /* TagCell.swift */; };
 		D33AA16227A4077200FF182F /* FacilityRepositryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33AA16127A4077200FF182F /* FacilityRepositryImpl.swift */; };
@@ -82,8 +81,6 @@
 		D36DE4E627A8121500253FB8 /* MainActionCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36DE4E527A8121500253FB8 /* MainActionCreator.swift */; };
 		D36DE4E827A8124300253FB8 /* MainStateAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36DE4E727A8124300253FB8 /* MainStateAction.swift */; };
 		D3B72CA42749278A00253933 /* InstitutionListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B72CA32749278A00253933 /* InstitutionListController.swift */; };
-		D3D8116A274E19C300A380B1 /* SearchPresentar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81169274E19C300A380B1 /* SearchPresentar.swift */; };
-		D3D8116C274E1A2B00A380B1 /* SporevoMainPresentar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D8116B274E1A2B00A380B1 /* SporevoMainPresentar.swift */; };
 		D3D81170274E213000A380B1 /* FacilityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D8116F274E213000A380B1 /* FacilityType.swift */; };
 		D3D81172274E509A00A380B1 /* Sports.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81171274E509A00A380B1 /* Sports.swift */; };
 		D3D81174274E564900A380B1 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81173274E564900A380B1 /* Tag.swift */; };
@@ -91,7 +88,6 @@
 		D3D81178274E66AE00A380B1 /* Prefecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81177274E66AE00A380B1 /* Prefecture.swift */; };
 		D3D8117C274F619600A380B1 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D8117B274F619600A380B1 /* Array+Extension.swift */; };
 		D3D8117F274F6EA500A380B1 /* UserDefaultRepositry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D8117E274F6EA500A380B1 /* UserDefaultRepositry.swift */; };
-		D3D81181274F75ED00A380B1 /* FacilitySearchPresentar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81180274F75ED00A380B1 /* FacilitySearchPresentar.swift */; };
 		D3D81183274F98DF00A380B1 /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81182274F98DF00A380B1 /* ViewController+Extension.swift */; };
 		D3F21512279ECEB9009897CE /* SearchListActionCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F21511279ECEB9009897CE /* SearchListActionCreator.swift */; };
 		D3F21514279ECF7F009897CE /* SearchListState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F21513279ECF7F009897CE /* SearchListState.swift */; };
@@ -131,7 +127,6 @@
 		D32B13DB273A51C00039CC06 /* TagLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagLabel.swift; sourceTree = "<group>"; };
 		D32B13DD273A62460039CC06 /* SeachListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeachListCell.swift; sourceTree = "<group>"; };
 		D32B8C4B2754770A0036FA98 /* Facility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Facility.swift; sourceTree = "<group>"; };
-		D32B8C4D27547D9B0036FA98 /* InstituationPresentar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstituationPresentar.swift; sourceTree = "<group>"; };
 		D32B8C4F275486AD0036FA98 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		D32B8C5127548E570036FA98 /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
 		D33AA16127A4077200FF182F /* FacilityRepositryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityRepositryImpl.swift; sourceTree = "<group>"; };
@@ -182,8 +177,6 @@
 		D36DE4E527A8121500253FB8 /* MainActionCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainActionCreator.swift; sourceTree = "<group>"; };
 		D36DE4E727A8124300253FB8 /* MainStateAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStateAction.swift; sourceTree = "<group>"; };
 		D3B72CA32749278A00253933 /* InstitutionListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstitutionListController.swift; sourceTree = "<group>"; };
-		D3D81169274E19C300A380B1 /* SearchPresentar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresentar.swift; sourceTree = "<group>"; };
-		D3D8116B274E1A2B00A380B1 /* SporevoMainPresentar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SporevoMainPresentar.swift; sourceTree = "<group>"; };
 		D3D8116F274E213000A380B1 /* FacilityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityType.swift; sourceTree = "<group>"; };
 		D3D81171274E509A00A380B1 /* Sports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sports.swift; sourceTree = "<group>"; };
 		D3D81173274E564900A380B1 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
@@ -191,7 +184,6 @@
 		D3D81177274E66AE00A380B1 /* Prefecture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prefecture.swift; sourceTree = "<group>"; };
 		D3D8117B274F619600A380B1 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		D3D8117E274F6EA500A380B1 /* UserDefaultRepositry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultRepositry.swift; sourceTree = "<group>"; };
-		D3D81180274F75ED00A380B1 /* FacilitySearchPresentar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilitySearchPresentar.swift; sourceTree = "<group>"; };
 		D3D81182274F98DF00A380B1 /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
 		D3F21511279ECEB9009897CE /* SearchListActionCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListActionCreator.swift; sourceTree = "<group>"; };
 		D3F21513279ECF7F009897CE /* SearchListState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListState.swift; sourceTree = "<group>"; };
@@ -264,7 +256,6 @@
 				D3D8117D274F6E8700A380B1 /* Repositry */,
 				D3459C3E278C447A00B61C6E /* Section */,
 				D33AA17C27A40E7600FF182F /* ViewModel */,
-				D32B13B52738FF1F0039CC06 /* Presentar */,
 				D32B13B42738FF1B0039CC06 /* Model */,
 				D32B13B32738FF170039CC06 /* Views */,
 				D32B13B22738FF110039CC06 /* Extensiton */,
@@ -305,17 +296,6 @@
 				D3459C29278C38EC00B61C6E /* LocalEntity */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		D32B13B52738FF1F0039CC06 /* Presentar */ = {
-			isa = PBXGroup;
-			children = (
-				D3D81169274E19C300A380B1 /* SearchPresentar.swift */,
-				D3D8116B274E1A2B00A380B1 /* SporevoMainPresentar.swift */,
-				D3D81180274F75ED00A380B1 /* FacilitySearchPresentar.swift */,
-				D32B8C4D27547D9B0036FA98 /* InstituationPresentar.swift */,
-			);
-			path = Presentar;
 			sourceTree = "<group>";
 		};
 		D32B13BA2739036F0039CC06 /* Cells */ = {
@@ -640,7 +620,6 @@
 				D32B13D6273A2FB70039CC06 /* InstitutionHeader.swift in Sources */,
 				D32B13B9273902670039CC06 /* SearchOptions.swift in Sources */,
 				D3D8117C274F619600A380B1 /* Array+Extension.swift in Sources */,
-				D3D81181274F75ED00A380B1 /* FacilitySearchPresentar.swift in Sources */,
 				D3459C4C278DAFED00B61C6E /* MapState.swift in Sources */,
 				D3459C44278DAE2A00B61C6E /* FacilityDetailActionCreator.swift in Sources */,
 				D3D81170274E213000A380B1 /* FacilityType.swift in Sources */,
@@ -670,7 +649,6 @@
 				D3D8117F274F6EA500A380B1 /* UserDefaultRepositry.swift in Sources */,
 				D32B13CA273961CD0039CC06 /* MenuController.swift in Sources */,
 				D32B13D8273A30FA0039CC06 /* CompetionView.swift in Sources */,
-				D3D8116A274E19C300A380B1 /* SearchPresentar.swift in Sources */,
 				D32B137E2738D8430039CC06 /* MainController.swift in Sources */,
 				D33AA19027A5311300FF182F /* FacilityListState.swift in Sources */,
 				D3D81178274E66AE00A380B1 /* Prefecture.swift in Sources */,
@@ -679,7 +657,6 @@
 				D3F21512279ECEB9009897CE /* SearchListActionCreator.swift in Sources */,
 				D3459C1D278C170E00B61C6E /* DetailSearchState.swift in Sources */,
 				D32B8C50275486AD0036FA98 /* String+Extension.swift in Sources */,
-				D3D8116C274E1A2B00A380B1 /* SporevoMainPresentar.swift in Sources */,
 				D3459C35278C41E300B61C6E /* PriceUnitsEntity.swift in Sources */,
 				D3D81172274E509A00A380B1 /* Sports.swift in Sources */,
 				D3459C42278DAD9800B61C6E /* FacilityDetailState.swift in Sources */,
@@ -700,7 +677,6 @@
 				D32B137C2738D8430039CC06 /* SceneDelegate.swift in Sources */,
 				D33AA18E27A52DAC00FF182F /* FacilityListActionCreator.swift in Sources */,
 				D33AA19627A537D300FF182F /* FacilityListAction.swift in Sources */,
-				D32B8C4E27547D9B0036FA98 /* InstituationPresentar.swift in Sources */,
 				D32B13CE273965120039CC06 /* MenuOptionsCell.swift in Sources */,
 				D33AA17327A40A1100FF182F /* Facilities.swift in Sources */,
 				D33D95A82745E114001FBC48 /* MapController.swift in Sources */,

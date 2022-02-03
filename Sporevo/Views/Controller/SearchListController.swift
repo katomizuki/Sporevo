@@ -1,6 +1,7 @@
 import Foundation
 import UIKit
 import ReSwift
+import RxSwift
 
 protocol SearchListControllerDelegate:AnyObject {
     func facilitySearchController(_ controller:SearchListController)
@@ -21,18 +22,26 @@ final class SearchListController:UIViewController {
         button.layer.masksToBounds = true
         return button
     }()
-    private var presentar:FacilitySearchPresentar!
+    private let disposeBag = DisposeBag()
+    private let viewModel: SearchListViewModel
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        presentar = FacilitySearchPresentar(outputs: self)
-        appStore.subscribe(self)
+        viewModel.willAppear.accept(())
         setupUI()
-        presentar.deleteUserDefaults()
+        viewModel.deleteUserDefaults()
+        bind()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        appStore.unsubscribe(self)
+        viewModel.willDisAppear.accept(())
+    }
+    init(viewModel: SearchListViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError()
     }
     private func setupUI() {
         view.backgroundColor = .systemBackground
@@ -57,10 +66,16 @@ final class SearchListController:UIViewController {
         navigationItem.leftBarButtonItem = leftButton
         leftButton.tintColor = .systemMint
     }
+    
     @objc private func didTapDismissButton() {
-        presentar.deleteUserDefaults()
+        viewModel.deleteUserDefaults()
         dismiss(animated: true, completion: nil)
-        
+    }
+    
+    func bind() {
+        viewModel.outputs.reload.subscribe { [weak self] _ in
+            self?.tableView.reloadData()
+        }.disposed(by: disposeBag)
     }
 }
 // MARK: - SearchCellDelegate
@@ -86,7 +101,7 @@ extension SearchListController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchCell.id, for: indexPath) as? SearchCell else { fatalError("can't make SeachCell Error") }
         cell.delegate = self
         let section = indexPath.section
-        let message = presentar.getSelectedMessage(row: section)
+        let message = viewModel.getSelectedMessage(row: section)
         cell.elementLabel.text = message
         return cell
     }
@@ -129,29 +144,10 @@ extension SearchListController {
         }
     }
 }
-extension SearchListController:FacilitySearchOutputs {
-    func showError(_ error: Error) {
-        
-    }
-    func reload() {
-        tableView.reloadData()
-    }
-}
+
 extension SearchListController: DetailSearchControllerProtocol {
     func searchListController() {
-        presentar.loadUserDefaults()
-        appStore.subscribe(self)
-    }
-}
-extension SearchListController:StoreSubscriber {    
-    typealias StoreSubscriberStateType = AppState
-    func newState(state: StoreSubscriberStateType) {
-        print(state.searchListState.selectedTag)
-        presentar.selectedTag = state.searchListState.selectedTag
-        presentar.selectedCity = state.searchListState.selectedCity
-        presentar.selectedSports = state.searchListState.selectedSports
-        presentar.selectedFacility = state.searchListState.selectedFacility
-        presentar.selectedPriceUnits = state.searchListState.selectedPriceUnits
-        presentar.reload()
+        viewModel.loadUserDefaults()
+        viewModel.willAppear.accept(())
     }
 }

@@ -87,7 +87,7 @@ final class MainController: UIViewController {
     }
     
     private func toDetail() {
-        let controller = SearchListController()
+        let controller = SearchListController(viewModel: SearchListViewModel(store: appStore))
         controller.delegate = self
         let nav = UINavigationController(rootViewController: controller)
         nav.modalPresentationStyle = .fullScreen
