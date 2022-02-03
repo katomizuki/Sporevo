@@ -107,23 +107,23 @@ extension SearchListController {
     private func pushActions(options:SearchOptions) {
         switch options {
         case .place:
-            let controller = DetailSearchController(toJudegeTableViewKeyword: .place)
+            let controller = DetailSearchController(toJudegeTableViewKeyword: .place, viewModel: DetailSearchViewModel(store: appStore, option: .place))
             controller.delegate = self
             navigationController?.pushViewController(controller, animated: true)
         case .institution:
-            let controller = DetailSearchController(toJudegeTableViewKeyword: .institution)
+            let controller = DetailSearchController(toJudegeTableViewKeyword: .institution,viewModel: DetailSearchViewModel(store: appStore, option: .institution))
             controller.delegate = self
             navigationController?.pushViewController(controller, animated: true)
         case .competition:
-            let controller = DetailSearchController(toJudegeTableViewKeyword: .competition)
+            let controller = DetailSearchController(toJudegeTableViewKeyword: .competition,viewModel: DetailSearchViewModel(store: appStore, option: .competition))
             controller.delegate = self
             navigationController?.pushViewController(controller, animated: true)
         case .price:
-            let controller = DetailSearchController(toJudegeTableViewKeyword: .price)
+            let controller = DetailSearchController(toJudegeTableViewKeyword: .price,viewModel: DetailSearchViewModel(store: appStore, option: .price))
             controller.delegate = self
             navigationController?.pushViewController(controller, animated: true)
         case .tag:
-            let controller = DetailSearchController(toJudegeTableViewKeyword: .tag)
+            let controller = DetailSearchController(toJudegeTableViewKeyword: .tag,viewModel: DetailSearchViewModel(store: appStore, option: .tag))
             controller.delegate = self
             navigationController?.pushViewController(controller, animated: true)
         }

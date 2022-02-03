@@ -72,7 +72,7 @@ final class MainViewModel:MainViewModelType, MainViewModelOutputs,MainViewModelI
         
         willAppear.subscribe(onNext: { [unowned self] _ in
             self.store.subscribe(self) { subcription in
-                subcription.select { state in state.mapState }
+                subcription.select { state in state.mainState }
             }
         }).disposed(by: disposeBag)
         
@@ -102,9 +102,9 @@ final class MainViewModel:MainViewModelType, MainViewModelOutputs,MainViewModelI
 }
 extension MainViewModel: StoreSubscriber {
     
-    typealias StoreSubscriberStateType = MapState
+    typealias StoreSubscriberStateType = MainState
     
-    func newState(state: MapState) {
+    func newState(state: MainState) {
         
     }
 }

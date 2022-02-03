@@ -1,6 +1,7 @@
 import Foundation
 import UIKit
 import ReSwift
+import RxSwift
 
 protocol DetailSearchControllerProtocol:AnyObject {
     func searchListController()
@@ -8,7 +9,9 @@ protocol DetailSearchControllerProtocol:AnyObject {
 final class DetailSearchController: UIViewController {
     // MARK: - Properties
     private var toJudegeTableViewKeyword:SearchOptions
-    private var searchListPresentar:SearchListInputs!
+//    private var searchListPresentar:SearchListInputs!
+    private let viewModel: DetailSearchViewModel
+    private let disposeBag = DisposeBag()
     private lazy var tableView:UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.delegate = self
@@ -24,23 +27,27 @@ final class DetailSearchController: UIViewController {
         view.backgroundColor = .white
         setupTableView()
         setupNav()
-        searchListPresentar.viewDidLoad()
+        bind()
+//        searchListPresentar.viewDidLoad()
+        viewModel.didLoad.accept(())
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        appStore.subscribe(self)
+        viewModel.willAppear.accept(())
+//        appStore.subscribe(self)
         navigationController?.navigationBar.backgroundColor = .clear
         navigationController?.navigationBar.isHidden = false
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        appStore.unsubscribe(self)
+//        appStore.unsubscribe(self)
+        viewModel.willDisAppear.accept(())
     }
     // MARK: - Initialize
-    init(toJudegeTableViewKeyword: SearchOptions) {
+    init(toJudegeTableViewKeyword: SearchOptions,viewModel: DetailSearchViewModel) {
         self.toJudegeTableViewKeyword = toJudegeTableViewKeyword
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-        searchListPresentar = SearchListPresentar(outputs: self,option: toJudegeTableViewKeyword)
     }
     
     required init?(coder: NSCoder) {
@@ -61,21 +68,28 @@ final class DetailSearchController: UIViewController {
         leftButton.tintColor = .systemMint
     }
     @objc private func didTapLeftBarButton() {
-        searchListPresentar.saveUserDefaults()
+//        searchListPresentar.saveUserDefaults()
+        viewModel.saveUserDefaults()
         navigationController?.popViewController(animated: true)
         self.delegate?.searchListController()
+    }
+    func bind() {
+        
+        viewModel.reload.subscribe { [weak self] _  in
+            self?.tableView.reloadData()
+        }.disposed(by: disposeBag)
+
     }
 }
 // MARK: - UITableViewDelegate
 extension DetailSearchController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(#function)
         guard let cell = tableView.cellForRow(at: indexPath) as? SearchListCell else { return }
-        searchListPresentar.didSelectRowAt(indexPath: indexPath)
+        viewModel.didSelectRowAt(indexPath: indexPath)
         if toJudegeTableViewKeyword == .place || toJudegeTableViewKeyword == .price {
             if indexPath.row == 0 {
             tableView.deselectRow(at: indexPath, animated: true)
-            searchListPresentar.didTapSection(section: indexPath.section)
+            viewModel.didTapSection(section: indexPath.section)
             } else {
                 let key = "\(indexPath.section) + \(indexPath.row)"
                 if cell.accessoryType == .none {
@@ -108,17 +122,17 @@ extension DetailSearchController: UITableViewDelegate {
             cell.accessoryType = .none
             selectedCell.removeValue(forKey: key)
         }
-        searchListPresentar.didSelectRowAt(indexPath: indexPath)
+        viewModel.didSelectRowAt(indexPath: indexPath)
     }
 }
 // MARK: - UITableViewDataSource
 extension DetailSearchController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return searchListPresentar.sectionsCount
+        return viewModel.sectionsCount
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchListCell.id,for: indexPath) as? SearchListCell else { fatalError("can't make SearchListCell Error") }
-        cell.textLabel?.text = searchListPresentar.getMessage(indexPath: indexPath)
+        cell.textLabel?.text = viewModel.getMessage(indexPath: indexPath)
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         if toJudegeTableViewKeyword == .price || toJudegeTableViewKeyword == .place {
             let key = "\(indexPath.section) + \(indexPath.row)"
@@ -139,7 +153,7 @@ extension DetailSearchController: UITableViewDataSource {
         return cell
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchListPresentar.numberOfCell(section: section)
+        return viewModel.numberOfCell(section: section)
     }
 }
 // MARK: - SearchListOutputs
@@ -155,23 +169,21 @@ extension DetailSearchController:SearchListOutputs {
         }
     }
 }
-extension DetailSearchController:StoreSubscriber {
-    
-    typealias StoreSubscriberStateType = AppState
-    
-    func newState(state: StoreSubscriberStateType) {
-        searchListPresentar.citySections = state.detailSearchState.placeSections
-        searchListPresentar.tags = state.detailSearchState.tags
-        searchListPresentar.sports = state.detailSearchState.sports
-        searchListPresentar.moneySections = state.detailSearchState.moneySections
-        searchListPresentar.facilities = state.detailSearchState.facilityType
-        searchListPresentar.selectedCity = state.detailSearchState.selectedCity
-        searchListPresentar.selectedInstion = state.detailSearchState.selectedInstion
-        searchListPresentar.selectedCompetion = state.detailSearchState.selectedCompetion
-        searchListPresentar.selectedPrice = state.detailSearchState.selectedPrice
-        searchListPresentar.selectedTag = state.detailSearchState.selectedTag
-    }
-    
-    
-}
+//extension DetailSearchController:StoreSubscriber {
+//
+//    typealias StoreSubscriberStateType = AppState
+//
+//    func newState(state: StoreSubscriberStateType) {
+//        searchListPresentar.citySections = state.detailSearchState.placeSections
+//        searchListPresentar.tags = state.detailSearchState.tags
+//        searchListPresentar.sports = state.detailSearchState.sports
+//        searchListPresentar.moneySections = state.detailSearchState.moneySections
+//        searchListPresentar.facilities = state.detailSearchState.facilityType
+//        searchListPresentar.selectedCity = state.detailSearchState.selectedCity
+//        searchListPresentar.selectedInstion = state.detailSearchState.selectedInstion
+//        searchListPresentar.selectedCompetion = state.detailSearchState.selectedCompetion
+//        searchListPresentar.selectedPrice = state.detailSearchState.selectedPrice
+//        searchListPresentar.selectedTag = state.detailSearchState.selectedTag
+//    }
+//}
 

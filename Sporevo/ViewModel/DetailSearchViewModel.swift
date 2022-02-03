@@ -53,7 +53,7 @@ final class DetailSearchViewModel: DetailSearchViewModelType,DetailSearchViewMod
     private var selectedInstion = [FacilityType]()
     private var selectedCompetion = [Sport]()
     private var selectedPrice = [PriceUnits]()
-    private var facilities = [FacilityType]()
+    private var facilityType = [FacilityType]()
     private var sports = [Sport]()
     private var tags = [Tag]()
     private let option:SearchOptions
@@ -70,7 +70,7 @@ final class DetailSearchViewModel: DetailSearchViewModelType,DetailSearchViewMod
         
         willAppear.subscribe(onNext: { [unowned self] _ in
             self.store.subscribe(self) { subcription in
-                subcription.select { state in state.searchListState }
+                subcription.select { state in state.detailSearchState }
             }
         }).disposed(by: disposeBag)
         
@@ -127,7 +127,7 @@ final class DetailSearchViewModel: DetailSearchViewModelType,DetailSearchViewMod
             } else {
                 return 1
             }
-        case .institution: return facilities.count
+        case .institution: return facilityType.count
         case .competition: return sports.count
         case .price:
             let section = moneySections[section]
@@ -145,7 +145,7 @@ final class DetailSearchViewModel: DetailSearchViewModelType,DetailSearchViewMod
         let section = indexPath.section
         var message = String()
         switch option {
-        case .institution: message = self.facilities[row].name
+        case .institution: message = self.facilityType[row].name
         case .competition: message = self.sports[row].name
         case .place:
             let model = self.citySections[section].pre
@@ -171,10 +171,17 @@ final class DetailSearchViewModel: DetailSearchViewModelType,DetailSearchViewMod
 
 extension DetailSearchViewModel: StoreSubscriber {
     
-    typealias StoreSubscriberStateType = SearchListState
+    typealias StoreSubscriberStateType = DetailSearchState
     
-    func newState(state: SearchListState) {
-        
+    func newState(state: DetailSearchState) {
+        self.facilityType = state.facilityType
+        self.moneySections = state.moneySections
+        self.sports = state.sports
+        self.tags = state.tags
+        self.citySections = state.placeSections
+        reload.accept(())
+        print(state.moneySections)
+        print(state.placeSections)
     }
     
 }
