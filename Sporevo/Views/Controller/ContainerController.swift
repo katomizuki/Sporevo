@@ -65,9 +65,20 @@ class ContainerController:UIViewController {
         }
     private func didSelectMenuOption(menuOption: MenuOptions) {
         print(#function)
-        let controller = UINavigationController(rootViewController: SearchListController(viewModel: SearchListViewModel(store: appStore)))
-        controller.modalPresentationStyle = .fullScreen
-        present(controller, animated: true, completion: nil)
+        switch menuOption {
+        case .profile:
+            print(#function)
+        case .search:
+            let controller = UINavigationController(rootViewController: SearchListController(viewModel: SearchListViewModel(store: appStore)))
+            controller.modalPresentationStyle = .fullScreen
+            present(controller, animated: true, completion: nil)
+        case .settings:
+            print(#function)
+        case .info:
+            let vc = InfoViewController()
+            present(vc, animated: true, completion: nil)
+        }
+        
     }
 }
 // MARK: - SporevoMainControllerDelegate

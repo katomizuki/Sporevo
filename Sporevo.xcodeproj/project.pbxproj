@@ -80,6 +80,7 @@
 		D36DE4E427A80DAF00253FB8 /* FacilityListReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36DE4E327A80DAF00253FB8 /* FacilityListReducer.swift */; };
 		D36DE4E627A8121500253FB8 /* MainActionCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36DE4E527A8121500253FB8 /* MainActionCreator.swift */; };
 		D36DE4E827A8124300253FB8 /* MainStateAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36DE4E727A8124300253FB8 /* MainStateAction.swift */; };
+		D37C918527BC5ABF0040F88F /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37C918427BC5ABF0040F88F /* InfoViewController.swift */; };
 		D3B72CA42749278A00253933 /* InstitutionListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B72CA32749278A00253933 /* InstitutionListController.swift */; };
 		D3D81170274E213000A380B1 /* FacilityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D8116F274E213000A380B1 /* FacilityType.swift */; };
 		D3D81172274E509A00A380B1 /* Sports.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D81171274E509A00A380B1 /* Sports.swift */; };
@@ -176,6 +177,7 @@
 		D36DE4E327A80DAF00253FB8 /* FacilityListReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityListReducer.swift; sourceTree = "<group>"; };
 		D36DE4E527A8121500253FB8 /* MainActionCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainActionCreator.swift; sourceTree = "<group>"; };
 		D36DE4E727A8124300253FB8 /* MainStateAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStateAction.swift; sourceTree = "<group>"; };
+		D37C918427BC5ABF0040F88F /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		D3B72CA32749278A00253933 /* InstitutionListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstitutionListController.swift; sourceTree = "<group>"; };
 		D3D8116F274E213000A380B1 /* FacilityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityType.swift; sourceTree = "<group>"; };
 		D3D81171274E509A00A380B1 /* Sports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sports.swift; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 				D32B13C127392BCC0039CC06 /* DetailSearchController.swift */,
 				D33D95A72745E114001FBC48 /* MapController.swift */,
 				D32B137D2738D8430039CC06 /* MainController.swift */,
+				D37C918427BC5ABF0040F88F /* InfoViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -672,6 +675,7 @@
 				D3F21514279ECF7F009897CE /* SearchListState.swift in Sources */,
 				D36DE4E227A80ACD00253FB8 /* Util.swift in Sources */,
 				D3459C31278C413900B61C6E /* FacilityTypeEntity.swift in Sources */,
+				D37C918527BC5ABF0040F88F /* InfoViewController.swift in Sources */,
 				D3459C2D278C408500B61C6E /* SportEntity.swift in Sources */,
 				D3F21518279ED18A009897CE /* SearchListReducer.swift in Sources */,
 				D32B137C2738D8430039CC06 /* SceneDelegate.swift in Sources */,

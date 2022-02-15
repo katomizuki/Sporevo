@@ -3,7 +3,7 @@ import UIKit
 import ReSwift
 import RxSwift
 
-protocol SearchListControllerDelegate:AnyObject {
+protocol SearchListControllerDelegate: AnyObject {
     func facilitySearchController(_ controller:SearchListController)
 }
 
